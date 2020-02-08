@@ -1,0 +1,35 @@
+{
+  "name": "@faterial/list",
+  "version": "1.0.0",
+  "description": "Fancy MDC React List",
+  "author": "jdc2000",
+  "homepage": "https://github.com/jdc2000/faterial-components#readme",
+  "license": "ISC",
+  "main": "index.js",
+  "directories": {
+    "stories": "stories",
+    "test": "test"
+  },
+  "files": [
+    "index.js",
+    "ListDivider.js",
+    "ListGroup.js",
+    "ListGroupSubheader.js",
+    "ListItem.js",
+    "ListItemGraphic.js",
+    "ListItemMeta.js",
+    "ListItemPrimaryText.js",
+    "ListItemSecondaryText.js",
+    "ListItemText.js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jdc2000/faterial-components.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/jdc2000/faterial-components/issues"
+  }
+}

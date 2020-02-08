@@ -4,6 +4,7 @@
   "devDependencies": {
     "@babel/core": "^7.8.4",
     "@material/button": "^4.0.0",
+    "@material/list": "^4.0.0",
     "@material/textfield": "^4.0.0",
     "@storybook/react": "^5.3.9",
     "@testing-library/react": "^9.4.0",
@@ -42,7 +43,7 @@
     }
   },
   "lint-staged": {
-    "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
+    "packages/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
       "prettier --write",
       "git add"
     ]

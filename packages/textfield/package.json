@@ -7,13 +7,16 @@
   "license": "ISC",
   "main": "index.js",
   "directories": {
-    "src": "src",
     "stories": "stories",
     "test": "test"
   },
   "files": [
-    "src",
-    "index.js"
+    "index.js",
+    "CharacterCount.js",
+    "HelperLine.js",
+    "HelperText.js",
+    "Icon.js",
+    "NotchedOutline.js"
   ],
   "repository": {
     "type": "git",

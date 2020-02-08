@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from '../index';
+import { Button } from '..';
 import '@material/button/dist/mdc.button.css';
 
 export default { title: 'Button' };
@@ -17,7 +17,7 @@ function Buttons({ ripple = true }) {
         ripple={ripple}
         outlined
         icon={
-          <i class="material-icons mdc-button__icon" aria-hidden="true">
+          <i className="material-icons mdc-button__icon" aria-hidden="true">
             favorite
           </i>
         }
@@ -28,7 +28,7 @@ function Buttons({ ripple = true }) {
         ripple={ripple}
         outlined
         trailingIcon={
-          <i class="material-icons mdc-button__icon" aria-hidden="true">
+          <i className="material-icons mdc-button__icon" aria-hidden="true">
             favorite
           </i>
         }

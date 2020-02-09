@@ -4,7 +4,7 @@ import '@material/button/dist/mdc.button.css';
 
 export default { title: 'Button' };
 
-function Buttons({ ripple = true }) {
+function MyButtons({ ripple = true }) {
   const style = { margin: '0 8px' };
   return (
     <>
@@ -30,6 +30,6 @@ function Buttons({ ripple = true }) {
   );
 }
 
-export const WithRipple = () => <Buttons />;
+export const WithRipple = () => <MyButtons />;
 
-export const WithoutRipple = () => <Buttons ripple={false} />;
+export const WithoutRipple = () => <MyButtons ripple={false} />;

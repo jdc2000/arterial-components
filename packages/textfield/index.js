@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Icon from './Icon';
@@ -31,12 +31,12 @@ function TextField({
   value,
   ...otherProps
 }) {
-  const [currentValue, setCurrentValue] = useState(value);
-  const [isFocused, setIsFocused] = useState(focused);
+  const inputEl = useRef();
   const [floatAbove, setFloatAbove] = useState(false);
+  const [isFocused, setIsFocused] = useState(focused);
 
   const { className: rootClassName, ...otherRootProps } = rootProps;
-  const rootClasses = classNames(rootClassName, 'mdc-text-field', {
+  const classes = classNames(className, 'mdc-text-field', {
     'mdc-text-field--disabled': disabled,
     'mdc-text-field--focused': isFocused,
     'mdc-text-field--fullwidth': fullWidth,
@@ -47,7 +47,7 @@ function TextField({
     'mdc-text-field--with-leading-icon': icon,
     'mdc-text-field--with-trailing-icon': trailingIcon
   });
-  const inputClasses = classNames(className, 'mdc-text-field__input');
+  const inputClasses = classNames('mdc-text-field__input');
   const labelClasses = classNames('mdc-floating-label', labelClassName, {
     [FLOAT_ABOVE_CLASS]: floatAbove
   });
@@ -62,49 +62,45 @@ function TextField({
     id: id,
     maxLength: maxLength,
     onBlur: handleBlur,
-    onChange: handleChange,
+    onChange: onChange,
     onFocus: handleFocus,
+    ref: inputEl,
     required: required,
-    value: currentValue
+    value: value
   };
+
   if (helperText) {
     inputProps['aria-controls'] = `${id}-helper-text`;
     inputProps['aria-describedby'] = `${id}-helper-text`;
   }
 
-  function handleChange(e) {
-    if (onChange) {
-      return onChange(e);
-    }
-    setCurrentValue(e.target.value);
-  }
   function handleBlur(e) {
     if (onBlur) {
-      return onBlur(e);
+      onBlur(e);
     }
     setIsFocused(false);
   }
+
   function handleFocus(e) {
     if (onFocus) {
-      return onFocus(e);
+      onFocus(e);
     }
     setIsFocused(true);
   }
 
   useEffect(() => {
-    setCurrentValue(value);
-  }, [value]);
-  useEffect(() => {
     setIsFocused(focused);
   }, [focused]);
+
   useEffect(() => {
-    const float = labelClassName && labelClassName.includes(FLOAT_ABOVE_CLASS);
-    setFloatAbove(currentValue || isFocused || float);
-  }, [currentValue, isFocused, labelClassName]);
+    const hasFloatAboveClass =
+      labelClassName && labelClassName.includes(FLOAT_ABOVE_CLASS);
+    setFloatAbove(Boolean(value || isFocused || hasFloatAboveClass));
+  }, [value, isFocused, labelClassName]);
 
   return (
     <>
-      <div className={rootClasses} {...otherRootProps}>
+      <div className={classes} {...otherRootProps}>
         {icon && <Icon icon={icon} />}
         {textarea ? (
           <textarea {...inputProps}></textarea>
@@ -132,7 +128,7 @@ function TextField({
         characterCounter={
           maxLength && (
             <CharacterCounter
-              count={currentValue && currentValue.length}
+              count={value && value.length}
               maxLength={maxLength}
             />
           )
@@ -156,7 +152,7 @@ TextField.propTypes = {
   labelClassName: PropTypes.string,
   maxLength: PropTypes.number,
   onBlur: PropTypes.func,
-  onChange: PropTypes.func,
+  onChange: PropTypes.func.isRequired,
   onFocus: PropTypes.func,
   outlined: PropTypes.bool,
   required: PropTypes.bool,
@@ -166,7 +162,5 @@ TextField.propTypes = {
   value: PropTypes.string
 };
 
-export { TextField };
-export { default as CharacterCounter } from './src/CharacterCounter';
-export { default as HelperText } from './src/HelperText';
-export { default as Icon } from './src/Icon';
+export { TextField, CharacterCounter, Icon };
+export { default as HelperText } from './HelperText';

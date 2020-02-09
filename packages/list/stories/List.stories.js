@@ -25,7 +25,7 @@ const items = [
   { id: 'send' },
   { id: 'drafts' }
 ];
-function ListDemo({ type = 'activated' }) {
+function MyList({ type = 'activated' }) {
   const [selected, setSelected] = useState('star');
   function handleClick(e) {
     console.log(e.target.id);
@@ -110,9 +110,9 @@ export const WithLeadingIcon = () => (
   </List>
 );
 
-export const WithActivatedItem = () => <ListDemo />;
+export const WithActivatedItem = () => <MyList />;
 
-export const WithSelectedItem = () => <ListDemo type="selected" />;
+export const WithSelectedItem = () => <MyList type="selected" />;
 
 export const WithTrailingIcon = () => (
   <List>

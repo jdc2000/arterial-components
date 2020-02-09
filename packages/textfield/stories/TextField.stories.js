@@ -1,27 +1,42 @@
-import React from 'react';
-import { Icon } from '../../icon/index';
-import { TextField, HelperText } from '../index';
+import React, { useState } from 'react';
+import { HelperText, TextField } from '..';
+import { Icon } from '../../icon';
 import '@material/textfield/dist/mdc.textfield.css';
 import '@material/notched-outline/dist/mdc.notched-outline.css';
-import './TextField.stories.css';
+import './textfield.stories.css';
 
 export default {
   title: 'TextField',
   decorators: [storyFn => <div className="container">{storyFn()}</div>]
 };
 
-function TextFields({ type = 'default', ...props }) {
+function MyTextField(props) {
+  const [value, setValue] = useState('');
+  return (
+    <TextField
+      {...props}
+      value={value}
+      onChange={e => setValue(e.target.value)}
+    />
+  );
+}
+
+function MyTextFields({ type = 'default', ...props }) {
   if (type === 'default') {
     return (
       <>
         <div>
-          <TextField {...props} id="textfield-1" />
+          <MyTextField {...props} id="textfield-1" />
         </div>
         <div>
-          <TextField {...props} id="textfield-2" icon={<Icon icon="event" />} />
+          <MyTextField
+            {...props}
+            id="textfield-2"
+            icon={<Icon icon="event" />}
+          />
         </div>
         <div>
-          <TextField
+          <MyTextField
             {...props}
             id="textfield-3"
             trailingIcon={
@@ -40,10 +55,10 @@ function TextFields({ type = 'default', ...props }) {
   return (
     <div className="row__inner">
       <div>
-        <TextField {...props} id="textfield-1" />
+        <MyTextField {...props} id="textfield-1" />
       </div>
       <div>
-        <TextField {...props} id="textfield-2" outlined />
+        <MyTextField {...props} id="textfield-2" outlined />
       </div>
     </div>
   );
@@ -51,17 +66,17 @@ function TextFields({ type = 'default', ...props }) {
 
 export const Filled = () => (
   <div className="row">
-    <TextFields label="Standard" />
+    <MyTextFields label="Standard" />
   </div>
 );
 export const Outlined = () => (
   <div className="row">
-    <TextFields label="Standard123456789" outlined />
+    <MyTextFields label="Standard123456789" outlined />
   </div>
 );
 export const WithHelperText = () => (
   <div className="row">
-    <TextFields
+    <MyTextFields
       type="diff"
       label="Standard"
       helperText={<HelperText>Helper Text</HelperText>}
@@ -70,7 +85,7 @@ export const WithHelperText = () => (
 );
 export const WithPersistentHelperText = () => (
   <div className="row">
-    <TextFields
+    <MyTextFields
       type="diff"
       label="Standard"
       helperText={<HelperText persistent>Helper Text</HelperText>}
@@ -79,7 +94,7 @@ export const WithPersistentHelperText = () => (
 );
 export const WithInvalid = () => (
   <div className="row">
-    <TextFields
+    <MyTextFields
       type="diff"
       label="Standard"
       helperText={
@@ -94,7 +109,7 @@ export const WithInvalid = () => (
 );
 export const WithPersistentFloatingLabel = () => (
   <div className="row">
-    <TextFields
+    <MyTextFields
       type="diff"
       label="Standard"
       labelClassName="mdc-floating-label--float-above"
@@ -104,7 +119,7 @@ export const WithPersistentFloatingLabel = () => (
 );
 export const WithoutLabel = () => (
   <div className="row">
-    <TextFields
+    <MyTextFields
       type="diff"
       helperText={<HelperText persistent>Helper Text</HelperText>}
     />
@@ -112,7 +127,7 @@ export const WithoutLabel = () => (
 );
 export const WithCharacterCounter = () => (
   <div className="row">
-    <TextFields
+    <MyTextFields
       type="diff"
       label="Standard"
       helperText={<HelperText persistent>Helper Text</HelperText>}
@@ -123,7 +138,7 @@ export const WithCharacterCounter = () => (
 export const Textarea = () => (
   <div className="row">
     <div>
-      <TextField
+      <MyTextField
         id="textfield-1"
         label="Standard"
         helperText={<HelperText persistent>Helper Text</HelperText>}
@@ -135,7 +150,7 @@ export const Textarea = () => (
 export const TextareaWithCharacterCounter = () => (
   <div className="row">
     <div>
-      <TextField
+      <MyTextField
         id="textfield-1"
         label="Standard"
         helperText={<HelperText persistent>Helper Text</HelperText>}
@@ -148,7 +163,7 @@ export const TextareaWithCharacterCounter = () => (
 export const FullWidth = () => (
   <>
     <div style={{ marginBottom: '32px' }}>
-      <TextField
+      <MyTextField
         id="textfield-1"
         fullWidth
         helperText={<HelperText persistent>Helper Text</HelperText>}
@@ -156,7 +171,7 @@ export const FullWidth = () => (
       />
     </div>
     <div>
-      <TextField
+      <MyTextField
         id="textfield-1"
         fullWidth
         helperText={<HelperText persistent>Helper Text</HelperText>}

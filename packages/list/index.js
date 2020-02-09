@@ -32,7 +32,7 @@ List.propTypes = {
   className: PropTypes.string,
   dense: PropTypes.bool,
   interactive: PropTypes.bool,
-  twoLine: PropTypes.string,
+  twoLine: PropTypes.bool,
   tag: PropTypes.element
 };
 

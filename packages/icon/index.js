@@ -13,8 +13,7 @@ function Icon({ className, icon, ...otherProps }) {
 
 Icon.propTypes = {
   className: PropTypes.string,
-  icon: PropTypes.string.isRequired,
-  material: PropTypes.bool
+  icon: PropTypes.string.isRequired
 };
 
 export { Icon };

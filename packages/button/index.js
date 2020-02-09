@@ -22,12 +22,18 @@ function Button({
   const Tag = tag;
   return (
     <Tag className={classes} {...otherProps}>
-      {ripple ? <div className="mdc-button__ripple"></div> : null}
-      {icon}
-      {label ? <span className="mdc-button__label">{label}</span> : null}
-      {trailingIcon}
+      {ripple && <div className="mdc-button__ripple"></div>}
+      {icon && <Icon icon={icon} />}
+      {label && <span className="mdc-button__label">{label}</span>}
+      {trailingIcon && <Icon icon={trailingIcon} />}
     </Tag>
   );
+}
+
+function Icon({ icon }) {
+  const classes = classNames(icon.props.className, 'mdc-button__icon');
+  const props = { ...icon.props, 'aria-hidden': true, className: classes };
+  return React.cloneElement(icon, props);
 }
 
 Button.propTypes = {

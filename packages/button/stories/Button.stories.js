@@ -16,22 +16,14 @@ function Buttons({ ripple = true }) {
         label="Icon"
         ripple={ripple}
         outlined
-        icon={
-          <i className="material-icons mdc-button__icon" aria-hidden="true">
-            favorite
-          </i>
-        }
+        icon={<i className="material-icons">favorite</i>}
         style={style}
       />
       <Button
         label="Trailing Icon"
         ripple={ripple}
         outlined
-        trailingIcon={
-          <i className="material-icons mdc-button__icon" aria-hidden="true">
-            favorite
-          </i>
-        }
+        trailingIcon={<i className="material-icons">favorite</i>}
         style={style}
       />
     </>

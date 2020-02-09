@@ -4,6 +4,8 @@
   "devDependencies": {
     "@babel/core": "^7.8.4",
     "@material/button": "^4.0.0",
+    "@material/checkbox": "^4.0.0",
+    "@material/form-field": "^4.0.0",
     "@material/list": "^4.0.0",
     "@material/textfield": "^4.0.0",
     "@storybook/react": "^5.3.9",

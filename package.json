@@ -7,6 +7,7 @@
     "@material/checkbox": "^4.0.0",
     "@material/form-field": "^4.0.0",
     "@material/list": "^4.0.0",
+    "@material/menu-surface": "^4.0.0",
     "@material/radio": "^4.0.0",
     "@material/textfield": "^4.0.0",
     "@storybook/react": "^5.3.9",

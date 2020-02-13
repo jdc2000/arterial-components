@@ -7,7 +7,7 @@ function List({
   children,
   className,
   dense,
-  interactive = true,
+  nonInteractive,
   twoLine,
   tag = 'ul',
   ...otherProps
@@ -15,7 +15,7 @@ function List({
   const classes = classNames('mdc-list', className, {
     'mdc-list--avatar-list': avatarList,
     'mdc-list--dense': dense,
-    'mdc-list--non-interactive': !interactive,
+    'mdc-list--non-interactive': nonInteractive,
     'mdc-list--two-line': twoLine
   });
   const Tag = tag;
@@ -31,7 +31,7 @@ List.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   dense: PropTypes.bool,
-  interactive: PropTypes.bool,
+  nonInteractive: PropTypes.bool,
   twoLine: PropTypes.bool,
   tag: PropTypes.element
 };

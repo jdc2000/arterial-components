@@ -103,7 +103,7 @@ export const WithInvalid = () => (
         </HelperText>
       }
       required
-      valid={false}
+      invalid
     />
   </div>
 );

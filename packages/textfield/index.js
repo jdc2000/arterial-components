@@ -14,6 +14,7 @@ function TextField({
   helperText,
   icon,
   id,
+  invalid,
   focused,
   fullWidth,
   label,
@@ -27,7 +28,6 @@ function TextField({
   rootProps = {},
   textarea,
   trailingIcon,
-  valid = true,
   value,
   ...otherProps
 }) {
@@ -40,7 +40,7 @@ function TextField({
     'mdc-text-field--disabled': disabled,
     'mdc-text-field--focused': isFocused,
     'mdc-text-field--fullwidth': fullWidth,
-    'mdc-text-field--invalid': !valid,
+    'mdc-text-field--invalid': invalid,
     'mdc-text-field--no-label': !label,
     'mdc-text-field--outlined': outlined,
     'mdc-text-field--textarea': textarea,
@@ -56,17 +56,17 @@ function TextField({
     'mdc-line-ripple--deactivating': !isFocused
   });
   const inputProps = {
-    ...otherProps,
     className: inputClasses,
-    disabled: disabled,
-    id: id,
-    maxLength: maxLength,
+    disabled,
+    id,
+    maxLength,
     onBlur: handleBlur,
     onChange: onChange,
     onFocus: handleFocus,
     ref: inputEl,
-    required: required,
-    value: value
+    required,
+    value,
+    ...otherProps
   };
 
   if (helperText) {
@@ -128,7 +128,7 @@ function TextField({
         characterCounter={
           maxLength && (
             <CharacterCounter
-              count={value && value.length}
+              count={value ? value.length : 0}
               maxLength={maxLength}
             />
           )
@@ -158,7 +158,7 @@ TextField.propTypes = {
   required: PropTypes.bool,
   textarea: PropTypes.bool,
   trailingIcon: PropTypes.element,
-  valid: PropTypes.bool,
+  invalid: PropTypes.bool,
   value: PropTypes.string
 };
 

@@ -47,10 +47,7 @@ function MyMenuSurface({
         }
       }
       function handleKeyDown(e) {
-        const { keyCode, key } = e;
-
-        const isEscape = key === 'Escape' || keyCode === 27;
-        if (isEscape) {
+        if (e.key === 'Escape' || e.keyCode === 27) {
           setOpen(false);
         }
       }

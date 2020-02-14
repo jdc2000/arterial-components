@@ -38,7 +38,7 @@
     "clean-pkgs": "lerna clean -y && lerna exec --parallel -- rm -rf ./package-lock.json",
     "clean-root": "rm -rf ./node_modules ./package-lock.json",
     "postinstall": "lerna bootstrap",
-    "storybook": "start-storybook",
+    "storybook": "start-storybook -p 9001",
     "test": "jest"
   },
   "husky": {

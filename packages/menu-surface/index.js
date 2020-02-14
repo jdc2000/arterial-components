@@ -353,7 +353,7 @@ function MenuSurface({
 
 MenuSurface.propTypes = {
   anchorCorner: PropTypes.number,
-  anchorElement: PropTypes.element,
+  anchorElement: PropTypes.object,
   anchorMargin: PropTypes.shape({
     top: PropTypes.number,
     right: PropTypes.number,

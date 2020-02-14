@@ -11,7 +11,9 @@
     "test": "test"
   },
   "files": [
-    "index.js"
+    "index.js",
+    "Corner.js",
+    "MenuSurfaceAnchor.js"
   ],
   "repository": {
     "type": "git",

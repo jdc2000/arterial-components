@@ -10,6 +10,7 @@
     "@material/menu-surface": "^4.0.0",
     "@material/radio": "^4.0.0",
     "@material/textfield": "^4.0.0",
+    "@rollup/plugin-node-resolve": "^7.1.1",
     "@storybook/react": "^5.3.9",
     "@testing-library/react": "^9.4.0",
     "@typescript-eslint/eslint-plugin": "^2.18.0",
@@ -31,11 +32,15 @@
     "lint-staged": "^10.0.7",
     "prettier": "^1.19.1",
     "react": "^16.12.0",
-    "react-dom": "^16.12.0"
+    "react-dom": "^16.12.0",
+    "rollup": "^1.31.1",
+    "rollup-plugin-babel": "^4.3.3",
+    "typescript": "^3.7.5"
   },
   "scripts": {
+    "build": "rollup -c",
     "clean": "npm run clean-root && npm run clean-pkgs",
-    "clean-pkgs": "lerna clean -y && lerna exec --parallel -- rm -rf ./package-lock.json",
+    "clean-pkgs": "lerna clean -y && lerna exec --parallel -- rm -rf ./dist ./package-lock.json",
     "clean-root": "rm -rf ./node_modules ./package-lock.json",
     "postinstall": "lerna bootstrap",
     "storybook": "start-storybook -p 9001",

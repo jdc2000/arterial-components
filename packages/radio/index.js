@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { withFormField } from '../form-field';
+import { withFormField } from '@faterial/form-field';
 
 function RadioRoot({
   checked,

@@ -4,32 +4,38 @@ import '@material/button/dist/mdc.button.css';
 
 export default { title: 'Button' };
 
-function MyButtons({ ripple = true }) {
+function MyButtons({ raised, unelevated, outlined }) {
   const style = { margin: '0 8px' };
   return (
     <>
-      <Button label="Basic" ripple={ripple} style={style} />
-      <Button label="Raised" ripple={ripple} raised style={style} />
-      <Button label="Unelevated" ripple={ripple} unelevated style={style} />
-      <Button label="Outlined" ripple={ripple} outlined style={style} />
+      <Button
+        label="Button"
+        raised={raised}
+        unelevated={unelevated}
+        outlined={outlined}
+        style={style}
+      />
       <Button
         label="Icon"
-        ripple={ripple}
-        outlined
-        icon={<i className="material-icons">favorite</i>}
+        raised={raised}
+        unelevated={unelevated}
+        outlined={outlined}
+        icon="favorite"
         style={style}
       />
       <Button
         label="Trailing Icon"
-        ripple={ripple}
-        outlined
-        trailingIcon={<i className="material-icons">favorite</i>}
+        raised={raised}
+        unelevated={unelevated}
+        outlined={outlined}
+        trailingIcon="favorite"
         style={style}
       />
     </>
   );
 }
 
-export const WithRipple = () => <MyButtons />;
-
-export const WithoutRipple = () => <MyButtons ripple={false} />;
+export const Basic = () => <MyButtons />;
+export const Raised = () => <MyButtons raised />;
+export const Unelevated = () => <MyButtons unelevated />;
+export const Outlined = () => <MyButtons outlined />;

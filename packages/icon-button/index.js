@@ -16,7 +16,6 @@ function IconButton({
   });
   const ariaProps = {
     'aria-label': label,
-    'aria-hidden': true,
     'aria-pressed': on
   };
   const Tag = tag;

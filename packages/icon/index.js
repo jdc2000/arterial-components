@@ -3,13 +3,8 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 function Icon({ className, icon, ...otherProps }) {
-  const material = typeof icon === 'string';
-  if (!icon || material) {
-    const classes = classNames(
-      'fat-icon',
-      { 'material-icons': material },
-      className
-    );
+  if (typeof icon === 'string') {
+    const classes = classNames('fat-icon', 'material-icons', className);
     return (
       <i className={classes} {...otherProps}>
         {icon}
@@ -23,7 +18,7 @@ function Icon({ className, icon, ...otherProps }) {
 
 Icon.propTypes = {
   className: PropTypes.string,
-  icon: PropTypes.oneOfType([PropTypes.string, PropTypes.element])
+  icon: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired
 };
 
 export { Icon };

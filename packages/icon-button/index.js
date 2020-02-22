@@ -1,6 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { Icon } from '@faterial/icon';
+
+const ICON_CLASS = 'mdc-icon-button__icon';
+const ON_ICON_CLASS = classNames(ICON_CLASS, 'mdc-icon-button__icon--on');
 
 function IconButton({
   className,
@@ -21,20 +25,10 @@ function IconButton({
   const Tag = tag;
   return (
     <Tag className={classes} {...otherProps} {...ariaProps}>
-      {icon && <Icon icon={icon} />}
-      {onIcon && <Icon icon={onIcon} on />}
+      {icon && <Icon className={ICON_CLASS} icon={icon} />}
+      {onIcon && <Icon className={ON_ICON_CLASS} icon={onIcon} />}
     </Tag>
   );
-}
-
-function Icon({ icon, on }) {
-  const classes = classNames(
-    'mdc-icon-button__icon',
-    { 'mdc-icon-button__icon--on': on },
-    icon.props.className
-  );
-  const props = { ...icon.props, className: classes };
-  return React.cloneElement(icon, props);
 }
 
 IconButton.propTypes = {
@@ -44,11 +38,6 @@ IconButton.propTypes = {
   on: PropTypes.bool,
   onIcon: PropTypes.element,
   tag: PropTypes.element
-};
-
-Icon.propTypes = {
-  className: PropTypes.string,
-  icon: PropTypes.element.isRequired
 };
 
 export { IconButton };

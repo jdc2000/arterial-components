@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { IconButton } from '..';
-import { Icon } from '../../icon';
 import '@material/icon-button/dist/mdc.icon-button.css';
 import ChromeSvg from './ChromeSvg.js';
 import FirefoxSvg from './FirefoxSvg.js';
@@ -9,8 +8,8 @@ export default { title: 'IconButton' };
 
 function MyIconButton({ image, svg, toggle }) {
   const [on, setOn] = useState(false);
-  let myIcon = <Icon icon={toggle ? 'favorite_border' : 'favorite'} />;
-  let myOnIcon = <Icon icon="favorite" />;
+  let myIcon = toggle ? 'favorite_border' : 'favorite';
+  let myOnIcon = 'favorite';
   if (image) {
     myIcon = (
       <img
@@ -35,12 +34,20 @@ function MyIconButton({ image, svg, toggle }) {
       icon={myIcon}
       onIcon={myOnIcon}
       on={on}
-      onClick={() => setOn(!on)}
+      onClick={() => {
+        if (toggle) {
+          setOn(!on);
+        }
+      }}
     />
   );
 }
 
-export const Basic = () => <IconButton icon={<Icon icon="favorite" />} />;
+export const Basic = () => <MyIconButton />;
+
+export const Image = () => <MyIconButton image />;
+
+export const Svg = () => <MyIconButton svg />;
 
 export const Toggle = () => <MyIconButton toggle />;
 

@@ -11,7 +11,6 @@ import {
   ListItemSecondaryText,
   ListItemText
 } from '..';
-import { Icon } from '../../icon';
 import '@material/list/dist/mdc.list.css';
 
 export default {
@@ -45,7 +44,7 @@ function MyList({ type = 'activated' }) {
             onClick={handleClick}
             {...listItemProps}
           >
-            <ListItemGraphic graphic={<Icon icon={item.id} />} />
+            <ListItemGraphic graphic={item.id} />
             <ListItemText>
               {item.id.charAt(0).toUpperCase() + item.id.substr(1)}
             </ListItemText>
@@ -96,15 +95,15 @@ export const WithTwoLines = () => (
 export const WithLeadingIcon = () => (
   <List>
     <ListItem>
-      <ListItemGraphic graphic={<Icon icon="wifi" />} />
+      <ListItemGraphic graphic="wifi" />
       <ListItemText>Line item</ListItemText>
     </ListItem>
     <ListItem>
-      <ListItemGraphic graphic={<Icon icon="bluetooth" />} />
+      <ListItemGraphic graphic="bluetooth" />
       <ListItemText>Line item</ListItemText>
     </ListItem>
     <ListItem>
-      <ListItemGraphic graphic={<Icon icon="data_usage" />} />
+      <ListItemGraphic graphic="data_usage" />
       <ListItemText>Line item</ListItemText>
     </ListItem>
   </List>
@@ -118,15 +117,15 @@ export const WithTrailingIcon = () => (
   <List>
     <ListItem>
       <ListItemText>Line item</ListItemText>
-      <ListItemMeta meta={<Icon icon="info" />} />
+      <ListItemMeta meta="info" />
     </ListItem>
     <ListItem>
       <ListItemText>Line item</ListItemText>
-      <ListItemMeta meta={<Icon icon="info" />} />
+      <ListItemMeta meta="info" />
     </ListItem>
     <ListItem>
       <ListItemText>Line item</ListItemText>
-      <ListItemMeta meta={<Icon icon="info" />} />
+      <ListItemMeta meta="info" />
     </ListItem>
   </List>
 );
@@ -134,29 +133,29 @@ export const WithTrailingIcon = () => (
 export const WithTwoLineAndLeadingIconAndTrailingIconAndDivider = () => (
   <List twoLine>
     <ListItem>
-      <ListItemGraphic graphic={<Icon icon="folder" />} />
+      <ListItemGraphic graphic="folder" />
       <ListItemText>
         <ListItemPrimaryText>Two-line item</ListItemPrimaryText>
         <ListItemSecondaryText>Secondary text</ListItemSecondaryText>
       </ListItemText>
-      <ListItemMeta meta={<Icon icon="info" />} />
+      <ListItemMeta meta="info" />
     </ListItem>
     <ListItem>
-      <ListItemGraphic graphic={<Icon icon="folder" />} />
+      <ListItemGraphic graphic="folder" />
       <ListItemText>
         <ListItemPrimaryText>Two-line item</ListItemPrimaryText>
         <ListItemSecondaryText>Secondary text</ListItemSecondaryText>
       </ListItemText>
-      <ListItemMeta meta={<Icon icon="info" />} />
+      <ListItemMeta meta="info" />
     </ListItem>
     <ListDivider />
     <ListItem>
-      <ListItemGraphic graphic={<Icon icon="folder" />} />
+      <ListItemGraphic graphic="folder" />
       <ListItemText>
         <ListItemPrimaryText>Two-line item</ListItemPrimaryText>
         <ListItemSecondaryText>Secondary text</ListItemSecondaryText>
       </ListItemText>
-      <ListItemMeta meta={<Icon icon="info" />} />
+      <ListItemMeta meta="info" />
     </ListItem>
   </List>
 );

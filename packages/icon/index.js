@@ -11,7 +11,13 @@ function Icon({ className, icon, ...otherProps }) {
       </i>
     );
   }
-  const classes = classNames('fat-icon', icon.props.className, className);
+  const isNotFatIcon =
+    icon.props.className && !icon.props.className.includes('fat-icon');
+  const classes = classNames(
+    { 'fat-icon': isNotFatIcon },
+    icon.props.className,
+    className
+  );
   const props = { ...otherProps, ...icon.props, className: classes };
   return React.cloneElement(icon, props);
 }

@@ -8,6 +8,8 @@ import { Icon } from '@faterial/icon';
 
 const FLOAT_ABOVE_CLASS = 'mdc-floating-label--float-above';
 const ICON_CLASS = 'mdc-text-field__icon';
+const LEADING_ICON_CLASS = `${ICON_CLASS} mdc-text-field__icon--leading`;
+const TRAILING_ICON_CLASS = `${ICON_CLASS} mdc-text-field__icon--trailing`;
 
 function TextField({
   className,
@@ -102,7 +104,7 @@ function TextField({
   return (
     <>
       <div className={classes} {...otherRootProps}>
-        {icon && <Icon className={ICON_CLASS} icon={icon} />}
+        {icon && <Icon className={LEADING_ICON_CLASS} icon={icon} />}
         {textarea ? (
           <textarea {...inputProps}></textarea>
         ) : (
@@ -122,7 +124,9 @@ function TextField({
             </label>
           )
         )}
-        {trailingIcon && <Icon className={ICON_CLASS} icon={trailingIcon} />}
+        {trailingIcon && (
+          <Icon className={TRAILING_ICON_CLASS} icon={trailingIcon} />
+        )}
         {!outlined && !textarea && <div className={lineRippleClasses}></div>}
       </div>
       <HelperLine

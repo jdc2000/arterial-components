@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Icon from './Icon';
 import NotchedOutline from './NotchedOutline';
 import HelperLine from './HelperLine';
 import CharacterCounter from './CharacterCounter';
+import { Icon } from '@faterial/icon';
 
 const FLOAT_ABOVE_CLASS = 'mdc-floating-label--float-above';
+const ICON_CLASS = 'mdc-text-field__icon';
 
 function TextField({
   className,
@@ -101,7 +102,7 @@ function TextField({
   return (
     <>
       <div className={classes} {...otherRootProps}>
-        {icon && <Icon icon={icon} />}
+        {icon && <Icon className={ICON_CLASS} icon={icon} />}
         {textarea ? (
           <textarea {...inputProps}></textarea>
         ) : (
@@ -121,7 +122,7 @@ function TextField({
             </label>
           )
         )}
-        {trailingIcon && <Icon icon={trailingIcon} />}
+        {trailingIcon && <Icon className={ICON_CLASS} icon={trailingIcon} />}
         {!outlined && !textarea && <div className={lineRippleClasses}></div>}
       </div>
       <HelperLine
@@ -144,7 +145,7 @@ TextField.propTypes = {
   className: PropTypes.string,
   disabled: PropTypes.bool,
   helperText: PropTypes.element,
-  icon: PropTypes.element,
+  icon: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   id: PropTypes.string,
   focused: PropTypes.bool,
   fullWidth: PropTypes.bool,
@@ -157,7 +158,7 @@ TextField.propTypes = {
   outlined: PropTypes.bool,
   required: PropTypes.bool,
   textarea: PropTypes.bool,
-  trailingIcon: PropTypes.element,
+  trailingIcon: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   invalid: PropTypes.bool,
   value: PropTypes.string
 };

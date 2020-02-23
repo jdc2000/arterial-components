@@ -15,16 +15,8 @@ export default readdirSync(PACKAGES)
     if (pkg === 'menu-surface') {
       external.push('react-dom');
     }
-    if (['checkbox', 'radio'].includes(pkg)) {
-      external.push('@faterial/form-field');
-    }
     if (pkg === 'typeahead') {
-      external.push(
-        'fuse.js',
-        '@faterial/list',
-        '@faterial/menu-surface',
-        '@faterial/textfield'
-      );
+      external.push('fuse.js', 'react-dom');
     }
     return {
       external,

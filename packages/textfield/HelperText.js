@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 function HelperText({
-  'aria-hidden': ariaHidden = true,
   children,
   className,
   id,
@@ -16,14 +15,13 @@ function HelperText({
     'mdc-text-field-helper-text--validation-msg': validationMessage
   });
   return (
-    <div id={id} className={classes} aria-hidden={ariaHidden} {...otherProps}>
+    <div id={id} className={classes} aria-hidden="true" {...otherProps}>
       {children}
     </div>
   );
 }
 
 HelperText.propTypes = {
-  'aria-hidden': PropTypes.bool,
   children: PropTypes.node,
   className: PropTypes.string,
   id: PropTypes.string,

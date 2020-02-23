@@ -29,11 +29,7 @@ function MyTextFields({ type = 'default', ...props }) {
           <MyTextField {...props} id="textfield-1" />
         </div>
         <div>
-          <MyTextField
-            {...props}
-            id="textfield-2"
-            icon={<Icon icon="event" />}
-          />
+          <MyTextField {...props} id="textfield-2" icon="event" />
         </div>
         <div>
           <MyTextField

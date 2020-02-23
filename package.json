@@ -11,7 +11,7 @@
     "@material/list": "^4.0.0",
     "@material/menu-surface": "^4.0.0",
     "@material/radio": "^4.0.0",
-    "@material/textfield": "^4.0.0",
+    "@material/textfield": "^5.0.0",
     "@rollup/plugin-node-resolve": "^7.1.1",
     "@storybook/react": "^5.3.9",
     "@testing-library/react": "^9.4.0",
@@ -42,6 +42,7 @@
   "scripts": {
     "build": "rollup -c",
     "clean": "npm run clean-root && npm run clean-pkgs",
+    "clean-dist": "lerna exec --parallel -- rm -rf ./dist",
     "clean-pkgs": "lerna clean -y && lerna exec --parallel -- rm -rf ./dist ./package-lock.json",
     "clean-root": "rm -rf ./node_modules ./package-lock.json",
     "postinstall": "lerna bootstrap",

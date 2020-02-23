@@ -15,7 +15,6 @@
     "CharacterCount.js",
     "HelperLine.js",
     "HelperText.js",
-    "Icon.js",
     "NotchedOutline.js"
   ],
   "repository": {
@@ -27,5 +26,8 @@
   },
   "bugs": {
     "url": "https://github.com/jdc2000/faterial-components/issues"
+  },
+  "dependencies": {
+    "@faterial/icon": "^1.0.0"
   }
 }

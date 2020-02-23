@@ -4,6 +4,7 @@
   "devDependencies": {
     "@babel/core": "^7.8.4",
     "@material/button": "^5.0.0",
+    "@material/card": "^5.0.0",
     "@material/checkbox": "^4.0.0",
     "@material/form-field": "^4.0.0",
     "@material/icon-button": "^5.0.0",

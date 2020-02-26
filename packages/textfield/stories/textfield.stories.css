@@ -1,0 +1,14 @@
+.container {
+  width: 786px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.row__inner {
+  display: flex;
+  justify-content: space-between;
+  width: 460px;
+}

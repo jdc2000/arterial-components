@@ -38,9 +38,9 @@ function MyRadio({ type = 'basic' }) {
     <>
       <div style={{ display: 'flex' }}>
         <Radio
-          alignEnd
           checked={value === 'radio-1'}
           disabled={type === 'disabled'}
+          formFieldProps={{ alignEnd: true }}
           id="radio-1"
           label="Radio 1"
           name="radios"

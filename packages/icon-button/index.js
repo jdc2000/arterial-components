@@ -33,10 +33,10 @@ function IconButton({
 
 IconButton.propTypes = {
   className: PropTypes.string,
-  icon: PropTypes.element.isRequired,
+  icon: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
   label: PropTypes.string,
   on: PropTypes.bool,
-  onIcon: PropTypes.element,
+  onIcon: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   tag: PropTypes.element
 };
 

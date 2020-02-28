@@ -7,6 +7,7 @@
     "@material/card": "^5.0.0",
     "@material/checkbox": "^5.0.0",
     "@material/chips": "^5.0.0",
+    "@material/dialog": "^5.1.0",
     "@material/form-field": "^5.0.0",
     "@material/icon-button": "^5.0.0",
     "@material/list": "^5.0.0",

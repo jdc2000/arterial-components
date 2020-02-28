@@ -170,7 +170,7 @@ function Typeahead({
     <Tag className={classes} {...otherProps}>
       <MenuSurfaceAnchor ref={anchorEl}>
         <TextField
-          autocomplete="off"
+          autoComplete="off"
           disabled={disabled}
           helperText={helperText}
           icon={icon}

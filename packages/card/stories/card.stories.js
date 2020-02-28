@@ -85,7 +85,7 @@ function MyCard({
   square
 }) {
   const [on, setOn] = useState(false);
-  let width = '360px';
+  let width = '350px';
   return (
     <div>
       <Card style={{ width }}>

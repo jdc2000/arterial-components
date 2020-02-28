@@ -17,14 +17,14 @@ export default function(props) {
           gradientTransform="matrix(0.76, 0.03, 0.05, -1.12, 11485.79, 11147.95)"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset="0.1" stop-color="#ffea00" />
-          <stop offset="0.17" stop-color="#ffde00" />
-          <stop offset="0.28" stop-color="#ffbf00" />
-          <stop offset="0.43" stop-color="#ff8e00" />
-          <stop offset="0.77" stop-color="#ff272d" />
-          <stop offset="0.87" stop-color="#e0255a" />
-          <stop offset="0.95" stop-color="#cc2477" />
-          <stop offset="1" stop-color="#c42482" />
+          <stop offset="0.1" stopColor="#ffea00" />
+          <stop offset="0.17" stopColor="#ffde00" />
+          <stop offset="0.28" stopColor="#ffbf00" />
+          <stop offset="0.43" stopColor="#ff8e00" />
+          <stop offset="0.77" stopColor="#ff272d" />
+          <stop offset="0.87" stopColor="#e0255a" />
+          <stop offset="0.95" stopColor="#cc2477" />
+          <stop offset="1" stopColor="#c42482" />
         </radialGradient>
         <radialGradient
           id="radial-gradient-2"
@@ -34,14 +34,14 @@ export default function(props) {
           gradientTransform="matrix(1.23, 0, 0, -1.23, 9957.91, 11055.45)"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset="0" stop-color="#00ccda" />
-          <stop offset="0.22" stop-color="#0083ff" />
-          <stop offset="0.26" stop-color="#007af9" />
-          <stop offset="0.33" stop-color="#0060e8" />
-          <stop offset="0.33" stop-color="#005fe7" />
-          <stop offset="0.44" stop-color="#2639ad" />
-          <stop offset="0.52" stop-color="#401e84" />
-          <stop offset="0.57" stop-color="#4a1475" />
+          <stop offset="0" stopColor="#00ccda" />
+          <stop offset="0.22" stopColor="#0083ff" />
+          <stop offset="0.26" stopColor="#007af9" />
+          <stop offset="0.33" stopColor="#0060e8" />
+          <stop offset="0.33" stopColor="#005fe7" />
+          <stop offset="0.44" stopColor="#2639ad" />
+          <stop offset="0.52" stopColor="#401e84" />
+          <stop offset="0.57" stopColor="#4a1475" />
         </radialGradient>
         <linearGradient
           id="linear-gradient"
@@ -52,9 +52,9 @@ export default function(props) {
           gradientTransform="matrix(1, 0, 0, -1, 0, 984)"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset="0" stop-color="#000f43" stop-opacity="0.4" />
-          <stop offset="0.48" stop-color="#001962" stop-opacity="0.17" />
-          <stop offset="1" stop-color="#002079" stop-opacity="0" />
+          <stop offset="0" stopColor="#000f43" stopOpacity="0.4" />
+          <stop offset="0.48" stopColor="#001962" stopOpacity="0.17" />
+          <stop offset="1" stopColor="#002079" stopOpacity="0" />
         </linearGradient>
         <radialGradient
           id="radial-gradient-3"
@@ -64,9 +64,9 @@ export default function(props) {
           gradientTransform="matrix(1.22, 0.12, 0.12, -1.22, 10240.78, 10765.16)"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset="0" stop-color="#ffea00" />
-          <stop offset="0.5" stop-color="#ff272d" />
-          <stop offset="1" stop-color="#c42482" />
+          <stop offset="0" stopColor="#ffea00" />
+          <stop offset="0.5" stopColor="#ff272d" />
+          <stop offset="1" stopColor="#c42482" />
         </radialGradient>
         <radialGradient
           id="radial-gradient-4"
@@ -76,14 +76,14 @@ export default function(props) {
           gradientTransform="matrix(1.22, 0.12, 0.12, -1.22, 10240.78, 10765.16)"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset="0" stop-color="#ffe900" />
-          <stop offset="0.16" stop-color="#ffaf0e" />
-          <stop offset="0.32" stop-color="#ff7a1b" />
-          <stop offset="0.47" stop-color="#ff4e26" />
-          <stop offset="0.62" stop-color="#ff2c2e" />
-          <stop offset="0.76" stop-color="#ff1434" />
-          <stop offset="0.89" stop-color="#ff0538" />
-          <stop offset="1" stop-color="#ff0039" />
+          <stop offset="0" stopColor="#ffe900" />
+          <stop offset="0.16" stopColor="#ffaf0e" />
+          <stop offset="0.32" stopColor="#ff7a1b" />
+          <stop offset="0.47" stopColor="#ff4e26" />
+          <stop offset="0.62" stopColor="#ff2c2e" />
+          <stop offset="0.76" stopColor="#ff1434" />
+          <stop offset="0.89" stopColor="#ff0538" />
+          <stop offset="1" stopColor="#ff0039" />
         </radialGradient>
         <radialGradient
           id="radial-gradient-5"
@@ -93,9 +93,9 @@ export default function(props) {
           gradientTransform="matrix(1.22, 0.12, 0.12, -1.22, 10240.78, 10765.16)"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset="0" stop-color="#ff272d" />
-          <stop offset="0.5" stop-color="#c42482" />
-          <stop offset="0.99" stop-color="#620700" />
+          <stop offset="0" stopColor="#ff272d" />
+          <stop offset="0.5" stopColor="#c42482" />
+          <stop offset="0.99" stopColor="#620700" />
         </radialGradient>
         <radialGradient
           id="radial-gradient-6"
@@ -107,15 +107,15 @@ export default function(props) {
           gradientTransform="matrix(1, 0, 0, -1, 0, 984)"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset="0.16" stop-color="#ffea00" />
-          <stop offset="0.23" stop-color="#ffde00" />
-          <stop offset="0.37" stop-color="#ffbf00" />
-          <stop offset="0.54" stop-color="#ff8e00" />
-          <stop offset="0.76" stop-color="#ff272d" />
-          <stop offset="0.8" stop-color="#f92433" />
-          <stop offset="0.84" stop-color="#e91c45" />
-          <stop offset="0.89" stop-color="#cf0e62" />
-          <stop offset="0.94" stop-color="#b5007f" />
+          <stop offset="0.16" stopColor="#ffea00" />
+          <stop offset="0.23" stopColor="#ffde00" />
+          <stop offset="0.37" stopColor="#ffbf00" />
+          <stop offset="0.54" stopColor="#ff8e00" />
+          <stop offset="0.76" stopColor="#ff272d" />
+          <stop offset="0.8" stopColor="#f92433" />
+          <stop offset="0.84" stopColor="#e91c45" />
+          <stop offset="0.89" stopColor="#cf0e62" />
+          <stop offset="0.94" stopColor="#b5007f" />
         </radialGradient>
         <radialGradient
           id="radial-gradient-7"
@@ -125,12 +125,12 @@ export default function(props) {
           gradientTransform="matrix(1, 0, 0, -1, 0, 984)"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset="0.28" stop-color="#ffea00" />
-          <stop offset="0.4" stop-color="#fd0" />
-          <stop offset="0.63" stop-color="#ffba00" />
-          <stop offset="0.86" stop-color="#ff9100" />
-          <stop offset="0.93" stop-color="#ff6711" />
-          <stop offset="0.99" stop-color="#ff4a1d" />
+          <stop offset="0.28" stopColor="#ffea00" />
+          <stop offset="0.4" stopColor="#fd0" />
+          <stop offset="0.63" stopColor="#ffba00" />
+          <stop offset="0.86" stopColor="#ff9100" />
+          <stop offset="0.93" stopColor="#ff6711" />
+          <stop offset="0.99" stopColor="#ff4a1d" />
         </radialGradient>
         <linearGradient
           id="linear-gradient-2"
@@ -141,13 +141,13 @@ export default function(props) {
           gradientTransform="matrix(1.22, 0.12, 0.12, -1.22, 10240.78, 10765.16)"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset="0" stop-color="#c42482" stop-opacity="0.5" />
-          <stop offset="0.47" stop-color="#ff272d" stop-opacity="0.5" />
-          <stop offset="0.49" stop-color="#ff2c2c" stop-opacity="0.51" />
-          <stop offset="0.68" stop-color="#ff7a1a" stop-opacity="0.72" />
-          <stop offset="0.83" stop-color="#ffb20d" stop-opacity="0.87" />
-          <stop offset="0.94" stop-color="#ffd605" stop-opacity="0.96" />
-          <stop offset="1" stop-color="#ffe302" />
+          <stop offset="0" stopColor="#c42482" stopOpacity="0.5" />
+          <stop offset="0.47" stopColor="#ff272d" stopOpacity="0.5" />
+          <stop offset="0.49" stopColor="#ff2c2c" stopOpacity="0.51" />
+          <stop offset="0.68" stopColor="#ff7a1a" stopOpacity="0.72" />
+          <stop offset="0.83" stopColor="#ffb20d" stopOpacity="0.87" />
+          <stop offset="0.94" stopColor="#ffd605" stopOpacity="0.96" />
+          <stop offset="1" stopColor="#ffe302" />
         </linearGradient>
         <linearGradient
           id="linear-gradient-3"
@@ -158,8 +158,8 @@ export default function(props) {
           gradientTransform="matrix(0.99, 0.1, 0.1, -0.99, -250.09, 2306.15)"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset="0" stop-color="#891551" stop-opacity="0.6" />
-          <stop offset="1" stop-color="#c42482" stop-opacity="0" />
+          <stop offset="0" stopColor="#891551" stopOpacity="0.6" />
+          <stop offset="1" stopColor="#c42482" stopOpacity="0" />
         </linearGradient>
         <linearGradient
           id="linear-gradient-4"
@@ -170,9 +170,9 @@ export default function(props) {
           gradientTransform="matrix(0.99, 0.1, 0.1, -0.99, 229.04, 745.74)"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset="0.01" stop-color="#891551" stop-opacity="0.5" />
-          <stop offset="0.48" stop-color="#ff272d" stop-opacity="0.5" />
-          <stop offset="1" stop-color="#ff272d" stop-opacity="0" />
+          <stop offset="0.01" stopColor="#891551" stopOpacity="0.5" />
+          <stop offset="0.48" stopColor="#ff272d" stopOpacity="0.5" />
+          <stop offset="1" stopColor="#ff272d" stopOpacity="0" />
         </linearGradient>
         <linearGradient
           id="linear-gradient-5"
@@ -183,14 +183,14 @@ export default function(props) {
           gradientTransform="matrix(0.99, 0.1, 0.1, -0.99, 229.04, 745.74)"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset="0" stop-color="#c42482" />
-          <stop offset="0.08" stop-color="#c42482" stop-opacity="0.81" />
-          <stop offset="0.21" stop-color="#c42482" stop-opacity="0.57" />
-          <stop offset="0.33" stop-color="#c42482" stop-opacity="0.36" />
-          <stop offset="0.45" stop-color="#c42482" stop-opacity="0.2" />
-          <stop offset="0.56" stop-color="#c42482" stop-opacity="0.09" />
-          <stop offset="0.67" stop-color="#c42482" stop-opacity="0.02" />
-          <stop offset="0.77" stop-color="#c42482" stop-opacity="0" />
+          <stop offset="0" stopColor="#c42482" />
+          <stop offset="0.08" stopColor="#c42482" stopOpacity="0.81" />
+          <stop offset="0.21" stopColor="#c42482" stopOpacity="0.57" />
+          <stop offset="0.33" stopColor="#c42482" stopOpacity="0.36" />
+          <stop offset="0.45" stopColor="#c42482" stopOpacity="0.2" />
+          <stop offset="0.56" stopColor="#c42482" stopOpacity="0.09" />
+          <stop offset="0.67" stopColor="#c42482" stopOpacity="0.02" />
+          <stop offset="0.77" stopColor="#c42482" stopOpacity="0" />
         </linearGradient>
         <linearGradient
           id="linear-gradient-6"
@@ -201,15 +201,15 @@ export default function(props) {
           gradientTransform="matrix(1, 0, 0, -1, 0, 984)"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset="0" stop-color="#fff14f" />
-          <stop offset="0.27" stop-color="#ffee4c" />
-          <stop offset="0.45" stop-color="#ffe643" />
-          <stop offset="0.61" stop-color="#ffd834" />
-          <stop offset="0.76" stop-color="#ffc41e" />
-          <stop offset="0.89" stop-color="#ffab02" />
-          <stop offset="0.9" stop-color="#ffa900" />
-          <stop offset="0.95" stop-color="#ffa000" />
-          <stop offset="1" stop-color="#ff9100" />
+          <stop offset="0" stopColor="#fff14f" />
+          <stop offset="0.27" stopColor="#ffee4c" />
+          <stop offset="0.45" stopColor="#ffe643" />
+          <stop offset="0.61" stopColor="#ffd834" />
+          <stop offset="0.76" stopColor="#ffc41e" />
+          <stop offset="0.89" stopColor="#ffab02" />
+          <stop offset="0.9" stopColor="#ffa900" />
+          <stop offset="0.95" stopColor="#ffa000" />
+          <stop offset="1" stopColor="#ff9100" />
         </linearGradient>
         <linearGradient
           id="linear-gradient-7"
@@ -220,18 +220,18 @@ export default function(props) {
           gradientTransform="matrix(1, 0, 0, -1, 0, 984)"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset="0" stop-color="#ff8e00" />
-          <stop offset="0.04" stop-color="#ff8e00" stop-opacity="0.86" />
-          <stop offset="0.08" stop-color="#ff8e00" stop-opacity="0.73" />
-          <stop offset="0.13" stop-color="#ff8e00" stop-opacity="0.63" />
-          <stop offset="0.18" stop-color="#ff8e00" stop-opacity="0.56" />
-          <stop offset="0.23" stop-color="#ff8e00" stop-opacity="0.51" />
-          <stop offset="0.28" stop-color="#ff8e00" stop-opacity="0.5" />
-          <stop offset="0.39" stop-color="#ff8e00" stop-opacity="0.48" />
-          <stop offset="0.52" stop-color="#ff8e00" stop-opacity="0.42" />
-          <stop offset="0.68" stop-color="#ff8e00" stop-opacity="0.31" />
-          <stop offset="0.84" stop-color="#ff8e00" stop-opacity="0.17" />
-          <stop offset="1" stop-color="#ff8e00" stop-opacity="0" />
+          <stop offset="0" stopColor="#ff8e00" />
+          <stop offset="0.04" stopColor="#ff8e00" stopOpacity="0.86" />
+          <stop offset="0.08" stopColor="#ff8e00" stopOpacity="0.73" />
+          <stop offset="0.13" stopColor="#ff8e00" stopOpacity="0.63" />
+          <stop offset="0.18" stopColor="#ff8e00" stopOpacity="0.56" />
+          <stop offset="0.23" stopColor="#ff8e00" stopOpacity="0.51" />
+          <stop offset="0.28" stopColor="#ff8e00" stopOpacity="0.5" />
+          <stop offset="0.39" stopColor="#ff8e00" stopOpacity="0.48" />
+          <stop offset="0.52" stopColor="#ff8e00" stopOpacity="0.42" />
+          <stop offset="0.68" stopColor="#ff8e00" stopOpacity="0.31" />
+          <stop offset="0.84" stopColor="#ff8e00" stopOpacity="0.17" />
+          <stop offset="1" stopColor="#ff8e00" stopOpacity="0" />
         </linearGradient>
       </defs>
       <title>firefox-logo</title>

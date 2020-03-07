@@ -11,8 +11,8 @@ export default function Section({
   ...otherProps
 }) {
   const classes = classNames('mdc-top-app-bar__section', className, {
-    'mdc-top-app-bar__section--align-start': alignStart,
-    'mdc-top-app-bar__section--align-end': alignEnd && !alignStart
+    'mdc-top-app-bar__section--align-end': alignEnd,
+    'mdc-top-app-bar__section--align-start': !alignEnd && alignStart
   });
   const role = alignEnd ? 'toolbar' : null;
   const Tag = tag;

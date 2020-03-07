@@ -15,6 +15,7 @@
     "@material/radio": "^5.0.0",
     "@material/snackbar": "^5.1.0",
     "@material/textfield": "^5.0.0",
+    "@material/top-app-bar": "^5.1.0",
     "@rollup/plugin-node-resolve": "^7.1.1",
     "@storybook/react": "^5.3.9",
     "@testing-library/react": "^9.4.0",

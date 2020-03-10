@@ -2,7 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-function DialogActions({ children, className, tag = 'footer', ...otherProps }) {
+export default function DialogActions({
+  children,
+  className,
+  tag = 'footer',
+  ...otherProps
+}) {
   const classes = classNames('mdc-dialog__actions', className);
   const Tag = tag;
   return (
@@ -17,5 +22,3 @@ DialogActions.propTypes = {
   className: PropTypes.string,
   tag: PropTypes.element
 };
-
-export default DialogActions;

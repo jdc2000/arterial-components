@@ -3,7 +3,13 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Dialog, DialogTitle, DialogContent } from '.';
 
-function SimpleDialog({ className, content, onClose, open, title }) {
+export default function SimpleDialog({
+  className,
+  content,
+  onClose,
+  open,
+  title
+}) {
   const classes = classNames('fat-dialog', 'fat-dialog--simple', className);
   function handleClose() {
     if (onClose) {
@@ -25,5 +31,3 @@ SimpleDialog.propTypes = {
   open: PropTypes.bool,
   title: PropTypes.string
 };
-
-export default SimpleDialog;

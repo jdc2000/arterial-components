@@ -1,16 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { withDialogContext } from './DialogContext';
+import { DialogContext } from './DialogContext';
 
-function DialogTitle({
+export default function DialogTitle({
   children,
   className,
-  dialogContext,
   id,
   tag = 'h2',
   ...otherProps
 }) {
+  const dialogContext = useContext(DialogContext);
   const classes = classNames('mdc-dialog__title', className);
   const Tag = tag;
 
@@ -31,5 +31,3 @@ DialogTitle.propTypes = {
   id: PropTypes.string,
   tag: PropTypes.element
 };
-
-export default withDialogContext(DialogTitle);

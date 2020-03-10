@@ -1,0 +1,31 @@
+{
+  "name": "@faterial/drawer",
+  "version": "1.0.0",
+  "description": "Fancy MDC React Drawer",
+  "author": "jdc2000",
+  "homepage": "https://github.com/jdc2000/faterial-components#readme",
+  "license": "ISC",
+  "main": "index.js",
+  "directories": {
+    "stories": "stories",
+    "test": "test"
+  },
+  "files": [
+    "index.js",
+    "AppContent.js",
+    "Content.js",
+    "Header.js",
+    "Subtitle.js",
+    "Title.js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jdc2000/faterial-components.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/jdc2000/faterial-components/issues"
+  }
+}

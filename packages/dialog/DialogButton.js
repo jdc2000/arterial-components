@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Button } from '@faterial/button';
 
-function DialogButton({
+export default function DialogButton({
   action = 'close',
   className,
   onSelect,
@@ -37,5 +37,3 @@ DialogButton.propTypes = {
   onSelect: PropTypes.func,
   type: PropTypes.string
 };
-
-export default DialogButton;

@@ -29,12 +29,4 @@ DialogProvider.propTypes = {
   children: PropTypes.node
 };
 
-function withDialogContext(WrappedComponent) {
-  return props => (
-    <DialogContext.Consumer>
-      {value => <WrappedComponent {...props} dialogContext={value} />}
-    </DialogContext.Consumer>
-  );
-}
-
-export { DialogProvider, withDialogContext };
+export { DialogContext, DialogProvider };

@@ -9,7 +9,7 @@ import {
   DialogButton
 } from '.';
 
-function AlertDialog({
+export default function AlertDialog({
   className,
   confirmingButtonLabel = 'Ok',
   content,
@@ -20,7 +20,7 @@ function AlertDialog({
   const classes = classNames('fat-dialog', 'fat-dialog--alert', className);
   function handleClose() {
     if (onClose) {
-      return onClose('close');
+      onClose('close');
     }
   }
   return (
@@ -42,5 +42,3 @@ AlertDialog.propTypes = {
   open: PropTypes.bool,
   title: PropTypes.string
 };
-
-export default AlertDialog;

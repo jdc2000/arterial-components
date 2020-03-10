@@ -9,7 +9,7 @@ import {
   DialogButton
 } from '.';
 
-function ConfirmationDialog({
+export default function ConfirmationDialog({
   className,
   confirmingButtonLabel = 'Ok',
   confirmingButtonDisabled,
@@ -57,5 +57,3 @@ ConfirmationDialog.propTypes = {
   open: PropTypes.bool,
   title: PropTypes.string
 };
-
-export default ConfirmationDialog;

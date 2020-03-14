@@ -13,7 +13,7 @@ export default function SimpleDialog({
   const classes = classNames('fat-dialog', 'fat-dialog--simple', className);
   function handleClose() {
     if (onClose) {
-      return onClose('close');
+      onClose('close');
     }
   }
   return (

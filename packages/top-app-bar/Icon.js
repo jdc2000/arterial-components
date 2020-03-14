@@ -1,4 +1,3 @@
-//  <button class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button">menu</button>
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -16,5 +15,7 @@ export default function Icon({ action, className, nav, ...otherProps }) {
 }
 
 Icon.propTypes = {
-  className: PropTypes.string
+  action: PropTypes.bool,
+  className: PropTypes.string,
+  nav: PropTypes.bool
 };

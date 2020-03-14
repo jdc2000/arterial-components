@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-function Actions({
+export default function Actions({
   children,
   className,
   fullBleed,
@@ -26,5 +26,3 @@ Actions.propTypes = {
   fullBleed: PropTypes.bool,
   tag: PropTypes.element
 };
-
-export default Actions;

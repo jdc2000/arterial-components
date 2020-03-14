@@ -2,7 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-function PrimaryAction({ children, className, tag = 'div', ...otherProps }) {
+export default function PrimaryAction({
+  children,
+  className,
+  tag = 'div',
+  ...otherProps
+}) {
   const classes = classNames('mdc-card__primary-action', className);
   const Tag = tag;
   return (
@@ -17,5 +22,3 @@ PrimaryAction.propTypes = {
   className: PropTypes.string,
   tag: PropTypes.element
 };
-
-export default PrimaryAction;

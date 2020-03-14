@@ -5,7 +5,7 @@ import { Icon } from '@faterial/icon';
 
 const ICON_CLASS = 'mdc-button__icon';
 
-function Button({
+export function Button({
   className,
   icon,
   label,
@@ -46,5 +46,3 @@ Button.propTypes = {
   unelevated: PropTypes.bool,
   tag: PropTypes.element
 };
-
-export { Button };

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-function Icon({ className, icon, ...otherProps }) {
+export function Icon({ className, icon, ...otherProps }) {
   if (typeof icon === 'string') {
     const classes = classNames('fat-icon', 'material-icons', className);
     return (
@@ -26,5 +26,3 @@ Icon.propTypes = {
   className: PropTypes.string,
   icon: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired
 };
-
-export { Icon };

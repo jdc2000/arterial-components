@@ -2,7 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-function ActionButtons({ children, className, tag = 'div', ...otherProps }) {
+export default function ActionButtons({
+  children,
+  className,
+  tag = 'div',
+  ...otherProps
+}) {
   const classes = classNames('mdc-card__action-buttons', className);
   const Tag = tag;
   return (
@@ -17,5 +22,3 @@ ActionButtons.propTypes = {
   className: PropTypes.string,
   tag: PropTypes.element
 };
-
-export default ActionButtons;

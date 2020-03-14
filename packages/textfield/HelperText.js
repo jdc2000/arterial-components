@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-function HelperText({
+export default function HelperText({
   children,
   className,
   id,
@@ -28,5 +28,3 @@ HelperText.propTypes = {
   persistent: PropTypes.bool,
   validationMessage: PropTypes.bool
 };
-
-export default HelperText;

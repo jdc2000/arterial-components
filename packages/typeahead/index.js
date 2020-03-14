@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useReducer, useRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Fuse from 'fuse.js';
@@ -16,7 +16,31 @@ const DEFAULT_OPTIONS = {
   minMatchCharLength: 1
 };
 
-function Typeahead({
+const ENGINE = 'ENGINE';
+const MENU_STYLE = 'MENU_STYLE';
+const SEARCH = 'SEARCH';
+
+const initialState = {
+  engine: null,
+  list: [],
+  matches: [],
+  menuStyle: null
+};
+
+function reducer(state, action) {
+  switch (action.type) {
+    case ENGINE:
+      return { ...state, engine: action.data };
+    case MENU_STYLE:
+      return { ...state, menuStyle: action.data };
+    case SEARCH:
+      return { ...state, list: action.data.list, matches: action.data.matches };
+    default:
+      throw new Error();
+  }
+}
+
+export function Typeahead({
   className,
   filterBy,
   highlight,
@@ -65,10 +89,7 @@ function Typeahead({
 }) {
   const anchorEl = useRef();
   const textfieldEl = useRef();
-  const [currentList, setCurrentList] = useState(list);
-  const [matches, setMatches] = useState([]);
-  const [menuStyle, setMenuStyle] = useState(null);
-  const [engine, setEngine] = useState(null);
+  const [state, dispatch] = useReducer(reducer, { ...initialState, list });
 
   const classes = classNames('fat-typeahead', className);
   const Tag = tag;
@@ -99,7 +120,7 @@ function Typeahead({
         tabIndex="0"
       >
         {renderListItemChildren
-          ? renderListItemChildren(item, matches, index)
+          ? renderListItemChildren(item, state.matches, index)
           : renderListItemText(item, index)}
       </ListItem>
     );
@@ -109,7 +130,7 @@ function Typeahead({
     return (
       <ListItemText>
         {highlight ? (
-          <Highlighter item={item} matches={matches[index]} />
+          <Highlighter item={item} matches={state.matches[index]} />
         ) : (
           item
         )}
@@ -118,37 +139,39 @@ function Typeahead({
   }
 
   useEffect(() => {
-    setEngine(
-      new Fuse(list, {
+    dispatch({
+      type: ENGINE,
+      data: new Fuse(list, {
         ...DEFAULT_OPTIONS,
         ...options,
         keys: filterBy
       })
-    );
+    });
   }, [filterBy, list, options]);
 
   useEffect(() => {
     if (value && value.trim().length > 0) {
-      const results = engine.search(value.trim());
+      const results = state.engine.search(value.trim());
       const newList = [],
         newMatches = [];
       for (const r of results) {
         newList.push(isNaN(r.item) ? r.item : list[r.item]);
         newMatches.push(r.matches);
       }
-      setCurrentList(newList);
-      setMatches(newMatches);
+      dispatch({ type: SEARCH, data: { list: newList, matches: newMatches } });
     } else {
-      setCurrentList(list);
-      setMatches([]);
+      dispatch({ type: SEARCH, data: { list, matches: [] } });
     }
-  }, [engine, list, value]);
+  }, [state.engine, list, value]);
 
   useEffect(() => {
     const el = textfieldEl.current;
     if (el) {
       const isAuto = menuWidth === 'auto';
-      setMenuStyle({ width: isAuto ? el.clientWidth : menuWidth });
+      dispatch({
+        type: MENU_STYLE,
+        data: { width: isAuto ? el.clientWidth : menuWidth }
+      });
     }
   }, [menuWidth, textfieldEl]);
 
@@ -196,7 +219,7 @@ function Typeahead({
           anchorElement={anchorEl}
           open={open}
           quickOpen={!open}
-          style={menuStyle}
+          style={state.menuStyle}
           tabIndex="-1"
         >
           <List
@@ -207,7 +230,7 @@ function Typeahead({
             tabIndex="-1"
             twoLine={twoLine}
           >
-            {currentList.map(renderListItems)}
+            {state.list.map(renderListItems)}
           </List>
         </MenuSurface>
       </MenuSurfaceAnchor>
@@ -264,4 +287,4 @@ Typeahead.propTypes = {
   tag: PropTypes.element
 };
 
-export { Typeahead, Highlighter };
+export { Highlighter };

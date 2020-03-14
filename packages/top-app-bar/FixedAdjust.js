@@ -33,5 +33,9 @@ export default function FixedAdjust({
 FixedAdjust.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
+  dense: PropTypes.bool,
+  fixed: PropTypes.bool,
+  prominent: PropTypes.bool,
+  short: PropTypes.bool,
   tag: PropTypes.element
 };

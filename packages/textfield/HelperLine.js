@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function HelperLine({ characterCounter, helperText, id }) {
+export default function HelperLine({ characterCounter, helperText, id }) {
   return (
     <div className="mdc-text-field-helper-line">
       {helperText &&
@@ -20,5 +20,3 @@ HelperLine.propTypes = {
   helperText: PropTypes.element,
   id: PropTypes.string
 };
-
-export default HelperLine;

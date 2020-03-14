@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Icon } from '@faterial/icon';
 
-function Chip({
+export function Chip({
   checkmark,
   className,
   icon,
   id,
-  onTrailingIconSelect,
   onSelect,
+  onTrailingIconSelect,
   ripple = true,
   selected,
   text,
@@ -38,13 +38,13 @@ function Chip({
 
   function handleTrailingIconSelect(e) {
     if (onTrailingIconSelect && isSelected(e)) {
-      return onTrailingIconSelect(id);
+      onTrailingIconSelect(id);
     }
   }
 
   function handleSelect(e) {
     if (onSelect && isSelected(e)) {
-      return onSelect();
+      onSelect();
     }
   }
 
@@ -93,8 +93,17 @@ function Chip({
 }
 
 Chip.propTypes = {
-  className: PropTypes.string
+  checkmark: PropTypes.bool,
+  className: PropTypes.string,
+  icon: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+  id: PropTypes.string,
+  onSelect: PropTypes.func,
+  onTrailingIconSelect: PropTypes.func,
+  ripple: PropTypes.bool,
+  selected: PropTypes.bool,
+  text: PropTypes.string,
+  trailingIcon: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+  tag: PropTypes.element
 };
 
-export { Chip };
 export { default as ChipSet } from './ChipSet';

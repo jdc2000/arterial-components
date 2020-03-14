@@ -26,7 +26,7 @@ export default function ConfirmationDialog({
   );
   function handleClose(action) {
     if (onClose) {
-      return onClose(action);
+      onClose(action);
     }
   }
   return (

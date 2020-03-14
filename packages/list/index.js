@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-function List({
+export function List({
   avatarList,
   children,
   className,
@@ -36,7 +36,6 @@ List.propTypes = {
   tag: PropTypes.element
 };
 
-export { List };
 export { default as ListDivider } from './ListDivider';
 export { default as ListGroup } from './ListGroup';
 export { default as ListGroupSubheader } from './ListGroupSubheader';

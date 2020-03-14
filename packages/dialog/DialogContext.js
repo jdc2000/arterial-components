@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-const num = new Date().toISOString().replace(/[-:.]/g, '');
-const CONTENT_ID = `dialog-content-${num}`;
-const TITLE_ID = `dialog-title-${num}`;
+const NUM = new Date().toISOString().replace(/[-:.]/g, '');
+const CONTENT_ID = `dialog-content-${NUM}`;
+const TITLE_ID = `dialog-title-${NUM}`;
 
 const DialogContext = React.createContext({
   contentId: CONTENT_ID,

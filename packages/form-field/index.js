@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-function FormField({
+export function FormField({
   alignEnd,
   children,
   className,
@@ -20,7 +20,7 @@ function FormField({
   );
 }
 
-function withFormField(WrappedComponent) {
+export function withFormField(WrappedComponent) {
   return function({ formFieldProps, label, ...otherProps }) {
     if (label) {
       return (
@@ -39,5 +39,3 @@ FormField.propTypes = {
   className: PropTypes.string,
   tag: PropTypes.element
 };
-
-export { FormField, withFormField };

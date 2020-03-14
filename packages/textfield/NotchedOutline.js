@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-function NotchedOutline({
+export default function NotchedOutline({
   className,
   htmlFor,
   label,
@@ -52,5 +52,3 @@ NotchedOutline.propTypes = {
   labelClassName: PropTypes.string,
   notched: PropTypes.bool
 };
-
-export default NotchedOutline;

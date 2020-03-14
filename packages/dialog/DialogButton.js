@@ -16,7 +16,7 @@ export default function DialogButton({
     const isClick = e.type === 'click';
     const isEnter = e.key === 'Enter' || e.keyCode === 13;
     if (onSelect && (isClick || isEnter)) {
-      return onSelect(action);
+      onSelect(action);
     }
   }
 

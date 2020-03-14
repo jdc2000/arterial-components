@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-function ListDivider({
+export default function ListDivider({
   children,
   className,
   inset,
@@ -33,5 +33,3 @@ ListDivider.propTypes = {
   padded: PropTypes.bool,
   tag: PropTypes.element
 };
-
-export default ListDivider;

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-function ListGroupSubheader({
+export default function ListGroupSubheader({
   children,
   className,
   tag = 'h3',
@@ -22,5 +22,3 @@ ListGroupSubheader.propTypes = {
   className: PropTypes.string,
   tag: PropTypes.element
 };
-
-export default ListGroupSubheader;

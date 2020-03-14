@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { DialogContext, DialogProvider } from './DialogContext';
 
-const DIALOG_ANIMATION_CLOSE_TIME_MS = 75,
-  DIALOG_ANIMATION_OPEN_TIME_MS = 150,
-  SCROLL_LOCK = 'mdc-dialog-scroll-lock';
+const DIALOG_ANIMATION_CLOSE_TIME_MS = 75;
+const DIALOG_ANIMATION_OPEN_TIME_MS = 150;
+const SCROLL_LOCK = 'mdc-dialog-scroll-lock';
 
-const ANIMATION_TIMER_END = 'ANIMATION_TIMER_END',
-  CLOSE = 'CLOSE',
-  OPEN = 'OPEN',
-  OPENING = 'OPENING';
+const ANIMATION_TIMER_END = 'ANIMATION_TIMER_END';
+const CLOSE = 'CLOSE';
+const OPEN = 'OPEN';
+const OPENING = 'OPENING';
 
 const initialState = {
   isAriaHidden: null,
@@ -70,9 +70,9 @@ export function Dialog({
   }
 
   useEffect(() => {
-    let animationTimer = 0,
-      animationFrame = 0,
-      layoutFrame = 0;
+    let animationTimer = 0;
+    let animationFrame = 0;
+    let layoutFrame = 0;
 
     function runNextAnimationFrame(callback) {
       cancelAnimationFrame(animationFrame);

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-function CardMedia({
+export default function CardMedia({
   backgroundImage,
   children,
   className,
@@ -35,5 +35,3 @@ CardMedia.propTypes = {
   style: PropTypes.object,
   tag: PropTypes.element
 };
-
-export default CardMedia;

@@ -1,9 +1,49 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-const ACTION = 'action',
-  DISMISS = 'dismiss';
+const ACTION = 'action';
+const DISMISS = 'dismiss';
+
+const DEFAULT_AUTO_DISMISS_TIMEOUT_MS = 5000;
+const INDETERMINATE = -1;
+const SNACKBAR_ANIMATION_CLOSE_TIME_MS = 75;
+const SNACKBAR_ANIMATION_OPEN_TIME_MS = 150;
+
+const ANIMATION_TIMER_END = 'ANIMATION_TIMER_END';
+const CLOSED = 'CLOSED';
+const CLOSING = 'CLOSING';
+const OPEN = 'OPEN';
+const OPENING = 'OPENING';
+
+const initialState = {
+  isOpen: false,
+  isOpening: false,
+  isClosed: false,
+  isClosing: false
+};
+
+function reducer(state, action) {
+  switch (action.type) {
+    case ANIMATION_TIMER_END:
+      return { ...state, isClosing: false, isOpening: false };
+    case CLOSED:
+      return { ...state, isClosed: action.data };
+    case CLOSING:
+      return {
+        ...state,
+        isClosing: action.data,
+        isOpen: !action.data,
+        isOpening: !action.data
+      };
+    case OPEN:
+      return { ...state, isOpen: action.data };
+    case OPENING:
+      return { ...state, isClosing: !action.data, isOpening: action.data };
+    default:
+      throw new Error();
+  }
+}
 
 export function Snackbar({
   action,
@@ -13,20 +53,18 @@ export function Snackbar({
   leading,
   onClose,
   open,
-  stacked
+  stacked,
+  ...otherProps
 }) {
   if (!label) {
     throw new Error('The `label` prop is required');
   }
 
-  const [isOpen, setIsOpen] = useState(open);
-  const [isOpening, setIsOpening] = useState(false);
-  const [isClosed, setIsClosed] = useState(!open);
-  const [isClosing, setIsClosing] = useState(false);
+  const [state, dispatch] = useReducer(reducer, initialState);
   const classes = classNames('mdc-snackbar', className, {
-    'mdc-snackbar--open': isOpen,
-    'mdc-snackbar--opening': isOpening,
-    'mdc-snackbar--closing': isClosing,
+    'mdc-snackbar--open': state.isOpen,
+    'mdc-snackbar--opening': state.isOpening,
+    'mdc-snackbar--closing': state.isClosing,
     'mdc-snackbar--leading': leading,
     'mdc-snackbar--stacked': stacked
   });
@@ -45,43 +83,37 @@ export function Snackbar({
   useEffect(() => {
     function handleKeyDown(e) {
       const isEscape = e.key === 'Escape' || e.keyCode === 27;
-      if (isOpen && isEscape) {
-        setIsClosed(true);
+      if (state.isOpen && isEscape) {
+        dispatch({ type: CLOSED, data: true });
       }
     }
     window.addEventListener('keydown', handleKeyDown);
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [isOpen]);
+  }, [state.isOpen]);
 
   // Handle closed
   useEffect(() => {
-    if (isClosed) {
+    if (state.isClosed) {
       onClose(DISMISS);
-      setIsClosed(false);
+      dispatch({ type: CLOSED, data: false });
     }
-  }, [isClosed, onClose]);
+  }, [state.isClosed, onClose]);
 
   // Handle opening & closing
   useEffect(() => {
-    const DEFAULT_AUTO_DISMISS_TIMEOUT_MS = 5000,
-      INDETERMINATE = -1,
-      SNACKBAR_ANIMATION_CLOSE_TIME_MS = 75,
-      SNACKBAR_ANIMATION_OPEN_TIME_MS = 150;
-
-    let animationFrame = 0,
-      animationTimer = 0,
-      autoDismissTimer = 0;
+    let animationFrame = 0;
+    let animationTimer = 0;
+    let autoDismissTimer = 0;
 
     function openSnackbar() {
       clearAutoDismissTimer();
-      setIsClosing(false);
-      setIsOpening(true);
+      dispatch({ type: OPENING, data: true });
 
       // Wait a frame once display is no longer "none", to establish basis for animation
       runNextAnimationFrame(() => {
-        setIsOpen(true);
+        dispatch({ type: OPEN, data: true });
 
         animationTimer = setTimeout(() => {
           const timeoutMs = DEFAULT_AUTO_DISMISS_TIMEOUT_MS;
@@ -100,14 +132,12 @@ export function Snackbar({
       animationFrame = 0;
       clearAutoDismissTimer();
 
-      setIsClosing(true);
-      setIsOpen(false);
-      setIsOpening(false);
+      dispatch({ type: CLOSING, data: true });
 
       clearTimeout(animationTimer);
       animationTimer = setTimeout(() => {
         handleAnimationTimerEnd();
-        setIsClosed(reason);
+        dispatch({ type: CLOSED, data: reason });
       }, SNACKBAR_ANIMATION_CLOSE_TIME_MS);
     }
 
@@ -118,8 +148,7 @@ export function Snackbar({
 
     function handleAnimationTimerEnd() {
       animationTimer = 0;
-      setIsOpening(false);
-      setIsClosing(false);
+      dispatch({ type: ANIMATION_TIMER_END });
     }
 
     // Runs the given logic on the next animation frame, using setTimeout to factor in Firefox reflow behavior.
@@ -148,7 +177,7 @@ export function Snackbar({
   }, [open]);
 
   return (
-    <div className={classes}>
+    <div className={classes} {...otherProps}>
       <div className="mdc-snackbar__surface">
         <div className="mdc-snackbar__label" role="status" aria-live="polite">
           {label}

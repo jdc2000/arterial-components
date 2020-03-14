@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-function ListItemSecondaryText({
+export default function ListItemSecondaryText({
   children,
   className,
   tag = 'span',
@@ -22,5 +22,3 @@ ListItemSecondaryText.propTypes = {
   className: PropTypes.string,
   tag: PropTypes.element
 };
-
-export default ListItemSecondaryText;

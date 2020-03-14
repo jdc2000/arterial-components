@@ -2,7 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-function Card({ children, className, outlined, tag = 'div', ...otherProps }) {
+export function Card({
+  children,
+  className,
+  outlined,
+  tag = 'div',
+  ...otherProps
+}) {
   const classes = classNames('mdc-card', className, {
     'mdc-card--outlined': outlined
   });
@@ -21,7 +27,6 @@ Card.propTypes = {
   tag: PropTypes.element
 };
 
-export { Card };
 export { default as CardPrimaryAction } from './PrimaryAction';
 export { default as CardMedia } from './Media';
 export { default as CardMediaContent } from './MediaContent';

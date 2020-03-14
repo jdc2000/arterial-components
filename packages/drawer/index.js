@@ -2,27 +2,21 @@ import React, { useEffect, useReducer } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-const DRAWER_CLASS = 'mdc-drawer',
-  OPEN = 'OPEN',
-  OPENING = 'OPENING',
-  CLOSING = 'CLOSING',
-  CLOSE = 'CLOSE';
+const CLOSE = 'CLOSE';
+const CLOSING = 'CLOSING';
+const DRAWER_CLASS = 'mdc-drawer';
+const OPEN = 'OPEN';
+const OPENING = 'OPENING';
 
 const initialState = {
-  isOpen: false,
-  isOpening: false,
+  isAnimate: false,
   isClosing: false,
-  isAnimate: false
+  isOpen: false,
+  isOpening: false
 };
 
 function reducer(state, action) {
   switch (action.type) {
-    case OPEN:
-      return { ...state, isOpen: true, isAnimate: true };
-    case OPENING:
-      return { ...state, isOpening: true };
-    case CLOSING:
-      return { ...state, isClosing: true };
     case CLOSE:
       return {
         ...state,
@@ -31,6 +25,12 @@ function reducer(state, action) {
         isClosing: false,
         isAnimate: false
       };
+    case CLOSING:
+      return { ...state, isClosing: true };
+    case OPEN:
+      return { ...state, isOpen: true, isAnimate: true };
+    case OPENING:
+      return { ...state, isOpening: true };
     default:
       throw new Error();
   }
@@ -84,8 +84,8 @@ export function Drawer({
   }
 
   useEffect(() => {
-    let animationFrame = 0,
-      animationTimer = 0;
+    let animationFrame = 0;
+    let animationTimer = 0;
 
     function runNextAnimationFrame(callback) {
       cancelAnimationFrame(animationFrame);

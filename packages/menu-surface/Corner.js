@@ -1,11 +1,11 @@
-const CornerBit = {
+export const CornerBit = {
   BOTTOM: 1,
   CENTER: 2,
   RIGHT: 4,
   FLIP_RTL: 8
 };
 
-const Corner = {
+export const Corner = {
   TOP_LEFT: 0,
   TOP_RIGHT: CornerBit.RIGHT,
   BOTTOM_LEFT: CornerBit.BOTTOM,
@@ -15,5 +15,3 @@ const Corner = {
   BOTTOM_START: CornerBit.BOTTOM | CornerBit.FLIP_RTL,
   BOTTOM_END: CornerBit.BOTTOM | CornerBit.RIGHT | CornerBit.FLIP_RTL
 };
-
-export { Corner, CornerBit };

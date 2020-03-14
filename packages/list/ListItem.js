@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-function ListItem({
+export default function ListItem({
   activated,
   children,
   className,
@@ -32,5 +32,3 @@ ListItem.propTypes = {
   selected: PropTypes.bool,
   tag: PropTypes.element
 };
-
-export default ListItem;

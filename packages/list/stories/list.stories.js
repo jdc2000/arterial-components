@@ -27,8 +27,9 @@ const items = [
 function MyList({ type = 'activated' }) {
   const [selected, setSelected] = useState('star');
   function handleClick(e) {
-    console.log(e.target.id);
-    setSelected(e.target.id);
+    const id = e.target.id || e.target.parentElement.id;
+    console.log(id);
+    setSelected(id);
   }
   return (
     <List>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import NotchedOutline from './NotchedOutline';
@@ -11,7 +11,7 @@ const ICON_CLASS = 'mdc-text-field__icon';
 const LEADING_ICON_CLASS = `${ICON_CLASS} mdc-text-field__icon--leading`;
 const TRAILING_ICON_CLASS = `${ICON_CLASS} mdc-text-field__icon--trailing`;
 
-function TextField({
+export function TextField({
   className,
   disabled,
   helperText,
@@ -167,5 +167,5 @@ TextField.propTypes = {
   value: PropTypes.string
 };
 
-export { TextField, CharacterCounter, Icon };
+export { CharacterCounter, Icon };
 export { default as HelperText } from './HelperText';

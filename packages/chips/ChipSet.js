@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-function ChipSet({
+export default function ChipSet({
   children,
   className,
   choice,
@@ -29,7 +29,6 @@ ChipSet.propTypes = {
   className: PropTypes.string,
   choice: PropTypes.bool,
   filter: PropTypes.bool,
-  input: PropTypes.bool
+  input: PropTypes.bool,
+  tag: PropTypes.element
 };
-
-export default ChipSet;

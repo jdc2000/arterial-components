@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function Highlighter({
+export default function Highlighter({
   color = 'var(--mdc-theme-primary, black)',
   item,
   itemKey,
@@ -49,5 +49,3 @@ Highlighter.propTypes = {
   item: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   matches: PropTypes.arrayOf(PropTypes.object)
 };
-
-export default Highlighter;

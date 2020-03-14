@@ -33,7 +33,7 @@ function MyMenuSurface({
 }) {
   const anchorEl = useRef();
   const [open, setOpen] = useState(false);
-  const [coordinates, setCoordinates] = useState(null);
+  const [position, setPosition] = useState(null);
 
   const anchor = !rightClick;
 
@@ -54,7 +54,7 @@ function MyMenuSurface({
       function handleRightClick(e) {
         e.preventDefault();
         setOpen(true);
-        setCoordinates({ x: e.clientX, y: e.clientY });
+        setPosition({ x: e.clientX, y: e.clientY });
       }
       document.body.addEventListener('click', handleClick);
       window.addEventListener('keydown', handleKeyDown);
@@ -79,13 +79,13 @@ function MyMenuSurface({
             id="button"
             label="Open"
             onClick={() => setOpen(!open)}
-            raised
+            unelevated
           />
         )}
         <MenuSurface
           anchorElement={anchorEl}
           anchorCorner={anchorCorner}
-          coordinates={coordinates}
+          position={position}
           direction={direction}
           fixed={fixed}
           open={open || basic}

@@ -6,7 +6,7 @@ import { Icon } from '@faterial/icon';
 const ICON_CLASS = 'mdc-icon-button__icon';
 const ON_ICON_CLASS = classNames(ICON_CLASS, 'mdc-icon-button__icon--on');
 
-function IconButton({
+export function IconButton({
   className,
   icon,
   label,
@@ -39,5 +39,3 @@ IconButton.propTypes = {
   onIcon: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   tag: PropTypes.element
 };
-
-export { IconButton };

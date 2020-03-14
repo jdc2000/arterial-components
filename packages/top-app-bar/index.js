@@ -2,14 +2,15 @@ import React, { useEffect, useReducer, useRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-const INITIAL_VALUE = 0,
-  MAX_TOP_APP_BAR_HEIGHT = 128,
-  DEBOUNCE_THROTTLE_RESIZE_TIME_MS = 100;
-const MOUNT = 'MOUNT',
-  FIXED_SCROLL = 'FIXED_SCROLL',
-  SHORT_SCROLL = 'SHORT_SCROLL',
-  STANDARD_SCROLL = 'STANDARD_SCROLL',
-  WINDOW_RESIZE = 'WINDOW_RESIZE';
+const DEBOUNCE_THROTTLE_RESIZE_TIME_MS = 100;
+const INITIAL_VALUE = 0;
+const MAX_TOP_APP_BAR_HEIGHT = 128;
+
+const FIXED_SCROLL = 'FIXED_SCROLL';
+const SHORT_SCROLL = 'SHORT_SCROLL';
+const STANDARD_SCROLL = 'STANDARD_SCROLL';
+const MOUNT = 'MOUNT';
+const WINDOW_RESIZE = 'WINDOW_RESIZE';
 
 const initialState = {
   wasDocked: true,
@@ -44,10 +45,10 @@ function getTopAppBarHeight(topAppBarEl) {
 }
 
 function handleStandardScroll(state) {
-  let scrollTarget = state.scrollTarget,
-    lastScrollPosition = state.lastScrollPosition,
-    currentAppBarOffsetTop = state.currentAppBarOffsetTop,
-    topAppBarHeight = state.topAppBarHeight;
+  let scrollTarget = state.scrollTarget;
+  let lastScrollPosition = state.lastScrollPosition;
+  let currentAppBarOffsetTop = state.currentAppBarOffsetTop;
+  let topAppBarHeight = state.topAppBarHeight;
   const currentScrollPosition = Math.max(getViewportScrollY(scrollTarget), 0);
   const diff = currentScrollPosition - lastScrollPosition;
   lastScrollPosition = currentScrollPosition;
@@ -79,12 +80,12 @@ function handleStandardScroll(state) {
 }
 
 function moveTopAppBar(state) {
-  let topAppBarHeight = state.topAppBarHeight,
-    currentAppBarOffsetTop = state.currentAppBarOffsetTop,
-    wasDocked = state.wasDocked,
-    isDockedShowing = state.isDockedShowing,
-    styleTop = state.styleTop,
-    isUpdate = false;
+  let topAppBarHeight = state.topAppBarHeight;
+  let currentAppBarOffsetTop = state.currentAppBarOffsetTop;
+  let wasDocked = state.wasDocked;
+  let isDockedShowing = state.isDockedShowing;
+  let styleTop = state.styleTop;
+  let isUpdate = false;
   const offscreenBoundaryTop = -topAppBarHeight;
   const hasAnyPixelsOffscreen = currentAppBarOffsetTop < 0;
   const hasAnyPixelsOnscreen = currentAppBarOffsetTop > offscreenBoundaryTop;
@@ -151,9 +152,9 @@ function handleWindowResize(currentState) {
 
 function throttledResizeHandler(state) {
   const currentHeight = getTopAppBarHeight(state.topAppBarEl);
-  let topAppBarHeight = state.topAppBarHeight,
-    wasDocked = state.wasDocked,
-    currentAppBarOffsetTop = state.currentAppBarOffsetTop;
+  let topAppBarHeight = state.topAppBarHeight;
+  let wasDocked = state.wasDocked;
+  let currentAppBarOffsetTop = state.currentAppBarOffsetTop;
   if (topAppBarHeight !== currentHeight) {
     wasDocked = false;
 
@@ -173,8 +174,8 @@ function throttledResizeHandler(state) {
 
 function handleShortScroll(state) {
   const currentScroll = getViewportScrollY(state.scrollTarget);
-  let shortCollapsed = state.shortCollapsed,
-    isCollapsed = state.isCollapsed;
+  let shortCollapsed = state.shortCollapsed;
+  let isCollapsed = state.isCollapsed;
   if (shortCollapsed) {
     return state;
   }
@@ -213,10 +214,10 @@ function reducer(state, action) {
       return handleShortScroll(state);
     case STANDARD_SCROLL:
       return handleStandardScroll(state);
-    case WINDOW_RESIZE:
-      return handleWindowResize(state);
     case MOUNT:
       return mount(state, action.data);
+    case WINDOW_RESIZE:
+      return handleWindowResize(state);
     default:
       throw new Error();
   }
@@ -272,8 +273,8 @@ export function TopAppBar({
 
   useEffect(() => {
     const standard = !state.short && !state.fixed;
-    let handleWindowResize = () => dispatch({ type: WINDOW_RESIZE }),
-      handleTargetScroll = () => dispatch({ type: STANDARD_SCROLL });
+    let handleWindowResize = () => dispatch({ type: WINDOW_RESIZE });
+    let handleTargetScroll = () => dispatch({ type: STANDARD_SCROLL });
     if (state.short) {
       handleTargetScroll = () => dispatch({ type: SHORT_SCROLL });
     } else if (state.fixed) {

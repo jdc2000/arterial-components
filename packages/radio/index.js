@@ -44,7 +44,7 @@ function RadioRoot({
   );
 }
 
-const Radio = withFormField(RadioRoot);
+export const Radio = withFormField(RadioRoot);
 
 Radio.propTypes = {
   checked: PropTypes.bool,
@@ -58,5 +58,3 @@ Radio.propTypes = {
   rootProps: PropTypes.object,
   value: PropTypes.string
 };
-
-export { Radio };

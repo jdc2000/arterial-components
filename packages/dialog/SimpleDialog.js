@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Dialog, DialogTitle, DialogContent } from '.';
+import Dialog from './Dialog';
+import DialogTitle from './DialogTitle';
+import DialogContent from './DialogContent';
 
 export default function SimpleDialog({
   className,

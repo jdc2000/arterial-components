@@ -1,17 +1,17 @@
-# `Faterial List`
+# `Arterial List`
 
-Fancy MDC React List
+Another React Material List
 
 ## Install
 
 ```
-npm i @faterial/list
+npm i @arterial/list
 ```
 
 ## Usage
 
 ```
-import { List } from '@faterial/list'
+import { List } from '@arterial/list'
 
 // TODO: DEMONSTRATE REACT COMPONENT
 ```

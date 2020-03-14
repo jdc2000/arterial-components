@@ -1,17 +1,17 @@
-# `Faterial Icon`
+# `Arterial Icon`
 
-Fancy MDC React Icon
+Another React Material Icon
 
 ## Install
 
 ```
-npm i @faterial/icon
+npm i @arterial/icon
 ```
 
 ## Usage
 
 ```
-import { Icon } from '@faterial/icon'
+import { Icon } from '@arterial/icon'
 
 // TODO: DEMONSTRATE REACT COMPONENT
 ```

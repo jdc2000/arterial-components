@@ -1,17 +1,17 @@
-# `Faterial Text Field`
+# `Arterial Text Field`
 
-Fancy MDC React Text Field
+Another React Material Text Field
 
 ## Install
 
 ```
-npm i @faterial/textfield
+npm i @arterial/textfield
 ```
 
 ## Usage
 
 ```
-import { TextField } from '@faterial/textfield'
+import { TextField } from '@arterial/textfield'
 
 // TODO: DEMONSTRATE REACT COMPONENT
 ```

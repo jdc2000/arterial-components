@@ -1,2 +1,2 @@
-# faterial-components
-Fancy Material Design Components for React
+# arterial-components
+Another React Material Components Library

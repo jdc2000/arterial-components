@@ -1,17 +1,17 @@
-# `Faterial Checkbox`
+# `Arterial Checkbox`
 
-Fancy MDC React Checkbox
+Another React Material Checkbox
 
 ## Install
 
 ```
-npm i @faterial/checkbox
+npm i @arterial/checkbox
 ```
 
 ## Usage
 
 ```
-import { Checkbox } from '@faterial/checkbox'
+import { Checkbox } from '@arterial/checkbox'
 
 // TODO: DEMONSTRATE REACT COMPONENT
 ```

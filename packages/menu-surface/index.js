@@ -420,7 +420,7 @@ MenuSurface.propTypes = {
   }),
   children: PropTypes.node,
   className: PropTypes.string,
-  coordinates: PropTypes.shape({ x: PropTypes.number, y: PropTypes.number }),
+  position: PropTypes.shape({ x: PropTypes.number, y: PropTypes.number }),
   direction: PropTypes.string,
   fixed: PropTypes.bool,
   open: PropTypes.bool,

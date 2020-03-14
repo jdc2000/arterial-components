@@ -20,8 +20,8 @@ export default function ConfirmationDialog({
   title
 }) {
   const classes = classNames(
-    'fat-dialog',
-    'fat-dialog--confirmation',
+    'arm-dialog',
+    'arm-dialog--confirmation',
     className
   );
   function handleClose(action) {

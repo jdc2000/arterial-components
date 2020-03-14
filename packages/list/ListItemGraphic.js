@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Icon } from '@faterial/icon';
+import { Icon } from '@arterial/icon';
 
 export default function ListItemGraphic({ className, graphic, ...otherProps }) {
   const classes = classNames('mdc-list-item__graphic', className);

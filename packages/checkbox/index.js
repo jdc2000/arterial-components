@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { withFormField } from '@faterial/form-field';
+import { withFormField } from '@arterial/form-field';
 
 function CheckboxRoot({
   checked,

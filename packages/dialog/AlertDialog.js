@@ -17,7 +17,7 @@ export default function AlertDialog({
   open,
   title
 }) {
-  const classes = classNames('fat-dialog', 'fat-dialog--alert', className);
+  const classes = classNames('arm-dialog', 'arm-dialog--alert', className);
   function handleClose() {
     if (onClose) {
       onClose('close');

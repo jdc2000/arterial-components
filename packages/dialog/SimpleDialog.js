@@ -10,7 +10,7 @@ export default function SimpleDialog({
   open,
   title
 }) {
-  const classes = classNames('fat-dialog', 'fat-dialog--simple', className);
+  const classes = classNames('arm-dialog', 'arm-dialog--simple', className);
   function handleClose() {
     if (onClose) {
       onClose('close');

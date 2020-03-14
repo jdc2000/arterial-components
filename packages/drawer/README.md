@@ -1,17 +1,17 @@
-# `Faterial Drawer`
+# `Arterial Drawer`
 
-Fancy MDC React Drawer
+Another React Material Drawer
 
 ## Install
 
 ```
-npm i @faterial/drawer
+npm i @arterial/drawer
 ```
 
 ## Usage
 
 ```
-import { Drawer } from '@faterial/drawer'
+import { Drawer } from '@arterial/drawer'
 
 // TODO: DEMONSTRATE REACT COMPONENT
 ```

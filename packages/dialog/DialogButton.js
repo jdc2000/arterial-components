@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Button } from '@faterial/button';
+import { Button } from '@arterial/button';
 
 export default function DialogButton({
   action = 'close',

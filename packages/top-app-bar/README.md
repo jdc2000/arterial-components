@@ -1,17 +1,17 @@
-# `Faterial Top App Bar`
+# `Arterial Top App Bar`
 
-Fancy MDC React Top App Bar
+Another React Material Top App Bar
 
 ## Install
 
 ```
-npm i @faterial/top-app-bar
+npm i @arterial/top-app-bar
 ```
 
 ## Usage
 
 ```
-import { TopAppBar } from '@faterial/top-app-bar'
+import { TopAppBar } from '@arterial/top-app-bar'
 
 // TODO: DEMONSTRATE REACT COMPONENT
 ```

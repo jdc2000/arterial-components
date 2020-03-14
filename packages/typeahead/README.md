@@ -1,17 +1,17 @@
-# `Faterial Typeahead`
+# `Arterial Typeahead`
 
-Fancy MDC React Typeahead
+Another React Material Typeahead
 
 ## Install
 
 ```
-npm i @faterial/typeahead
+npm i @arterial/typeahead
 ```
 
 ## Usage
 
 ```
-import { Typeahead } from '@faterial/typeahead'
+import { Typeahead } from '@arterial/typeahead'
 
 // TODO: DEMONSTRATE REACT COMPONENT
 ```

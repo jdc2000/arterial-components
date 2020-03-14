@@ -1,17 +1,17 @@
-# `Faterial Menu Surface`
+# `Arterial Menu Surface`
 
-Fancy MDC React Menu Surface
+Another React Material Menu Surface
 
 ## Install
 
 ```
-npm i @faterial/menu-surface
+npm i @arterial/menu-surface
 ```
 
 ## Usage
 
 ```
-import { MenuSurface } from '@faterial/menu-surface'
+import { MenuSurface } from '@arterial/menu-surface'
 
 // TODO: DEMONSTRATE REACT COMPONENT
 ```

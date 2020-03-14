@@ -1,17 +1,17 @@
-# `Faterial Snackbar`
+# `Arterial Snackbar`
 
-Fancy MDC React Snackbar
+Another React Material Snackbar
 
 ## Install
 
 ```
-npm i @faterial/snackbar
+npm i @arterial/snackbar
 ```
 
 ## Usage
 
 ```
-import { Snackbar } from '@faterial/snackbar'
+import { Snackbar } from '@arterial/snackbar'
 
 // TODO: DEMONSTRATE REACT COMPONENT
 ```

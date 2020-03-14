@@ -1,17 +1,17 @@
-# `Faterial Chips`
+# `Arterial Chips`
 
-Fancy MDC React Chips
+Another React Material Chips
 
 ## Install
 
 ```
-npm i @faterial/chips
+npm i @arterial/chips
 ```
 
 ## Usage
 
 ```
-import { Chips } from '@faterial/chips'
+import { Chips } from '@arterial/chips'
 
 // TODO: DEMONSTRATE REACT COMPONENT
 ```

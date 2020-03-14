@@ -1,17 +1,17 @@
-# `Faterial Card`
+# `Arterial Card`
 
-Fancy MDC React Card
+Another React Material Card
 
 ## Install
 
 ```
-npm i @faterial/card
+npm i @arterial/card
 ```
 
 ## Usage
 
 ```
-import { Card } from '@faterial/card'
+import { Card } from '@arterial/card'
 
 // TODO: DEMONSTRATE REACT COMPONENT
 ```

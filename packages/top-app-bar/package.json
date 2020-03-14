@@ -1,9 +1,9 @@
 {
-  "name": "@faterial/top-app-bar",
+  "name": "@arterial/top-app-bar",
   "version": "1.0.0",
-  "description": "Fancy MDC React Top App Bar",
+  "description": "Another React Material Top App Bar",
   "author": "jdc2000",
-  "homepage": "https://github.com/jdc2000/faterial-components#readme",
+  "homepage": "https://github.com/jdc2000/arterial-components#readme",
   "license": "ISC",
   "main": "index.js",
   "directories": {
@@ -20,19 +20,19 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jdc2000/faterial-components.git"
+    "url": "git+https://github.com/jdc2000/arterial-components.git"
   },
   "scripts": {
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "bugs": {
-    "url": "https://github.com/jdc2000/faterial-components/issues"
+    "url": "https://github.com/jdc2000/arterial-components/issues"
   },
   "dependencies": {
-    "@faterial/icon-button": "^1.0.0",
-    "@faterial/list": "^1.0.0",
-    "@faterial/menu-surface": "^1.0.0",
-    "@faterial/textfield": "^1.0.0",
+    "@arterial/icon-button": "^1.0.0",
+    "@arterial/list": "^1.0.0",
+    "@arterial/menu-surface": "^1.0.0",
+    "@arterial/textfield": "^1.0.0",
     "classnames": "^2.2.6",
     "fuse.js": "^3.4.6",
     "prop-types": "^15.7.2"

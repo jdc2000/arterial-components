@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { IconButton } from '@faterial/icon-button';
+import { IconButton } from '@arterial/icon-button';
 
 export default function Icon({ action, className, nav, ...otherProps }) {
   const classes = classNames(

@@ -2,9 +2,9 @@ import React, { useEffect, useReducer, useRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Fuse from 'fuse.js';
-import { List, ListItem, ListItemText } from '@faterial/list';
-import { MenuSurface, MenuSurfaceAnchor, Corner } from '@faterial/menu-surface';
-import { TextField } from '@faterial/textfield';
+import { List, ListItem, ListItemText } from '@arterial/list';
+import { MenuSurface, MenuSurfaceAnchor, Corner } from '@arterial/menu-surface';
+import { TextField } from '@arterial/textfield';
 import Highlighter from './Highlighter';
 
 const DEFAULT_OPTIONS = {
@@ -91,7 +91,7 @@ export function Typeahead({
   const textfieldEl = useRef();
   const [state, dispatch] = useReducer(reducer, { ...initialState, list });
 
-  const classes = classNames('fat-typeahead', className);
+  const classes = classNames('arm-typeahead', className);
   const Tag = tag;
 
   function handleClick(item, index) {
@@ -110,7 +110,7 @@ export function Typeahead({
         'You must use `renderListItemChildren` when `list` is NOT an array of strings'
       );
     }
-    const id = `fat-typeahead-menu-item-${index}`;
+    const id = `arm-typeahead-menu-item-${index}`;
     return (
       <ListItem
         id={id}

@@ -1,17 +1,17 @@
-# `Faterial Icon Button`
+# `Arterial Icon Button`
 
-Fancy MDC React Icon Button
+Another React Material Icon Button
 
 ## Install
 
 ```
-npm i @faterial/icon-button
+npm i @arterial/icon-button
 ```
 
 ## Usage
 
 ```
-import { IconButton } from '@faterial/icon-button'
+import { IconButton } from '@arterial/icon-button'
 
 // TODO: DEMONSTRATE REACT COMPONENT
 ```

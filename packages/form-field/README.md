@@ -1,17 +1,17 @@
-# `Faterial Form Field`
+# `Arterial Form Field`
 
-Fancy MDC React Form Field
+Another React Material Form Field
 
 ## Install
 
 ```
-npm i @faterial/form-field
+npm i @arterial/form-field
 ```
 
 ## Usage
 
 ```
-import { FormField } from '@faterial/form-field'
+import { FormField } from '@arterial/form-field'
 
 // TODO: DEMONSTRATE REACT COMPONENT
 ```

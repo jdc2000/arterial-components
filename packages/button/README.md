@@ -1,17 +1,17 @@
-# `Faterial Button`
+# `Arterial Button`
 
-Fancy MDC React Button
+Another React Material Button
 
 ## Install
 
 ```
-npm i @faterial/button
+npm i @arterial/button
 ```
 
 ## Usage
 
 ```
-import { Button } from '@faterial/button'
+import { Button } from '@arterial/button'
 
 // TODO: DEMONSTRATE REACT COMPONENT
 ```

@@ -1,17 +1,17 @@
-# `Faterial Radio`
+# `Arterial Radio`
 
-Fancy MDC React Radio
+Another React Material Radio
 
 ## Install
 
 ```
-npm i @faterial/radio
+npm i @arterial/radio
 ```
 
 ## Usage
 
 ```
-import { Radio } from '@faterial/radio'
+import { Radio } from '@arterial/radio'
 
 // TODO: DEMONSTRATE REACT COMPONENT
 ```

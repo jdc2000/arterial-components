@@ -4,17 +4,17 @@ import classNames from 'classnames';
 
 export function Icon({ className, icon, ...otherProps }) {
   if (typeof icon === 'string') {
-    const classes = classNames('fat-icon', 'material-icons', className);
+    const classes = classNames('arm-icon', 'material-icons', className);
     return (
       <i className={classes} {...otherProps}>
         {icon}
       </i>
     );
   }
-  const isNotFatIcon =
-    icon.props.className && !icon.props.className.includes('fat-icon');
+  const isNotArmIcon =
+    icon.props.className && !icon.props.className.includes('arm-icon');
   const classes = classNames(
-    { 'fat-icon': isNotFatIcon },
+    { 'arm-icon': isNotArmIcon },
     icon.props.className,
     className
   );

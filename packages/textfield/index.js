@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import NotchedOutline from './NotchedOutline';
 import HelperLine from './HelperLine';
 import CharacterCounter from './CharacterCounter';
-import { Icon } from '@faterial/icon';
+import { Icon } from '@arterial/icon';
 
 const FLOAT_ABOVE_CLASS = 'mdc-floating-label--float-above';
 const ICON_CLASS = 'mdc-text-field__icon';

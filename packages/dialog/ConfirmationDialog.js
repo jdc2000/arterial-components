@@ -1,13 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import {
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
-  DialogButton
-} from '.';
+import Dialog from './Dialog';
+import DialogTitle from './DialogTitle';
+import DialogContent from './DialogContent';
+import DialogActions from './DialogActions';
+import DialogButton from './DialogButton';
 
 export default function ConfirmationDialog({
   className,

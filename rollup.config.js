@@ -1,12 +1,12 @@
 import babel from 'rollup-plugin-babel';
 import resolve from '@rollup/plugin-node-resolve';
 import { readdirSync, statSync } from 'fs';
-import { resolve as pathResolve } from 'path';
+import { resolve as resolvePath } from 'path';
 
 const PACKAGES = 'packages';
 export default readdirSync(PACKAGES)
   .map(pkg => {
-    const filepath = pathResolve(PACKAGES, pkg);
+    const filepath = resolvePath(PACKAGES, pkg);
     const stat = statSync(filepath);
     if (!stat.isDirectory()) {
       return null;
@@ -20,10 +20,10 @@ export default readdirSync(PACKAGES)
     }
     return {
       external,
-      input: pathResolve(filepath, 'index.js'),
+      input: resolvePath(filepath, 'index.js'),
       output: [
         {
-          file: pathResolve(filepath, 'dist/index.js'),
+          file: resolvePath(filepath, 'dist/index.js'),
           format: 'esm'
         }
       ],

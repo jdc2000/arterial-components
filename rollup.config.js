@@ -1,5 +1,6 @@
 import babel from 'rollup-plugin-babel';
 import resolve from '@rollup/plugin-node-resolve';
+import { terser } from 'rollup-plugin-terser';
 import { readdirSync, statSync } from 'fs';
 import { resolve as resolvePath } from 'path';
 
@@ -40,9 +41,10 @@ export default readdirSync(PACKAGES)
                 exclude: ['transform-typeof-symbol']
               }
             ],
-            ['@babel/preset-react', { development: true, useBuiltIns: true }]
+            ['@babel/preset-react', { useBuiltIns: true }]
           ]
-        })
+        }),
+        terser()
       ]
     };
   })

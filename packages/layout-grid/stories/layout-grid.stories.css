@@ -1,0 +1,29 @@
+.grid {
+  background: rgba(0, 0, 0, 0.2);
+  min-width: 360px;
+}
+
+.grid--basic {
+  max-width: 360px;
+}
+
+.grid--alignment {
+  max-width: 800px;
+}
+
+.grid--cell-alignment {
+  min-height: 200px;
+}
+
+.grid-cell {
+  background: rgba(0, 0, 0, 0.2);
+  height: 100px;
+}
+
+.grid-cell--alignment {
+  max-height: 50px;
+}
+
+.grid-inner {
+  min-height: 200px;
+}

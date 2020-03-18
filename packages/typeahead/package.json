@@ -4,15 +4,10 @@
   "description": "Another React Material Typeahead",
   "author": "jdc2000",
   "homepage": "https://github.com/jdc2000/arterial-components#readme",
-  "license": "ISC",
-  "main": "index.js",
-  "directories": {
-    "stories": "stories",
-    "test": "test"
-  },
+  "license": "MIT",
+  "main": "dist/index.js",
   "files": [
-    "index.js",
-    "Highlighter.js"
+    "dist"
   ],
   "repository": {
     "type": "git",

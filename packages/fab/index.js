@@ -32,7 +32,7 @@ export function Fab({
     <Tag className={classes} aria-label={ariaLabel}>
       {ripple && <div className="mdc-fab__ripple"></div>}
       {icon && <Icon className="mdc-fab__icon" icon={icon} />}
-      {label && <span class="mdc-fab__label">{label}</span>}
+      {label && <span className="mdc-fab__label">{label}</span>}
       {trailingIcon && <Icon className="mdc-fab__icon" icon={trailingIcon} />}
     </Tag>
   );

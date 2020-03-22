@@ -18,6 +18,7 @@
     "@material/menu-surface": "^5.1.0",
     "@material/radio": "^5.1.0",
     "@material/snackbar": "^5.1.0",
+    "@material/switch": "^5.1.0",
     "@material/textfield": "^5.1.0",
     "@material/top-app-bar": "^5.1.0",
     "@rollup/plugin-node-resolve": "^7.1.1",

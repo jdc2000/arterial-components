@@ -21,11 +21,11 @@ export function FormField({
 }
 
 export function withFormField(WrappedComponent) {
-  return function({ formFieldProps, label, ...otherProps }) {
+  return function({ alignEnd, formFieldProps = {}, label, ...otherProps }) {
     if (label) {
       return (
-        <FormField {...formFieldProps}>
-          <WrappedComponent label={label} {...otherProps} />
+        <FormField alignEnd={alignEnd} {...formFieldProps}>
+          <WrappedComponent alignEnd={alignEnd} label={label} {...otherProps} />
         </FormField>
       );
     }

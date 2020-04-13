@@ -1,14 +1,15 @@
 import babel from 'rollup-plugin-babel';
 import resolve from '@rollup/plugin-node-resolve';
 import { terser } from 'rollup-plugin-terser';
-import { readdirSync, statSync } from 'fs';
-import { resolve as resolvePath } from 'path';
+import fs from 'fs';
+import path from 'path';
 
 const PACKAGES = 'packages';
-export default readdirSync(PACKAGES)
+export default fs
+  .readdirSync(PACKAGES)
   .map(pkg => {
-    const filepath = resolvePath(PACKAGES, pkg);
-    const stat = statSync(filepath);
+    const filepath = path.resolve(PACKAGES, pkg);
+    const stat = fs.statSync(filepath);
     if (!stat.isDirectory()) {
       return null;
     }
@@ -21,10 +22,10 @@ export default readdirSync(PACKAGES)
     }
     return {
       external,
-      input: resolvePath(filepath, 'index.js'),
+      input: path.resolve(filepath, 'index.js'),
       output: [
         {
-          file: resolvePath(filepath, 'dist/index.js'),
+          file: path.resolve(filepath, 'dist/index.js'),
           format: 'esm'
         }
       ],
@@ -41,7 +42,10 @@ export default readdirSync(PACKAGES)
                 exclude: ['transform-typeof-symbol']
               }
             ],
-            ['@babel/preset-react', { useBuiltIns: true }]
+            ['@babel/preset-react', { development: false, useBuiltIns: true }]
+          ],
+          plugins: [
+            ['@babel/plugin-proposal-object-rest-spread', { useBuiltIns: true }]
           ]
         }),
         terser()

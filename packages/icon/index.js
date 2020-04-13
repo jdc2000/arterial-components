@@ -2,25 +2,26 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-export function Icon({ className, icon, ...otherProps }) {
+export const Icon = React.forwardRef((props, ref) => {
+  const { className, icon, ...otherProps } = props;
   if (typeof icon === 'string') {
-    const classes = classNames('arm-icon', 'material-icons', className);
+    const classes = classNames('art-icon', 'material-icons', className);
     return (
-      <i className={classes} {...otherProps}>
+      <i className={classes} ref={ref} {...otherProps}>
         {icon}
       </i>
     );
   }
-  const isNotArmIcon =
-    icon.props.className && !icon.props.className.includes('arm-icon');
+  const isNotArtIcon =
+    icon.props.className && !icon.props.className.includes('art-icon');
   const classes = classNames(
-    { 'arm-icon': isNotArmIcon },
+    { 'art-icon': isNotArtIcon },
     icon.props.className,
     className
   );
-  const props = { ...otherProps, ...icon.props, className: classes };
-  return React.cloneElement(icon, props);
-}
+  const iconProps = { ...otherProps, ...icon.props, className: classes, ref };
+  return React.cloneElement(icon, iconProps);
+});
 
 Icon.propTypes = {
   className: PropTypes.string,

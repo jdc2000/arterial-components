@@ -10,5 +10,8 @@
       }
     ],
     ["@babel/preset-react", { "development": true, "useBuiltIns": true }]
+  ],
+  "plugins": [
+    ["@babel/plugin-proposal-object-rest-spread", { "useBuiltIns": true }]
   ]
 }

@@ -1,5 +1,7 @@
-import { addParameters } from '@storybook/react';
+import React from 'react';
+import { addDecorator, addParameters } from '@storybook/react';
 
+addDecorator(storyFn => <div className="mdc-typography">{storyFn()}</div>);
 addParameters({
   options: {
     storySort: (a, b) =>

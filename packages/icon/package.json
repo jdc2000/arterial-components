@@ -18,5 +18,8 @@
   },
   "bugs": {
     "url": "https://github.com/jdc2000/arterial-components/issues"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

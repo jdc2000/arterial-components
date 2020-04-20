@@ -19,6 +19,9 @@
   "bugs": {
     "url": "https://github.com/jdc2000/arterial-components/issues"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "@arterial/list": "^1.0.0",
     "@arterial/menu-surface": "^1.0.0",

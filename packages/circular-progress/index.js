@@ -71,79 +71,82 @@ export function CircularProgress({
       aria-valuemax="1"
       aria-valuenow={progress}
     >
-      <div className="mdc-circular-progress__determinate-container">
-        <svg
-          className="mdc-circular-progress__determinate-circle-graphic"
-          viewBox={CIRCLES[size].viewBox}
-          xmlns={XMLNS}
-        >
-          <circle
-            className="mdc-circular-progress__determinate-circle"
-            cx={CIRCLES[size].cx}
-            cy={CIRCLES[size].cy}
-            r={CIRCLES[size].r}
-            strokeDasharray={CIRCLES[size].strokeDasharray}
-            strokeDashoffset={strokeDashoffset}
-          />
-        </svg>
-      </div>
-      <div className="mdc-circular-progress__indeterminate-container">
-        {spinners.map(item => {
-          const spinnerClasses = classNames(
-            'mdc-circular-progress__spinner-layer',
-            { [`mdc-circular-progress__color-${item}`]: fourColors }
-          );
-          return (
-            <div className={spinnerClasses} key={item}>
-              <div className="mdc-circular-progress__circle-clipper mdc-circular-progress__circle-left">
-                <svg
-                  className="mdc-circular-progress__indeterminate-circle-graphic"
-                  viewBox={CIRCLES[size].viewBox}
-                  xmlns={XMLNS}
-                >
-                  <circle
-                    cx={CIRCLES[size].cx}
-                    cy={CIRCLES[size].cy}
-                    r={CIRCLES[size].r}
-                    strokeDasharray={CIRCLES[size].strokeDasharray}
-                    strokeDashoffset={CIRCLES[size].strokeDashoffset}
-                  />
-                </svg>
+      {isIndeterminate ? (
+        <div className="mdc-circular-progress__indeterminate-container">
+          {spinners.map(item => {
+            const spinnerClasses = classNames(
+              'mdc-circular-progress__spinner-layer',
+              { [`mdc-circular-progress__color-${item}`]: fourColors }
+            );
+            return (
+              <div className={spinnerClasses} key={item}>
+                <div className="mdc-circular-progress__circle-clipper mdc-circular-progress__circle-left">
+                  <svg
+                    className="mdc-circular-progress__indeterminate-circle-graphic"
+                    viewBox={CIRCLES[size].viewBox}
+                    xmlns={XMLNS}
+                  >
+                    <circle
+                      cx={CIRCLES[size].cx}
+                      cy={CIRCLES[size].cy}
+                      r={CIRCLES[size].r}
+                      strokeDasharray={CIRCLES[size].strokeDasharray}
+                      strokeDashoffset={CIRCLES[size].strokeDashoffset}
+                    />
+                  </svg>
+                </div>
+                <div className="mdc-circular-progress__gap-patch">
+                  <svg
+                    className="mdc-circular-progress__indeterminate-circle-graphic"
+                    viewBox={CIRCLES[size].viewBox}
+                    xmlns={XMLNS}
+                  >
+                    <circle
+                      cx={CIRCLES[size].cx}
+                      cy={CIRCLES[size].cy}
+                      r={CIRCLES[size].r}
+                      strokeDasharray={CIRCLES[size].strokeDasharray}
+                      strokeDashoffset={CIRCLES[size].strokeDashoffset}
+                    />
+                  </svg>
+                </div>
+                <div className="mdc-circular-progress__circle-clipper mdc-circular-progress__circle-right">
+                  <svg
+                    className="mdc-circular-progress__indeterminate-circle-graphic"
+                    viewBox={CIRCLES[size].viewBox}
+                    xmlns={XMLNS}
+                  >
+                    <circle
+                      cx={CIRCLES[size].cx}
+                      cy={CIRCLES[size].cy}
+                      r={CIRCLES[size].r}
+                      strokeDasharray={CIRCLES[size].strokeDasharray}
+                      strokeDashoffset={CIRCLES[size].strokeDashoffset}
+                    />
+                  </svg>
+                </div>
               </div>
-              <div className="mdc-circular-progress__gap-patch">
-                <svg
-                  className="mdc-circular-progress__indeterminate-circle-graphic"
-                  viewBox={CIRCLES[size].viewBox}
-                  xmlns={XMLNS}
-                >
-                  <circle
-                    cx={CIRCLES[size].cx}
-                    cy={CIRCLES[size].cy}
-                    r={CIRCLES[size].r}
-                    strokeDasharray={CIRCLES[size].strokeDasharray}
-                    strokeDashoffset={CIRCLES[size].strokeDashoffset}
-                  />
-                </svg>
-              </div>
-              <div className="mdc-circular-progress__circle-clipper mdc-circular-progress__circle-right">
-                <svg
-                  className="mdc-circular-progress__indeterminate-circle-graphic"
-                  viewBox={CIRCLES[size].viewBox}
-                  xmlns={XMLNS}
-                >
-                  <circle
-                    cx={CIRCLES[size].cx}
-                    cy={CIRCLES[size].cy}
-                    r={CIRCLES[size].r}
-                    strokeDasharray={CIRCLES[size].strokeDasharray}
-                    strokeDashoffset={CIRCLES[size].strokeDashoffset}
-                  />
-                </svg>
-              </div>
-            </div>
-          );
-        })}
-      </div>
+            );
+          })}
+        </div>
+      ) : (
+        <div className="mdc-circular-progress__determinate-container">
+          <svg
+            className="mdc-circular-progress__determinate-circle-graphic"
+            viewBox={CIRCLES[size].viewBox}
+            xmlns={XMLNS}
+          >
+            <circle
+              className="mdc-circular-progress__determinate-circle"
+              cx={CIRCLES[size].cx}
+              cy={CIRCLES[size].cy}
+              r={CIRCLES[size].r}
+              strokeDasharray={CIRCLES[size].strokeDasharray}
+              strokeDashoffset={strokeDashoffset}
+            />
+          </svg>
+        </div>
+      )}
     </div>
   );
 }

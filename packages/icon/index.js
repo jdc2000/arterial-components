@@ -25,5 +25,5 @@ export const Icon = React.forwardRef((props, ref) => {
 
 Icon.propTypes = {
   className: PropTypes.string,
-  icon: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired
+  icon: PropTypes.node.isRequired
 };

@@ -149,7 +149,7 @@ TextField.propTypes = {
   className: PropTypes.string,
   disabled: PropTypes.bool,
   helperText: PropTypes.element,
-  icon: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+  icon: PropTypes.node,
   id: PropTypes.string,
   focused: PropTypes.bool,
   fullWidth: PropTypes.bool,
@@ -162,7 +162,7 @@ TextField.propTypes = {
   outlined: PropTypes.bool,
   required: PropTypes.bool,
   textarea: PropTypes.bool,
-  trailingIcon: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+  trailingIcon: PropTypes.node,
   invalid: PropTypes.bool,
   value: PropTypes.string
 };

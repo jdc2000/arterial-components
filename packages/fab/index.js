@@ -42,7 +42,7 @@ Fab.propTypes = {
   className: PropTypes.string,
   exited: PropTypes.bool,
   extended: PropTypes.bool,
-  icon: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+  icon: PropTypes.node,
   label: PropTypes.string,
   mini: PropTypes.bool,
   ripple: PropTypes.bool,

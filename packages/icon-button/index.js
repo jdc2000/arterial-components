@@ -33,9 +33,9 @@ export function IconButton({
 
 IconButton.propTypes = {
   className: PropTypes.string,
-  icon: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
+  icon: PropTypes.node.isRequired,
   label: PropTypes.string,
   on: PropTypes.bool,
-  onIcon: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+  onIcon: PropTypes.node,
   tag: PropTypes.element
 };

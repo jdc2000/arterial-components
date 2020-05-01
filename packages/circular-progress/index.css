@@ -1,0 +1,48 @@
+.mdc-circular-progress--xsmall {
+  width: 18px;
+  height: 18px;
+}
+.mdc-circular-progress--xsmall
+  .mdc-circular-progress__determinate-circle-graphic,
+.mdc-circular-progress--xsmall
+  .mdc-circular-progress__indeterminate-circle-graphic {
+  stroke-width: 1.875px;
+}
+.mdc-circular-progress--xsmall
+  .mdc-circular-progress__gap-patch
+  .mdc-circular-progress__indeterminate-circle-graphic {
+  stroke-width: 1.5px;
+}
+
+.mdc-circular-progress
+  .mdc-circular-progress__color-1
+  .mdc-circular-progress__indeterminate-circle-graphic {
+  stroke: #4285f4;
+}
+
+.mdc-circular-progress
+  .mdc-circular-progress__color-2
+  .mdc-circular-progress__indeterminate-circle-graphic {
+  stroke: #db4437;
+}
+
+.mdc-circular-progress
+  .mdc-circular-progress__color-3
+  .mdc-circular-progress__indeterminate-circle-graphic {
+  stroke: #f4b400;
+}
+
+.mdc-circular-progress
+  .mdc-circular-progress__color-4
+  .mdc-circular-progress__indeterminate-circle-graphic {
+  stroke: #0f9d58;
+}
+
+.mdc-button--raised:not(:disabled)
+  .mdc-circular-progress
+  .mdc-circular-progress__indeterminate-circle-graphic,
+.mdc-button--unelevated:not(:disabled)
+  .mdc-circular-progress
+  .mdc-circular-progress__indeterminate-circle-graphic {
+  stroke: white;
+}

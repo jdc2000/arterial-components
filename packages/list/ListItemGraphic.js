@@ -10,5 +10,5 @@ export default function ListItemGraphic({ className, graphic, ...otherProps }) {
 
 ListItemGraphic.propTypes = {
   className: PropTypes.string,
-  graphic: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired
+  graphic: PropTypes.node.isRequired
 };

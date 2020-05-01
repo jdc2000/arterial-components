@@ -10,5 +10,5 @@ export default function ListItemMeta({ className, meta, ...otherProps }) {
 
 ListItemMeta.propTypes = {
   className: PropTypes.string,
-  meta: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired
+  meta: PropTypes.node.isRequired
 };

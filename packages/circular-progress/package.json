@@ -1,13 +1,14 @@
 {
-  "name": "@arterial/switch",
+  "name": "@arterial/circular-progress",
   "version": "1.0.0-alpha.0",
-  "description": "Another React Material Switch",
+  "description": "Another React Material Circular Progress",
   "author": "jdc2000",
   "homepage": "https://github.com/jdc2000/arterial-components#readme",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [
-    "dist"
+    "dist",
+    "index.css"
   ],
   "repository": {
     "type": "git",
@@ -23,6 +24,6 @@
     "access": "public"
   },
   "dependencies": {
-    "@arterial/form-field": "^1.0.0-alpha.0"
+    "@arterial/icon": "^1.0.0-alpha.0"
   }
 }

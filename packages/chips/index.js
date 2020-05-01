@@ -95,14 +95,14 @@ export function Chip({
 Chip.propTypes = {
   checkmark: PropTypes.bool,
   className: PropTypes.string,
-  icon: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+  icon: PropTypes.node,
   id: PropTypes.string,
   onSelect: PropTypes.func,
   onTrailingIconSelect: PropTypes.func,
   ripple: PropTypes.bool,
   selected: PropTypes.bool,
   text: PropTypes.string,
-  trailingIcon: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+  trailingIcon: PropTypes.node,
   tag: PropTypes.element
 };
 

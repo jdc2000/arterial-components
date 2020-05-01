@@ -1,0 +1,29 @@
+{
+  "name": "@arterial/circular-progress",
+  "version": "1.0.0-alpha.0",
+  "description": "Another React Material Circular Progress",
+  "author": "jdc2000",
+  "homepage": "https://github.com/jdc2000/arterial-components#readme",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "files": [
+    "dist",
+    "index.css"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jdc2000/arterial-components.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/jdc2000/arterial-components/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@arterial/icon": "^1.0.0-alpha.0"
+  }
+}

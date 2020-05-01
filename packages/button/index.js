@@ -37,12 +37,12 @@ export function Button({
 
 Button.propTypes = {
   className: PropTypes.string,
-  icon: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+  icon: PropTypes.node,
   label: PropTypes.string.isRequired,
   outlined: PropTypes.bool,
   raised: PropTypes.bool,
   ripple: PropTypes.bool,
-  trailingIcon: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+  trailingIcon: PropTypes.node,
   unelevated: PropTypes.bool,
   tag: PropTypes.element
 };

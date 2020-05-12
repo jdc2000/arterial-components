@@ -2,15 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-export default function ListItem({
-  activated,
-  children,
-  className,
-  disabled,
-  selected,
-  tag = 'li',
-  ...otherProps
-}) {
+const ListItem = React.forwardRef((props, ref) => {
+  const {
+    activated,
+    children,
+    className,
+    disabled,
+    selected,
+    tag = 'li',
+    ...otherProps
+  } = props;
   const classes = classNames('mdc-list-item', className, {
     'mdc-list-item--activated': activated,
     'mdc-list-item--disabled': disabled,
@@ -18,11 +19,11 @@ export default function ListItem({
   });
   const Tag = tag;
   return (
-    <Tag className={classes} {...otherProps}>
+    <Tag className={classes} {...otherProps} ref={ref}>
       {children}
     </Tag>
   );
-}
+});
 
 ListItem.propTypes = {
   activated: PropTypes.bool,
@@ -32,3 +33,5 @@ ListItem.propTypes = {
   selected: PropTypes.bool,
   tag: PropTypes.element
 };
+
+export default ListItem;

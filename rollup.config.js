@@ -17,6 +17,9 @@ export default fs
     if (pkg === 'menu-surface') {
       external.push('react-dom');
     }
+    if (pkg === 'select') {
+      external.push('react-dom', 'uuid');
+    }
     if (pkg === 'typeahead') {
       external.push('fuse.js', 'react-dom');
     }

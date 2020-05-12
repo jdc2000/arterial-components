@@ -70,7 +70,7 @@ export function Typeahead({
   onFocus,
   required,
   value,
-  inputProps = {}, // equivalent to otherProps in textfield component
+  inputProps = {}, // equivalent to otherProps for native input
   // menu-surface props
   anchorCorner = Corner.BOTTOM_LEFT,
   anchorMargin,
@@ -91,7 +91,7 @@ export function Typeahead({
   const textfieldEl = useRef();
   const [state, dispatch] = useReducer(reducer, { ...initialState, list });
 
-  const classes = classNames('arm-typeahead', className);
+  const classes = classNames('art-typeahead', className);
   const Tag = tag;
 
   function handleClick(item, index) {
@@ -110,7 +110,7 @@ export function Typeahead({
         'You must use `renderListItemChildren` when `list` is NOT an array of strings'
       );
     }
-    const id = `arm-typeahead-menu-item-${index}`;
+    const id = `art-typeahead-menu-item-${index}`;
     return (
       <ListItem
         id={id}

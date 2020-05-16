@@ -1,6 +1,6 @@
 {
   "name": "@arterial/switch",
-  "version": "1.0.0-alpha.3",
+  "version": "1.0.0-alpha.4",
   "description": "Another React Material Switch",
   "author": "jdc2000",
   "homepage": "https://github.com/jdc2000/arterial-components#readme",
@@ -23,6 +23,6 @@
     "access": "public"
   },
   "dependencies": {
-    "@arterial/form-field": "^1.0.0-alpha.3"
+    "@arterial/form-field": "^1.0.0-alpha.4"
   }
 }

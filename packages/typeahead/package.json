@@ -1,6 +1,6 @@
 {
   "name": "@arterial/typeahead",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0-alpha.3",
   "description": "Another React Material Typeahead",
   "author": "jdc2000",
   "homepage": "https://github.com/jdc2000/arterial-components#readme",
@@ -23,9 +23,9 @@
     "access": "public"
   },
   "dependencies": {
-    "@arterial/list": "^1.0.0-alpha.1",
-    "@arterial/menu-surface": "^1.0.0-alpha.0",
-    "@arterial/textfield": "^1.0.0-alpha.1",
+    "@arterial/list": "^1.0.0-alpha.3",
+    "@arterial/menu-surface": "^1.0.0-alpha.3",
+    "@arterial/textfield": "^1.0.0-alpha.3",
     "classnames": "^2.2.6",
     "fuse.js": "^3.4.6",
     "prop-types": "^15.7.2"

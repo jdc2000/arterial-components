@@ -41,6 +41,7 @@ export function TextField({
   const { className: rootClassName, ...otherRootProps } = rootProps;
   const classes = classNames(className, 'mdc-text-field', {
     'mdc-text-field--disabled': disabled,
+    'mdc-text-field--filled': !outlined,
     'mdc-text-field--focused': isFocused,
     'mdc-text-field--fullwidth': fullWidth,
     'mdc-text-field--invalid': invalid,

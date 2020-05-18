@@ -1,6 +1,8 @@
 import React from 'react';
 import { Button } from '..';
+import { CircularProgress } from '../../circular-progress';
 import '@material/button/dist/mdc.button.css';
+import '@material/circular-progress/dist/mdc.circular-progress.css';
 
 export default { title: 'Button' };
 
@@ -39,3 +41,15 @@ export const Basic = () => <MyButtons />;
 export const Raised = () => <MyButtons raised />;
 export const Unelevated = () => <MyButtons unelevated />;
 export const Outlined = () => <MyButtons outlined />;
+export const Progress = () => {
+  const icon = <CircularProgress size="xsmall" />;
+  const styles = { marginRight: '8px' };
+  return (
+    <>
+      <Button label="Text" icon={icon} style={styles} />
+      <Button label="Raised" raised icon={icon} style={styles} />
+      <Button label="Unelevated" unelevated icon={icon} style={styles} />
+      <Button label="Outlined" outlined icon={icon} style={styles} />
+    </>
+  );
+};

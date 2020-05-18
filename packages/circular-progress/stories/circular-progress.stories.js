@@ -51,39 +51,17 @@ export const FourColors = () => (
 
 export const Buttons = () => {
   const icon = <CircularProgress size="xsmall" />;
+  const styles = { marginRight: '8px' };
   return (
     <>
-      <Button
-        label="Basic"
-        icon={icon}
-        tag="div"
-        style={{ marginRight: '8px' }}
-      />
-      <Button
-        label="Raised"
-        raised
-        icon={icon}
-        tag="div"
-        style={{ marginRight: '8px' }}
-      />
-      <Button
-        label="Unelevated"
-        unelevated
-        icon={icon}
-        tag="div"
-        style={{ marginRight: '8px' }}
-      />
-      <Button
-        label="Outlined"
-        outlined
-        icon={icon}
-        tag="div"
-        style={{ marginRight: '8px' }}
-      />
+      <Button label="Basic" icon={icon} style={styles} />
+      <Button label="Raised" raised icon={icon} style={styles} />
+      <Button label="Unelevated" unelevated icon={icon} style={styles} />
+      <Button label="Outlined" outlined icon={icon} style={styles} />
     </>
   );
 };
 
 export const IconButtons = () => (
-  <IconButton icon={<CircularProgress size="small" />} tag="div" />
+  <IconButton icon={<CircularProgress size="small" />} />
 );

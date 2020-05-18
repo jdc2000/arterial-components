@@ -12,6 +12,7 @@ export function IconButton({
   label,
   on,
   onIcon,
+  style,
   tag = 'button',
   ...otherProps
 }) {
@@ -22,9 +23,13 @@ export function IconButton({
     'aria-label': label,
     'aria-pressed': on
   };
+  const styles = {
+    ...(tag === 'button' && { textAlign: 'initial' }),
+    ...style
+  };
   const Tag = tag;
   return (
-    <Tag className={classes} {...otherProps} {...ariaProps}>
+    <Tag className={classes} style={styles} {...otherProps} {...ariaProps}>
       {icon && <Icon className={ICON_CLASS} icon={icon} />}
       {onIcon && <Icon className={ON_ICON_CLASS} icon={onIcon} />}
     </Tag>
@@ -37,5 +42,6 @@ IconButton.propTypes = {
   label: PropTypes.string,
   on: PropTypes.bool,
   onIcon: PropTypes.node,
+  style: PropTypes.object,
   tag: PropTypes.element
 };

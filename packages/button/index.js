@@ -12,6 +12,7 @@ export function Button({
   outlined,
   raised,
   ripple = true,
+  style,
   trailingIcon,
   unelevated,
   tag = 'button',
@@ -22,9 +23,13 @@ export function Button({
     'mdc-button--raised': raised,
     'mdc-button--unelevated': unelevated
   });
+  const styles = {
+    ...(tag === 'button' && { textAlign: 'initial' }),
+    ...style
+  };
   const Tag = tag;
   return (
-    <Tag className={classes} {...otherProps}>
+    <Tag className={classes} style={styles} {...otherProps}>
       {ripple && <div className="mdc-button__ripple"></div>}
       {icon && <Icon aria-hidden="true" className={ICON_CLASS} icon={icon} />}
       {label && <span className="mdc-button__label">{label}</span>}
@@ -42,6 +47,7 @@ Button.propTypes = {
   outlined: PropTypes.bool,
   raised: PropTypes.bool,
   ripple: PropTypes.bool,
+  style: PropTypes.object,
   trailingIcon: PropTypes.node,
   unelevated: PropTypes.bool,
   tag: PropTypes.element

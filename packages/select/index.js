@@ -1,4 +1,5 @@
-import React, { useRef, useEffect, useReducer } from 'react';
+import React, { useEffect, useReducer, useRef } from 'react';
+import HelperText from './HelperText';
 import { Icon } from '@arterial/icon';
 import {
   List,
@@ -14,7 +15,7 @@ import classNames from 'classnames';
 import { reducer, types, INITIAL_STATE } from './reducer';
 import { v4 as uuid } from 'uuid';
 
-export { default as HelperText } from './HelperText';
+export { HelperText };
 export function Select({
   children,
   className,
@@ -25,11 +26,13 @@ export function Select({
   invalid,
   label,
   labelFloated,
+  menuWidth,
   onSelect,
   options,
   outlined,
   placeholder,
   required,
+  style,
   trailingIcon,
   value,
   ...otherProps
@@ -38,7 +41,7 @@ export function Select({
   const anchorRef = useRef();
   const arterialRef = useRef(uuid());
   const inputRef = useRef();
-  const listItems = useRef(new Map());
+  const menuItems = useRef(new Map());
   const classes = classNames('mdc-select', className, {
     'mdc-select--activated': state.activated,
     'mdc-select--disabled': disabled,
@@ -64,22 +67,69 @@ export function Select({
     'aria-required': required
   };
 
-  function handleClick(e) {
-    const focusedIndex = isSelected() ? state.selectedIndex : 0;
-    if (!state.activated) {
-      setTimeout(() => listItems.current.get(focusedIndex).focus(), 0);
+  function focusMenuItem(key) {
+    let focusKey = key;
+    if (focusKey == null || getOption(focusKey).disabled) {
+      const option = options.find(o => !o.disabled) || {};
+      focusKey = option.value;
     }
+    const item = getMenuItem(focusKey);
+    if (item) setTimeout(() => item.focus(), 0);
+  }
+
+  function getMenuItem(key) {
+    return menuItems.current.get(key);
+  }
+
+  function getMenuItemTabIndex(key) {
+    if (getOption(key).disabled) return;
+    return key === state.focusedKey ? 0 : -1;
+  }
+
+  function getMenuStyle() {
+    if (anchorRef.current) {
+      const width = menuWidth || anchorRef.current.clientWidth;
+      return { maxWidth: width, width };
+    }
+  }
+
+  function getOption(key) {
+    return state.options.get(key) || {};
+  }
+
+  function getNextKey(key) {
+    const index = getOption(key).index;
+    if (index == null || index >= state.options.size - 1) return key;
+    const nextIndex = index + 1;
+    const option = options[nextIndex];
+    return option.disabled ? getNextKey(option.value) : option.value;
+  }
+
+  function getPreviousKey(key) {
+    const index = getOption(key).index;
+    if (index == null || index <= 0) return key;
+    const previousIndex = index - 1;
+    const option = options[previousIndex];
+    return option.disabled ? getPreviousKey(option.value) : option.value;
+  }
+
+  function getSelectedText(key) {
+    const option = getOption(key);
+    return option.selectedText || option.text || '';
+  }
+
+  function handleClick(e) {
+    if (!state.activated) focusMenuItem(state.selected.value);
     dispatch({
       type: types.SET_ACTIVATED,
       activated: !state.activated,
-      focused: true,
-      focusedIndex
+      focused: true
     });
     e.preventDefault();
   }
 
   function handleFocus() {
-    dispatch({ type: types.SET_FOCUSED, focused: true });
+    dispatch({ type: types.FOCUSED });
   }
 
   function handleKeyDown(e) {
@@ -89,19 +139,13 @@ export function Select({
     const arrowDown = e.key === 'ArrowDown' || e.keyCode === 40;
 
     if (isEnter || isSpace || arrowUp || arrowDown) {
-      const focusedIndex = isSelected() ? state.selectedIndex : 0;
-      setTimeout(() => listItems.current.get(focusedIndex).focus(), 0);
-      dispatch({
-        type: types.SET_ACTIVATED,
-        activated: true,
-        focused: state.focused,
-        focusedIndex
-      });
+      focusMenuItem(state.selected.value);
+      dispatch({ type: types.SET_ACTIVATED, activated: true });
       e.preventDefault();
     }
   }
 
-  function handleMenuItemAction(e, option, index) {
+  function handleMenuItemAction(e, option) {
     const isClick = e.type === 'click';
     const isEnter = e.key === 'Enter' || e.keyCode === 13;
     const isSpace = e.key === 'Space' || e.keyCode === 32;
@@ -110,65 +154,37 @@ export function Select({
 
     if (!option.disabled && (isClick || isEnter || isSpace)) {
       anchorRef.current.focus();
-      dispatch({
-        type: types.SET_SELECTED_INDEX,
-        activated: false,
-        focused: true,
-        selectedIndex: index
-      });
-      if (onSelect) onSelect({ ...option, index });
+      dispatch({ type: types.SET_ACTIVATED, activated: false });
+      if (onSelect) onSelect(option);
     } else if (arrowUp) {
-      const i = getPreviousIndex(index);
-      focusMenuItem(i);
+      const key = getPreviousKey(option.value);
+      focusMenuItem(key);
+      dispatch({ type: types.SET_FOCUSED_KEY, focusedKey: key });
     } else if (arrowDown) {
-      const i = getNextIndex(index);
-      focusMenuItem(i);
+      const key = getNextKey(option.value);
+      focusMenuItem(key);
+      dispatch({ type: types.SET_FOCUSED_KEY, focusedKey: key });
     }
   }
 
-  function focusMenuItem(index) {
-    listItems.current.get(index).focus();
-    dispatch({ type: types.SET_FOCUSED_INDEX, focusedIndex: index });
-  }
-
-  function getMenuItemTabIndex(index, disabled) {
-    if (disabled) return;
-    return index === state.focusedIndex ? 0 : -1;
-  }
-
-  function getNextIndex(index) {
-    if (index >= options.length - 1) return index;
-    const nextIndex = index + 1;
-    return isDisabledIndex(nextIndex) ? getNextIndex(nextIndex) : nextIndex;
-  }
-
-  function getPreviousIndex(index) {
-    if (index <= 0) return index;
-    const previousIndex = index - 1;
-    return isDisabledIndex(previousIndex)
-      ? getPreviousIndex(previousIndex)
-      : previousIndex;
-  }
-
-  function isDisabledIndex(index) {
-    const item = listItems.current.get(index);
-    return item.classList.contains('mdc-list-item--disabled');
-  }
-
-  function isSelected() {
-    return state.selectedIndex !== -1;
+  function renderHelperText() {
+    if (typeof helperText === 'object') {
+      if (helperText === null || React.isValidElement(helperText)) {
+        return helperText;
+      }
+      return <HelperText {...helperText} />;
+    }
+    return null;
   }
 
   useEffect(() => {
     function handleBodyClick(e) {
       const { arterial } = e.target.dataset;
       if (!arterial || arterial !== arterialRef.current) {
-        const focusedIndex = isSelected() ? state.selectedIndex : 0;
         dispatch({
           type: types.SET_ACTIVATED,
           activated: false,
-          focused: false,
-          focusedIndex
+          focused: false
         });
       }
     }
@@ -179,12 +195,10 @@ export function Select({
       const isTab = e.key === 'Tab' || e.keyCode === 9;
       if ((isEscape || isTab) && arterial === arterialRef.current) {
         if (isTab) anchorRef.current.focus();
-        const focusedIndex = isSelected() ? state.selectedIndex : 0;
         dispatch({
           type: types.SET_ACTIVATED,
           activated: false,
-          focused: false,
-          focusedIndex
+          focused: false
         });
       }
     }
@@ -197,17 +211,28 @@ export function Select({
     };
   }, []);
 
+  useEffect(() => {
+    dispatch({ type: types.SET_OPTIONS, options });
+  }, [options]);
+
+  useEffect(() => {
+    if (value != null) {
+      dispatch({ type: types.SET_SELECTED, value });
+    }
+  }, [value]);
+
   return (
     <>
-      <div className={classes}>
+      <div className={classes} style={style}>
         <div
           {...ariaProps}
           {...otherProps}
           className="mdc-select__anchor"
           data-arterial={arterialRef.current}
           ref={anchorRef}
+          style={{ width: 'inherit' }}
           tabIndex="0"
-          title={value}
+          title={getSelectedText(value)}
           onClick={handleClick}
           onFocus={handleFocus}
           onKeyDown={handleKeyDown}
@@ -228,7 +253,7 @@ export function Select({
             placeholder={placeholder}
             readOnly
             ref={inputRef}
-            value={value}
+            value={getSelectedText(value)}
           />
           {trailingIcon ? (
             <Icon
@@ -241,6 +266,7 @@ export function Select({
             <i
               className="mdc-select__dropdown-icon"
               data-arterial={arterialRef.current}
+              id={`${id}-dropdown-icon`}
             ></i>
           )}
           {outlined ? (
@@ -269,63 +295,69 @@ export function Select({
             </>
           )}
         </div>
-        {helperText}
+        {renderHelperText()}
         <MenuSurface
           className="mdc-select__menu mdc-menu"
           anchorCorner={Corner.BOTTOM_LEFT}
           anchorElement={anchorRef}
           data-arterial={arterialRef.current}
+          id={`${id}-menu`}
           open={state.activated}
+          style={getMenuStyle()}
         >
-          <List data-arterial={arterialRef.current} role="listbox">
-            {Array.isArray(options)
-              ? options.map((opt, index) => (
-                  <ListItem
-                    aria-selected={index === state.selectedIndex}
-                    data-arterial={arterialRef.current}
-                    data-value={opt.value}
-                    disabled={opt.disabled}
-                    key={opt.value}
-                    role="option"
-                    selected={index === state.selectedIndex}
-                    tabIndex={getMenuItemTabIndex(index, opt.disabled)}
-                    onClick={e => handleMenuItemAction(e, opt, index)}
-                    onKeyDown={e => handleMenuItemAction(e, opt, index)}
-                    ref={element => listItems.current.set(index, element)}
-                  >
-                    {opt.graphic && (
-                      <ListItemGraphic
-                        data-arterial={arterialRef.current}
-                        graphic={opt.graphic}
-                      />
-                    )}
-                    {opt.text && (
-                      <ListItemText data-arterial={arterialRef.current}>
-                        {opt.text}
-                      </ListItemText>
-                    )}
-                    {opt.icon && (
-                      <Icon
-                        className="mdc-list-item__graphic"
-                        data-arterial={arterialRef.current}
-                        icon={opt.icon}
-                        style={{
-                          color:
-                            'var(--mdc-theme-text-icon-on-background, rgba(0, 0, 0, 0.38))',
-                          margin: '0 0 0 8px',
-                          ...opt.iconStyle
-                        }}
-                      />
-                    )}
-                    {opt.meta && (
-                      <ListItemMeta
-                        data-arterial={arterialRef.current}
-                        meta={opt.meta}
-                      />
-                    )}
-                  </ListItem>
-                ))
-              : options}
+          <List
+            data-arterial={arterialRef.current}
+            id={`${id}-list`}
+            role="listbox"
+          >
+            {Array.isArray(options) &&
+              options.length &&
+              options.map(opt => (
+                <ListItem
+                  aria-selected={opt.value === state.selected.value}
+                  data-arterial={arterialRef.current}
+                  data-value={opt.value}
+                  disabled={opt.disabled}
+                  id={`${id}-list-item-${opt.value}`}
+                  key={opt.value}
+                  ref={element => menuItems.current.set(opt.value, element)}
+                  role="option"
+                  selected={opt.value === state.selected.value}
+                  tabIndex={getMenuItemTabIndex(opt.value)}
+                  title={opt.selectedText || opt.text}
+                  onClick={e => handleMenuItemAction(e, opt)}
+                  onKeyDown={e => handleMenuItemAction(e, opt)}
+                >
+                  {opt.graphic && (
+                    <ListItemGraphic
+                      data-arterial={arterialRef.current}
+                      graphic={opt.graphic}
+                    />
+                  )}
+                  <ListItemText data-arterial={arterialRef.current}>
+                    {opt.text}
+                  </ListItemText>
+                  {opt.icon && (
+                    <Icon
+                      className="mdc-list-item__graphic"
+                      data-arterial={arterialRef.current}
+                      icon={opt.icon}
+                      style={{
+                        color:
+                          'var(--mdc-theme-text-icon-on-background, rgba(0, 0, 0, 0.38))',
+                        margin: '0 0 0 8px',
+                        ...opt.iconStyle
+                      }}
+                    />
+                  )}
+                  {opt.meta && (
+                    <ListItemMeta
+                      data-arterial={arterialRef.current}
+                      meta={opt.meta}
+                    />
+                  )}
+                </ListItem>
+              ))}
           </List>
         </MenuSurface>
       </div>
@@ -343,11 +375,13 @@ Select.propTypes = {
   invalid: PropTypes.bool,
   label: PropTypes.node,
   labelFloated: PropTypes.bool,
+  menuWidth: PropTypes.string,
   onSelect: PropTypes.func,
   options: PropTypes.oneOfType([PropTypes.array, PropTypes.node]),
   outlined: PropTypes.bool,
   placeholder: PropTypes.string,
   required: PropTypes.bool,
+  style: PropTypes.object,
   trailingIcon: PropTypes.node,
   value: PropTypes.string
 };

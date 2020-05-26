@@ -1,39 +1,50 @@
 export const INITIAL_STATE = {
   activated: false,
   focused: false,
-  focusedIndex: 0,
-  selectedIndex: -1
+  focusedKey: null,
+  options: new Map(),
+  selected: {}
 };
 
 export const types = {
+  FOCUSED: 'FOCUSED',
   SET_ACTIVATED: 'SET_ACTIVATED',
   SET_FOCUSED: 'SET_FOCUSED',
-  SET_FOCUSED_INDEX: 'SET_FOCUSED_INDEX',
-  SET_SELECTED_INDEX: 'SET_SELECTED_INDEX'
+  SET_FOCUSED_KEY: 'SET_FOCUSED_KEY',
+  SET_OPTIONS: 'SET_OPTIONS',
+  SET_SELECTED: 'SET_SELECTED'
 };
 
 export const actions = {
+  [types.FOCUSED]: (state, action) => {
+    return { ...state, focused: true };
+  },
   [types.SET_ACTIVATED]: (state, action) => {
+    const { activated, focused } = action;
     return {
       ...state,
-      activated: action.activated,
-      focused: action.focused,
-      focusedIndex: action.focusedIndex
+      ...(activated != null && { activated }),
+      ...(focused != null && { focused }),
+      focusedKey: state.selected.value
     };
   },
-  [types.SET_FOCUSED]: (state, action) => {
-    return { ...state, focused: action.focused };
+  [types.SET_FOCUSED_KEY]: (state, action) => {
+    return { ...state, focusedKey: action.focusedKey };
   },
-  [types.SET_FOCUSED_INDEX]: (state, action) => {
-    return { ...state, focusedIndex: action.focusedIndex };
+  [types.SET_OPTIONS]: (state, action) => {
+    const options = new Map();
+    for (let i = 0; i < action.options.length; i++) {
+      options.set(action.options[i].value, { ...action.options[i], index: i });
+    }
+    return { ...state, options };
   },
-  [types.SET_SELECTED_INDEX]: (state, action) => {
+  [types.SET_SELECTED]: (state, action) => {
+    const selected = state.options.get(action.value) || {};
     return {
       ...state,
-      activated: action.activated,
-      focused: action.focused,
-      focusedIndex: action.selectedIndex,
-      selectedIndex: action.selectedIndex
+      activated: false,
+      focusedKey: selected.value,
+      selected
     };
   }
 };
@@ -41,6 +52,6 @@ export const actions = {
 export function reducer(state, action) {
   const apply = actions[action.type];
   if (!action.type || !apply)
-    throw new Error('Action type does not exist in reducer.');
+    throw new Error(`Action type does not exist in reducer.`);
   return apply(state, action);
 }

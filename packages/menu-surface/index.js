@@ -382,7 +382,12 @@ export function MenuSurface({
       }
 
       requestAnimationFrame(() => {
-        dispatch({ type: OPEN, isOpen: false });
+        dispatch({
+          type: AUTO_POSITION,
+          menuSurfaceElement,
+          anchorElement,
+          isOpen: false
+        });
         if (!state.isQuickOpen) {
           closeAnimationEndTimerId = setTimeout(() => {
             closeAnimationEndTimerId = 0;
@@ -392,19 +397,11 @@ export function MenuSurface({
       });
     }
 
-    function handleResize(e) {
-      if (e.type === 'resize') {
-        dispatch({ type: AUTO_POSITION, menuSurfaceElement, anchorElement });
-      }
-    }
-
-    window.addEventListener('resize', handleResize);
     return () => {
       clearTimeout(openAnimationEndTimerId);
       clearTimeout(closeAnimationEndTimerId);
       // Cancel any currently running animations.
       cancelAnimationFrame(animationRequestId);
-      window.removeEventListener('resize', handleResize);
     };
   }, [anchorElement, open, state.isQuickOpen]);
 

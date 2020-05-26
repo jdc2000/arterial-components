@@ -24,7 +24,7 @@ export default function NotchedOutline({
 
   useEffect(() => {
     const style =
-      notched && labelRef && labelRef.current
+      notched && labelRef.current
         ? { width: labelRef.current.offsetWidth * 0.75 + 8 }
         : null;
     setNotchStyle(style);

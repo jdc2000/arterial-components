@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 export default function HelperText({
-  children,
   className,
   id,
   persistent,
+  text,
   validationMessage,
   ...otherProps
 }) {
@@ -16,15 +16,15 @@ export default function HelperText({
   });
   return (
     <p className={classes} id={id} aria-hidden="true" {...otherProps}>
-      {children}
+      {text}
     </p>
   );
 }
 
 HelperText.propTypes = {
-  children: PropTypes.node,
   className: PropTypes.string,
   id: PropTypes.string,
   persistent: PropTypes.bool,
+  text: PropTypes.node,
   validationMessage: PropTypes.bool
 };

@@ -1,0 +1,15 @@
+.select--full-width {
+  width: 100%;
+}
+.select--icon {
+  width: 232px;
+}
+.select--margin-right {
+  margin-right: 64px;
+}
+.select-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 45px;
+  width: 100%;
+}

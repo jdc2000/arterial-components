@@ -7,12 +7,12 @@ export default function HelperText({
   id,
   persistent,
   text,
-  validationMessage,
+  validationMsg,
   ...otherProps
 }) {
   const classes = classNames('mdc-select-helper-text', className, {
     'mdc-select-helper-text--persistent': persistent,
-    'mdc-select-helper-text--validation-msg': validationMessage
+    'mdc-select-helper-text--validation-msg': validationMsg
   });
   return (
     <p className={classes} id={id} aria-hidden="true" {...otherProps}>
@@ -26,5 +26,5 @@ HelperText.propTypes = {
   id: PropTypes.string,
   persistent: PropTypes.bool,
   text: PropTypes.node,
-  validationMessage: PropTypes.bool
+  validationMsg: PropTypes.bool
 };

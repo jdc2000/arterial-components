@@ -2,17 +2,16 @@ import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-export default function NotchedOutline({
+export function NotchedOutline({
   className,
-  id,
   label,
-  labelClassName,
+  labelId,
   notched,
   'data-arterial': arterial,
   ...otherProps
 }) {
-  const labelRef = useRef();
   const [notchStyle, setNotchStyle] = useState(null);
+  const labelRef = useRef();
   const classes = classNames(
     'mdc-notched-outline',
     'mdc-notched-outline--upgraded',
@@ -21,6 +20,9 @@ export default function NotchedOutline({
       'mdc-notched-outline--notched': notched
     }
   );
+  const labelClasses = classNames('mdc-floating-label', {
+    'mdc-floating-label--float-above': notched
+  });
 
   useEffect(() => {
     const style =
@@ -43,9 +45,9 @@ export default function NotchedOutline({
           style={notchStyle}
         >
           <span
-            className={labelClassName}
+            className={labelClasses}
             data-arterial={arterial}
-            id={id}
+            id={labelId}
             ref={labelRef}
           >
             {label}

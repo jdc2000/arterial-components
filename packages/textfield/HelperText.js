@@ -3,28 +3,28 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 export default function HelperText({
-  children,
   className,
   id,
   persistent,
-  validationMessage,
+  text,
+  validationMsg,
   ...otherProps
 }) {
   const classes = classNames('mdc-text-field-helper-text', className, {
     'mdc-text-field-helper-text--persistent': persistent,
-    'mdc-text-field-helper-text--validation-msg': validationMessage
+    'mdc-text-field-helper-text--validation-msg': validationMsg
   });
   return (
-    <div id={id} className={classes} aria-hidden="true" {...otherProps}>
-      {children}
+    <div className={classes} aria-hidden="true" id={id} {...otherProps}>
+      {text}
     </div>
   );
 }
 
 HelperText.propTypes = {
-  children: PropTypes.node,
   className: PropTypes.string,
   id: PropTypes.string,
   persistent: PropTypes.bool,
-  validationMessage: PropTypes.bool
+  text: PropTypes.node,
+  validationMsg: PropTypes.bool
 };

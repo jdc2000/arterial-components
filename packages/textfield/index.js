@@ -1,172 +1,242 @@
 import React, { useEffect, useRef, useState } from 'react';
+import HelperLine from './HelperLine';
+import { Icon } from '@arterial/icon';
+import { NotchedOutline } from '@arterial/notched-outline';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import NotchedOutline from './NotchedOutline';
-import HelperLine from './HelperLine';
-import CharacterCounter from './CharacterCounter';
-import { Icon } from '@arterial/icon';
+import { v4 as uuid } from 'uuid';
 
-const FLOAT_ABOVE_CLASS = 'mdc-floating-label--float-above';
+// prettier-ignore
+const ALWAYS_FLOAT_TYPES = ['color', 'date', 'datetime-local', 'month', 'range', 'time', 'week'];
+const AFFIX_CLASS = 'mdc-text-field__affix';
+const PREFIX_CLASSES = `${AFFIX_CLASS} mdc-text-field__affix--prefix`;
+const SUFFIX_CLASSES = `${AFFIX_CLASS} mdc-text-field__affix--suffix`;
 const ICON_CLASS = 'mdc-text-field__icon';
-const LEADING_ICON_CLASS = `${ICON_CLASS} mdc-text-field__icon--leading`;
-const TRAILING_ICON_CLASS = `${ICON_CLASS} mdc-text-field__icon--trailing`;
+const LEADING_ICON_CLASSES = `${ICON_CLASS} mdc-text-field__icon--leading`;
+const TRAILING_ICON_CLASSES = `${ICON_CLASS} mdc-text-field__icon--trailing`;
 
-export function TextField({
-  className,
-  disabled,
-  helperText,
-  icon,
-  id,
-  invalid,
-  focused,
-  fullWidth,
-  label,
-  labelClassName,
-  maxLength,
-  onBlur,
-  onChange,
-  onFocus,
-  outlined,
-  required,
-  rootProps = {},
-  textarea,
-  trailingIcon,
-  value,
-  ...otherProps
-}) {
-  const inputEl = useRef();
-  const [floatAbove, setFloatAbove] = useState(false);
-  const [isFocused, setIsFocused] = useState(focused);
-
-  const { className: rootClassName, ...otherRootProps } = rootProps;
+export { default as HelperText } from './HelperText';
+export const TextField = React.forwardRef((props, ref) => {
+  const {
+    children,
+    className,
+    disabled,
+    helperText,
+    icon,
+    id,
+    invalid,
+    fullwidth,
+    label,
+    labelFloating,
+    maxLength,
+    noLabel,
+    onChange,
+    onIconAction,
+    onTrailingIconAction,
+    outlined,
+    prefix,
+    style,
+    suffix,
+    textarea,
+    trailingIcon,
+    type,
+    value,
+    ...otherProps
+  } = props;
+  const [focused, setFocused] = useState(false);
+  const arterialRef = useRef(uuid());
+  const inputRef = useRef();
+  const isLabelFloating = Boolean(
+    labelFloating || focused || value || ALWAYS_FLOAT_TYPES.includes(type)
+  );
   const classes = classNames(className, 'mdc-text-field', {
     'mdc-text-field--disabled': disabled,
-    'mdc-text-field--filled': !outlined,
-    'mdc-text-field--focused': isFocused,
-    'mdc-text-field--fullwidth': fullWidth,
+    'mdc-text-field--filled': !outlined && !textarea,
+    'mdc-text-field--focused': focused,
+    'mdc-text-field--fullwidth': fullwidth,
     'mdc-text-field--invalid': invalid,
-    'mdc-text-field--no-label': !label,
+    'mdc-text-field--label-floating': isLabelFloating,
+    'mdc-text-field--no-label': noLabel,
     'mdc-text-field--outlined': outlined,
     'mdc-text-field--textarea': textarea,
     'mdc-text-field--with-leading-icon': icon,
     'mdc-text-field--with-trailing-icon': trailingIcon
   });
-  const inputClasses = classNames('mdc-text-field__input');
-  const labelClasses = classNames('mdc-floating-label', labelClassName, {
-    [FLOAT_ABOVE_CLASS]: floatAbove
+  const labelClasses = classNames('mdc-floating-label', {
+    'mdc-floating-label--float-above': isLabelFloating
   });
   const lineRippleClasses = classNames('mdc-line-ripple', {
-    'mdc-line-ripple--active': isFocused,
-    'mdc-line-ripple--deactivating': !isFocused
+    'mdc-line-ripple--active': focused
   });
-  const inputProps = {
-    className: inputClasses,
-    disabled,
-    id,
-    maxLength,
-    onBlur: handleBlur,
-    onChange: onChange,
-    onFocus: handleFocus,
-    ref: inputEl,
-    required,
-    value,
-    ...otherProps
+
+  const labelId = `${id}-label`;
+  const ariaProps = {
+    'aria-label': noLabel ? label : null,
+    'aria-labelledby': noLabel ? null : labelId
   };
 
-  if (helperText) {
-    inputProps['aria-controls'] = `${id}-helper-text`;
-    inputProps['aria-describedby'] = `${id}-helper-text`;
+  function handleClick() {
+    inputRef.current.focus();
   }
 
-  function handleBlur(e) {
-    if (onBlur) {
-      onBlur(e);
-    }
-    setIsFocused(false);
+  function handleFocus() {
+    setFocused(true);
   }
 
-  function handleFocus(e) {
-    if (onFocus) {
-      onFocus(e);
+  function handleIconAction(e, action) {
+    const isClick = e.type === 'click';
+    const isEnter = e.key === 'Enter' || e.keyCode === 13;
+    const isSpace = e.key === 'Space' || e.keyCode === 32;
+    if (action && (isClick || isEnter || isSpace)) {
+      action();
+      e.preventDefault();
     }
-    setIsFocused(true);
+  }
+
+  function handleKeyDown(e) {
+    const isEnter = e.key === 'Enter' || e.keyCode === 13;
+    const isSpace = e.key === 'Space' || e.keyCode === 32;
+    if (isEnter || isSpace) inputRef.current.focus();
   }
 
   useEffect(() => {
-    setIsFocused(focused);
-  }, [focused]);
+    function handleBodyClick(e) {
+      const { arterial } = e.target.dataset;
+      if (!arterial || arterial !== arterialRef.current) {
+        setFocused(false);
+      }
+    }
 
-  useEffect(() => {
-    const hasFloatAboveClass =
-      labelClassName && labelClassName.includes(FLOAT_ABOVE_CLASS);
-    setFloatAbove(Boolean(value || isFocused || hasFloatAboveClass));
-  }, [value, isFocused, labelClassName]);
+    function handleWindowKeyDown(e) {
+      const { arterial } = e.target.dataset;
+      const isEscape = e.key === 'Escape' || e.keyCode === 27;
+      const isTab = e.key === 'Tab' || e.keyCode === 9;
+      if ((isEscape || isTab) && arterial === arterialRef.current) {
+        setFocused(false);
+      }
+    }
 
+    document.body.addEventListener('click', handleBodyClick);
+    window.addEventListener('keydown', handleWindowKeyDown);
+    return () => {
+      document.body.removeEventListener('click', handleBodyClick);
+      window.removeEventListener('keydown', handleWindowKeyDown);
+    };
+  }, []);
+
+  const Input = textarea ? 'textarea' : 'input';
   return (
     <>
-      <div className={classes} {...otherRootProps}>
-        {icon && <Icon className={LEADING_ICON_CLASS} icon={icon} />}
-        {textarea ? (
-          <textarea {...inputProps}></textarea>
-        ) : (
-          <input type="text" {...inputProps} />
+      <label
+        className={classes}
+        onClick={handleClick}
+        onFocus={handleFocus}
+        onKeyDown={handleKeyDown}
+        ref={ref}
+        style={style}
+      >
+        {!textarea && (
+          <>
+            {!outlined && <span className="mdc-text-field__ripple"></span>}
+            {prefix && <span className={PREFIX_CLASSES}>{prefix}</span>}
+            {icon && (
+              <Icon
+                className={LEADING_ICON_CLASSES}
+                data-arterial={arterialRef.current}
+                icon={icon}
+                onClick={e => handleIconAction(e, onIconAction)}
+                onKeyDown={e => handleIconAction(e, onIconAction)}
+                role={onIconAction ? 'button' : null}
+                tabIndex={onIconAction ? '0' : null}
+              />
+            )}
+          </>
         )}
-        {outlined || textarea ? (
+        <Input
+          className="mdc-text-field__input"
+          data-arterial={arterialRef.current}
+          id={id}
+          maxLength={maxLength}
+          onChange={onChange}
+          ref={inputRef}
+          type={type}
+          value={value}
+          {...ariaProps}
+          {...otherProps}
+        />
+        {!textarea && (
+          <>
+            {suffix && <span className={SUFFIX_CLASSES}>{suffix}</span>}
+            {trailingIcon && (
+              <Icon
+                className={TRAILING_ICON_CLASSES}
+                data-arterial={arterialRef.current}
+                icon={trailingIcon}
+                onClick={e => handleIconAction(e, onTrailingIconAction)}
+                onKeyDown={e => handleIconAction(e, onTrailingIconAction)}
+                role={onTrailingIconAction ? 'button' : null}
+                tabIndex={onTrailingIconAction ? '0' : null}
+              />
+            )}
+            {!outlined && (
+              <>
+                {label && !noLabel && (
+                  <span
+                    className={labelClasses}
+                    data-arterial={arterialRef.current}
+                    id={labelId}
+                  >
+                    {label}
+                  </span>
+                )}
+                <span
+                  className={lineRippleClasses}
+                  data-arterial={arterialRef.current}
+                ></span>
+              </>
+            )}
+          </>
+        )}
+        {(outlined || textarea) && (
           <NotchedOutline
-            htmlFor={id}
-            label={label}
-            labelClassName={labelClasses}
-            notched={floatAbove}
+            data-arterial={arterialRef.current}
+            label={noLabel ? null : label}
+            labelId={labelId}
+            notched={isLabelFloating}
           />
-        ) : (
-          label && (
-            <label className={labelClasses} htmlFor={id}>
-              {label}
-            </label>
-          )
         )}
-        {trailingIcon && (
-          <Icon className={TRAILING_ICON_CLASS} icon={trailingIcon} />
-        )}
-        {!outlined && !textarea && <div className={lineRippleClasses}></div>}
-      </div>
+      </label>
       <HelperLine
-        characterCounter={
-          maxLength && (
-            <CharacterCounter
-              count={value ? value.length : 0}
-              maxLength={maxLength}
-            />
-          )
-        }
-        helperText={helperText}
-        id={id}
+        count={value ? value.length : 0}
+        maxLength={maxLength}
+        text={helperText}
       />
     </>
   );
-}
+});
 
 TextField.propTypes = {
+  children: PropTypes.node,
   className: PropTypes.string,
   disabled: PropTypes.bool,
-  helperText: PropTypes.element,
+  helperText: PropTypes.node,
   icon: PropTypes.node,
   id: PropTypes.string,
-  focused: PropTypes.bool,
-  fullWidth: PropTypes.bool,
-  label: PropTypes.string,
-  labelClassName: PropTypes.string,
-  maxLength: PropTypes.number,
-  onBlur: PropTypes.func,
-  onChange: PropTypes.func.isRequired,
-  onFocus: PropTypes.func,
+  invalid: PropTypes.bool,
+  fullwidth: PropTypes.bool,
+  label: PropTypes.node,
+  labelFloating: PropTypes.bool,
+  maxLength: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  noLabel: PropTypes.bool,
+  onChange: PropTypes.func,
+  onIconAction: PropTypes.func,
+  onTrailingIconAction: PropTypes.func,
   outlined: PropTypes.bool,
-  required: PropTypes.bool,
+  prefix: PropTypes.string,
+  style: PropTypes.object,
+  suffix: PropTypes.string,
   textarea: PropTypes.bool,
   trailingIcon: PropTypes.node,
-  invalid: PropTypes.bool,
+  type: PropTypes.string,
   value: PropTypes.string
 };
-
-export { CharacterCounter, Icon };
-export { default as HelperText } from './HelperText';

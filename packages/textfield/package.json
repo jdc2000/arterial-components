@@ -23,6 +23,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@arterial/icon": "^1.0.3"
+    "@arterial/icon": "^1.0.3",
+    "@arterial/notched-outline": "^1.0.3"
   }
 }

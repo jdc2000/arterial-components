@@ -7,9 +7,16 @@
 .select--margin-right {
   margin-right: 64px;
 }
-.select-container {
+.select-row {
   display: flex;
   justify-content: center;
   margin-bottom: 45px;
   width: 100%;
+}
+.select-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: calc(100vh - 40px);
 }

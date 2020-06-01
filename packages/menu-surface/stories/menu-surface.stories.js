@@ -12,10 +12,9 @@ export default {
     storyFn => (
       <div
         style={{
-          width: '100vw',
-          height: '100vh',
-          paddingTop: window.innerHeight / 12,
-          paddingLeft: window.innerWidth / 12
+          display: 'flex',
+          justifyContent: 'center',
+          paddingTop: '150px'
         }}
       >
         {storyFn()}
@@ -23,95 +22,84 @@ export default {
     )
   ]
 };
-function MyMenuSurface({
-  anchorCorner,
-  basic,
-  direction,
-  fixed,
-  quickOpen,
-  rightClick
-}) {
-  const anchorEl = useRef();
-  const [open, setOpen] = useState(false);
-  const [position, setPosition] = useState(null);
 
-  const anchor = !rightClick;
+function MyMenuSurface({ anchorCorner, basic, fixed, quickOpen, rightClick }) {
+  const anchorRef = useRef();
+  const arterialRef = useRef('1');
+  const [open, setOpen] = useState(false);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     if (!basic) {
-      function handleClick(e) {
-        const el = e.target;
-        const parentEl = el.parentElement;
-        if (parentEl.id !== 'button') {
+      function handleBodyClick(e) {
+        const { arterial } = e.target.dataset;
+        if (!arterial) {
           setOpen(false);
         }
       }
-      function handleKeyDown(e) {
-        if (e.key === 'Escape' || e.keyCode === 27) {
+      function handleWindowKeyDown(e) {
+        const { arterial } = e.target.dataset;
+        const isEscape = e.key === 'Escape' || e.keyCode === 27;
+        const isTab = e.key === 'Tab' || e.keyCode === 9;
+        if ((isEscape || isTab) && arterial === arterialRef.current) {
           setOpen(false);
         }
       }
       function handleRightClick(e) {
         e.preventDefault();
-        setOpen(true);
         setPosition({ x: e.clientX, y: e.clientY });
+        setOpen(true);
       }
-      document.body.addEventListener('click', handleClick);
-      window.addEventListener('keydown', handleKeyDown);
       if (rightClick) {
         window.addEventListener('contextmenu', handleRightClick);
       }
+      document.body.addEventListener('click', handleBodyClick);
+      window.addEventListener('keydown', handleWindowKeyDown);
       return () => {
-        document.body.removeEventListener('click', handleClick);
-        window.removeEventListener('keydown', handleKeyDown);
         if (rightClick) {
           window.removeEventListener('contextmenu', handleRightClick);
         }
+        document.body.removeEventListener('click', handleBodyClick);
+        window.removeEventListener('keydown', handleWindowKeyDown);
       };
     }
   }, [basic, rightClick]);
 
-  function MyMenuSurfaceBody() {
+  function Surface() {
     return (
-      <>
-        {!rightClick && !basic && (
-          <Button
-            id="button"
-            label="Open"
-            onClick={() => setOpen(!open)}
-            unelevated
-          />
-        )}
-        <MenuSurface
-          anchorElement={anchorEl}
-          anchorCorner={anchorCorner}
-          position={position}
-          direction={direction}
-          fixed={fixed}
-          open={open || basic}
-          quickOpen={quickOpen || basic}
-        >
-          <List>
-            <ListItem onClick={() => setOpen(false)}>
-              <ListItemText>Menu Item 1</ListItemText>
-            </ListItem>
-            <ListItem onClick={() => setOpen(false)}>
-              <ListItemText>Menu Item 2</ListItemText>
-            </ListItem>
-          </List>
-        </MenuSurface>
-      </>
+      <MenuSurface
+        data-arterial="1"
+        anchorCorner={anchorCorner}
+        anchorRef={anchorRef}
+        fixed={fixed}
+        open={open || basic}
+        position={position}
+        quickOpen={quickOpen || basic}
+      >
+        <List data-arterial="1">
+          <ListItem data-arterial="1" onClick={() => setOpen(false)}>
+            <ListItemText data-arterial="1">Menu Item 1</ListItemText>
+          </ListItem>
+          <ListItem data-arterial="1" onClick={() => setOpen(false)}>
+            <ListItemText data-arterial="1">Menu Item 2</ListItemText>
+          </ListItem>
+        </List>
+      </MenuSurface>
     );
   }
 
-  return anchor ? (
-    <MenuSurfaceAnchor ref={anchorEl} style={{ width: 'max-content' }}>
-      <MyMenuSurfaceBody />
-    </MenuSurfaceAnchor>
+  return rightClick ? (
+    <Surface />
   ) : (
-    <div style={{ width: 'max-content' }}>
-      <MyMenuSurfaceBody />
-    </div>
+    <MenuSurfaceAnchor data-arterial="1" ref={anchorRef}>
+      <Button
+        id="button"
+        label="Open"
+        onClick={() => setOpen(!open)}
+        unelevated
+      />
+      <Surface />
+    </MenuSurfaceAnchor>
   );
 }
 

@@ -10,21 +10,7 @@ import '@material/select/dist/mdc.select.css';
 
 export default {
   title: 'Select',
-  decorators: [
-    storyFn => (
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          width: '100%',
-          height: 'calc(100vh - 40px)'
-        }}
-      >
-        {storyFn()}
-      </div>
-    )
-  ]
+  decorators: [storyFn => <div className="select-container">{storyFn()}</div>]
 };
 
 const OPTIONS = [
@@ -57,7 +43,7 @@ function MySelect({
   icon,
   id = 'demo',
   invalid,
-  labelFloated,
+  labelFloating,
   noLabel,
   optionIcon,
   outlined,
@@ -97,7 +83,7 @@ function MySelect({
       id={id}
       invalid={invalid}
       label={noLabel ? null : 'Pick a Food Group'}
-      labelFloated={noLabel ? null : labelFloated || isLoading}
+      labelFloating={noLabel ? null : labelFloating || isLoading}
       menuWidth={!fullWidth ? 'inherit' : null}
       onSelect={handleSelect}
       options={options}
@@ -110,20 +96,20 @@ function MySelect({
   );
 }
 export const Filled = () => (
-  <div className="select-container">
+  <div className="select-row">
     <MySelect />
     <MySelect icon id="demo-icon" />
   </div>
 );
 export const Outlined = () => (
-  <div className="select-container">
+  <div className="select-row">
     <MySelect outlined />
     <MySelect icon id="demo-icon" outlined />
   </div>
 );
 export const WithHelperText = () => (
   <>
-    <div className="select-container">
+    <div className="select-row">
       <MySelect helperText={<HelperText text="Helper Text" />} />
       <MySelect
         icon
@@ -131,7 +117,7 @@ export const WithHelperText = () => (
         helperText={<HelperText text="Helper Text" />}
       />
     </div>
-    <div className="select-container">
+    <div className="select-row">
       <MySelect
         id="demo-outlined"
         outlined
@@ -146,9 +132,9 @@ export const WithHelperText = () => (
     </div>
   </>
 );
-export const WithPersistentHelperText = () => (
+export const PersistentHelperText = () => (
   <>
-    <div className="select-container">
+    <div className="select-row">
       <MySelect helperText={<HelperText persistent text="Helper Text" />} />
       <MySelect
         icon
@@ -156,7 +142,7 @@ export const WithPersistentHelperText = () => (
         helperText={<HelperText persistent text="Helper Text" />}
       />
     </div>
-    <div className="select-container">
+    <div className="select-row">
       <MySelect
         id="demo-outlined"
         outlined
@@ -173,33 +159,27 @@ export const WithPersistentHelperText = () => (
 );
 export const Invalid = () => (
   <>
-    <div className="select-container">
+    <div className="select-row">
       <MySelect
         invalid
         required
-        helperText={
-          <HelperText persistent validationMessage text="Helper Text" />
-        }
+        helperText={<HelperText persistent validationMsg text="Helper Text" />}
       />
       <MySelect
         icon
         id="demo-icon"
         invalid
         required
-        helperText={
-          <HelperText persistent validationMessage text="Helper Text" />
-        }
+        helperText={<HelperText persistent validationMsg text="Helper Text" />}
       />
     </div>
-    <div className="select-container">
+    <div className="select-row">
       <MySelect
         id="demo-outlined"
         invalid
         outlined
         required
-        helperText={
-          <HelperText persistent validationMessage text="Helper Text" />
-        }
+        helperText={<HelperText persistent validationMsg text="Helper Text" />}
       />
       <MySelect
         icon
@@ -207,98 +187,80 @@ export const Invalid = () => (
         invalid
         outlined
         required
-        helperText={
-          <HelperText persistent validationMessage text="Helper Text" />
-        }
+        helperText={<HelperText persistent validationMsg text="Helper Text" />}
       />
     </div>
   </>
 );
-export const WithPersistentFloatingLabel = () => (
+export const LabelFloating = () => (
   <>
-    <div className="select-container">
+    <div className="select-row">
       <MySelect
-        labelFloated
-        helperText={
-          <HelperText persistent validationMessage text="Helper Text" />
-        }
+        labelFloating
+        helperText={<HelperText persistent text="Helper Text" />}
       />
       <MySelect
         icon
         id="demo-icon"
-        labelFloated
-        helperText={
-          <HelperText persistent validationMessage text="Helper Text" />
-        }
+        labelFloating
+        helperText={<HelperText persistent text="Helper Text" />}
       />
     </div>
-    <div className="select-container">
+    <div className="select-row">
       <MySelect
         id="demo-outlined"
         outlined
-        labelFloated
-        helperText={
-          <HelperText persistent validationMessage text="Helper Text" />
-        }
+        labelFloating
+        helperText={<HelperText persistent text="Helper Text" />}
       />
       <MySelect
         icon
         id="demo-outlined-icon"
         outlined
-        labelFloated
-        helperText={
-          <HelperText persistent validationMessage text="Helper Text" />
-        }
+        labelFloating
+        helperText={<HelperText persistent text="Helper Text" />}
       />
     </div>
   </>
 );
-export const WithoutLabel = () => (
+export const NoLabel = () => (
   <>
-    <div className="select-container">
+    <div className="select-row">
       <MySelect
         noLabel
-        helperText={
-          <HelperText persistent validationMessage text="Helper Text" />
-        }
+        helperText={<HelperText persistent text="Helper Text" />}
       />
       <MySelect
         icon
         id="demo-icon"
         noLabel
-        helperText={
-          <HelperText persistent validationMessage text="Helper Text" />
-        }
+        helperText={<HelperText persistent text="Helper Text" />}
       />
     </div>
-    <div className="select-container">
+    <div className="select-row">
       <MySelect
         id="demo-outlined"
         outlined
         noLabel
-        helperText={
-          <HelperText persistent validationMessage text="Helper Text" />
-        }
+        helperText={<HelperText persistent text="Helper Text" />}
       />
       <MySelect
         icon
         id="demo-outlined-icon"
         outlined
         noLabel
-        helperText={
-          <HelperText persistent validationMessage text="Helper Text" />
-        }
+        helperText={<HelperText persistent text="Helper Text" />}
       />
     </div>
   </>
 );
 export const Disabled = () => (
   <>
-    <div className="select-container">
+    <div className="select-row">
       <MySelect disabled />
       <MySelect disabled icon id="demo-icon" />
     </div>
-    <div className="select-container">
+    <div className="select-row">
       <MySelect disabled id="demo-outlined" outlined />
       <MySelect disabled icon id="demo-outlined-icon" outlined />
     </div>
@@ -306,32 +268,32 @@ export const Disabled = () => (
 );
 export const OptionWithIcon = () => (
   <>
-    <div className="select-container">
+    <div className="select-row">
       <MySelect optionIcon fullWidth />
     </div>
-    <div className="select-container">
+    <div className="select-row">
       <MySelect icon id="demo-icon" optionIcon fullWidth />
     </div>
-    <div className="select-container">
-      <MySelect id="demo-outlined-icon" outlined optionIcon fullWidth />
+    <div className="select-row">
+      <MySelect id="demo-outlined" outlined optionIcon fullWidth />
     </div>
-    <div className="select-container">
+    <div className="select-row">
       <MySelect icon id="demo-outlined-icon" outlined optionIcon fullWidth />
     </div>
   </>
 );
 export const Selected = () => (
   <>
-    <div className="select-container">
+    <div className="select-row">
       <MySelect optionIcon fullWidth isSelected />
     </div>
-    <div className="select-container">
+    <div className="select-row">
       <MySelect icon id="demo-icon" optionIcon fullWidth isSelected />
     </div>
-    <div className="select-container">
+    <div className="select-row">
       <MySelect id="demo-outlined" outlined optionIcon fullWidth isSelected />
     </div>
-    <div className="select-container">
+    <div className="select-row">
       <MySelect
         icon
         id="demo-outlined-icon"
@@ -345,13 +307,13 @@ export const Selected = () => (
 );
 export const LoadingSelected = () => (
   <>
-    <div className="select-container">
+    <div className="select-row">
       <MySelect optionIcon fullWidth isDelayedSelected />
     </div>
-    <div className="select-container">
+    <div className="select-row">
       <MySelect icon id="demo-icon" optionIcon fullWidth isDelayedSelected />
     </div>
-    <div className="select-container">
+    <div className="select-row">
       <MySelect
         id="demo-outlined"
         outlined
@@ -360,7 +322,7 @@ export const LoadingSelected = () => (
         isDelayedSelected
       />
     </div>
-    <div className="select-container">
+    <div className="select-row">
       <MySelect
         icon
         id="demo-outlined-icon"
@@ -374,16 +336,16 @@ export const LoadingSelected = () => (
 );
 export const Loading = () => (
   <>
-    <div className="select-container">
+    <div className="select-row">
       <MySelect progress fullWidth />
     </div>
-    <div className="select-container">
+    <div className="select-row">
       <MySelect icon id="demo-icon" progress fullWidth />
     </div>
-    <div className="select-container">
+    <div className="select-row">
       <MySelect id="demo-outlined" outlined progress fullWidth />
     </div>
-    <div className="select-container">
+    <div className="select-row">
       <MySelect icon id="demo-outlined-icon" outlined progress fullWidth />
     </div>
   </>

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { HelperText, TextField } from '..';
-import { Icon } from '../../icon';
 import '@material/textfield/dist/mdc.textfield.css';
 import '@material/notched-outline/dist/mdc.notched-outline.css';
 import './textfield.stories.css';
@@ -19,16 +18,6 @@ function MyTextField({ icon, trailingIcon, ...otherProps }) {
       <TextField
         autoComplete="off"
         icon={icon ? 'event' : null}
-        // trailingIcon={
-        //   trailingIcon ? (
-        //     <Icon
-        //       icon="delete"
-        //       tabIndex="0"
-        //       role="button"
-        //       onClick={() => setValue('')}
-        //     />
-        //   ) : null
-        // }
         trailingIcon={trailingIcon ? 'delete' : null}
         onTrailingIconAction={trailingIcon ? () => setValue('') : null}
         value={value}

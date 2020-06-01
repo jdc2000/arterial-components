@@ -75,11 +75,12 @@ export const TextField = React.forwardRef((props, ref) => {
     'aria-labelledby': noLabel ? null : labelId
   };
 
-  function handleClick() {
-    inputRef.current.focus();
+  function handleClick(e) {
+    if (!focused) inputRef.current.focus({ preventScroll: true });
   }
 
-  function handleFocus() {
+  function handleFocus(e) {
+    if (focused) return;
     setFocused(true);
   }
 
@@ -89,14 +90,9 @@ export const TextField = React.forwardRef((props, ref) => {
     const isSpace = e.key === 'Space' || e.keyCode === 32;
     if (action && (isClick || isEnter || isSpace)) {
       action();
+      inputRef.current.focus({ preventScroll: true });
       e.preventDefault();
     }
-  }
-
-  function handleKeyDown(e) {
-    const isEnter = e.key === 'Enter' || e.keyCode === 13;
-    const isSpace = e.key === 'Space' || e.keyCode === 32;
-    if (isEnter || isSpace) inputRef.current.focus();
   }
 
   useEffect(() => {
@@ -127,14 +123,7 @@ export const TextField = React.forwardRef((props, ref) => {
   const Input = textarea ? 'textarea' : 'input';
   return (
     <>
-      <label
-        className={classes}
-        onClick={handleClick}
-        onFocus={handleFocus}
-        onKeyDown={handleKeyDown}
-        ref={ref}
-        style={style}
-      >
+      <label className={classes} ref={ref} style={style}>
         {!textarea && (
           <>
             {!outlined && <span className="mdc-text-field__ripple"></span>}
@@ -158,6 +147,8 @@ export const TextField = React.forwardRef((props, ref) => {
           id={id}
           maxLength={maxLength}
           onChange={onChange}
+          onClick={handleClick}
+          onFocus={handleFocus}
           ref={inputRef}
           type={type}
           value={value}

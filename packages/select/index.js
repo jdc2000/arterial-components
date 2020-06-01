@@ -74,7 +74,7 @@ export function Select({
       focusKey = option.value;
     }
     const item = getListItem(focusKey);
-    if (item) setTimeout(() => item.focus(), 0);
+    if (item) setTimeout(() => item.focus({ preventScroll: true }), 0);
   }
 
   function getListItem(key) {
@@ -154,7 +154,7 @@ export function Select({
     const arrowDown = e.key === 'ArrowDown' || e.keyCode === 40;
 
     if (!option.disabled && (isClick || isEnter || isSpace)) {
-      anchorRef.current.focus();
+      anchorRef.current.focus({ preventScroll: true });
       dispatch({ type: types.SET_ACTIVATED, activated: false });
       if (onSelect) onSelect(option);
     } else if (arrowUp) {
@@ -195,7 +195,7 @@ export function Select({
       const isEscape = e.key === 'Escape' || e.keyCode === 27;
       const isTab = e.key === 'Tab' || e.keyCode === 9;
       if ((isEscape || isTab) && arterial === arterialRef.current) {
-        if (isTab) anchorRef.current.focus();
+        if (isTab) anchorRef.current.focus({ preventScroll: true });
         dispatch({
           type: types.SET_ACTIVATED,
           activated: false,

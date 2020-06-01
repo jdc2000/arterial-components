@@ -1,7 +1,7 @@
 {
-  "name": "@arterial/select",
+  "name": "@arterial/notched-outline",
   "version": "1.0.3",
-  "description": "Another React Material Select",
+  "description": "Another React Material Notched Outline",
   "author": "jdc2000",
   "homepage": "https://github.com/jdc2000/arterial-components#readme",
   "license": "MIT",
@@ -21,12 +21,5 @@
   },
   "publishConfig": {
     "access": "public"
-  },
-  "dependencies": {
-    "@arterial/icon": "^1.0.3",
-    "@arterial/list": "^1.0.3",
-    "@arterial/menu-surface": "^1.0.3",
-    "@arterial/notched-outline": "^1.0.3",
-    "uuid": "^8.0.0"
   }
 }

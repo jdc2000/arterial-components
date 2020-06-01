@@ -9,7 +9,7 @@ import {
   ListItemMeta
 } from '@arterial/list';
 import { MenuSurface, Corner } from '@arterial/menu-surface';
-import NotchedOutline from './NotchedOutline';
+import { NotchedOutline } from '@arterial/notched-outline';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { reducer, types, INITIAL_STATE } from './reducer';
@@ -25,7 +25,7 @@ export function Select({
   id,
   invalid,
   label,
-  labelFloated,
+  labelFloating,
   menuWidth,
   onSelect,
   options,
@@ -41,7 +41,7 @@ export function Select({
   const anchorRef = useRef();
   const arterialRef = useRef(uuid());
   const inputRef = useRef();
-  const menuItems = useRef(new Map());
+  const listItems = useRef(new Map());
   const classes = classNames('mdc-select', className, {
     'mdc-select--activated': state.activated,
     'mdc-select--disabled': disabled,
@@ -53,35 +53,35 @@ export function Select({
     'mdc-select--with-leading-icon': icon
   });
   const labelClasses = classNames('mdc-floating-label', {
-    'mdc-floating-label--float-above': state.focused || labelFloated || value
+    'mdc-floating-label--float-above': labelFloating || state.focused || value
   });
   const lineRippleClasses = classNames('mdc-line-ripple', {
     'mdc-line-ripple--active': state.focused
   });
-  const inputId = `${id}-selected-text`;
+  const labelId = `${id}-label`;
 
   const ariaProps = {
-    role: required ? undefined : 'button',
+    role: required ? null : 'button',
     'aria-haspopup': 'listbox',
-    'aria-labelledby': `${id} ${inputId}`,
+    'aria-labelledby': label ? `${labelId} ${id}` : null,
     'aria-required': required
   };
 
-  function focusMenuItem(key) {
+  function focusListItem(key) {
     let focusKey = key;
     if (focusKey == null || getOption(focusKey).disabled) {
       const option = options.find(o => !o.disabled) || {};
       focusKey = option.value;
     }
-    const item = getMenuItem(focusKey);
-    if (item) setTimeout(() => item.focus(), 0);
+    const item = getListItem(focusKey);
+    if (item) setTimeout(() => item.focus({ preventScroll: true }), 0);
   }
 
-  function getMenuItem(key) {
-    return menuItems.current.get(key);
+  function getListItem(key) {
+    return listItems.current.get(key);
   }
 
-  function getMenuItemTabIndex(key) {
+  function getListItemTabIndex(key) {
     if (getOption(key).disabled) return;
     return key === state.focusedKey ? 0 : -1;
   }
@@ -119,7 +119,8 @@ export function Select({
   }
 
   function handleClick(e) {
-    if (!state.activated) focusMenuItem(state.selected.value);
+    if (disabled) return;
+    if (!state.activated) focusListItem(state.selected.value);
     dispatch({
       type: types.SET_ACTIVATED,
       activated: !state.activated,
@@ -129,7 +130,7 @@ export function Select({
   }
 
   function handleFocus() {
-    dispatch({ type: types.FOCUSED });
+    if (!disabled) dispatch({ type: types.FOCUSED });
   }
 
   function handleKeyDown(e) {
@@ -139,13 +140,13 @@ export function Select({
     const arrowDown = e.key === 'ArrowDown' || e.keyCode === 40;
 
     if (isEnter || isSpace || arrowUp || arrowDown) {
-      focusMenuItem(state.selected.value);
+      focusListItem(state.selected.value);
       dispatch({ type: types.SET_ACTIVATED, activated: true });
       e.preventDefault();
     }
   }
 
-  function handleMenuItemAction(e, option) {
+  function handleListItemAction(e, option) {
     const isClick = e.type === 'click';
     const isEnter = e.key === 'Enter' || e.keyCode === 13;
     const isSpace = e.key === 'Space' || e.keyCode === 32;
@@ -153,16 +154,16 @@ export function Select({
     const arrowDown = e.key === 'ArrowDown' || e.keyCode === 40;
 
     if (!option.disabled && (isClick || isEnter || isSpace)) {
-      anchorRef.current.focus();
+      anchorRef.current.focus({ preventScroll: true });
       dispatch({ type: types.SET_ACTIVATED, activated: false });
       if (onSelect) onSelect(option);
     } else if (arrowUp) {
       const key = getPreviousKey(option.value);
-      focusMenuItem(key);
+      focusListItem(key);
       dispatch({ type: types.SET_FOCUSED_KEY, focusedKey: key });
     } else if (arrowDown) {
       const key = getNextKey(option.value);
-      focusMenuItem(key);
+      focusListItem(key);
       dispatch({ type: types.SET_FOCUSED_KEY, focusedKey: key });
     }
   }
@@ -194,7 +195,7 @@ export function Select({
       const isEscape = e.key === 'Escape' || e.keyCode === 27;
       const isTab = e.key === 'Tab' || e.keyCode === 9;
       if ((isEscape || isTab) && arterial === arterialRef.current) {
-        if (isTab) anchorRef.current.focus();
+        if (isTab) anchorRef.current.focus({ preventScroll: true });
         dispatch({
           type: types.SET_ACTIVATED,
           activated: false,
@@ -231,7 +232,7 @@ export function Select({
           data-arterial={arterialRef.current}
           ref={anchorRef}
           style={{ width: 'inherit' }}
-          tabIndex="0"
+          tabIndex={disabled ? null : 0}
           title={getSelectedText(value)}
           onClick={handleClick}
           onFocus={handleFocus}
@@ -249,7 +250,7 @@ export function Select({
             className="mdc-select__selected-text"
             data-arterial={arterialRef.current}
             disabled
-            id={inputId}
+            id={id}
             placeholder={placeholder}
             readOnly
             ref={inputRef}
@@ -272,10 +273,9 @@ export function Select({
           {outlined ? (
             <NotchedOutline
               data-arterial={arterialRef.current}
-              id={id}
               label={label}
-              labelClassName={labelClasses}
-              notched={state.focused || labelFloated || Boolean(value)}
+              labelId={labelId}
+              notched={Boolean(labelFloating || state.focused || value)}
             />
           ) : (
             <>
@@ -283,7 +283,7 @@ export function Select({
                 <span
                   className={labelClasses}
                   data-arterial={arterialRef.current}
-                  id={id}
+                  id={labelId}
                 >
                   {label}
                 </span>
@@ -299,7 +299,7 @@ export function Select({
         <MenuSurface
           className="mdc-select__menu mdc-menu"
           anchorCorner={Corner.BOTTOM_LEFT}
-          anchorElement={anchorRef}
+          anchorRef={anchorRef}
           data-arterial={arterialRef.current}
           id={`${id}-menu`}
           open={state.activated}
@@ -320,13 +320,13 @@ export function Select({
                   disabled={opt.disabled}
                   id={`${id}-list-item-${opt.value}`}
                   key={opt.value}
-                  ref={element => menuItems.current.set(opt.value, element)}
+                  ref={element => listItems.current.set(opt.value, element)}
                   role="option"
                   selected={opt.value === state.selected.value}
-                  tabIndex={getMenuItemTabIndex(opt.value)}
+                  tabIndex={getListItemTabIndex(opt.value)}
                   title={opt.selectedText || opt.text}
-                  onClick={e => handleMenuItemAction(e, opt)}
-                  onKeyDown={e => handleMenuItemAction(e, opt)}
+                  onClick={e => handleListItemAction(e, opt)}
+                  onKeyDown={e => handleListItemAction(e, opt)}
                 >
                   {opt.graphic && (
                     <ListItemGraphic
@@ -374,7 +374,7 @@ Select.propTypes = {
   id: PropTypes.string,
   invalid: PropTypes.bool,
   label: PropTypes.node,
-  labelFloated: PropTypes.bool,
+  labelFloating: PropTypes.bool,
   menuWidth: PropTypes.string,
   onSelect: PropTypes.func,
   options: PropTypes.oneOfType([PropTypes.array, PropTypes.node]),

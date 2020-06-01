@@ -50,8 +50,7 @@ export const actions = {
 };
 
 export function reducer(state, action) {
-  const apply = actions[action.type];
-  if (!action.type || !apply)
-    throw new Error(`Action type does not exist in reducer.`);
-  return apply(state, action);
+  const applyAction = action.type ? actions[action.type] : null;
+  if (!applyAction) throw new Error('Invalid action in reducer');
+  return applyAction(state, action);
 }

@@ -1,6 +1,6 @@
 {
   "name": "@arterial/select",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Another React Material Select",
   "author": "jdc2000",
   "homepage": "https://github.com/jdc2000/arterial-components#readme",
@@ -23,10 +23,10 @@
     "access": "public"
   },
   "dependencies": {
-    "@arterial/icon": "^1.0.4",
-    "@arterial/list": "^1.0.4",
-    "@arterial/menu-surface": "^1.0.4",
-    "@arterial/notched-outline": "^1.0.4",
+    "@arterial/icon": "^1.0.5",
+    "@arterial/list": "^1.0.5",
+    "@arterial/menu-surface": "^1.0.5",
+    "@arterial/notched-outline": "^1.0.5",
     "uuid": "^8.0.0"
   }
 }

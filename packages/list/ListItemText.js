@@ -2,14 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-export default function ListItemText({
+export function ListItemText({
   children,
   className,
-  tag = 'span',
+  tag: Tag = 'span',
   ...otherProps
 }) {
   const classes = classNames('mdc-list-item__text', className);
-  const Tag = tag;
   return (
     <Tag className={classes} {...otherProps}>
       {children}
@@ -17,8 +16,9 @@ export default function ListItemText({
   );
 }
 
+ListItemText.displayName = 'ListItemText';
 ListItemText.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-  tag: PropTypes.element
+  tag: PropTypes.oneOfType([PropTypes.object, PropTypes.string])
 };

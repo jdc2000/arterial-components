@@ -6,13 +6,12 @@ export function FormField({
   alignEnd,
   children,
   className,
-  tag = 'div',
+  tag: Tag = 'div',
   ...otherProps
 }) {
   const classes = classNames('mdc-form-field', className, {
     'mdc-form-field--align-end': alignEnd
   });
-  const Tag = tag;
   return (
     <Tag className={classes} {...otherProps}>
       {children}
@@ -20,22 +19,10 @@ export function FormField({
   );
 }
 
-export function withFormField(WrappedComponent) {
-  return function({ alignEnd, formFieldProps = {}, label, ...otherProps }) {
-    if (label) {
-      return (
-        <FormField alignEnd={alignEnd} {...formFieldProps}>
-          <WrappedComponent alignEnd={alignEnd} label={label} {...otherProps} />
-        </FormField>
-      );
-    }
-    return <WrappedComponent {...otherProps} />;
-  };
-}
-
+FormField.displayName = 'FormField';
 FormField.propTypes = {
   alignEnd: PropTypes.bool,
   children: PropTypes.node,
   className: PropTypes.string,
-  tag: PropTypes.element
+  tag: PropTypes.oneOfType([PropTypes.object, PropTypes.string])
 };

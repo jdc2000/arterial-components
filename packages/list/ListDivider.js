@@ -2,34 +2,31 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-export default function ListDivider({
+export function ListDivider({
   children,
   className,
   inset,
   padded,
-  tag = 'li',
+  tag: Tag = 'li',
   ...otherProps
 }) {
   const classes = classNames('mdc-list-divider', className, {
     'mdc-list-divider--inset': inset,
     'mdc-list-divider--padded': padded
   });
-  const props = {
-    ...otherProps,
-    role: tag === 'li' ? 'separator' : undefined
-  };
-  const Tag = tag;
+  const role = Tag === 'li' ? 'separator' : null;
   return (
-    <Tag className={classes} {...props}>
+    <Tag className={classes} role={role} {...otherProps}>
       {children}
     </Tag>
   );
 }
 
+ListDivider.displayName = 'ListDivider';
 ListDivider.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   inset: PropTypes.bool,
   padded: PropTypes.bool,
-  tag: PropTypes.element
+  tag: PropTypes.oneOfType([PropTypes.object, PropTypes.string])
 };

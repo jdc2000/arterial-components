@@ -20,8 +20,11 @@ export default fs
     if (pkg === 'select') {
       external.push('react-dom', 'uuid');
     }
+    if (pkg === 'textfield') {
+      external.push('uuid');
+    }
     if (pkg === 'typeahead') {
-      external.push('fuse.js', 'react-dom');
+      external.push('fuse.js', 'react-dom', 'uuid');
     }
     return {
       external,

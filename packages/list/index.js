@@ -9,7 +9,7 @@ export function List({
   dense,
   nonInteractive,
   twoLine,
-  tag = 'ul',
+  tag: Tag = 'ul',
   ...otherProps
 }) {
   const classes = classNames('mdc-list', className, {
@@ -18,7 +18,6 @@ export function List({
     'mdc-list--non-interactive': nonInteractive,
     'mdc-list--two-line': twoLine
   });
-  const Tag = tag;
   return (
     <Tag className={classes} {...otherProps}>
       {children}
@@ -26,6 +25,7 @@ export function List({
   );
 }
 
+List.displayName = 'List';
 List.propTypes = {
   avatarList: PropTypes.bool,
   children: PropTypes.node,
@@ -33,15 +33,15 @@ List.propTypes = {
   dense: PropTypes.bool,
   nonInteractive: PropTypes.bool,
   twoLine: PropTypes.bool,
-  tag: PropTypes.element
+  tag: PropTypes.oneOfType([PropTypes.object, PropTypes.string])
 };
 
-export { default as ListDivider } from './ListDivider';
-export { default as ListGroup } from './ListGroup';
-export { default as ListGroupSubheader } from './ListGroupSubheader';
-export { default as ListItem } from './ListItem';
-export { default as ListItemGraphic } from './ListItemGraphic';
-export { default as ListItemMeta } from './ListItemMeta';
-export { default as ListItemPrimaryText } from './ListItemPrimaryText';
-export { default as ListItemSecondaryText } from './ListItemSecondaryText';
-export { default as ListItemText } from './ListItemText';
+export { ListDivider } from './ListDivider';
+export { ListGroup } from './ListGroup';
+export { ListGroupSubheader } from './ListGroupSubheader';
+export { ListItem } from './ListItem';
+export { ListItemGraphic } from './ListItemGraphic';
+export { ListItemMeta } from './ListItemMeta';
+export { ListItemPrimaryText } from './ListItemPrimaryText';
+export { ListItemSecondaryText } from './ListItemSecondaryText';
+export { ListItemText } from './ListItemText';

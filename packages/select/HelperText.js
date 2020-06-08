@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-export default function HelperText({
+export function HelperText({
   className,
   id,
   persistent,
@@ -15,12 +15,13 @@ export default function HelperText({
     'mdc-select-helper-text--validation-msg': validationMsg
   });
   return (
-    <p className={classes} id={id} aria-hidden="true" {...otherProps}>
+    <p className={classes} aria-hidden="true" id={id} {...otherProps}>
       {text}
     </p>
   );
 }
 
+HelperText.displayName = 'SelectHelperText';
 HelperText.propTypes = {
   className: PropTypes.string,
   id: PropTypes.string,

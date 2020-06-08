@@ -1,14 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Icon } from '@arterial/icon';
 
-export default function ListItemMeta({ className, meta, ...otherProps }) {
+export function ListItemMeta({
+  className,
+  meta,
+  style,
+  tag: Tag = 'span',
+  ...otherProps
+}) {
   const classes = classNames('mdc-list-item__meta', className);
-  return <Icon className={classes} icon={meta} {...otherProps} />;
+  const styles = React.isValidElement(meta)
+    ? { display: 'inherit', alignItems: 'inherit', ...style }
+    : style;
+  return (
+    <Tag className={classes} style={styles} {...otherProps}>
+      {meta}
+    </Tag>
+  );
 }
 
+ListItemMeta.displayName = 'ListItemMeta';
 ListItemMeta.propTypes = {
   className: PropTypes.string,
-  meta: PropTypes.node.isRequired
+  meta: PropTypes.node,
+  style: PropTypes.object,
+  tag: PropTypes.oneOfType([PropTypes.object, PropTypes.string])
 };

@@ -1,77 +1,99 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { withFormField } from '@arterial/form-field';
+import { FormField } from '@arterial/form-field';
 
-function CheckboxRoot({
+function Root({
   checked,
   className,
   disabled,
-  formFieldProps,
   id,
   indeterminate,
-  label,
   onChange,
   ripple = true,
-  rootProps,
+  style,
   value,
   ...otherProps
 }) {
-  const el = useRef();
-  const classes = classNames('mdc-checkbox', className, {
+  const [anim, setAnim] = useState(false);
+  const inputRef = useRef();
+  let classes = classNames('mdc-checkbox', className, {
+    [`mdc-checkbox--anim-indeterminate-checked`]: anim,
     'mdc-checkbox--disabled': disabled,
     'mdc-checkbox--selected': checked || indeterminate
   });
 
+  function handleAnimationEnd() {
+    setAnim(false);
+  }
+
+  function handleChange(e) {
+    if (indeterminate && e.target.checked) setAnim(true);
+    if (onChange) onChange(e);
+  }
+
   useEffect(() => {
-    if (el.current) {
-      el.current.indeterminate = indeterminate;
+    if (inputRef.current) {
+      inputRef.current.indeterminate = indeterminate;
     }
   }, [indeterminate]);
 
   return (
-    <>
-      <div {...rootProps} className={classes}>
-        <input
-          className="mdc-checkbox__native-control"
-          checked={checked}
-          disabled={disabled}
-          id={id}
-          ref={el}
-          onChange={onChange}
-          type="checkbox"
-          value={value}
-          {...otherProps}
-        />
-        <div className="mdc-checkbox__background">
-          <svg className="mdc-checkbox__checkmark" viewBox="0 0 24 24">
-            <path
-              className="mdc-checkbox__checkmark-path"
-              d="M1.73,12.91 8.1,19.28 22.79,4.59"
-              fill="none"
-            />
-          </svg>
-          <div className="mdc-checkbox__mixedmark"></div>
-        </div>
-        {ripple && <div className="mdc-checkbox__ripple"></div>}
+    <div className={classes} style={style}>
+      <input
+        className="mdc-checkbox__native-control"
+        checked={checked}
+        disabled={disabled}
+        id={id}
+        onChange={handleChange}
+        ref={inputRef}
+        type="checkbox"
+        value={value}
+        {...otherProps}
+      />
+      <div
+        className="mdc-checkbox__background"
+        onAnimationEnd={handleAnimationEnd}
+      >
+        <svg className="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+          <path
+            className="mdc-checkbox__checkmark-path"
+            d="M1.73,12.91 8.1,19.28 22.79,4.59"
+            fill="none"
+          />
+        </svg>
+        <div className="mdc-checkbox__mixedmark"></div>
       </div>
-      {label && <label htmlFor={id}>{label}</label>}
-    </>
+      {ripple && <div className="mdc-checkbox__ripple"></div>}
+    </div>
   );
 }
 
-export const Checkbox = withFormField(CheckboxRoot);
+export function Checkbox({ alignEnd, id, label, ...otherProps }) {
+  if (label) {
+    return (
+      <FormField alignEnd={alignEnd}>
+        <Root id={id} {...otherProps} />
+        <label id={`${id}-label`} htmlFor={id}>
+          {label}
+        </label>
+      </FormField>
+    );
+  }
+  return <Root id={id} {...otherProps} />;
+}
 
+Checkbox.displayName = 'Checkbox';
 Checkbox.propTypes = {
+  alignEnd: PropTypes.bool,
   checked: PropTypes.bool,
   className: PropTypes.string,
   disabled: PropTypes.bool,
-  formFieldProps: PropTypes.object,
-  id: PropTypes.string,
+  id: PropTypes.string.isRequired,
   indeterminate: PropTypes.bool,
   label: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   ripple: PropTypes.bool,
-  rootProps: PropTypes.object,
+  style: PropTypes.object,
   value: PropTypes.string
 };

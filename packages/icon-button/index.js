@@ -13,7 +13,7 @@ export function IconButton({
   on,
   onIcon,
   style,
-  tag = 'button',
+  tag: Tag = 'button',
   ...otherProps
 }) {
   const classes = classNames('mdc-icon-button', className, {
@@ -24,18 +24,18 @@ export function IconButton({
     'aria-pressed': on
   };
   const styles = {
-    ...(tag === 'button' && { textAlign: 'initial' }),
+    ...(Tag === 'button' && { textAlign: 'initial' }),
     ...style
   };
-  const Tag = tag;
   return (
-    <Tag className={classes} style={styles} {...otherProps} {...ariaProps}>
+    <Tag className={classes} style={styles} {...ariaProps} {...otherProps}>
       {icon && <Icon className={ICON_CLASS} icon={icon} />}
       {onIcon && <Icon className={ON_ICON_CLASS} icon={onIcon} />}
     </Tag>
   );
 }
 
+IconButton.displayName = 'IconButton';
 IconButton.propTypes = {
   className: PropTypes.string,
   icon: PropTypes.node.isRequired,
@@ -43,5 +43,5 @@ IconButton.propTypes = {
   on: PropTypes.bool,
   onIcon: PropTypes.node,
   style: PropTypes.object,
-  tag: PropTypes.element
+  tag: PropTypes.oneOfType([PropTypes.object, PropTypes.string])
 };

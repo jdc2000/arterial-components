@@ -1,60 +1,67 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { withFormField } from '@arterial/form-field';
+import { FormField } from '@arterial/form-field';
 
-function RadioRoot({
+function Root({
   checked,
   className,
   disabled,
-  formFieldProps,
   id,
-  label,
   onChange,
   ripple = true,
-  rootProps,
+  style,
   value,
   ...otherProps
 }) {
   const classes = classNames('mdc-radio', className, {
     'mdc-radio--disabled': disabled
   });
-
   return (
-    <>
-      <div {...rootProps} className={classes}>
-        <input
-          className="mdc-radio__native-control"
-          checked={checked}
-          disabled={disabled}
-          id={id}
-          onChange={onChange}
-          type="radio"
-          value={value}
-          {...otherProps}
-        />
-        <div className="mdc-radio__background">
-          <div className="mdc-radio__outer-circle"></div>
-          <div className="mdc-radio__inner-circle"></div>
-        </div>
-        {ripple && <div className="mdc-radio__ripple"></div>}
+    <div className={classes} style={style}>
+      <input
+        className="mdc-radio__native-control"
+        checked={checked}
+        disabled={disabled}
+        id={id}
+        onChange={onChange}
+        type="radio"
+        value={value}
+        {...otherProps}
+      />
+      <div className="mdc-radio__background">
+        <div className="mdc-radio__outer-circle"></div>
+        <div className="mdc-radio__inner-circle"></div>
       </div>
-      {label && <label htmlFor={id}>{label}</label>}
-    </>
+      {ripple && <div className="mdc-radio__ripple"></div>}
+    </div>
   );
 }
 
-export const Radio = withFormField(RadioRoot);
+export function Radio({ alignEnd, id, label, ...otherProps }) {
+  if (label) {
+    return (
+      <FormField alignEnd={alignEnd}>
+        <Root id={id} {...otherProps} />
+        <label id={`${id}-label`} htmlFor={id}>
+          {label}
+        </label>
+      </FormField>
+    );
+  }
+  return <Root id={id} {...otherProps} />;
+}
 
+Radio.displayName = 'Radio';
 Radio.propTypes = {
+  alignEnd: PropTypes.bool,
   checked: PropTypes.bool,
   className: PropTypes.string,
   disabled: PropTypes.bool,
-  formFieldProps: PropTypes.object,
   id: PropTypes.string,
   label: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   ripple: PropTypes.bool,
-  rootProps: PropTypes.object,
+  style: PropTypes.object,
   value: PropTypes.string
 };

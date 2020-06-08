@@ -2,14 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-export default function ListGroup({
+export function ListGroup({
   children,
   className,
-  tag = 'div',
+  tag: Tag = 'div',
   ...otherProps
 }) {
   const classes = classNames('mdc-list-group', className);
-  const Tag = tag;
   return (
     <Tag className={classes} {...otherProps}>
       {children}
@@ -17,8 +16,9 @@ export default function ListGroup({
   );
 }
 
+ListGroup.displayName = 'ListGroup';
 ListGroup.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-  tag: PropTypes.element
+  tag: PropTypes.oneOfType([PropTypes.object, PropTypes.string])
 };

@@ -12,10 +12,10 @@ export const Icon = React.forwardRef((props, ref) => {
       </i>
     );
   }
-  const isNotArtIcon =
+  const addArtIcon =
     icon.props.className && !icon.props.className.includes('art-icon');
   const classes = classNames(
-    { 'art-icon': isNotArtIcon },
+    { 'art-icon': addArtIcon },
     icon.props.className,
     className
   );
@@ -23,6 +23,7 @@ export const Icon = React.forwardRef((props, ref) => {
   return React.cloneElement(icon, iconProps);
 });
 
+Icon.displayName = 'Icon';
 Icon.propTypes = {
   className: PropTypes.string,
   icon: PropTypes.node.isRequired

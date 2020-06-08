@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { HelperText, TextField } from '..';
 import '@material/textfield/dist/mdc.textfield.css';
 import '@material/notched-outline/dist/mdc.notched-outline.css';
@@ -13,6 +13,9 @@ export default {
 
 function MyTextField({ icon, trailingIcon, ...otherProps }) {
   const [value, setValue] = useState('');
+  useEffect(() => {
+    if (otherProps.disabled) setValue('disabled');
+  }, [otherProps.disabled]);
   return (
     <div className="textfield--margin-right">
       <TextField
@@ -104,7 +107,10 @@ export const WithHelperText = () => (
   <MyTextFields helperText={<HelperText text="Helper Text" />} />
 );
 export const PersistentHelperText = () => (
-  <MyTextFields helperText={<HelperText persistent text="Helper Text" />} />
+  <>
+    <MyTextFields helperText={<HelperText persistent text="Helper Text" />} />
+    <MyTextFields helperText={{ persistent: true, text: 'Helper Text' }} />
+  </>
 );
 export const Invalid = () => (
   <MyTextFields

@@ -20,6 +20,7 @@ export const TextField = React.forwardRef((props, ref) => {
   const {
     children,
     className,
+    'data-arterial': dataArterial,
     disabled,
     helperText,
     icon,
@@ -31,6 +32,7 @@ export const TextField = React.forwardRef((props, ref) => {
     maxLength,
     noLabel,
     onChange,
+    onFocus,
     onIconAction,
     onTrailingIconAction,
     outlined,
@@ -44,7 +46,7 @@ export const TextField = React.forwardRef((props, ref) => {
     ...otherProps
   } = props;
   const [focused, setFocused] = useState(false);
-  const arterialRef = useRef(uuid());
+  const arterialRef = useRef(dataArterial || uuid());
   const inputRef = useRef();
   const isLabelFloating = Boolean(
     labelFloating || focused || value || ALWAYS_FLOAT_TYPES.includes(type)
@@ -75,13 +77,10 @@ export const TextField = React.forwardRef((props, ref) => {
     'aria-labelledby': noLabel ? null : labelId
   };
 
-  function handleClick(e) {
-    if (!focused) inputRef.current.focus({ preventScroll: true });
-  }
-
   function handleFocus(e) {
     if (focused) return;
     setFocused(true);
+    if (onFocus) onFocus(e);
   }
 
   function handleIconAction(e, action) {
@@ -89,10 +88,14 @@ export const TextField = React.forwardRef((props, ref) => {
     const isEnter = e.key === 'Enter' || e.keyCode === 13;
     const isSpace = e.key === 'Space' || e.keyCode === 32;
     if (action && (isClick || isEnter || isSpace)) {
+      inputRef.current.focus();
       action();
-      inputRef.current.focus({ preventScroll: true });
       e.preventDefault();
     }
+  }
+
+  function handleIconFocus(e) {
+    setFocused(true);
   }
 
   useEffect(() => {
@@ -123,7 +126,12 @@ export const TextField = React.forwardRef((props, ref) => {
   const Input = textarea ? 'textarea' : 'input';
   return (
     <>
-      <label className={classes} ref={ref} style={style}>
+      <label
+        className={classes}
+        data-arterial={arterialRef.current}
+        ref={ref}
+        style={style}
+      >
         {!textarea && (
           <>
             {!outlined && <span className="mdc-text-field__ripple"></span>}
@@ -134,6 +142,7 @@ export const TextField = React.forwardRef((props, ref) => {
                 data-arterial={arterialRef.current}
                 icon={icon}
                 onClick={e => handleIconAction(e, onIconAction)}
+                onFocus={handleIconFocus}
                 onKeyDown={e => handleIconAction(e, onIconAction)}
                 role={onIconAction ? 'button' : null}
                 tabIndex={onIconAction ? '0' : null}
@@ -147,7 +156,6 @@ export const TextField = React.forwardRef((props, ref) => {
           id={id}
           maxLength={maxLength}
           onChange={onChange}
-          onClick={handleClick}
           onFocus={handleFocus}
           ref={inputRef}
           type={type}
@@ -164,6 +172,7 @@ export const TextField = React.forwardRef((props, ref) => {
                 data-arterial={arterialRef.current}
                 icon={trailingIcon}
                 onClick={e => handleIconAction(e, onTrailingIconAction)}
+                onFocus={handleIconFocus}
                 onKeyDown={e => handleIconAction(e, onTrailingIconAction)}
                 role={onTrailingIconAction ? 'button' : null}
                 tabIndex={onTrailingIconAction ? '0' : null}
@@ -206,11 +215,13 @@ export const TextField = React.forwardRef((props, ref) => {
   );
 });
 
+TextField.displayName = 'TextField';
 TextField.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
+  'data-arterial': PropTypes.string,
   disabled: PropTypes.bool,
-  helperText: PropTypes.node,
+  helperText: PropTypes.oneOfType([PropTypes.node, PropTypes.object]),
   icon: PropTypes.node,
   id: PropTypes.string,
   invalid: PropTypes.bool,
@@ -220,6 +231,7 @@ TextField.propTypes = {
   maxLength: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   noLabel: PropTypes.bool,
   onChange: PropTypes.func,
+  onFocus: PropTypes.func,
   onIconAction: PropTypes.func,
   onTrailingIconAction: PropTypes.func,
   outlined: PropTypes.bool,

@@ -202,9 +202,7 @@ export function Select({
 
   useEffect(() => {
     if (value != null) {
-      const selectedIndex = options.findIndex(
-        option => option.value === value && !option.disabled
-      );
+      const selectedIndex = options.findIndex(option => option.value === value);
       dispatch({ type: types.SELECT_INDEX, selectedIndex });
     }
   }, [options, value]);

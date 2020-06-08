@@ -1,50 +1,45 @@
 export const INITIAL_STATE = {
   activated: false,
   focused: false,
-  focusedKey: null,
-  options: new Map(),
-  selected: {}
+  focusedIndex: 0,
+  selectedIndex: -1,
+  twoLine: false
 };
 
 export const types = {
-  FOCUSED: 'FOCUSED',
-  SET_ACTIVATED: 'SET_ACTIVATED',
-  SET_FOCUSED: 'SET_FOCUSED',
-  SET_FOCUSED_KEY: 'SET_FOCUSED_KEY',
-  SET_OPTIONS: 'SET_OPTIONS',
-  SET_SELECTED: 'SET_SELECTED'
+  ACTIVATE: 'ACTIVATE',
+  DEACTIVATE: 'DEACTIVATE',
+  FOCUS: 'FOCUS',
+  FOCUS_INDEX: 'FOCUS_INDEX',
+  SELECT_INDEX: 'SELECT_INDEX'
 };
 
 export const actions = {
-  [types.FOCUSED]: (state, action) => {
-    return { ...state, focused: true };
-  },
-  [types.SET_ACTIVATED]: (state, action) => {
-    const { activated, focused } = action;
+  [types.ACTIVATE]: (state, action) => {
+    const { focused, focusedIndex } = action;
     return {
       ...state,
-      ...(activated != null && { activated }),
+      activated: true,
       ...(focused != null && { focused }),
-      focusedKey: state.selected.value
+      ...(focusedIndex != null && { focusedIndex })
     };
   },
-  [types.SET_FOCUSED_KEY]: (state, action) => {
-    return { ...state, focusedKey: action.focusedKey };
+  [types.DEACTIVATE]: (state, action) => {
+    const { focused } = action;
+    return { ...state, activated: false, ...(focused != null && { focused }) };
   },
-  [types.SET_OPTIONS]: (state, action) => {
-    const options = new Map();
-    for (let i = 0; i < action.options.length; i++) {
-      options.set(action.options[i].value, { ...action.options[i], index: i });
-    }
-    return { ...state, options };
+  [types.FOCUS]: (state, action) => {
+    return { ...state, focused: true };
   },
-  [types.SET_SELECTED]: (state, action) => {
-    const selected = state.options.get(action.value) || {};
+  [types.FOCUS_INDEX]: (state, action) => {
+    return { ...state, focusedIndex: action.focusedIndex };
+  },
+  [types.SELECT_INDEX]: (state, action) => {
     return {
       ...state,
       activated: false,
-      focusedKey: selected.value,
-      selected
+      focusedIndex: action.selectedIndex,
+      selectedIndex: action.selectedIndex
     };
   }
 };

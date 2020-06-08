@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import classNames from 'classnames';
 import { Select, HelperText } from '..';
 import { CircularProgress } from '../../circular-progress';
+import { Icon } from '../../icon';
 import './select.stories.css';
 import '@material/list/dist/mdc.list.css';
 import '@material/menu-surface/dist/mdc.menu-surface.css';
@@ -13,6 +14,7 @@ export default {
   decorators: [storyFn => <div className="select-container">{storyFn()}</div>]
 };
 
+const lock = <Icon icon="lock" />;
 const OPTIONS = [
   { text: '', value: '' },
   { text: 'Bread, Cereal, Rice, and Pasta', value: 'grains' },
@@ -23,7 +25,7 @@ const OPTIONS_WITH_ICON = [
   {
     text: 'Bread, Cereal, Rice, and Pasta',
     selectedText: 'Bread, Cereal, Rice, and Pasta (Private)',
-    icon: 'lock',
+    node: lock,
     value: 'grains',
     disabled: true
   },
@@ -31,7 +33,7 @@ const OPTIONS_WITH_ICON = [
   {
     text: 'Fruit',
     selectedText: 'Fruit (Private)',
-    icon: 'lock',
+    node: lock,
     value: 'fruit'
   }
 ];

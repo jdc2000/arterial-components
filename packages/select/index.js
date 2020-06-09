@@ -120,9 +120,9 @@ export function Select({
   function handleClick(e) {
     if (disabled) return;
     if (!state.activated) focusListItem(state.selectedIndex);
-    e.preventDefault();
     const type = state.activated ? types.DEACTIVATE : types.ACTIVATE;
     dispatch({ type, focused: true });
+    e.preventDefault();
   }
 
   function handleFocus() {

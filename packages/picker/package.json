@@ -1,13 +1,14 @@
 {
-  "name": "@arterial/dialog",
+  "name": "@arterial/picker",
   "version": "1.2.0",
-  "description": "Another React Material Dialog",
+  "description": "Another React Material Picker",
   "author": "jdc2000",
   "homepage": "https://github.com/jdc2000/arterial-components#readme",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [
-    "dist"
+    "dist",
+    "index.css"
   ],
   "repository": {
     "type": "git",
@@ -23,6 +24,10 @@
     "access": "public"
   },
   "dependencies": {
-    "@arterial/button": "^1.2.0"
+    "@arterial/button": "^1.2.0",
+    "@arterial/card": "^1.2.0",
+    "@arterial/icon": "^1.2.0",
+    "@arterial/icon-button": "^1.2.0",
+    "@arterial/layout-grid": "^1.2.0"
   }
 }

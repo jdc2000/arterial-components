@@ -1,51 +1,49 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default function Highlighter({
-  color = 'var(--mdc-theme-primary, black)',
-  item,
-  itemKey,
-  matches,
-  tag = 'span'
-}) {
-  let value = item;
-  if (typeof item !== 'string') {
-    if (!itemKey) {
-      throw new Error(
-        'The `field` prop is required when the `item` prop is an object'
-      );
-    }
-    value = item[itemKey];
-  }
-  const Tag = tag;
-  if (Array.isArray(matches) && matches[0].value === value) {
-    const prop = color ? ` style="color: ${color}"` : '';
-    const match = matches[0];
+const DEFAULT_COLOR = 'var(--mdc-theme-primary, black)';
+const FONT_WEIGHT_BOLD = 'font-weight: bold';
 
-    let text = value;
-    let result = [];
-    let m = [].concat(match.indices);
+export default function Highlighter({
+  color = DEFAULT_COLOR,
+  highlight,
+  value,
+  matches,
+  tag: Tag = 'span'
+}) {
+  if (
+    highlight &&
+    Array.isArray(matches) &&
+    matches[0] &&
+    matches[0].value === value
+  ) {
+    const style = color
+      ? `${FONT_WEIGHT_BOLD}; color: ${color}`
+      : FONT_WEIGHT_BOLD;
+    const result = [];
+    const m = [].concat(matches[0].indices);
     let pair = m.shift();
 
-    for (let i = 0; i < text.length; i++) {
-      let char = text.charAt(i);
+    for (let i = 0; i < value.length; i++) {
+      const char = value.charAt(i);
       if (pair && i === pair[0]) {
-        result.push(`<b${prop}>`);
+        result.push(`<span style="${style}">`);
       }
       result.push(char);
       if (pair && i === pair[1]) {
-        result.push('</b>');
+        result.push('</span>');
         pair = m.shift();
       }
     }
     return <Tag dangerouslySetInnerHTML={{ __html: result.join('') }} />;
   }
-  return <Tag>{value}</Tag>;
+  return value;
 }
 
+Highlighter.displayName = 'Highlighter';
 Highlighter.propTypes = {
   color: PropTypes.string,
-  field: PropTypes.string,
-  item: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-  matches: PropTypes.arrayOf(PropTypes.object)
+  highlight: PropTypes.bool,
+  matches: PropTypes.arrayOf(PropTypes.object),
+  value: PropTypes.string
 };

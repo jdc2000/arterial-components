@@ -1,290 +1,266 @@
 import React, { useEffect, useReducer, useRef } from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import Fuse from 'fuse.js';
-import { List, ListItem, ListItemText } from '@arterial/list';
-import { MenuSurface, MenuSurfaceAnchor, Corner } from '@arterial/menu-surface';
-import { TextField } from '@arterial/textfield';
 import Highlighter from './Highlighter';
-
-const DEFAULT_OPTIONS = {
-  shouldSort: true,
-  tokenize: true,
-  matchAllTokens: true,
-  includeMatches: true,
-  threshold: 0.3,
-  minMatchCharLength: 1
-};
-
-const ENGINE = 'ENGINE';
-const MENU_STYLE = 'MENU_STYLE';
-const SEARCH = 'SEARCH';
-
-const initialState = {
-  engine: null,
-  list: [],
-  matches: [],
-  menuStyle: null
-};
-
-function reducer(state, action) {
-  switch (action.type) {
-    case ENGINE:
-      return { ...state, engine: action.data };
-    case MENU_STYLE:
-      return { ...state, menuStyle: action.data };
-    case SEARCH:
-      return { ...state, list: action.data.list, matches: action.data.matches };
-    default:
-      throw new Error();
-  }
-}
+import {
+  List,
+  ListItem,
+  ListItemText,
+  ListItemGraphic,
+  ListItemMeta,
+  ListItemPrimaryText,
+  ListItemSecondaryText
+} from '@arterial/list';
+import { MenuSurface, MenuSurfaceAnchor, Corner } from '@arterial/menu-surface';
+import PropTypes from 'prop-types';
+import { TextField } from '@arterial/textfield';
+import classNames from 'classnames';
+import { reducer, types, INITIAL_STATE } from './reducer';
+import { v4 as uuid } from 'uuid';
 
 export function Typeahead({
   className,
-  filterBy,
   highlight,
-  list = [],
-  onBodyClick,
-  onSelect,
-  onWindowKeyDown,
-  options, // options for fuse.js
-  renderListItemChildren,
-  // textfield props
-  helperText,
-  icon,
-  invalid,
-  focused,
-  fullWidth,
-  label,
-  labelClassName,
-  outlined,
-  trailingIcon,
-  textfieldProps = {}, // equivalent to rootProps in textfield component
-  // input props
-  disabled,
   id,
-  maxLength,
-  onBlur,
+  labelFloating,
+  menuWidth,
   onChange,
-  onFocus,
-  required,
+  onSelect,
+  options,
+  searchOptions,
+  style,
   value,
-  inputProps = {}, // equivalent to otherProps for native input
-  // menu-surface props
-  anchorCorner = Corner.BOTTOM_LEFT,
-  anchorMargin,
-  direction,
-  fixed,
-  menuWidth = 'auto', // set width of menu surface. 'auto' sets width to textfield width
-  open,
-  // list props
-  avatarList,
-  dense,
-  nonInteractive,
-  twoLine,
-  listProps = {}, // equivalent to otherProps in list component
-  tag = 'div',
   ...otherProps
 }) {
-  const anchorEl = useRef();
-  const textfieldEl = useRef();
-  const [state, dispatch] = useReducer(reducer, { ...initialState, list });
+  const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
+  const anchorRef = useRef();
+  const arterialRef = useRef(uuid());
+  const textFieldRef = useRef();
+  const classes = classNames('art-typeahead', className, {
+    'art-typeahead--activated': state.activated,
+    'art-typeahead--focused': state.focused
+  });
+  const isLabelFloating = Boolean(labelFloating || state.focused || value);
 
-  const classes = classNames('art-typeahead', className);
-  const Tag = tag;
-
-  function handleClick(item, index) {
-    onSelect(item, index);
+  function focusListItem(index) {
+    const activated = !state.activated ? true : null;
+    const focused = !state.focused ? true : null;
+    const focusedIndex = index;
+    dispatch({ type: types.FOCUS_INDEX, focusedIndex, activated, focused });
   }
 
-  function handleKeyDown(e, item, index) {
-    if (e.key === 'Enter' || e.keyCode === 13) {
-      onSelect(item, index);
+  function getMenuStyle() {
+    if (textFieldRef.current) {
+      const width = menuWidth || textFieldRef.current.clientWidth;
+      return { maxWidth: width, width };
     }
   }
 
-  function renderListItems(item, index) {
-    if (typeof item !== 'string' && !renderListItemChildren) {
-      throw new Error(
-        'You must use `renderListItemChildren` when `list` is NOT an array of strings'
-      );
+  function getNextIndex(index) {
+    if (index >= state.options.length - 1) return state.options.length - 1;
+    const nextIndex = index + 1;
+    const option = state.options[nextIndex];
+    return option.disabled ? getNextIndex(nextIndex) : nextIndex;
+  }
+
+  function getPreviousIndex(index) {
+    if (index <= 0) return 0;
+    const previousIndex = index - 1;
+    const option = state.options[previousIndex];
+    return option.disabled ? getPreviousIndex(previousIndex) : previousIndex;
+  }
+
+  function getText(option) {
+    return option.selectedText || option.text || '';
+  }
+
+  function select(option) {
+    if (option.disabled) return;
+    textFieldRef.current.focus();
+    dispatch({ type: types.DEACTIVATE });
+    if (onSelect) onSelect(option);
+    if (onChange) onChange(getText(option));
+  }
+
+  function handleChange(e) {
+    focusListItem(0);
+    if (onChange) onChange(e.target.value);
+  }
+
+  function handleClick() {
+    if (!state.activated && state.focused) dispatch({ type: types.ACTIVATE });
+  }
+
+  function handleFocus() {
+    const type = state.activated ? types.DEACTIVATE : types.ACTIVATE;
+    dispatch({ type, focused: true });
+  }
+
+  function handleKeyDown(e) {
+    const arrowUp = e.key === 'ArrowUp' || e.keyCode === 38;
+    const arrowDown = e.key === 'ArrowDown' || e.keyCode === 40;
+    const isEscape = e.key === 'Escape' || e.keyCode === 27;
+    const isEnter = e.key === 'Enter' || e.keyCode === 13;
+    const isTab = e.key === 'Tab' || e.keyCode === 9;
+
+    if (isEnter) {
+      select(state.options[state.focusedIndex]);
+    } else if (isEscape) {
+      e.preventDefault();
+      e.stopPropagation();
+    } else if (isTab) {
+      dispatch({ type: types.DEACTIVATE });
+    } else if (arrowUp) {
+      e.preventDefault();
+      focusListItem(getPreviousIndex(state.focusedIndex));
+    } else if (arrowDown) {
+      e.preventDefault();
+      focusListItem(getNextIndex(state.focusedIndex));
     }
-    const id = `art-typeahead-menu-item-${index}`;
-    return (
-      <ListItem
-        id={id}
-        key={id}
-        onClick={() => handleClick(item, index)}
-        onKeyDown={e => handleKeyDown(e, item, index)}
-        tabIndex="0"
-      >
-        {renderListItemChildren
-          ? renderListItemChildren(item, state.matches, index)
-          : renderListItemText(item, index)}
-      </ListItem>
-    );
   }
 
-  function renderListItemText(item, index) {
-    return (
-      <ListItemText>
-        {highlight ? (
-          <Highlighter item={item} matches={state.matches[index]} />
-        ) : (
-          item
-        )}
-      </ListItemText>
-    );
+  function handleListItemClick(option) {
+    select(option);
   }
 
   useEffect(() => {
-    dispatch({
-      type: ENGINE,
-      data: new Fuse(list, {
-        ...DEFAULT_OPTIONS,
-        ...options,
-        keys: filterBy
-      })
-    });
-  }, [filterBy, list, options]);
-
-  useEffect(() => {
-    if (value && value.trim().length > 0) {
-      const results = state.engine.search(value.trim());
-      const newList = [],
-        newMatches = [];
-      for (const r of results) {
-        newList.push(isNaN(r.item) ? r.item : list[r.item]);
-        newMatches.push(r.matches);
+    function handleBodyClick(e) {
+      const { arterial } = e.target.dataset;
+      if (!arterial || arterial !== arterialRef.current) {
+        dispatch({ type: types.DEACTIVATE, focused: false });
       }
-      dispatch({ type: SEARCH, data: { list: newList, matches: newMatches } });
-    } else {
-      dispatch({ type: SEARCH, data: { list, matches: [] } });
     }
-  }, [state.engine, list, value]);
-
-  useEffect(() => {
-    const el = textfieldEl.current;
-    if (el) {
-      const isAuto = menuWidth === 'auto';
-      dispatch({
-        type: MENU_STYLE,
-        data: { width: isAuto ? el.clientWidth : menuWidth }
-      });
-    }
-  }, [menuWidth, textfieldEl]);
-
-  useEffect(() => {
-    document.body.addEventListener('click', onBodyClick);
+    document.body.addEventListener('click', handleBodyClick);
     return () => {
-      document.body.removeEventListener('click', onBodyClick);
+      document.body.removeEventListener('click', handleBodyClick);
     };
-  }, [onBodyClick]);
+  }, []);
 
   useEffect(() => {
-    window.addEventListener('keydown', onWindowKeyDown);
-    return () => {
-      window.removeEventListener('keydown', onWindowKeyDown);
-    };
-  }, [onWindowKeyDown]);
+    dispatch({ type: types.SET_OPTIONS, options, searchOptions });
+  }, [options, searchOptions]);
+
+  useEffect(() => {
+    dispatch({ type: types.SEARCH, value, options });
+  }, [options, value]);
 
   return (
-    <Tag className={classes} {...otherProps}>
-      <MenuSurfaceAnchor ref={anchorEl}>
+    <div className={classes} data-arterial={arterialRef.current} style={style}>
+      <MenuSurfaceAnchor data-arterial={arterialRef.current} ref={anchorRef}>
         <TextField
+          {...otherProps}
           autoComplete="off"
-          disabled={disabled}
-          helperText={helperText}
-          icon={icon}
+          data-arterial={arterialRef.current}
           id={id}
-          invalid={invalid}
-          label={label}
-          labelClassName={labelClassName}
-          onBlur={onBlur}
-          onFocus={onFocus}
-          onChange={onChange}
-          outlined={outlined}
-          required={required}
-          rootProps={{
-            ...textfieldProps,
-            ref: textfieldEl
-          }}
-          trailingIcon={trailingIcon}
+          labelFloating={isLabelFloating}
+          onChange={handleChange}
+          onClick={handleClick}
+          onFocus={handleFocus}
+          onKeyDown={handleKeyDown}
+          ref={textFieldRef}
           value={value}
-          {...inputProps}
         />
         <MenuSurface
-          anchorCorner={anchorCorner}
-          anchorElement={anchorEl}
-          open={open}
-          quickOpen={!open}
-          style={state.menuStyle}
-          tabIndex="-1"
+          className="mdc-select__menu mdc-menu"
+          anchorCorner={Corner.BOTTOM_LEFT}
+          anchorRef={anchorRef}
+          data-arterial={arterialRef.current}
+          id={`${id}-menu`}
+          open={state.activated}
+          quickOpen
+          style={getMenuStyle()}
         >
           <List
-            {...listProps}
-            avatarList={avatarList}
-            dense={dense}
-            nonInteractive={nonInteractive}
-            tabIndex="-1"
-            twoLine={twoLine}
+            data-arterial={arterialRef.current}
+            id={`${id}-list`}
+            role="listbox"
+            twoLine={state.twoLine}
           >
-            {state.list.map(renderListItems)}
+            {Array.isArray(state.options) &&
+              state.options.length > 0 &&
+              state.options.map((option, index) => (
+                <ListItem
+                  aria-selected={index === state.focusedIndex}
+                  data-arterial={arterialRef.current}
+                  data-value={option.value}
+                  disabled={option.disabled}
+                  id={`${id}-list-item-${option.value}`}
+                  key={option.value}
+                  onClick={e => handleListItemClick(option)}
+                  role="option"
+                  selected={index === state.focusedIndex}
+                >
+                  {option.graphic && (
+                    <ListItemGraphic
+                      data-arterial={arterialRef.current}
+                      graphic={option.graphic}
+                    />
+                  )}
+                  {state.twoLine ? (
+                    <ListItemText data-arterial={arterialRef.current}>
+                      <ListItemPrimaryText title={option.text}>
+                        <Highlighter
+                          highlight={highlight}
+                          matches={state.matches[index]}
+                          value={option.text}
+                        />
+                      </ListItemPrimaryText>
+                      <ListItemSecondaryText title={option.secondaryText}>
+                        <Highlighter
+                          highlight={highlight}
+                          matches={state.matches[index]}
+                          value={option.secondaryText}
+                        />
+                      </ListItemSecondaryText>
+                    </ListItemText>
+                  ) : (
+                    <ListItemText
+                      data-arterial={arterialRef.current}
+                      title={getText(option)}
+                    >
+                      <Highlighter
+                        highlight={highlight}
+                        matches={state.matches[index]}
+                        value={option.text}
+                      />
+                    </ListItemText>
+                  )}
+
+                  {option.node}
+                  {option.meta && (
+                    <ListItemMeta
+                      data-arterial={arterialRef.current}
+                      meta={option.meta}
+                    />
+                  )}
+                </ListItem>
+              ))}
           </List>
         </MenuSurface>
       </MenuSurfaceAnchor>
-    </Tag>
+    </div>
   );
 }
 
+Typeahead.displayName = 'Typeahead';
 Typeahead.propTypes = {
   className: PropTypes.string,
-  filterBy: PropTypes.arrayOf(PropTypes.string),
-  highlight: PropTypes.bool,
-  list: PropTypes.arrayOf(
-    PropTypes.oneOfType([PropTypes.string, PropTypes.object])
-  ),
-  onBodyClick: PropTypes.func,
-  onSelect: PropTypes.func,
-  onWindowKeyDown: PropTypes.func,
-  options: PropTypes.object, // options for fuse.js
-  renderListItemChildren: PropTypes.func,
-  // textfield props
-  helperText: PropTypes.element,
-  icon: PropTypes.element,
-  invalid: PropTypes.bool,
-  focused: PropTypes.bool,
-  fullWidth: PropTypes.bool,
-  label: PropTypes.string,
-  labelClassName: PropTypes.string,
-  outlined: PropTypes.bool,
-  trailingIcon: PropTypes.element,
-  textfieldProps: PropTypes.object, // equivalent to rootProps in textfield component
-  // input props
-  disabled: PropTypes.bool,
   id: PropTypes.string,
-  maxLength: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  onBlur: PropTypes.func,
+  labelFloating: PropTypes.bool,
+  menuWidth: PropTypes.string,
   onChange: PropTypes.func,
-  onFocus: PropTypes.func,
-  required: PropTypes.bool,
-  value: PropTypes.string,
-  inputProps: PropTypes.object, // equivalent to otherProps in textfield component
-  // menu-surface props
-  anchorCorner: PropTypes.number,
-  anchorMargin: PropTypes.object,
-  direction: PropTypes.string,
-  fixed: PropTypes.bool,
-  menuWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]), // set width of menu surface. 'auto' sets width to textfield width
-  open: PropTypes.bool,
-  // list props
-  avatarList: PropTypes.bool,
-  dense: PropTypes.bool,
-  nonInteractive: PropTypes.bool,
-  twoLine: PropTypes.bool,
-  listProps: PropTypes.object, // equivalent to otherProps in list component
-  tag: PropTypes.element
+  onSelect: PropTypes.func,
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      disabled: PropTypes.bool,
+      graphic: PropTypes.node,
+      meta: PropTypes.node,
+      node: PropTypes.node,
+      secondaryText: PropTypes.string,
+      selectedText: PropTypes.string,
+      text: PropTypes.string.isRequired,
+      value: PropTypes.string.isRequired
+    })
+  ),
+  searchOptions: PropTypes.object,
+  style: PropTypes.object,
+  value: PropTypes.string
 };
-
-export { Highlighter };

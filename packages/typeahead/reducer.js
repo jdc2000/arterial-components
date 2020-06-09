@@ -24,28 +24,30 @@ export const INITIAL_STATE = {
 export const types = {
   ACTIVATE: 'ACTIVATE',
   DEACTIVATE: 'DEACTIVATE',
-  FOCUS_INDEX: 'FOCUS_INDEX',
   SEARCH: 'SEARCH',
+  FOCUS_INDEX: 'FOCUS_INDEX',
   SET_OPTIONS: 'SET_OPTIONS'
 };
 
 export const actions = {
   [types.ACTIVATE]: (state, action) => {
-    console.log('ACTIVATE');
     const { focused } = action;
     return { ...state, activated: true, ...(focused != null && { focused }) };
   },
   [types.DEACTIVATE]: (state, action) => {
-    console.log('DEACTIVATE');
     const { focused } = action;
     return { ...state, activated: false, ...(focused != null && { focused }) };
   },
   [types.FOCUS_INDEX]: (state, action) => {
-    console.log('FOCUS_INDEX');
-    return { ...state, focusedIndex: action.focusedIndex };
+    const { activated, focused, focusedIndex } = action;
+    return {
+      ...state,
+      focusedIndex,
+      ...(activated != null && { activated }),
+      ...(focused != null && { focused })
+    };
   },
   [types.SEARCH]: (state, action) => {
-    console.log('SEARCH');
     const value = action.value ? action.value.trim() : '';
     if (value.length > 0) {
       const options = [];
@@ -61,7 +63,6 @@ export const actions = {
     }
   },
   [types.SET_OPTIONS]: (state, action) => {
-    console.log('SET_OPTIONS');
     const { options, searchOptions } = action;
     const twoLine = options.some(option => option.secondaryText != null);
     const keys = [

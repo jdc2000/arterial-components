@@ -300,7 +300,9 @@ export function Select({
               options.length > 0 &&
               options.map((option, index) => (
                 <ListItem
-                  aria-selected={index === state.selectedIndex}
+                  aria-selected={
+                    index === state.selectedIndex && !option.disabled
+                  }
                   data-arterial={arterialRef.current}
                   data-value={option.value}
                   disabled={option.disabled}
@@ -310,7 +312,7 @@ export function Select({
                   onKeyDown={e => handleListItemAction(e, option, index)}
                   ref={element => listItems.current.set(index, element)}
                   role="option"
-                  selected={index === state.selectedIndex}
+                  selected={index === state.selectedIndex && !option.disabled}
                   tabIndex={getListItemTabIndex(index)}
                 >
                   {option.graphic && (

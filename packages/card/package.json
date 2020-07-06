@@ -1,6 +1,6 @@
 {
   "name": "@arterial/card",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "description": "Another React Material Card",
   "author": "jdc2000",
   "homepage": "https://github.com/jdc2000/arterial-components#readme",
@@ -23,8 +23,8 @@
     "access": "public"
   },
   "dependencies": {
-    "@arterial/button": "^1.2.0",
-    "@arterial/icon-button": "^1.2.0",
+    "@arterial/button": "^2.0.0",
+    "@arterial/icon-button": "^2.0.0",
     "@material/card": "^6.0.0"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@arterial/checkbox",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "description": "Another React Material Checkbox",
   "author": "jdc2000",
   "homepage": "https://github.com/jdc2000/arterial-components#readme",
@@ -23,7 +23,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@arterial/form-field": "^1.2.0",
+    "@arterial/form-field": "^2.0.0",
     "@material/checkbox": "^6.0.0"
   }
 }

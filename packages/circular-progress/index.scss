@@ -1,0 +1,31 @@
+@use '@material/theme/variables' as theme-variables;
+@use '@material/circular-progress/mixins' as circular-progress-mixins;
+$colors: (#4285f4, #db4437, #f4b400, #0f9d58);
+.mdc-circular-progress {
+  @include circular-progress-mixins.indeterminate-colors($colors);
+}
+$width: 18px;
+$stroke-width: 2.5px;
+.mdc-button {
+  .mdc-circular-progress--large,
+  .mdc-circular-progress--medium,
+  .mdc-circular-progress--small {
+    width: $width;
+    height: $width;
+    .mdc-circular-progress__determinate-circle-graphic,
+    .mdc-circular-progress__indeterminate-circle-graphic {
+      stroke-width: $stroke-width;
+    }
+    .mdc-circular-progress__gap-patch
+      .mdc-circular-progress__indeterminate-circle-graphic {
+      stroke-width: $stroke-width * 0.8;
+    }
+  }
+}
+.mdc-button--raised,
+.mdc-button--unelevated {
+  .mdc-circular-progress__determinate-circle-graphic,
+  .mdc-circular-progress__indeterminate-circle-graphic {
+    stroke: theme-variables.$on-primary;
+  }
+}

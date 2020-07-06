@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "@arterial/button": "^1.2.0",
-    "@arterial/icon-button": "^1.2.0"
+    "@arterial/icon-button": "^1.2.0",
+    "@material/card": "^6.0.0"
   }
 }

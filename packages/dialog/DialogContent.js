@@ -7,16 +7,13 @@ export default function DialogContent({
   children,
   className,
   id,
-  tag = 'div',
+  tag: Tag = 'div',
   ...otherProps
 }) {
   const dialogContext = useContext(DialogContext);
   const classes = classNames('mdc-dialog__content', className);
-  const Tag = tag;
 
-  if (id) {
-    dialogContext.setContentId(id);
-  }
+  if (id) dialogContext.setContentId(id);
 
   return (
     <Tag className={classes} id={dialogContext.contentId} {...otherProps}>
@@ -24,10 +21,10 @@ export default function DialogContent({
     </Tag>
   );
 }
-
+DialogContent.displayName = 'DialogContent';
 DialogContent.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   id: PropTypes.string,
-  tag: PropTypes.element
+  tag: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 };

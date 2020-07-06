@@ -2,36 +2,35 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-export default function CardMedia({
+export default function Media({
   backgroundImage,
   children,
   className,
   sixteenByNine,
   square,
   style,
-  tag = 'div',
+  tag: Tag = 'div',
   ...otherProps
 }) {
   const classes = classNames('mdc-card__media', className, {
     'mdc-card__media--square': square,
-    'mdc-card__media--16-9': sixteenByNine
+    'mdc-card__media--16-9': sixteenByNine,
   });
   const img = backgroundImage ? `url("${backgroundImage}")` : undefined;
   const styles = { ...style, backgroundImage: img };
-  const Tag = tag;
   return (
     <Tag className={classes} style={styles} {...otherProps}>
       {children}
     </Tag>
   );
 }
-
-CardMedia.propTypes = {
+Media.displayName = 'CardMedia';
+Media.propTypes = {
   backgroundImage: PropTypes.string,
   children: PropTypes.node,
   className: PropTypes.string,
   sixteenByNine: PropTypes.bool,
   square: PropTypes.bool,
   style: PropTypes.object,
-  tag: PropTypes.element
+  tag: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 };

@@ -5,7 +5,7 @@ import {
   DrawerHeader,
   DrawerTitle,
   DrawerSubtitle,
-  DrawerAppContent
+  DrawerAppContent,
 } from '..';
 import { List, ListItem, ListItemGraphic, ListItemText } from '../../list';
 import {
@@ -14,28 +14,26 @@ import {
   TopAppBarTitle,
   TopAppBarFixedAdjust,
   TopAppBarRow,
-  TopAppBarSection
+  TopAppBarSection,
 } from '../../top-app-bar';
-import '@material/drawer/dist/mdc.drawer.css';
-import '@material/top-app-bar/dist/mdc.top-app-bar.css';
 import './drawer.stories.css';
 
 export default {
   title: 'Drawer',
   decorators: [
-    storyFn => (
+    (storyFn) => (
       <div style={{ display: 'flex', height: '100vh', margin: '-8px' }}>
         {storyFn()}
       </div>
-    )
-  ]
+    ),
+  ],
 };
 
 const items = [
   { id: 'inbox' },
   { id: 'star' },
   { id: 'send' },
-  { id: 'drafts' }
+  { id: 'drafts' },
 ];
 
 function MyDrawer({ appbar, dissmisible, header, modal }) {
@@ -70,7 +68,7 @@ function MyDrawer({ appbar, dissmisible, header, modal }) {
         )}
         <DrawerContent>
           <List>
-            {items.map(item => {
+            {items.map((item) => {
               return (
                 <ListItem
                   id={item.id}

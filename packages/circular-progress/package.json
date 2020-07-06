@@ -8,7 +8,7 @@
   "main": "dist/index.js",
   "files": [
     "dist",
-    "index.css"
+    "index.scss"
   ],
   "repository": {
     "type": "git",
@@ -24,6 +24,6 @@
     "access": "public"
   },
   "dependencies": {
-    "@arterial/icon": "^1.2.0"
+    "@material/circular-progress": "^6.0.0"
   }
 }

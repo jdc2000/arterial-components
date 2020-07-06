@@ -11,8 +11,8 @@ export default function CharacterCounter({ count, maxLength }) {
   }
   return null;
 }
-
+CharacterCounter.displayName = 'CharacterCounter';
 CharacterCounter.propTypes = {
   count: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  maxLength: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+  maxLength: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 };

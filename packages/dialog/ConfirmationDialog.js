@@ -15,7 +15,7 @@ export default function ConfirmationDialog({
   dismissiveButtonLabel = 'Cancel',
   onClose,
   open,
-  title
+  title,
 }) {
   const classes = classNames(
     'arm-dialog',
@@ -45,7 +45,7 @@ export default function ConfirmationDialog({
     </Dialog>
   );
 }
-
+ConfirmationDialog.displayName = 'ConfirmationDialog';
 ConfirmationDialog.propTypes = {
   className: PropTypes.string,
   confirmingButtonLabel: PropTypes.string,
@@ -53,5 +53,5 @@ ConfirmationDialog.propTypes = {
   dismissiveButtonLabel: PropTypes.string,
   onClose: PropTypes.func,
   open: PropTypes.bool,
-  title: PropTypes.string
+  title: PropTypes.string,
 };

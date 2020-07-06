@@ -14,20 +14,19 @@ export function Chip({
   selected,
   text,
   trailingIcon,
-  tag = 'div',
+  tag: Tag = 'div',
   ...otherProps
 }) {
   const classes = classNames('mdc-chip', className, {
-    'mdc-chip--selected': selected
+    'mdc-chip--selected': selected,
   });
   const iconClasses = classNames('mdc-chip__icon', 'mdc-chip__icon--leading', {
-    'mdc-chip__icon--leading-hidden': checkmark && selected
+    'mdc-chip__icon--leading-hidden': checkmark && selected,
   });
   const trailingIconClasses = classNames(
     'mdc-chip__icon',
     'mdc-chip__icon--trailing'
   );
-  const Tag = tag;
 
   function isSelected(e) {
     const isClick = e.type === 'click';
@@ -91,7 +90,7 @@ export function Chip({
     </Tag>
   );
 }
-
+Chip.displayName = 'Chip';
 Chip.propTypes = {
   checkmark: PropTypes.bool,
   className: PropTypes.string,
@@ -103,7 +102,7 @@ Chip.propTypes = {
   selected: PropTypes.bool,
   text: PropTypes.string,
   trailingIcon: PropTypes.node,
-  tag: PropTypes.element
+  tag: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 };
 
 export { default as ChipSet } from './ChipSet';

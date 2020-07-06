@@ -5,22 +5,21 @@ import {
   TopAppBarRow,
   TopAppBarSection,
   TopAppBarTitle,
-  TopAppBarIcon
+  TopAppBarIcon,
 } from '..';
-import '@material/top-app-bar/dist/mdc.top-app-bar.css';
 
 export default {
   title: 'TopAppBar',
   decorators: [
-    storyFn => {
+    (storyFn) => {
       // document.body.style.margin = 0;
       return (
         <div style={{ height: '100vh', width: '400px', margin: '-8px' }}>
           {storyFn()}
         </div>
       );
-    }
-  ]
+    },
+  ],
 };
 
 const BASIC = 'Standard',

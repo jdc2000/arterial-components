@@ -12,11 +12,11 @@ export function DataTable({ children, className, label, ...otherProps }) {
     </div>
   );
 }
-
+DataTable.displayName = 'DataTable';
 DataTable.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-  label: PropTypes.string
+  label: PropTypes.string,
 };
 
 export { DataTableHeader } from './DataTableHeader';

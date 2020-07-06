@@ -19,11 +19,11 @@ const TabIndicator = React.forwardRef((props, ref) => {
   const [transform, setTransform] = useState();
   const classes = classNames('mdc-tab-indicator', className, {
     'mdc-tab-indicator--active': isActive,
-    'mdc-tab-indicator--fade': fade
+    'mdc-tab-indicator--fade': fade,
   });
   const contentClasses = classNames('mdc-tab-indicator__content', {
     'mdc-tab-indicator__content--icon': icon,
-    'mdc-tab-indicator__content--underline': !icon
+    'mdc-tab-indicator__content--underline': !icon,
   });
 
   useEffect(() => {
@@ -83,7 +83,7 @@ const TabIndicator = React.forwardRef((props, ref) => {
     </Tag>
   );
 });
-
+TabIndicator.displayName = 'TabIndicator';
 TabIndicator.propTypes = {
   active: PropTypes.bool,
   className: PropTypes.string,
@@ -91,7 +91,7 @@ TabIndicator.propTypes = {
   icon: PropTypes.string,
   id: PropTypes.string,
   previousIndicatorClientRect: PropTypes.object,
-  tag: PropTypes.element
+  tag: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 };
 
 export default TabIndicator;

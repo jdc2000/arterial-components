@@ -12,7 +12,7 @@ export function ListDivider({
 }) {
   const classes = classNames('mdc-list-divider', className, {
     'mdc-list-divider--inset': inset,
-    'mdc-list-divider--padded': padded
+    'mdc-list-divider--padded': padded,
   });
   const role = Tag === 'li' ? 'separator' : null;
   return (
@@ -21,12 +21,11 @@ export function ListDivider({
     </Tag>
   );
 }
-
 ListDivider.displayName = 'ListDivider';
 ListDivider.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   inset: PropTypes.bool,
   padded: PropTypes.bool,
-  tag: PropTypes.oneOfType([PropTypes.object, PropTypes.string])
+  tag: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 };

@@ -1,6 +1,5 @@
 import React from 'react';
 import { Grid, GridRow, GridCell } from '..';
-import '@material/layout-grid/dist/mdc.layout-grid.css';
 import './layout-grid.stories.css';
 
 export default { title: 'LayoutGrid' };

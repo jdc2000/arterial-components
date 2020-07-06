@@ -23,6 +23,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@arterial/icon": "^1.2.0"
+    "@arterial/icon": "^1.2.0",
+    "@material/fab": "^6.0.0"
   }
 }

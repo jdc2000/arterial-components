@@ -9,24 +9,23 @@ import {
   ListItemMeta,
   ListItemPrimaryText,
   ListItemSecondaryText,
-  ListItemText
+  ListItemText,
 } from '..';
 import { Checkbox } from '../../checkbox';
 import { Icon } from '../../icon';
 import { IconButton } from '../../icon-button';
 import { Radio } from '../../radio';
-import '@material/list/dist/mdc.list.css';
 
 export default {
   title: 'List',
-  decorators: [storyFn => <div style={{ width: '600px' }}>{storyFn()}</div>]
+  decorators: [(storyFn) => <div style={{ width: '600px' }}>{storyFn()}</div>],
 };
 
 const items = [
   { id: 'inbox' },
   { id: 'star' },
   { id: 'send' },
-  { id: 'drafts' }
+  { id: 'drafts' },
 ];
 function MyList({ type = 'activated' }) {
   const [selected, setSelected] = useState('star');
@@ -37,10 +36,10 @@ function MyList({ type = 'activated' }) {
   }
   return (
     <List>
-      {items.map(item => {
+      {items.map((item) => {
         const listItemProps = {
           activated: type === 'activated' && item.id === selected,
-          selected: type === 'selected' && item.id === selected
+          selected: type === 'selected' && item.id === selected,
         };
         return (
           <ListItem

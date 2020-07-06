@@ -5,20 +5,19 @@ import classNames from 'classnames';
 export default function Content({
   children,
   className,
-  tag = 'div',
+  tag: Tag = 'div',
   ...otherProps
 }) {
   const classes = classNames('mdc-drawer__content', className);
-  const Tag = tag;
   return (
     <Tag className={classes} {...otherProps}>
       {children}
     </Tag>
   );
 }
-
+Content.displayName = 'DrawerContent';
 Content.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-  tag: PropTypes.element
+  tag: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 };

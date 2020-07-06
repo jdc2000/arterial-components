@@ -29,6 +29,7 @@
     "@arterial/textfield": "^1.2.0",
     "classnames": "^2.2.6",
     "fuse.js": "^3.4.6",
-    "prop-types": "^15.7.2"
+    "prop-types": "^15.7.2",
+    "uuid": "^8.2.0"
   }
 }

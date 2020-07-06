@@ -22,9 +22,8 @@ export const Icon = React.forwardRef((props, ref) => {
   const iconProps = { ...otherProps, ...icon.props, className: classes, ref };
   return React.cloneElement(icon, iconProps);
 });
-
 Icon.displayName = 'Icon';
 Icon.propTypes = {
   className: PropTypes.string,
-  icon: PropTypes.node.isRequired
+  icon: PropTypes.node.isRequired,
 };

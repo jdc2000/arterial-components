@@ -21,5 +21,8 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "dependencies": {
+    "@material/form-field": "^6.0.0"
   }
 }

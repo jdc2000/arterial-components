@@ -18,7 +18,7 @@ const TabScroller = React.forwardRef((props, ref) => {
   const contentRef = useRef();
   const classes = classNames('mdc-tab-scroller', className, {
     [`mdc-tab-scroller--align-${align}`]: align,
-    'mdc-tab-scroller--animating': animating
+    'mdc-tab-scroller--animating': animating,
   });
   const areaClasses = classNames(
     'mdc-tab-scroller__scroll-area',
@@ -58,7 +58,7 @@ const TabScroller = React.forwardRef((props, ref) => {
     </Tag>
   );
 });
-
+TabScroller.displayName = 'TabScroller';
 TabScroller.propTypes = {
   align: PropTypes.oneOf(['start', 'end', 'center']),
   animating: PropTypes.bool,
@@ -67,7 +67,7 @@ TabScroller.propTypes = {
   dir: PropTypes.string,
   onInteraction: PropTypes.func,
   onTransitionEnd: PropTypes.func,
-  tag: PropTypes.element
+  tag: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 };
 
 export default TabScroller;

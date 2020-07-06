@@ -30,10 +30,10 @@ export default function DialogButton({
     />
   );
 }
-
+DialogButton.displayName = 'DialogButton';
 DialogButton.propTypes = {
   action: PropTypes.string,
   className: PropTypes.string,
   onSelect: PropTypes.func,
-  type: PropTypes.string
+  type: PropTypes.string,
 };

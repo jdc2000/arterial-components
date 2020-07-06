@@ -1,6 +1,5 @@
 import React from 'react';
 import { Fab } from '..';
-import '@material/fab/dist/mdc.fab.css';
 
 export default { title: 'Fab' };
 

@@ -10,6 +10,7 @@ export function DataTableCell(props) {
 export function DataTableHeaderCell(props) {
   return <Cell {...props} header />;
 }
+
 function Cell({
   checkbox,
   checked,
@@ -26,17 +27,17 @@ function Cell({
     : 'mdc-data-table__cell';
   const classes = classNames(cellClass, className, {
     [`${cellClass}--checkbox`]: checkbox,
-    [`${cellClass}--numeric`]: numeric && !checkbox
+    [`${cellClass}--numeric`]: numeric && !checkbox,
   });
   const checkboxClasses = classNames({
     'mdc-data-table__header-row-checkbox': checkbox && header,
-    'mdc-data-table__row-checkbox': checkbox && !header
+    'mdc-data-table__row-checkbox': checkbox && !header,
   });
   function handleChange(e) {
     if (onChange) {
       onChange({
         checked: e.target.checked,
-        indeterminate: e.target.indeterminate
+        indeterminate: e.target.indeterminate,
       });
     }
   }
@@ -57,11 +58,11 @@ function Cell({
     </Tag>
   );
 }
-
+Cell.displayName = 'DataTableCell';
 Cell.propTypes = {
   checkbox: PropTypes.bool,
   children: PropTypes.node,
   className: PropTypes.string,
   header: PropTypes.bool,
-  numeric: PropTypes.bool
+  numeric: PropTypes.bool,
 };

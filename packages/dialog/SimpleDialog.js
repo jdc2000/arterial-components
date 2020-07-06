@@ -10,7 +10,7 @@ export default function SimpleDialog({
   content,
   onClose,
   open,
-  title
+  title,
 }) {
   const classes = classNames('arm-dialog', 'arm-dialog--simple', className);
   function handleClose() {
@@ -25,11 +25,11 @@ export default function SimpleDialog({
     </Dialog>
   );
 }
-
+SimpleDialog.displayName = 'SimpleDialog';
 SimpleDialog.propTypes = {
   className: PropTypes.string,
   content: PropTypes.node,
   onClose: PropTypes.func,
   open: PropTypes.bool,
-  title: PropTypes.string
+  title: PropTypes.string,
 };

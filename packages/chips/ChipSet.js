@@ -8,27 +8,26 @@ export default function ChipSet({
   choice,
   filter,
   input,
-  tag = 'div',
+  tag: Tag = 'div',
   ...otherProps
 }) {
   const classes = classNames('mdc-chip-set', className, {
     'mdc-chip-set--choice': choice,
     'mdc-chip-set--filter': filter,
-    'mdc-chip-set--input': input
+    'mdc-chip-set--input': input,
   });
-  const Tag = tag;
   return (
     <Tag className={classes} role="grid" {...otherProps}>
       {children}
     </Tag>
   );
 }
-
+ChipSet.displayName = 'ChipSet';
 ChipSet.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   choice: PropTypes.bool,
   filter: PropTypes.bool,
   input: PropTypes.bool,
-  tag: PropTypes.element
+  tag: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 };

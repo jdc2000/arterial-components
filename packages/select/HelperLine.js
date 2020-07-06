@@ -11,8 +11,7 @@ export function HelperLine({ text }) {
   }
   return null;
 }
-
 HelperLine.displayName = 'SelectHelperLine';
 HelperLine.propTypes = {
-  text: PropTypes.oneOfType([PropTypes.node, PropTypes.object])
+  text: PropTypes.oneOfType([PropTypes.node, PropTypes.object]),
 };

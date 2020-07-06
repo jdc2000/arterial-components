@@ -5,9 +5,8 @@ import {
   DataTableContent,
   DataTableHeader,
   DataTableHeaderCell,
-  DataTableRow
+  DataTableRow,
 } from '..';
-import '@material/data-table/dist/mdc.data-table.css';
 
 export default { title: 'DataTable' };
 
@@ -15,7 +14,7 @@ const TABLE = [
   ['Dessert', 'Calories', 'Fat', 'Carbs', 'Protein (g)'],
   ['Frozen yogurt', '159', '6', '24', '4'],
   ['Ice cream sandwich', '237', '9', '37', '4.3'],
-  ['Eclair', '262', '16', '24', '6']
+  ['Eclair', '262', '16', '24', '6'],
 ];
 const [header, ...content] = TABLE;
 export const Basic = () => {
@@ -78,8 +77,8 @@ export const Selection = () => {
                     checkbox
                     checked={headerChecked === 'checked'}
                     indeterminate={headerChecked === 'indeterminate'}
-                    onChange={data => {
-                      Object.keys(bodyChecked).forEach(key => {
+                    onChange={(data) => {
+                      Object.keys(bodyChecked).forEach((key) => {
                         bodyChecked[key] = data.checked;
                       });
                       setHeaderChecked(data.checked ? 'checked' : '');
@@ -111,17 +110,17 @@ export const Selection = () => {
                       <DataTableCell
                         checkbox
                         checked={bodyChecked[rowIndex] === true}
-                        onChange={data => {
+                        onChange={(data) => {
                           bodyChecked[rowIndex] = data.checked;
                           const values = Object.values(bodyChecked);
-                          const checked = values.find(checked => checked);
+                          const checked = values.find((checked) => checked);
                           const noneChecked = checked
                             ? false
-                            : values.every(checked => !checked);
-                          const unchecked = values.find(checked => !checked);
+                            : values.every((checked) => !checked);
+                          const unchecked = values.find((checked) => !checked);
                           const allChecked = unchecked
                             ? false
-                            : values.every(checked => checked);
+                            : values.every((checked) => checked);
                           let header;
                           if (allChecked) {
                             header = 'checked';

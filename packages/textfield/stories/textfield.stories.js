@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { HelperText, TextField } from '..';
-import '@material/textfield/dist/mdc.textfield.css';
-import '@material/notched-outline/dist/mdc.notched-outline.css';
 import './textfield.stories.css';
 
 export default {
   title: 'TextField',
   decorators: [
-    storyFn => <div className="textfield-container">{storyFn()}</div>
-  ]
+    (storyFn) => <div className="textfield-container">{storyFn()}</div>,
+  ],
 };
 
 function MyTextField({ icon, trailingIcon, ...otherProps }) {
@@ -24,7 +22,7 @@ function MyTextField({ icon, trailingIcon, ...otherProps }) {
         trailingIcon={trailingIcon ? 'delete' : null}
         onTrailingIconAction={trailingIcon ? () => setValue('') : null}
         value={value}
-        onChange={e => setValue(e.target.value)}
+        onChange={(e) => setValue(e.target.value)}
         {...otherProps}
       />
     </div>
@@ -44,7 +42,7 @@ function MyTextFields({
   prefix,
   required,
   suffix,
-  textarea
+  textarea,
 }) {
   const FILLED = 'Filled';
   const OUTLINED = 'Outlined';
@@ -60,13 +58,13 @@ function MyTextFields({
     placeholder: fullwidth ? FILLED : null,
     prefix,
     required,
-    suffix
+    suffix,
   };
   const oProps = {
     ...props,
     label: OUTLINED,
     outlined: true,
-    placeholder: null
+    placeholder: null,
   };
   return (
     <>

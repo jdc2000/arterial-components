@@ -16,7 +16,7 @@ const initialState = {
   isAriaHidden: null,
   isClosing: false,
   isOpen: false,
-  isOpening: false
+  isOpening: false,
 };
 
 function reducer(state, action) {
@@ -43,13 +43,13 @@ export default function Dialog({
   open,
   scrollable,
   stacked,
-  tag = 'div',
+  tag: Tag = 'div',
   ...otherProps
 }) {
   const dialogContext = useContext(DialogContext);
   const [state, dispatch] = useReducer(reducer, {
     ...initialState,
-    isOpen: open
+    isOpen: open,
   });
 
   const classes = classNames('mdc-dialog', className, {
@@ -57,10 +57,10 @@ export default function Dialog({
     'mdc-dialog--opening': state.isOpening,
     'mdc-dialog--closing': state.isClosing,
     'mdc-dialog--scrollable': scrollable,
-    'mdc-dialog--stacked': stacked
+    'mdc-dialog--stacked': stacked,
   });
   const ariaProps = {
-    'aria-hidden': state.isAriaHidden
+    'aria-hidden': state.isAriaHidden,
   };
 
   function handleScrimClick() {
@@ -130,12 +130,13 @@ export default function Dialog({
         cancelAnimationFrame(layoutFrame);
         layoutFrame = 0;
       }
+      document.body.classList.remove(SCROLL_LOCK);
     };
   }, [open]);
 
   return (
     <DialogProvider>
-      <div className={classes} {...otherProps} {...ariaProps}>
+      <Tag className={classes} {...otherProps} {...ariaProps}>
         <div className="mdc-dialog__container">
           <div
             className="mdc-dialog__surface"
@@ -148,11 +149,11 @@ export default function Dialog({
           </div>
         </div>
         <div className="mdc-dialog__scrim" onClick={handleScrimClick}></div>
-      </div>
+      </Tag>
     </DialogProvider>
   );
 }
-
+Dialog.displayName = 'Dialog';
 Dialog.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
@@ -160,5 +161,5 @@ Dialog.propTypes = {
   open: PropTypes.bool,
   scrollable: PropTypes.bool,
   stacked: PropTypes.bool,
-  tag: PropTypes.element
+  tag: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 };

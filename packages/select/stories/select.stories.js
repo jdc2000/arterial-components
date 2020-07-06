@@ -4,14 +4,12 @@ import { Select, HelperText } from '..';
 import { CircularProgress } from '../../circular-progress';
 import { Icon } from '../../icon';
 import './select.stories.css';
-import '@material/list/dist/mdc.list.css';
-import '@material/menu-surface/dist/mdc.menu-surface.css';
-import '@material/menu/dist/mdc.menu.css';
-import '@material/select/dist/mdc.select.css';
 
 export default {
   title: 'Select',
-  decorators: [storyFn => <div className="select-container">{storyFn()}</div>]
+  decorators: [
+    (storyFn) => <div className="select-container">{storyFn()}</div>,
+  ],
 };
 
 const lock = <Icon icon="lock" />;
@@ -19,7 +17,7 @@ const OPTIONS = [
   { text: '', value: '' },
   { text: 'Bread, Cereal, Rice, and Pasta', value: 'grains' },
   { text: 'Vegetables', value: 'vegetables' },
-  { text: 'Fruit', value: 'fruit' }
+  { text: 'Fruit', value: 'fruit' },
 ];
 const OPTIONS_WITH_ICON = [
   {
@@ -27,15 +25,15 @@ const OPTIONS_WITH_ICON = [
     selectedText: 'Bread, Cereal, Rice, and Pasta (Private)',
     node: lock,
     value: 'grains',
-    disabled: true
+    disabled: true,
   },
   { text: 'Vegetables', value: 'vegetables' },
   {
     text: 'Fruit',
     selectedText: 'Fruit (Private)',
     node: lock,
-    value: 'fruit'
-  }
+    value: 'fruit',
+  },
 ];
 
 function MySelect({
@@ -52,7 +50,7 @@ function MySelect({
   progress,
   required,
   isDelayedSelected,
-  isSelected
+  isSelected,
 }) {
   const [value, setValue] = useState('');
   function handleSelect({ value }) {
@@ -61,7 +59,7 @@ function MySelect({
   const classes = classNames('select', {
     'select--full-width': fullWidth,
     'select--icon': !fullWidth && icon,
-    'select--margin-right': !fullWidth
+    'select--margin-right': !fullWidth,
   });
   const isLoading = progress || (isDelayedSelected && value === '');
   const options = optionIcon ? OPTIONS_WITH_ICON : OPTIONS;

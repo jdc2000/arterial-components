@@ -13,7 +13,7 @@ export default function AlertDialog({
   content,
   onClose,
   open,
-  title
+  title,
 }) {
   const classes = classNames('arm-dialog', 'arm-dialog--alert', className);
   function handleClose() {
@@ -31,12 +31,12 @@ export default function AlertDialog({
     </Dialog>
   );
 }
-
+AlertDialog.displayName = 'AlertDialog';
 AlertDialog.propTypes = {
   className: PropTypes.string,
   confirmingButtonLabel: PropTypes.string,
   content: PropTypes.node,
   onClose: PropTypes.func,
   open: PropTypes.bool,
-  title: PropTypes.string
+  title: PropTypes.string,
 };

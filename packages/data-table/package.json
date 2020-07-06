@@ -23,6 +23,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@arterial/checkbox": "^1.2.0"
+    "@arterial/checkbox": "^1.2.0",
+    "@material/data-table": "^6.0.0"
   }
 }

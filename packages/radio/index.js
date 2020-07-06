@@ -15,7 +15,7 @@ function Root({
   ...otherProps
 }) {
   const classes = classNames('mdc-radio', className, {
-    'mdc-radio--disabled': disabled
+    'mdc-radio--disabled': disabled,
   });
   return (
     <div className={classes} style={style}>
@@ -51,7 +51,6 @@ export function Radio({ alignEnd, id, label, ...otherProps }) {
   }
   return <Root id={id} {...otherProps} />;
 }
-
 Radio.displayName = 'Radio';
 Radio.propTypes = {
   alignEnd: PropTypes.bool,
@@ -63,5 +62,5 @@ Radio.propTypes = {
   onChange: PropTypes.func.isRequired,
   ripple: PropTypes.bool,
   style: PropTypes.object,
-  value: PropTypes.string
+  value: PropTypes.string,
 };

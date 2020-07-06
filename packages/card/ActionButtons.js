@@ -5,20 +5,19 @@ import classNames from 'classnames';
 export default function ActionButtons({
   children,
   className,
-  tag = 'div',
+  tag: Tag = 'div',
   ...otherProps
 }) {
   const classes = classNames('mdc-card__action-buttons', className);
-  const Tag = tag;
   return (
     <Tag className={classes} {...otherProps}>
       {children}
     </Tag>
   );
 }
-
+ActionButtons.displayName = 'CardActionButtons';
 ActionButtons.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-  tag: PropTypes.element
+  tag: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 };

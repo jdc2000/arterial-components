@@ -27,10 +27,10 @@ const Tab = React.forwardRef((props, ref) => {
   const classes = classNames('mdc-tab', className, {
     'mdc-tab--active': active,
     'mdc-tab--min-width': minWidth,
-    'mdc-tab--stacked': stacked
+    'mdc-tab--stacked': stacked,
   });
   const rippleClasses = classNames('mdc-tab__ripple', 'mdc-ripple-upgraded', {
-    'mdc-ripple-upgraded--background-focused': focused
+    'mdc-ripple-upgraded--background-focused': focused,
   });
 
   function renderTabIndicator() {
@@ -67,7 +67,7 @@ const Tab = React.forwardRef((props, ref) => {
     </Tag>
   );
 });
-
+Tab.displayName = 'Tab';
 Tab.propTypes = {
   active: PropTypes.bool,
   children: PropTypes.node,
@@ -84,7 +84,7 @@ Tab.propTypes = {
   restricted: PropTypes.bool,
   ripple: PropTypes.bool,
   stacked: PropTypes.bool,
-  tag: PropTypes.element
+  tag: PropTypes.element,
 };
 
 export default Tab;

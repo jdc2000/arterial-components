@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
 import { Tab, TabBar } from '..';
-import '@material/tab-bar/dist/mdc.tab-bar.css';
-import '@material/tab/dist/mdc.tab.css';
-import '@material/tab-scroller/dist/mdc.tab-scroller.css';
-import '@material/tab-indicator/dist/mdc.tab-indicator.css';
 
 export default {
   title: 'Tabs',
   decorators: [
-    storyFn => <div style={{ width: '100%', height: '100vh' }}>{storyFn()}</div>
-  ]
+    (storyFn) => (
+      <div style={{ width: '100%', height: '100vh' }}>{storyFn()}</div>
+    ),
+  ],
 };
 
 const HOME = 'Home';
@@ -22,12 +20,12 @@ const FAVORITES = 'Favorites';
 const basicTabs = [
   { label: HOME },
   { label: MERCHANDISE },
-  { label: ABOUT_US }
+  { label: ABOUT_US },
 ];
 const iconTabs = [
   { label: RECENTS, icon: 'access_time' },
   { label: NEARBY, icon: 'near_me' },
-  { label: FAVORITES, icon: 'favorite' }
+  { label: FAVORITES, icon: 'favorite' },
 ];
 
 function MyTabs({ minWidth, restricted, scrolling, stacked, icons }) {

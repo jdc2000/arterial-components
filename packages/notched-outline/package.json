@@ -21,5 +21,8 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "dependencies": {
+    "@material/notched-outline": "^6.0.0"
   }
 }

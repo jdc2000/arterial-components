@@ -17,11 +17,11 @@ export function NotchedOutline({
     'mdc-notched-outline--upgraded',
     className,
     {
-      'mdc-notched-outline--notched': notched
+      'mdc-notched-outline--notched': notched,
     }
   );
   const labelClasses = classNames('mdc-floating-label', {
-    'mdc-floating-label--float-above': notched
+    'mdc-floating-label--float-above': notched,
   });
 
   useEffect(() => {
@@ -61,12 +61,12 @@ export function NotchedOutline({
     </span>
   );
 }
-
+NotchedOutline.displayName = 'NotchedOutline';
 NotchedOutline.propTypes = {
   className: PropTypes.string,
   id: PropTypes.string,
   label: PropTypes.node,
   labelClassName: PropTypes.string,
   notched: PropTypes.bool,
-  'data-arterial': PropTypes.string
+  'data-arterial': PropTypes.string,
 };

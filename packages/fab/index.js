@@ -12,14 +12,13 @@ export function Fab({
   mini,
   ripple = true,
   trailingIcon,
-  tag = 'button'
+  tag: Tag = 'button',
 }) {
   const classes = classNames('mdc-fab', className, {
     'mdc-fab--exited': exited,
     'mdc-fab--extended': extended,
-    'mdc-fab--mini': mini
+    'mdc-fab--mini': mini,
   });
-  const Tag = tag;
   let ariaLabel = '';
   if (label) {
     ariaLabel = label;
@@ -37,7 +36,7 @@ export function Fab({
     </Tag>
   );
 }
-
+Fab.displayName = 'Fab';
 Fab.propTypes = {
   className: PropTypes.string,
   exited: PropTypes.bool,
@@ -46,5 +45,5 @@ Fab.propTypes = {
   label: PropTypes.string,
   mini: PropTypes.bool,
   ripple: PropTypes.bool,
-  tag: PropTypes.oneOf(['button', 'span', 'i', 'img', 'svg'])
+  tag: PropTypes.oneOf(['button', 'span', 'i', 'img', 'svg']),
 };

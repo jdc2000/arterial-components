@@ -18,7 +18,7 @@ export default function FixedAdjust({
       'mdc-top-app-bar--dense-fixed-adjust': dense && !prominent,
       'mdc-top-app-bar--dense-prominent-fixed-adjust': dense && prominent,
       'mdc-top-app-bar--prominent-fixed-adjust': !dense && prominent,
-      'mdc-top-app-bar--short-fixed-adjust': short
+      'mdc-top-app-bar--short-fixed-adjust': short,
     },
     className
   );
@@ -29,7 +29,7 @@ export default function FixedAdjust({
     </Tag>
   );
 }
-
+FixedAdjust.displayName = 'TopAppBarFixedAdjust';
 FixedAdjust.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
@@ -37,5 +37,5 @@ FixedAdjust.propTypes = {
   fixed: PropTypes.bool,
   prominent: PropTypes.bool,
   short: PropTypes.bool,
-  tag: PropTypes.element
+  tag: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 };

@@ -15,10 +15,9 @@ export function ListGroup({
     </Tag>
   );
 }
-
 ListGroup.displayName = 'ListGroup';
 ListGroup.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-  tag: PropTypes.oneOfType([PropTypes.object, PropTypes.string])
+  tag: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 };

@@ -23,6 +23,10 @@
     "access": "public"
   },
   "dependencies": {
-    "@arterial/icon": "^1.2.0"
+    "@arterial/icon": "^1.2.0",
+    "@material/tab": "^6.0.0",
+    "@material/tab-bar": "^6.0.0",
+    "@material/tab-indicator": "^6.0.0",
+    "@material/tab-scroller": "^6.0.0"
   }
 }

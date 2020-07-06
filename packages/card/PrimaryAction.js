@@ -5,20 +5,19 @@ import classNames from 'classnames';
 export default function PrimaryAction({
   children,
   className,
-  tag = 'div',
+  tag: Tag = 'div',
   ...otherProps
 }) {
   const classes = classNames('mdc-card__primary-action', className);
-  const Tag = tag;
   return (
     <Tag className={classes} tabIndex="0" {...otherProps}>
       {children}
     </Tag>
   );
 }
-
+PrimaryAction.displayName = 'CardPrimaryAction';
 PrimaryAction.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-  tag: PropTypes.element
+  tag: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 };

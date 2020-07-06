@@ -8,7 +8,7 @@ import {
   ListItemGraphic,
   ListItemMeta,
   ListItemPrimaryText,
-  ListItemSecondaryText
+  ListItemSecondaryText,
 } from '@arterial/list';
 import { MenuSurface, Corner } from '@arterial/menu-surface';
 import { NotchedOutline } from '@arterial/notched-outline';
@@ -53,14 +53,14 @@ export function Select({
     'mdc-select--no-label': !label,
     'mdc-select--outlined': outlined,
     'mdc-select--required': required,
-    'mdc-select--with-leading-icon': icon
+    'mdc-select--with-leading-icon': icon,
   });
   const isLabelFloating = Boolean(labelFloating || state.focused || value);
   const labelClasses = classNames('mdc-floating-label', {
-    'mdc-floating-label--float-above': isLabelFloating
+    'mdc-floating-label--float-above': isLabelFloating,
   });
   const lineRippleClasses = classNames('mdc-line-ripple', {
-    'mdc-line-ripple--active': state.focused
+    'mdc-line-ripple--active': state.focused,
   });
   const labelId = `${id}-label`;
 
@@ -68,17 +68,17 @@ export function Select({
     role: required ? null : 'button',
     'aria-haspopup': 'listbox',
     'aria-labelledby': label ? `${labelId} ${id}` : null,
-    'aria-required': required
+    'aria-required': required,
   };
 
   function focusListItem(index) {
     let i = index;
     if (!options[i] || options[i].disabled) {
       const next = options.slice(i + 1);
-      i = next.findIndex(option => !option.disabled);
+      i = next.findIndex((option) => !option.disabled);
       if (i === -1) {
         const previous = options.slice(0, i);
-        i = previous.findIndex(option => !option.disabled);
+        i = previous.findIndex((option) => !option.disabled);
       }
     }
     if (i >= 0 && i < options.length) {
@@ -202,7 +202,9 @@ export function Select({
 
   useEffect(() => {
     if (value != null) {
-      const selectedIndex = options.findIndex(option => option.value === value);
+      const selectedIndex = options.findIndex(
+        (option) => option.value === value
+      );
       dispatch({ type: types.SELECT_INDEX, selectedIndex });
     }
   }, [options, value]);
@@ -308,9 +310,9 @@ export function Select({
                   disabled={option.disabled}
                   id={`${id}-list-item-${option.value}`}
                   key={option.value}
-                  onClick={e => handleListItemAction(e, option, index)}
-                  onKeyDown={e => handleListItemAction(e, option, index)}
-                  ref={element => listItems.current.set(index, element)}
+                  onClick={(e) => handleListItemAction(e, option, index)}
+                  onKeyDown={(e) => handleListItemAction(e, option, index)}
+                  ref={(element) => listItems.current.set(index, element)}
                   role="option"
                   selected={index === state.selectedIndex && !option.disabled}
                   tabIndex={getListItemTabIndex(index)}
@@ -354,7 +356,6 @@ export function Select({
     </>
   );
 }
-
 Select.displayName = 'Select';
 Select.propTypes = {
   children: PropTypes.node,
@@ -377,7 +378,7 @@ Select.propTypes = {
       secondaryText: PropTypes.string,
       selectedText: PropTypes.string,
       text: PropTypes.string.isRequired,
-      value: PropTypes.string.isRequired
+      value: PropTypes.string.isRequired,
     })
   ),
   outlined: PropTypes.bool,
@@ -385,5 +386,5 @@ Select.propTypes = {
   required: PropTypes.bool,
   style: PropTypes.object,
   trailingIcon: PropTypes.node,
-  value: PropTypes.string
+  value: PropTypes.string,
 };

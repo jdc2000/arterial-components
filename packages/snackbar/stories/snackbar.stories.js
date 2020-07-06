@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { Snackbar } from '..';
 import { Button } from '../../button';
-import '@material/snackbar/dist/mdc.snackbar.css';
 
 export default {
   title: 'Snackbar',
-  decorators: [storyFn => <div style={{ height: '100vh' }}>{storyFn()}</div>]
+  decorators: [(storyFn) => <div style={{ height: '100vh' }}>{storyFn()}</div>],
 };
 
 function MySnackbar({ action, dismiss = true, leading, stacked }) {
@@ -19,7 +18,7 @@ function MySnackbar({ action, dismiss = true, leading, stacked }) {
         label="Can't send photo. Retry in 5 seconds."
         leading={leading}
         open={open}
-        onClose={action => {
+        onClose={(action) => {
           console.log('onClose:', action);
           setOpen(false);
         }}

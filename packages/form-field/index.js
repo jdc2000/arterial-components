@@ -10,7 +10,7 @@ export function FormField({
   ...otherProps
 }) {
   const classes = classNames('mdc-form-field', className, {
-    'mdc-form-field--align-end': alignEnd
+    'mdc-form-field--align-end': alignEnd,
   });
   return (
     <Tag className={classes} {...otherProps}>
@@ -18,11 +18,10 @@ export function FormField({
     </Tag>
   );
 }
-
 FormField.displayName = 'FormField';
 FormField.propTypes = {
   alignEnd: PropTypes.bool,
   children: PropTypes.node,
   className: PropTypes.string,
-  tag: PropTypes.oneOfType([PropTypes.object, PropTypes.string])
+  tag: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 };

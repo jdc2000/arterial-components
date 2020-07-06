@@ -20,7 +20,7 @@ function Root({
   let classes = classNames('mdc-checkbox', className, {
     [`mdc-checkbox--anim-indeterminate-checked`]: anim,
     'mdc-checkbox--disabled': disabled,
-    'mdc-checkbox--selected': checked || indeterminate
+    'mdc-checkbox--selected': checked || indeterminate,
   });
 
   function handleAnimationEnd() {
@@ -82,7 +82,6 @@ export function Checkbox({ alignEnd, id, label, ...otherProps }) {
   }
   return <Root id={id} {...otherProps} />;
 }
-
 Checkbox.displayName = 'Checkbox';
 Checkbox.propTypes = {
   alignEnd: PropTypes.bool,
@@ -95,5 +94,5 @@ Checkbox.propTypes = {
   onChange: PropTypes.func.isRequired,
   ripple: PropTypes.bool,
   style: PropTypes.object,
-  value: PropTypes.string
+  value: PropTypes.string,
 };

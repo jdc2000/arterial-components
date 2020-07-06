@@ -11,7 +11,7 @@ const numbers = {
   TRANSITION_OPEN_DURATION: 120 /** Total duration of menu-surface open animation. */,
   TRANSITION_CLOSE_DURATION: 75 /** Total duration of menu-surface close animation. */,
   MARGIN_TO_EDGE: 32 /** Margin left to the edge of the viewport when menu-surface is at maximum possible height. Also used as a viewport margin. */,
-  ANCHOR_TO_MENU_SURFACE_WIDTH_RATIO: 0.67 /** Ratio of anchor width to menu-surface width for switching from corner positioning to center positioning. */
+  ANCHOR_TO_MENU_SURFACE_WIDTH_RATIO: 0.67 /** Ratio of anchor width to menu-surface width for switching from corner positioning to center positioning. */,
 };
 
 export { Corner };
@@ -39,12 +39,12 @@ export const MenuSurface = React.forwardRef((props, ref) => {
     'mdc-menu-surface--animating-open': state.isAnimatingOpen,
     'mdc-menu-surface--open': state.isOpen,
     'mdc-menu-surface--is-open-below': state.isOpenBelow,
-    'mdc-menu-surface--fixed': fixed
+    'mdc-menu-surface--fixed': fixed,
   });
   const styles = { ...style, ...state.style };
 
   const autoPosition = useCallback(
-    measurements => {
+    (measurements) => {
       function getOriginCorner() {
         let corner = originCorner;
 
@@ -257,7 +257,7 @@ export const MenuSurface = React.forwardRef((props, ref) => {
 
       const position = {
         [horizontalAlignment]: horizontalOffset,
-        [verticalAlignment]: verticalOffset
+        [verticalAlignment]: verticalOffset,
       };
 
       // Center align when anchor width is comparable or greater than menu surface, otherwise keep corner.
@@ -282,8 +282,8 @@ export const MenuSurface = React.forwardRef((props, ref) => {
           right: 'right' in position ? `${position.right}px` : '',
           top: 'top' in position ? `${position.top}px` : '',
           bottom: 'bottom' in position ? `${position.bottom}px` : '',
-          maxHeight: maxMenuSurfaceHeight ? maxMenuSurfaceHeight + 'px' : ''
-        }
+          maxHeight: maxMenuSurfaceHeight ? maxMenuSurfaceHeight + 'px' : '',
+        },
       });
 
       // If it is opened from the top then add is-open-below class
@@ -299,7 +299,7 @@ export const MenuSurface = React.forwardRef((props, ref) => {
       anchorMargin.top,
       dir,
       fixed,
-      originCorner
+      originCorner,
     ]
   );
 
@@ -316,11 +316,11 @@ export const MenuSurface = React.forwardRef((props, ref) => {
           : null;
       const bodySize = {
         width: document.body.clientWidth,
-        height: document.body.clientHeight
+        height: document.body.clientHeight,
       };
       const viewportSize = {
         width: window.innerWidth,
-        height: window.innerHeight
+        height: window.innerHeight,
       };
       const windowScroll = { x: window.pageXOffset, y: window.pageYOffset };
 
@@ -331,7 +331,7 @@ export const MenuSurface = React.forwardRef((props, ref) => {
           bottom: isNumberAndFinite(position.y) ? position.y : 0,
           left: isNumberAndFinite(position.x) ? position.x : 0,
           width: 0,
-          height: 0
+          height: 0,
         };
       }
 
@@ -340,16 +340,16 @@ export const MenuSurface = React.forwardRef((props, ref) => {
         bodySize,
         surfaceSize: {
           width: ref && ref.current ? ref.current.offsetWidth : 0,
-          height: ref && ref.current ? ref.current.offsetHeight : 0
+          height: ref && ref.current ? ref.current.offsetHeight : 0,
         },
         viewportDistance: {
           top: anchorRect.top,
           right: viewportSize.width - anchorRect.right,
           bottom: viewportSize.height - anchorRect.bottom,
-          left: anchorRect.left
+          left: anchorRect.left,
         },
         viewportSize,
-        windowScroll
+        windowScroll,
       };
     }
 
@@ -384,7 +384,7 @@ export const MenuSurface = React.forwardRef((props, ref) => {
             closeAnimationEndTimerId = 0;
             dispatch({
               type: types.ANIMATING_CLOSED,
-              isAnimatingClosed: false
+              isAnimatingClosed: false,
             });
           }, numbers.TRANSITION_CLOSE_DURATION);
         });
@@ -406,18 +406,18 @@ export const MenuSurface = React.forwardRef((props, ref) => {
     document.body
   );
 });
-
+MenuSurface.displayName = 'MenuSurface';
 MenuSurface.propTypes = {
   anchorCorner: PropTypes.number,
   anchorMargin: PropTypes.shape({
     top: PropTypes.number,
     right: PropTypes.number,
     bottom: PropTypes.number,
-    left: PropTypes.number
+    left: PropTypes.number,
   }),
   anchorRef: PropTypes.oneOfType([
     PropTypes.func,
-    PropTypes.shape({ current: PropTypes.any })
+    PropTypes.shape({ current: PropTypes.any }),
   ]),
   children: PropTypes.node,
   className: PropTypes.string,
@@ -428,5 +428,5 @@ MenuSurface.propTypes = {
   position: PropTypes.shape({ x: PropTypes.number, y: PropTypes.number }),
   quickOpen: PropTypes.bool,
   style: PropTypes.object,
-  tag: PropTypes.any
+  tag: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 };

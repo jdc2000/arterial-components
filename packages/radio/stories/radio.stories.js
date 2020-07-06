@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import { Radio } from '..';
-import '@material/radio/dist/mdc.radio.css';
-import '@material/form-field/dist/mdc.form-field.css';
 
 export default { title: 'Radio' };
 

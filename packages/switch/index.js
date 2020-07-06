@@ -15,7 +15,7 @@ function Root({
 }) {
   const classes = classNames('mdc-switch', className, {
     'mdc-switch--checked': checked,
-    'mdc-switch--disabled': disabled
+    'mdc-switch--disabled': disabled,
   });
   return (
     <div className={classes} style={style}>
@@ -51,7 +51,6 @@ export function Switch({ alignEnd, id, label, ...otherProps }) {
   }
   return <Root id={id} {...otherProps} />;
 }
-
 Switch.displayName = 'Switch';
 Switch.propTypes = {
   alignEnd: PropTypes.bool,
@@ -62,5 +61,5 @@ Switch.propTypes = {
   label: PropTypes.string,
   onChange: PropTypes.func,
   style: PropTypes.object,
-  value: PropTypes.string
+  value: PropTypes.string,
 };

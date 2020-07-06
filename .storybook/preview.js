@@ -1,5 +1,6 @@
 import React from 'react';
 import { addDecorator, addParameters } from '@storybook/react';
+import './preview.scss';
 
 addDecorator(storyFn => <div className="mdc-typography">{storyFn()}</div>);
 addParameters({

@@ -10,8 +10,8 @@ export function DataTableContent({ children, className, ...otherProps }) {
     </tbody>
   );
 }
-
+DataTableContent.displayName = 'DataTableContent';
 DataTableContent.propTypes = {
   children: PropTypes.node,
-  className: PropTypes.string
+  className: PropTypes.string,
 };

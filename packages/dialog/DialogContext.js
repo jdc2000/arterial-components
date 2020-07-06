@@ -9,7 +9,7 @@ const DialogContext = React.createContext({
   contentId: CONTENT_ID,
   titleId: TITLE_ID,
   setContentId: () => {},
-  setTitleId: () => {}
+  setTitleId: () => {},
 });
 
 function DialogProvider({ children }) {
@@ -24,9 +24,9 @@ function DialogProvider({ children }) {
     </DialogContext.Provider>
   );
 }
-
+DialogProvider.displayName = 'DialogProvider';
 DialogProvider.propTypes = {
-  children: PropTypes.node
+  children: PropTypes.node,
 };
 
 export { DialogContext, DialogProvider };

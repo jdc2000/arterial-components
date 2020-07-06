@@ -8,9 +8,8 @@ import {
   CardActionButtons,
   CardActionButton,
   CardActionIcons,
-  CardActionIcon
+  CardActionIcon,
 } from '..';
-import '@material/card/dist/mdc.card.css';
 
 export default { title: 'Card' };
 
@@ -27,7 +26,7 @@ function MyCardPrimary({ mediaContent }) {
           lineHeight: '2rem',
           margin: 0,
           textDecoration: 'inherit',
-          textTransform: 'inherit'
+          textTransform: 'inherit',
         }}
       >
         Our Changing Planet
@@ -44,7 +43,7 @@ function MyCardPrimary({ mediaContent }) {
           lineHeight: '1.375rem',
           margin: 0,
           textDecoration: 'inherit',
-          textTransform: 'inherit'
+          textTransform: 'inherit',
         }}
       >
         by Kurt Wagner
@@ -67,7 +66,7 @@ function MyCardSecondary({ header }) {
         padding: '0 1rem 8px',
         textDecoration: 'inherit',
         textTransform: 'inherit',
-        paddingTop
+        paddingTop,
       }}
     >
       Visit ten places on our planet that are undergoing the biggest changes
@@ -82,7 +81,7 @@ function MyCard({
   mediaContent,
   noActions,
   noMedia,
-  square
+  square,
 }) {
   const [on, setOn] = useState(false);
   let width = '350px';

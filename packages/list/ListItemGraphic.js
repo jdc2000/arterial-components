@@ -31,11 +31,10 @@ export function ListItemGraphic({
     </Tag>
   );
 }
-
 ListItemGraphic.displayName = 'ListItemGraphic';
 ListItemGraphic.propTypes = {
   className: PropTypes.string,
   graphic: PropTypes.node,
   style: PropTypes.object,
-  tag: PropTypes.oneOfType([PropTypes.object, PropTypes.string])
+  tag: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 };

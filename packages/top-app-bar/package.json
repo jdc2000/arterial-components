@@ -24,11 +24,6 @@
   },
   "dependencies": {
     "@arterial/icon-button": "^1.2.0",
-    "@arterial/list": "^1.2.0",
-    "@arterial/menu-surface": "^1.2.0",
-    "@arterial/textfield": "^1.2.0",
-    "classnames": "^2.2.6",
-    "fuse.js": "^3.4.6",
-    "prop-types": "^15.7.2"
+    "@material/top-app-bar": "^6.0.0"
   }
 }

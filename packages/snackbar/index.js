@@ -20,7 +20,7 @@ const initialState = {
   isOpen: false,
   isOpening: false,
   isClosed: false,
-  isClosing: false
+  isClosing: false,
 };
 
 function reducer(state, action) {
@@ -34,7 +34,7 @@ function reducer(state, action) {
         ...state,
         isClosing: action.data,
         isOpen: !action.data,
-        isOpening: !action.data
+        isOpening: !action.data,
       };
     case OPEN:
       return { ...state, isOpen: action.data };
@@ -66,7 +66,7 @@ export function Snackbar({
     'mdc-snackbar--opening': state.isOpening,
     'mdc-snackbar--closing': state.isClosing,
     'mdc-snackbar--leading': leading,
-    'mdc-snackbar--stacked': stacked
+    'mdc-snackbar--stacked': stacked,
   });
 
   function handleSelect(e, action) {
@@ -187,8 +187,8 @@ export function Snackbar({
           {action && (
             <button
               className="mdc-button mdc-snackbar__action"
-              onClick={e => handleSelect(e, ACTION)}
-              onKeyDown={e => handleSelect(e, ACTION)}
+              onClick={(e) => handleSelect(e, ACTION)}
+              onKeyDown={(e) => handleSelect(e, ACTION)}
               type="button"
             >
               <div className="mdc-button__ripple"></div>
@@ -198,8 +198,8 @@ export function Snackbar({
           {dismiss && (
             <button
               className="material-icons mdc-icon-button mdc-snackbar__dismiss"
-              onClick={e => handleSelect(e, DISMISS)}
-              onKeyDown={e => handleSelect(e, DISMISS)}
+              onClick={(e) => handleSelect(e, DISMISS)}
+              onKeyDown={(e) => handleSelect(e, DISMISS)}
               title="Dismiss"
             >
               close
@@ -210,7 +210,7 @@ export function Snackbar({
     </div>
   );
 }
-
+Snackbar.displayName = 'Snackbar';
 Snackbar.propTypes = {
   action: PropTypes.string,
   className: PropTypes.string,
@@ -219,5 +219,5 @@ Snackbar.propTypes = {
   leading: PropTypes.bool,
   onClose: PropTypes.func,
   open: PropTypes.bool,
-  stacked: PropTypes.bool
+  stacked: PropTypes.bool,
 };

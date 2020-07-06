@@ -15,10 +15,9 @@ export function ListItemSecondaryText({
     </Tag>
   );
 }
-
 ListItemSecondaryText.displayName = 'ListItemSecondaryText';
 ListItemSecondaryText.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-  tag: PropTypes.oneOfType([PropTypes.object, PropTypes.string])
+  tag: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 };

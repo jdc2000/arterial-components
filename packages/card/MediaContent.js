@@ -5,20 +5,19 @@ import classNames from 'classnames';
 export default function MediaContent({
   children,
   className,
-  tag = 'div',
+  tag: Tag = 'div',
   ...otherProps
 }) {
   const classes = classNames('mdc-card__media-content', className);
-  const Tag = tag;
   return (
     <Tag className={classes} {...otherProps}>
       {children}
     </Tag>
   );
 }
-
+MediaContent.displayName = 'CardMediaContent';
 MediaContent.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-  tag: PropTypes.element
+  tag: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 };

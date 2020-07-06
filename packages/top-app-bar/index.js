@@ -20,7 +20,7 @@ const initialState = {
   topAppBarHeight: null,
   isCollapsed: false,
   wasScrolled: false,
-  styleTop: null
+  styleTop: null,
 };
 
 function mount(state, topAppBarEl) {
@@ -28,7 +28,7 @@ function mount(state, topAppBarEl) {
     ...state,
     lastScrollPosition: getViewportScrollY(state.scrollTarget),
     topAppBarHeight: getTopAppBarHeight(topAppBarEl),
-    topAppBarEl
+    topAppBarEl,
   };
 }
 
@@ -68,14 +68,14 @@ function handleStandardScroll(state) {
       ...state,
       lastScrollPosition,
       currentAppBarOffsetTop,
-      topAppBarHeight
+      topAppBarHeight,
     });
   }
   return {
     ...state,
     lastScrollPosition,
     currentAppBarOffsetTop,
-    topAppBarHeight
+    topAppBarHeight,
   };
 }
 
@@ -121,7 +121,7 @@ function moveTopAppBar(state) {
     currentAppBarOffsetTop,
     wasDocked,
     isDockedShowing,
-    styleTop
+    styleTop,
   };
 }
 
@@ -168,7 +168,7 @@ function throttledResizeHandler(state) {
     ...state,
     topAppBarHeight,
     wasDocked,
-    currentAppBarOffsetTop
+    currentAppBarOffsetTop,
   });
 }
 
@@ -234,7 +234,7 @@ export function TopAppBar({
   shortCollapsed,
   shortHasActionItem,
   style,
-  tag = 'header',
+  tag: Tag = 'header',
   ...otherProps
 }) {
   const topAppBarEl = useRef();
@@ -252,7 +252,7 @@ export function TopAppBar({
     topAppBarEl,
     isCurrentlyBeingResizedRef,
     resizeThrottleIdRef,
-    resizeDebounceIdRef
+    resizeDebounceIdRef,
   });
 
   const classes = classNames('mdc-top-app-bar', className, {
@@ -263,9 +263,8 @@ export function TopAppBar({
     'mdc-top-app-bar--short': state.short,
     'mdc-top-app-bar--short-collapsed':
       state.shortCollapsed || state.isCollapsed,
-    'mdc-top-app-bar--short-has-action-item': shortHasActionItem
+    'mdc-top-app-bar--short-has-action-item': shortHasActionItem,
   });
-  const Tag = tag;
 
   useEffect(() => {
     dispatch({ type: MOUNT, data: topAppBarEl });
@@ -305,7 +304,7 @@ export function TopAppBar({
     </Tag>
   );
 }
-
+TopAppBar.displayName = 'TopAppBar';
 TopAppBar.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
@@ -317,7 +316,7 @@ TopAppBar.propTypes = {
   shortCollapsed: PropTypes.bool,
   shortHasActionItem: PropTypes.bool,
   style: PropTypes.object,
-  tag: PropTypes.element
+  tag: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 };
 
 export { default as TopAppBarFixedAdjust } from './FixedAdjust';

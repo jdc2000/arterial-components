@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { IconButton } from '..';
-import '@material/icon-button/dist/mdc.icon-button.css';
 import ChromeSvg from './ChromeSvg.js';
 import FirefoxSvg from './FirefoxSvg.js';
 

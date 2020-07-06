@@ -2,15 +2,12 @@ import React, { useState } from 'react';
 import { Typeahead } from '..';
 import { Icon } from '../../icon';
 import './typeahead.stories.css';
-import '@material/textfield/dist/mdc.textfield.css';
-import '@material/list/dist/mdc.list.css';
-import '@material/menu-surface/dist/mdc.menu-surface.css';
 
 export default {
   title: 'Typeahead',
   decorators: [
-    storyFn => <div className="typeahead-container">{storyFn()}</div>
-  ]
+    (storyFn) => <div className="typeahead-container">{storyFn()}</div>,
+  ],
 };
 
 const lock = (
@@ -31,7 +28,7 @@ function getOptions({ meta, node, secondary }) {
     ['September', 'Sapphire'],
     ['October', 'Tourmaline or Opal'],
     ['November', 'Topaz or Citrine'],
-    ['December', 'Tanzanite, Zircon or Turquoise']
+    ['December', 'Tanzanite, Zircon or Turquoise'],
   ];
   for (let i = 0; i < months.length; i++) {
     const [month, birthStone] = months[i];
@@ -40,7 +37,7 @@ function getOptions({ meta, node, secondary }) {
       value: month.slice(0, 3).toLowerCase(),
       ...(secondary && { secondaryText: birthStone }),
       ...(node && { node: lock, selectedText: `${month} (Private)` }),
-      ...(meta && { meta: (i + 1).toString().padStart(2, '0') })
+      ...(meta && { meta: (i + 1).toString().padStart(2, '0') }),
     });
   }
   return options;
@@ -67,7 +64,7 @@ function MyTypeahead({ highlight, meta, node, secondary }) {
         options={options}
         searchOptions={{ keys }}
         value={value}
-        onChange={val => setValue(val)}
+        onChange={(val) => setValue(val)}
         onSelect={handleSelect}
       />
     </div>

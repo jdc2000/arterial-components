@@ -19,11 +19,10 @@ export function ListItemMeta({
     </Tag>
   );
 }
-
 ListItemMeta.displayName = 'ListItemMeta';
 ListItemMeta.propTypes = {
   className: PropTypes.string,
   meta: PropTypes.node,
   style: PropTypes.object,
-  tag: PropTypes.oneOfType([PropTypes.object, PropTypes.string])
+  tag: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 };

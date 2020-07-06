@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import { Checkbox } from '..';
-import '@material/checkbox/dist/mdc.checkbox.css';
-import '@material/form-field/dist/mdc.form-field.css';
 
 export default { title: 'Checkbox' };
 
@@ -17,7 +15,7 @@ function MyCheckbox({ disabled, label, type = 'unchecked' }) {
       indeterminate={indeterminate}
       label={label}
       name="checkboxes"
-      onChange={e => {
+      onChange={(e) => {
         setChecked(e.target.checked);
         setIndeterminate(e.target.indeterminate);
       }}

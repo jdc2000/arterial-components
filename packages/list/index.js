@@ -16,7 +16,7 @@ export function List({
     'mdc-list--avatar-list': avatarList,
     'mdc-list--dense': dense,
     'mdc-list--non-interactive': nonInteractive,
-    'mdc-list--two-line': twoLine
+    'mdc-list--two-line': twoLine,
   });
   return (
     <Tag className={classes} {...otherProps}>
@@ -24,7 +24,6 @@ export function List({
     </Tag>
   );
 }
-
 List.displayName = 'List';
 List.propTypes = {
   avatarList: PropTypes.bool,
@@ -33,7 +32,7 @@ List.propTypes = {
   dense: PropTypes.bool,
   nonInteractive: PropTypes.bool,
   twoLine: PropTypes.bool,
-  tag: PropTypes.oneOfType([PropTypes.object, PropTypes.string])
+  tag: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 };
 
 export { ListDivider } from './ListDivider';

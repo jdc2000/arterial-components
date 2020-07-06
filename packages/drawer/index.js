@@ -12,7 +12,7 @@ const initialState = {
   isAnimate: false,
   isClosing: false,
   isOpen: false,
-  isOpening: false
+  isOpening: false,
 };
 
 function reducer(state, action) {
@@ -23,7 +23,7 @@ function reducer(state, action) {
         isOpen: action.data,
         isOpening: false,
         isClosing: false,
-        isAnimate: false
+        isAnimate: false,
       };
     case CLOSING:
       return { ...state, isClosing: true };
@@ -43,23 +43,21 @@ export function Drawer({
   modal,
   onClose,
   open,
-  tag = 'aside',
+  tag: Tag = 'aside',
   ...otherProps
 }) {
   const [state, dispatch] = useReducer(reducer, {
     ...initialState,
-    isOpen: open
+    isOpen: open,
   });
-
   const classes = classNames(DRAWER_CLASS, className, {
     'mdc-drawer--dismissible': dismissible,
     'mdc-drawer--modal': modal,
     'mdc-drawer--open': state.isOpen,
     'mdc-drawer--opening': state.isOpening,
     'mdc-drawer--closing': state.isClosing,
-    'mdc-drawer--animate': state.isAnimate
+    'mdc-drawer--animate': state.isAnimate,
   });
-  const Tag = tag;
 
   function handleScrimClick() {
     if (onClose) {
@@ -144,7 +142,7 @@ export function Drawer({
     </>
   );
 }
-
+Drawer.displayName = 'Drawer';
 Drawer.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
@@ -152,7 +150,7 @@ Drawer.propTypes = {
   modal: PropTypes.bool,
   onClose: PropTypes.func,
   open: PropTypes.bool,
-  tag: PropTypes.element
+  tag: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 };
 
 export { default as DrawerAppContent } from './AppContent';

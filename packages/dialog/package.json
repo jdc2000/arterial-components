@@ -23,6 +23,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@arterial/button": "^1.2.0"
+    "@arterial/button": "^1.2.0",
+    "@material/dialog": "^6.0.0"
   }
 }

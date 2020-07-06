@@ -12,7 +12,7 @@ export default function HelperText({
 }) {
   const classes = classNames('mdc-text-field-helper-text', className, {
     'mdc-text-field-helper-text--persistent': persistent,
-    'mdc-text-field-helper-text--validation-msg': validationMsg
+    'mdc-text-field-helper-text--validation-msg': validationMsg,
   });
   return (
     <div className={classes} aria-hidden="true" id={id} {...otherProps}>
@@ -20,11 +20,11 @@ export default function HelperText({
     </div>
   );
 }
-
+HelperText.displayName = 'TextFieldHelperText';
 HelperText.propTypes = {
   className: PropTypes.string,
   id: PropTypes.string,
   persistent: PropTypes.bool,
   text: PropTypes.node,
-  validationMsg: PropTypes.bool
+  validationMsg: PropTypes.bool,
 };

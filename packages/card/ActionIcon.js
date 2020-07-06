@@ -11,7 +11,7 @@ export default function ActionIcon({ className, ...otherProps }) {
   );
   return <IconButton className={classes} {...otherProps} />;
 }
-
+ActionIcon.displayName = 'CardActionIcon';
 ActionIcon.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
 };

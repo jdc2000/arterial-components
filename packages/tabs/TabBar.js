@@ -9,7 +9,7 @@ const strings = {
   END_KEY: 'End',
   ENTER_KEY: 'Enter',
   HOME_KEY: 'Home',
-  SPACE_KEY: 'Space'
+  SPACE_KEY: 'Space',
 };
 
 const numbers = {
@@ -19,7 +19,7 @@ const numbers = {
   ENTER_KEYCODE: 13,
   HOME_KEYCODE: 36,
   SPACE_KEYCODE: 32,
-  EXTRA_SCROLL_AMOUNT: 20
+  EXTRA_SCROLL_AMOUNT: 20,
 };
 
 const ACCEPTABLE_KEYS = new Set();
@@ -62,7 +62,7 @@ function reducer(state, action) {
         activeIndex: action.activeIndex,
         previousIndicatorClientRect: action.previousIndicatorClientRect
           ? action.previousIndicatorClientRect
-          : state.previousIndicatorClientRect
+          : state.previousIndicatorClientRect,
       };
     default:
       throw new Error();
@@ -73,7 +73,7 @@ const initialState = {
   activeIndex: -1,
   focusedIndex: -1,
   previousIndicatorClientRect: null,
-  rtl: false
+  rtl: false,
 };
 
 export default function TabBar({
@@ -323,7 +323,7 @@ export default function TabBar({
       contentLeft: rootLeft + contentLeft,
       contentRight: rootLeft + contentLeft + contentWidth,
       rootLeft,
-      rootRight: rootLeft + rootWidth
+      rootRight: rootLeft + rootWidth,
     };
   }
 
@@ -361,7 +361,7 @@ export default function TabBar({
     const rootWidth = getScrollAreaOffsetWidth();
     return {
       left: 0,
-      right: contentWidth - rootWidth
+      right: contentWidth - rootWidth,
     };
   }
 
@@ -431,7 +431,7 @@ export default function TabBar({
     const scrollDelta = safeScrollX - currentScrollX;
     return {
       finalScrollPosition: safeScrollX,
-      scrollDelta
+      scrollDelta,
     };
   }
 
@@ -473,7 +473,7 @@ export default function TabBar({
     dispatch({
       type: SELECT_TAB,
       activeIndex: index,
-      previousIndicatorClientRect: getPreviousIndicatorClientRect()
+      previousIndicatorClientRect: getPreviousIndicatorClientRect(),
     });
     handleActiveIndexUpdate(index);
     setScrollIntoView(index);
@@ -527,11 +527,11 @@ export default function TabBar({
             active: index === state.activeIndex,
             focused: index === state.focusedIndex,
             previousIndicatorClientRect: state.previousIndicatorClientRect,
-            onBlur: e => handleTabBlur(e, onBlur),
-            onClick: e => handleTabClick(e, index, onClick),
-            onFocus: e => handleTabFocus(e, index, onFocus),
-            ref: element => tabsRef.current.set(index, element),
-            ...otherProps
+            onBlur: (e) => handleTabBlur(e, onBlur),
+            onClick: (e) => handleTabClick(e, index, onClick),
+            onFocus: (e) => handleTabFocus(e, index, onFocus),
+            ref: (element) => tabsRef.current.set(index, element),
+            ...otherProps,
           };
 
           return React.cloneElement(tab, props, children);
@@ -540,7 +540,7 @@ export default function TabBar({
     </Tag>
   );
 }
-
+TabBar.displayName = 'TabBar';
 TabBar.propTypes = {
   activeIndex: PropTypes.number,
   children: PropTypes.node,
@@ -548,5 +548,5 @@ TabBar.propTypes = {
   dir: PropTypes.string,
   handleActiveIndexUpdate: PropTypes.func,
   onKeyDown: PropTypes.func,
-  tag: PropTypes.element
+  tag: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 };

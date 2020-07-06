@@ -24,6 +24,8 @@
   },
   "dependencies": {
     "@arterial/icon": "^1.2.0",
-    "@arterial/notched-outline": "^1.2.0"
+    "@arterial/notched-outline": "^1.2.0",
+    "@material/textfield": "^6.0.0",
+    "uuid": "^8.2.0"
   }
 }

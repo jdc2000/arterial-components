@@ -21,5 +21,10 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "dependencies": {
+    "@material/menu": "^6.0.0",
+    "@material/menu-surface": "^6.0.0",
+    "react-dom": "^16.13.1"
   }
 }

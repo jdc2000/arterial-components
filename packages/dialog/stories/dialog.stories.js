@@ -7,15 +7,14 @@ import {
   DialogTitle,
   AlertDialog,
   ConfirmationDialog,
-  SimpleDialog
+  SimpleDialog,
 } from '..';
 import { Button } from '../../button';
 import { List, ListItem, ListItemGraphic, ListItemText } from '../../list';
-import '@material/dialog/dist/mdc.dialog.css';
 
 export default {
   title: 'Dialog',
-  decorators: [storyFn => <div style={{ height: '100vh' }}>{storyFn()}</div>]
+  decorators: [(storyFn) => <div style={{ height: '100vh' }}>{storyFn()}</div>],
 };
 
 function MyAlertDialog() {

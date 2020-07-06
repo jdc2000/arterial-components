@@ -11,7 +11,7 @@ export default function ActionButton({ className, ...otherProps }) {
   );
   return <Button className={classes} {...otherProps} />;
 }
-
+ActionButton.displayName = 'CardActionButton';
 ActionButton.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
 };

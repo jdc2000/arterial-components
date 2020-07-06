@@ -2,24 +2,23 @@ import React from 'react';
 import { CircularProgress } from '..';
 import { Button } from '../../button';
 import { IconButton } from '../../icon-button';
-import '@material/circular-progress/dist/mdc.circular-progress.css';
-import '../index.css';
+import '../index.scss';
 
 export default {
   title: 'CircularProgress',
   decorators: [
-    storyFn => (
+    (storyFn) => (
       <div
         style={{
           display: 'flex',
           alignItems: 'flex-end',
-          justifyContent: 'center'
+          justifyContent: 'center',
         }}
       >
         {storyFn()}
       </div>
-    )
-  ]
+    ),
+  ],
 };
 
 export const Basic = () => (
@@ -34,23 +33,21 @@ export const Basic = () => (
 export const Indeterminate = () => (
   <>
     <CircularProgress />
-    <CircularProgress size="medium" />
-    <CircularProgress size="small" />
-    <CircularProgress size="xsmall" />
+    <CircularProgress medium />
+    <CircularProgress small />
   </>
 );
 
 export const FourColors = () => (
   <>
     <CircularProgress fourColors />
-    <CircularProgress size="medium" fourColors />
-    <CircularProgress size="small" fourColors />
-    <CircularProgress size="xsmall" fourColors />
+    <CircularProgress medium fourColors />
+    <CircularProgress small fourColors />
   </>
 );
 
 export const Buttons = () => {
-  const icon = <CircularProgress size="xsmall" />;
+  const icon = <CircularProgress small />;
   const styles = { marginRight: '8px' };
   return (
     <>
@@ -63,5 +60,5 @@ export const Buttons = () => {
 };
 
 export const IconButtons = () => (
-  <IconButton icon={<CircularProgress size="small" />} />
+  <IconButton icon={<CircularProgress small />} />
 );

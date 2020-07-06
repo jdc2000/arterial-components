@@ -5,20 +5,19 @@ import classNames from 'classnames';
 export default function Header({
   children,
   className,
-  tag = 'div',
+  tag: Tag = 'div',
   ...otherProps
 }) {
   const classes = classNames('mdc-drawer__header', className);
-  const Tag = tag;
   return (
     <Tag className={classes} {...otherProps}>
       {children}
     </Tag>
   );
 }
-
+Header.displayName = 'DrawerHeader';
 Header.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-  tag: PropTypes.element
+  tag: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 };

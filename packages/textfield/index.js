@@ -62,19 +62,19 @@ export const TextField = React.forwardRef((props, ref) => {
     'mdc-text-field--outlined': outlined,
     'mdc-text-field--textarea': textarea,
     'mdc-text-field--with-leading-icon': icon,
-    'mdc-text-field--with-trailing-icon': trailingIcon
+    'mdc-text-field--with-trailing-icon': trailingIcon,
   });
   const labelClasses = classNames('mdc-floating-label', {
-    'mdc-floating-label--float-above': isLabelFloating
+    'mdc-floating-label--float-above': isLabelFloating,
   });
   const lineRippleClasses = classNames('mdc-line-ripple', {
-    'mdc-line-ripple--active': focused
+    'mdc-line-ripple--active': focused,
   });
 
   const labelId = `${id}-label`;
   const ariaProps = {
     'aria-label': noLabel ? label : null,
-    'aria-labelledby': noLabel ? null : labelId
+    'aria-labelledby': noLabel ? null : labelId,
   };
 
   function handleFocus(e) {
@@ -141,9 +141,9 @@ export const TextField = React.forwardRef((props, ref) => {
                 className={LEADING_ICON_CLASSES}
                 data-arterial={arterialRef.current}
                 icon={icon}
-                onClick={e => handleIconAction(e, onIconAction)}
+                onClick={(e) => handleIconAction(e, onIconAction)}
                 onFocus={handleIconFocus}
-                onKeyDown={e => handleIconAction(e, onIconAction)}
+                onKeyDown={(e) => handleIconAction(e, onIconAction)}
                 role={onIconAction ? 'button' : null}
                 tabIndex={onIconAction ? '0' : null}
               />
@@ -171,9 +171,9 @@ export const TextField = React.forwardRef((props, ref) => {
                 className={TRAILING_ICON_CLASSES}
                 data-arterial={arterialRef.current}
                 icon={trailingIcon}
-                onClick={e => handleIconAction(e, onTrailingIconAction)}
+                onClick={(e) => handleIconAction(e, onTrailingIconAction)}
                 onFocus={handleIconFocus}
-                onKeyDown={e => handleIconAction(e, onTrailingIconAction)}
+                onKeyDown={(e) => handleIconAction(e, onTrailingIconAction)}
                 role={onTrailingIconAction ? 'button' : null}
                 tabIndex={onTrailingIconAction ? '0' : null}
               />
@@ -214,7 +214,6 @@ export const TextField = React.forwardRef((props, ref) => {
     </>
   );
 });
-
 TextField.displayName = 'TextField';
 TextField.propTypes = {
   children: PropTypes.node,
@@ -241,5 +240,5 @@ TextField.propTypes = {
   textarea: PropTypes.bool,
   trailingIcon: PropTypes.node,
   type: PropTypes.string,
-  value: PropTypes.string
+  value: PropTypes.string,
 };

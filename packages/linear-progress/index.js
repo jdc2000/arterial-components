@@ -15,7 +15,7 @@ export function LinearProgress({
   const classes = classNames('mdc-linear-progress', className, {
     'mdc-linear-progress--closed': closed,
     'mdc-linear-progress--indeterminate': indeterminate,
-    'mdc-linear-progress--reversed': reversed
+    'mdc-linear-progress--reversed': reversed,
   });
   return (
     <div
@@ -27,11 +27,13 @@ export function LinearProgress({
       aria-valuenow={progress}
       {...otherProps}
     >
-      <div className="mdc-linear-progress__buffering-dots"></div>
-      <div
-        className="mdc-linear-progress__buffer"
-        style={buffer ? { transform: `scaleX(${buffer})` } : {}}
-      ></div>
+      <div className="mdc-linear-progress__buffer">
+        <div class="mdc-linear-progress__buffer-bar"></div>
+        <div
+          class="mdc-linear-progress__buffer-dots"
+          style={buffer ? { flexBasis: `${(1 - buffer) * 100}%` } : {}}
+        ></div>
+      </div>
       <div
         className="mdc-linear-progress__bar mdc-linear-progress__primary-bar"
         style={progress ? { transform: `scaleX(${progress})` } : {}}
@@ -44,7 +46,7 @@ export function LinearProgress({
     </div>
   );
 }
-
+LinearProgress.displayName = 'LinearProgress';
 LinearProgress.propTypes = {
   buffer: PropTypes.number,
   className: PropTypes.string,
@@ -52,5 +54,5 @@ LinearProgress.propTypes = {
   indeterminate: PropTypes.bool,
   label: PropTypes.string,
   progress: PropTypes.number,
-  reversed: PropTypes.bool
+  reversed: PropTypes.bool,
 };

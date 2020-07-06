@@ -6,25 +6,24 @@ export function Card({
   children,
   className,
   outlined,
-  tag = 'div',
+  tag: Tag = 'div',
   ...otherProps
 }) {
   const classes = classNames('mdc-card', className, {
-    'mdc-card--outlined': outlined
+    'mdc-card--outlined': outlined,
   });
-  const Tag = tag;
   return (
     <Tag className={classes} {...otherProps}>
       {children}
     </Tag>
   );
 }
-
+Card.displayName = 'Card';
 Card.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   outlined: PropTypes.bool,
-  tag: PropTypes.element
+  tag: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 };
 
 export { default as CardPrimaryAction } from './PrimaryAction';

@@ -27,6 +27,7 @@
     "@arterial/list": "^1.2.0",
     "@arterial/menu-surface": "^1.2.0",
     "@arterial/notched-outline": "^1.2.0",
+    "@material/select": "^6.0.0",
     "uuid": "^8.0.0"
   }
 }

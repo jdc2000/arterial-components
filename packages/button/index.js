@@ -15,19 +15,18 @@ export function Button({
   style,
   trailingIcon,
   unelevated,
-  tag = 'button',
+  tag: Tag = 'button',
   ...otherProps
 }) {
   const classes = classNames('mdc-button', className, {
     'mdc-button--outlined': outlined,
     'mdc-button--raised': raised,
-    'mdc-button--unelevated': unelevated
+    'mdc-button--unelevated': unelevated,
   });
   const styles = {
-    ...(tag === 'button' && { textAlign: 'initial' }),
-    ...style
+    ...(Tag === 'button' && { textAlign: 'initial' }),
+    ...style,
   };
-  const Tag = tag;
   return (
     <Tag className={classes} style={styles} {...otherProps}>
       {ripple && <div className="mdc-button__ripple"></div>}
@@ -39,7 +38,7 @@ export function Button({
     </Tag>
   );
 }
-
+Button.displayName = 'Button';
 Button.propTypes = {
   className: PropTypes.string,
   icon: PropTypes.node,
@@ -50,5 +49,5 @@ Button.propTypes = {
   style: PropTypes.object,
   trailingIcon: PropTypes.node,
   unelevated: PropTypes.bool,
-  tag: PropTypes.element
+  tag: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 };

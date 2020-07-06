@@ -23,6 +23,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@arterial/form-field": "^1.2.0"
+    "@arterial/form-field": "^1.2.0",
+    "@material/radio": "^6.0.0"
   }
 }

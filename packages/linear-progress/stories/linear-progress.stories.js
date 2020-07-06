@@ -1,6 +1,5 @@
 import React from 'react';
 import { LinearProgress } from '..';
-import '@material/linear-progress/dist/mdc.linear-progress.css';
 
 export default { title: 'LinearProgress' };
 

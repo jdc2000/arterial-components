@@ -10,7 +10,7 @@ const CIRCLES = {
     cy: 24,
     r: 18,
     strokeDasharray: 113.097,
-    strokeDashoffset: 56.549
+    strokeDashoffset: 56.549,
   },
   medium: {
     viewBox: '0 0 32 32',
@@ -18,7 +18,7 @@ const CIRCLES = {
     cy: 16,
     r: 12.5,
     strokeDasharray: 78.54,
-    strokeDashoffset: 39.27
+    strokeDashoffset: 39.27,
   },
   small: {
     viewBox: '0 0 24 24',
@@ -26,16 +26,8 @@ const CIRCLES = {
     cy: 12,
     r: 8.75,
     strokeDasharray: 54.978,
-    strokeDashoffset: 27.489
+    strokeDashoffset: 27.489,
   },
-  xsmall: {
-    viewBox: '0 0 18 18',
-    cx: 9,
-    cy: 9,
-    r: 6.563,
-    strokeDasharray: 41.237,
-    strokeDashoffset: 20.719
-  }
 };
 
 export function CircularProgress({
@@ -44,15 +36,19 @@ export function CircularProgress({
   closed,
   fourColors,
   label = 'Progress Bar',
+  medium,
   progress,
-  size = 'large',
+  small,
   ...otherProps
 }) {
-  const isIndeterminate = progress === null || progress === undefined;
+  const isIndeterminate = progress == null;
+  let size = 'large';
+  if (medium) size = 'medium';
+  else if (small) size = 'small';
   const classes = classNames('mdc-circular-progress', className, {
     'mdc-circular-progress--closed': closed,
     'mdc-circular-progress--indeterminate': isIndeterminate,
-    [`mdc-circular-progress--${size}`]: size
+    [`mdc-circular-progress--${size}`]: size,
   });
   const value = progress || 0;
   const strokeDashoffset = (1 - value) * (2 * Math.PI * CIRCLES[size].r);
@@ -73,7 +69,7 @@ export function CircularProgress({
     >
       {isIndeterminate ? (
         <div className="mdc-circular-progress__indeterminate-container">
-          {spinners.map(item => {
+          {spinners.map((item) => {
             const spinnerClasses = classNames(
               'mdc-circular-progress__spinner-layer',
               { [`mdc-circular-progress__color-${item}`]: fourColors }
@@ -150,13 +146,14 @@ export function CircularProgress({
     </div>
   );
 }
-
+CircularProgress.displayName = 'CircularProgress';
 CircularProgress.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   closed: PropTypes.bool,
   fourColors: PropTypes.bool,
   label: PropTypes.string,
+  medium: PropTypes.bool,
   progress: PropTypes.number,
-  size: PropTypes.oneOf(['large', 'medium', 'small', 'xsmall'])
+  small: PropTypes.bool,
 };

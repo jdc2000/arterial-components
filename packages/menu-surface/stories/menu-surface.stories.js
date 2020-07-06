@@ -2,25 +2,22 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Corner, MenuSurface, MenuSurfaceAnchor } from '..';
 import { Button } from '../../button';
 import { List, ListItem, ListItemText } from '../../list';
-import '@material/menu-surface/dist/mdc.menu-surface.css';
-import '@material/button/dist/mdc.button.css';
-import '@material/list/dist/mdc.list.css';
 
 export default {
   title: 'MenuSurface',
   decorators: [
-    storyFn => (
+    (storyFn) => (
       <div
         style={{
           display: 'flex',
           justifyContent: 'center',
-          paddingTop: '150px'
+          paddingTop: '150px',
         }}
       >
         {storyFn()}
       </div>
-    )
-  ]
+    ),
+  ],
 };
 
 function MyMenuSurface({ anchorCorner, basic, fixed, quickOpen, rightClick }) {

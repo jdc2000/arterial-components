@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Chip, ChipSet } from '..';
-import '@material/chips/dist/mdc.chips.css';
 
 export default { title: 'Chips' };
 
@@ -12,7 +11,7 @@ const CHIPS = [
   { text: ALFA, id: ALFA },
   { text: BRAVO, id: BRAVO },
   { text: CHARLIE, id: CHARLIE },
-  { text: DELTA, id: DELTA }
+  { text: DELTA, id: DELTA },
 ];
 
 function MyChips({ checkmark, choice, filter, noIcon }) {
@@ -34,7 +33,7 @@ function MyChips({ checkmark, choice, filter, noIcon }) {
   return (
     <>
       <ChipSet choice={choice} filter={filter}>
-        {CHIPS.map(chip => (
+        {CHIPS.map((chip) => (
           <Chip
             checkmark={checkmark}
             icon={noIcon ? null : 'face'}
@@ -57,7 +56,7 @@ function MyInputChips() {
     if (!!text && (e.key === 'Enter' || e.keyCode === 13)) {
       const id = text;
       const newChips = [...chips]; // triggers re-render
-      if (newChips.some(c => c.id === id)) {
+      if (newChips.some((c) => c.id === id)) {
         console.error('There is already a chip which has same key.');
       } else {
         newChips.push({ text, id });
@@ -67,7 +66,7 @@ function MyInputChips() {
     }
   }
   function handleTrailingIconSelect(id) {
-    const newChips = chips.filter(c => c.id !== id);
+    const newChips = chips.filter((c) => c.id !== id);
     setChips(newChips);
   }
   return (
@@ -79,13 +78,13 @@ function MyInputChips() {
           alignItems: 'center',
           borderBottom: '1px solid rgba(0, 0, 0, 0.6)',
           color: 'rgba(0, 0, 0, 0.6)',
-          fontFamily: 'Roboto, sans-serif'
+          fontFamily: 'Roboto, sans-serif',
         }}
       >
         <span>Input:</span>
         <ChipSet input>
           <div>
-            {chips.map(chip => (
+            {chips.map((chip) => (
               <Chip
                 id={chip.id}
                 key={chip.id}
@@ -113,7 +112,7 @@ function MyInputChips() {
               alignSelf: 'center',
               boxSizing: 'border-box',
               borderWidth: 0,
-              outline: 'none'
+              outline: 'none',
             }}
           />
         </ChipSet>

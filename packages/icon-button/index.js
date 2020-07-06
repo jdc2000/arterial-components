@@ -17,15 +17,15 @@ export function IconButton({
   ...otherProps
 }) {
   const classes = classNames('mdc-icon-button', className, {
-    'mdc-icon-button--on': on
+    'mdc-icon-button--on': on,
   });
   const ariaProps = {
     'aria-label': label,
-    'aria-pressed': on
+    'aria-pressed': on,
   };
   const styles = {
     ...(Tag === 'button' && { textAlign: 'initial' }),
-    ...style
+    ...style,
   };
   return (
     <Tag className={classes} style={styles} {...ariaProps} {...otherProps}>
@@ -34,7 +34,6 @@ export function IconButton({
     </Tag>
   );
 }
-
 IconButton.displayName = 'IconButton';
 IconButton.propTypes = {
   className: PropTypes.string,
@@ -43,5 +42,5 @@ IconButton.propTypes = {
   on: PropTypes.bool,
   onIcon: PropTypes.node,
   style: PropTypes.object,
-  tag: PropTypes.oneOfType([PropTypes.object, PropTypes.string])
+  tag: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 };

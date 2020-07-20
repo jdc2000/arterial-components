@@ -25,6 +25,7 @@ function Root({
         <input
           aria-checked={checked}
           className="mdc-switch__native-control"
+          disabled={disabled}
           id={id}
           onChange={onChange}
           role="switch"

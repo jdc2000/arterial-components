@@ -37,10 +37,10 @@ export function IconButton({
 IconButton.displayName = 'IconButton';
 IconButton.propTypes = {
   className: PropTypes.string,
-  icon: PropTypes.node.isRequired,
+  icon: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   label: PropTypes.string,
   on: PropTypes.bool,
-  onIcon: PropTypes.node,
+  onIcon: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   style: PropTypes.object,
   tag: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 };

@@ -1,6 +1,6 @@
 {
   "name": "@arterial/radio",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Another React Material Radio",
   "author": "jdc2000",
   "homepage": "https://github.com/jdc2000/arterial-components#readme",
@@ -23,7 +23,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@arterial/form-field": "^2.0.0",
+    "@arterial/form-field": "^2.0.1",
     "@material/radio": "^6.0.0"
   }
 }

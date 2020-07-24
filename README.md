@@ -1,2 +1,3 @@
-# arterial-components
-Another React Material Components Library
+# Arterial
+
+[Another React Material Components Library](https://arterialjs.org)

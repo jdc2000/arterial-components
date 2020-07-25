@@ -1,6 +1,6 @@
 # Arterial Dialog
 
-[Another React Material Dialog](https://arterialjs.org/dialog)
+[Another React Material Dialog](https://arterialjs.org/dialogs)
 
 ## Installation
 

@@ -1,193 +1,526 @@
-# `Arterial Select`
+# Arterial Select
 
-Another React Material Select
+[Another React Material Select](https://arterialjs.org/selects)
 
-## Install
+## Installation
 
-```
-npm i @arterial/select
+```zsh
+npm install @arterial/select
 ```
 
 ## Usage
 
-### Basic
+### Styles
 
-The select options must be an array of objects. The objects must have `text` and `value` props.
+#### Sass
+
+```scss
+@use "@material/floating-label/index.scss" as floating-label;
+@use "@material/line-ripple/index.scss" as line-ripple;
+@use "@material/notched-outline/index.scss" as notched-outline;
+@use "@material/select/helper-text/index.scss" as select-helper-text;
+@use "@material/select/icon/index.scss" as select-icon;
+@use "@material/select/index.scss" as select;
+@include floating-label.core-styles;
+@include line-ripple.core-styles;
+@include notched-outline.core-styles;
+@include select-helper-text.helper-text-core-styles;
+@include select-icon.icon-core-styles;
+@include select.core-styles;
+```
+
+#### CSS
+
+```jsx
+import '@material/select/dist/mdc.select.css';
+```
+
+### JSX
 
 ```jsx
 import { Select } from '@arterial/select';
-const [value, setValue] = useState('');
-const options = [
-  { text: 'Apple', value: 'apple' },
-  { text: 'Banana', value: 'banana' },
-  { text: 'Orange', value: 'orange' }
-];
-function handleSelect(option) {
-  setValue(option.value);
-}
-<Select
-  id="Filled"
-  label="Filled"
-  onSelect={handleSelect}
-  options={options}
-  value={value}
-/>;
 ```
 
-### Outlined
+## Filled Select
 
 ```jsx
-<Select
-  id="Outlined"
-  label="Outlined"
-  onSelect={handleSelect}
-  options={options}
-  outlined
-  value={value}
-/>
-```
-
-### Pre-selected option
-
-```jsx
-const [value, setValue] = useState('apple'); // pre-selected value
-const options = [
+const OPTIONS = [
   { text: 'Apple', value: 'apple' },
   { text: 'Banana', value: 'banana' },
-  { text: 'Orange', value: 'orange' }
+  { text: 'Orange', value: 'orange' },
 ];
-function handleSelect(option) {
-  setValue(option.value);
+function Filled() {
+  const [value, setValue] = useState('');
+  function handleSelect(option) {
+    setValue(option.value);
+  }
+  return (
+    <Select
+      id="Filled"
+      label="Filled"
+      onSelect={handleSelect}
+      options={OPTIONS}
+      value={value}
+    />
+  );
 }
-<Select
-  id="Filled"
-  label="Filled"
-  onSelect={handleSelect}
-  options={options}
-  value={value}
-/>;
+```
+
+## Outlined Select
+
+```jsx
+const OPTIONS = [
+  { text: 'Apple', value: 'apple' },
+  { text: 'Banana', value: 'banana' },
+  { text: 'Orange', value: 'orange' },
+];
+function Outlined() {
+  const [value, setValue] = useState('');
+  function handleSelect(option) {
+    setValue(option.value);
+  }
+  return (
+    <Select
+      id="Outlined"
+      label="Outlined"
+      onSelect={handleSelect}
+      options={OPTIONS}
+      outlined
+      value={value}
+    />
+  );
+}
+```
+
+## Other Variants
+
+### Leading Icon
+
+```jsx
+const OPTIONS = [
+  { text: 'Apple', value: 'apple' },
+  { text: 'Banana', value: 'banana' },
+  { text: 'Orange', value: 'orange' },
+];
+function LeadingIcon() {
+  const [value, setValue] = useState('');
+  function handleSelect(option) {
+    setValue(option.value);
+  }
+  return (
+    <Select
+      icon="restaurant_menu"
+      id="filled-leading-icon"
+      label="Filled"
+      onSelect={handleSelect}
+      options={OPTIONS}
+      value={value}
+    />
+  );
+}
+```
+
+### Invalid
+
+```jsx
+const OPTIONS = [
+  { text: 'Apple', value: 'apple' },
+  { text: 'Banana', value: 'banana' },
+  { text: 'Orange', value: 'orange' },
+];
+function Invalid() {
+  const [value, setValue] = useState('');
+  function handleSelect(option) {
+    setValue(option.value);
+  }
+  return (
+    <Select
+      id="filled-invalid"
+      invalid
+      label="Filled"
+      onSelect={handleSelect}
+      options={OPTIONS}
+      value={value}
+    />
+  );
+}
+```
+
+### Label Floating
+
+```jsx
+const OPTIONS = [
+  { text: 'Apple', value: 'apple' },
+  { text: 'Banana', value: 'banana' },
+  { text: 'Orange', value: 'orange' },
+];
+function LabelFloating() {
+  const [value, setValue] = useState('');
+  function handleSelect(option) {
+    setValue(option.value);
+  }
+  return (
+    <Select
+      id="filled-label-floating"
+      label="Filled"
+      labelFloating
+      onSelect={handleSelect}
+      options={OPTIONS}
+      value={value}
+    />
+  );
+}
+```
+
+### Menu Width
+
+```jsx
+const OPTIONS = [
+  { text: 'Apple', value: 'apple' },
+  { text: 'Banana', value: 'banana' },
+  { text: 'Orange', value: 'orange' },
+];
+function MenuWidth() {
+  const [value, setValue] = useState('');
+  function handleSelect(option) {
+    setValue(option.value);
+  }
+  return (
+    <Select
+      id="filled-menu-width"
+      label="Filled"
+      menuWidth="100%"
+      onSelect={handleSelect}
+      options={OPTIONS}
+      value={value}
+    />
+  );
+}
+```
+
+### No Label
+
+```jsx
+const OPTIONS = [
+  { text: 'Apple', value: 'apple' },
+  { text: 'Banana', value: 'banana' },
+  { text: 'Orange', value: 'orange' },
+];
+function NoLabel() {
+  const [value, setValue] = useState('');
+  function handleSelect(option) {
+    setValue(option.value);
+  }
+  return (
+    <Select
+      id="filled-no-label"
+      onSelect={handleSelect}
+      options={OPTIONS}
+      value={value}
+    />
+  );
+}
+```
+
+### Placeholder
+
+```jsx
+const OPTIONS = [
+  { text: 'Apple', value: 'apple' },
+  { text: 'Banana', value: 'banana' },
+  { text: 'Orange', value: 'orange' },
+];
+function Placeholder() {
+  const [value, setValue] = useState('');
+  function handleSelect(option) {
+    setValue(option.value);
+  }
+  return (
+    <Select
+      id="filled-placeholder"
+      label="Filled"
+      onSelect={handleSelect}
+      options={OPTIONS}
+      placeholder="Placeholder"
+      value={value}
+    />
+  );
+}
 ```
 
 ### Required
 
 ```jsx
-<Select
-  id="Filled"
-  label="Filled"
-  onSelect={handleSelect}
-  options={options}
-  required
-  value={value}
-/>
+const OPTIONS = [
+  { text: 'Apple', value: 'apple' },
+  { text: 'Banana', value: 'banana' },
+  { text: 'Orange', value: 'orange' },
+];
+function Required() {
+  const [value, setValue] = useState('');
+  function handleSelect(option) {
+    setValue(option.value);
+  }
+  return (
+    <Select
+      id="filled-required"
+      label="Filled"
+      onSelect={handleSelect}
+      options={OPTIONS}
+      required
+      value={value}
+    />
+  );
+}
+```
+
+### Loader
+
+```jsx
+const OPTIONS = [
+  { text: 'Apple', value: 'apple' },
+  { text: 'Banana', value: 'banana' },
+  { text: 'Orange', value: 'orange' },
+];
+function Loader() {
+  const [value, setValue] = useState('');
+  const [loading, setLoading] = useState(false);
+  function handleSelect(option) {
+    setValue(option.value);
+  }
+  return (
+    <>
+      <Button
+        label="Start Loader"
+        onClick={() => {
+          setLoading(true);
+          setTimeout(() => {
+            setLoading(false);
+          }, 5000);
+        }}
+        style={{ marginBottom: '8px' }}
+      />
+      <Select
+        disabled={loading}
+        id="filled-loader"
+        label="Filled"
+        labelFloating
+        onSelect={handleSelect}
+        options={OPTIONS}
+        placeholder={loading ? 'Loading...' : null}
+        trailingIcon={loading ? <CircularProgress small /> : null}
+        value={value}
+      />
+    </>
+  );
+}
 ```
 
 ### Disabled
 
 ```jsx
-<Select
-  disabled
-  id="Filled"
-  label="Filled"
-  onSelect={handleSelect}
-  options={options}
-  value={value}
-/>
-```
-
-### Disabled options
-
-```jsx
-const options = [
-  { text: 'Apple', value: 'apple', disabled: true }, // Sets option as disabled
+const OPTIONS = [
+  { text: 'Apple', value: 'apple' },
   { text: 'Banana', value: 'banana' },
-  { text: 'Orange', value: 'orange' }
+  { text: 'Orange', value: 'orange' },
 ];
-<Select
-  id="Filled"
-  label="Filled"
-  onSelect={handleSelect}
-  options={options}
-  value={value}
-/>;
+function Disabled() {
+  const [value, setValue] = useState('');
+  function handleSelect(option) {
+    setValue(option.value);
+  }
+  return (
+    <Select
+      disabled
+      id="filled-disabled"
+      label="Filled"
+      onSelect={handleSelect}
+      options={OPTIONS}
+      value={value}
+    />
+  );
+}
 ```
 
-### Enhanced options
-
-The option object in the options array must have `text` and `value` props. It also accepts `disabled`, `graphic`, `icon`, `iconStyle`, and `meta` props. The `graphic` and `meta` props will appear as they do on a menu item element. The `icon` prop is for an icon to appear after the `text`. You can style that icon with the `iconStyle` prop.
-
-You can use `selectedText` to convert an `icon` into text when the option is selected. For example if you have a lock icon in your option, then you can use `selectedText` to make it appear as '(Private)'.
+### Helper Text Object
 
 ```jsx
-const options = [
+const OPTIONS = [
+  { text: 'Apple', value: 'apple' },
+  { text: 'Banana', value: 'banana' },
+  { text: 'Orange', value: 'orange' },
+];
+function HelperTextObject() {
+  const [value, setValue] = useState('');
+  function handleSelect(option) {
+    setValue(option.value);
+  }
+  return (
+    <Select
+      helperText={{
+        persistent: true,
+        validationMsg: true,
+        text: 'Helper text as object.',
+      }}
+      id="filled-helper-text-object"
+      label="Filled"
+      onSelect={handleSelect}
+      options={OPTIONS}
+      value={value}
+    />
+  );
+}
+```
+
+### Helper Text Component
+
+```jsx
+const OPTIONS = [
+  { text: 'Apple', value: 'apple' },
+  { text: 'Banana', value: 'banana' },
+  { text: 'Orange', value: 'orange' },
+];
+function HelperTextComponent() {
+  const [value, setValue] = useState('');
+  function handleSelect(option) {
+    setValue(option.value);
+  }
+  return (
+    <Select
+      helperText={
+        <HelperText persistent validationMsg text="Helper text as component." />
+      }
+      id="filled-helper-text-component"
+      label="Filled"
+      onSelect={handleSelect}
+      options={OPTIONS}
+      value={value}
+    />
+  );
+}
+```
+
+### Pre-selected Option
+
+```jsx
+const OPTIONS = [
+  { text: 'Apple', value: 'apple' },
+  { text: 'Banana', value: 'banana' },
+  { text: 'Orange', value: 'orange' },
+];
+function PreSelected() {
+  const [value, setValue] = useState('banana');
+  function handleSelect(option) {
+    setValue(option.value);
+  }
+  return (
+    <Select
+      id="filled-pre-selected"
+      label="Filled"
+      onSelect={handleSelect}
+      options={OPTIONS}
+      value={value}
+    />
+  );
+}
+```
+
+### Disabled Options
+
+```jsx
+const DISABLED_OPTIONS = [
+  { text: 'Apple', value: 'apple', disabled: true },
+  { text: 'Banana', value: 'banana' },
+  { text: 'Orange', value: 'orange' },
+];
+function DisabledOptions() {
+  const [value, setValue] = useState('');
+  function handleSelect(option) {
+    setValue(option.value);
+  }
+  return (
+    <Select
+      id="filled-disabled-options"
+      label="Filled"
+      onSelect={handleSelect}
+      options={DISABLED_OPTIONS}
+      value={value}
+    />
+  );
+}
+```
+
+### Enhanced Options
+
+The option object in the options array must have text and value props. The option object also accepts disabled, graphic, node, and meta props. The graphic and meta props will appear as they do on a list item component. The node prop is for any element/elements to be displayed to right of list item text.
+You can use selectedText to convert an node that displays an icon into text when the option is selected. For example if you have a lock icon in your option, then you can use selectedText to make it appear as '(Private)'.
+
+```jsx
+const ENHANCED_OPTIONS = [
+  { text: 'Apple', value: 'apple' },
+  { text: 'Banana', value: 'banana' },
   {
-    text: 'Apple',
-    value: 'apple',
-    icon: 'lock',
-    selectedText: 'Apple (Private)'
+    text: 'Orange',
+    value: 'orange',
+    node: (
+      <Icon
+        icon="favorite"
+        style={{ color: 'rgba(0,0,0,.38)', marginLeft: '8px' }}
+      />
+    ),
+    selectedText: 'Orange (Favorite)',
   },
-  { text: 'Banana', value: 'banana' },
-  { text: 'Orange', value: 'orange' }
 ];
-<Select
-  id="Filled"
-  label="Filled"
-  onSelect={handleSelect}
-  options={options}
-  value={value}
-/>;
-```
-
-### Select with Helper Text
-
-```jsx
-import { Select, HelperText } from '@arterial/select';
-<Select
-  helperText={<HelperText text="Helper text" />}
-  id="Filled"
-  label="Filled"
-  onSelect={handleSelect}
-  options={options}
-  value={value}
-/>;
-```
-
-### Select with Leading Icons
-
-```jsx
-<Select
-  icon="calendar_today"
-  id="Filled"
-  label="Filled"
-  onSelect={handleSelect}
-  options={options}
-  value={value}
-/>
-```
-
-### Select with No Label
-
-```jsx
-<Select id="Filled" onSelect={handleSelect} options={options} value={value} />
+function EnhancedOptions() {
+  const [value, setValue] = useState('');
+  function handleSelect(option) {
+    setValue(option.value);
+  }
+  return (
+    <Select
+      id="filled-enhanced-options"
+      label="Filled"
+      onSelect={handleSelect}
+      options={ENHANCED_OPTIONS}
+      value={value}
+    />
+  );
+}
 ```
 
 ## Props
 
-| Prop Name    | Type                | Description                                                  |
-| ------------ | ------------------- | ------------------------------------------------------------ |
-| className    | String              | An optional class added to the select element.               |
-| disabled     | Boolean             | Disables the select.                                         |
-| helperText   | HelperText / Object | Element to appear as helper text of the select element.      |
-| icon         | Node                | Element to appear as leading icon of the select element.     |
-| id           | String              | Id of the `<input>` element.                                 |
-| invalid      | Boolean             | Sets select element as invalid.                              |
-| label        | Node                | Label element that appears as the floating label.            |
-| labelFloated | Boolean             | Sets floating label to floated.                              |
-| menuWidth    | String              | Sets menu width. Defaults to the select elements width.      |
-| onSelect     | (option) => void    | Callback for when option is selected.                        |
-| options      | Object[]            | Array of objects. Object must have `text` and `value` props. |
-| outlined     | Boolean             | Enables outlined variant.                                    |
-| placeholder  | string              | Content to be appear when select is empty.                   |
-| required     | Boolean             | Sets select element as required.                             |
-| style        | Object              | Sets the style of the select element.                        |
-| trailingIcon | Node                | Element to appear as trailing icon instead of dropdown icon. |
-| value        | String              | Sets the selected text element of the select                 |
+### Select
+
+| Name          | Type           | Description                                                           |
+| ------------- | -------------- | --------------------------------------------------------------------- |
+| children      | node           | Elements to be displayed within root element.                         |
+| className     | string         | Classes to be applied to the root element.                            |
+| disabled      | boolean        | Indicates whether the element is disabled.                            |
+| helperText    | node           | Gives context about a select, such as how the selection will be used. |
+| icon          | string \| node | Icon to render within root element.                                   |
+| id            | string         | Id of the element.                                                    |
+| invalid       | boolean        | Indicates the select is invalid.                                      |
+| label         | string         | Text to be displayed within the root element.                         |
+| labelFloating | boolean        | Inidcates whether the elements label is floating.                     |
+| menuWidth     | string         | Sets the menu width of the select.                                    |
+| onSelect      | function       | Select event handler.                                                 |
+| options       | object\*       | Items to be displayed as a menu list.                                 |
+| outlined      | boolean        | Enables an outlined variant.                                          |
+| placeholder   | string         | Text to be displayed in the select when it has no value set.          |
+| required      | boolean        | Indicates whether the select is required.                             |
+| style         | object         | Styles to be applied to the root element.                             |
+| trailingIcon  | string \| node | Icon to render on the right side of the root element.                 |
+| value         | string         | Value of input.                                                       |
+
+> NOTE: Options shape is { disabled: boolean, graphic: node, meta: node, node: node, secondaryText: string, selectedText: string, text: string, value: string }
+
+### HelperText
+
+| Name          | Type    | Description                                        |
+| ------------- | ------- | -------------------------------------------------- |
+| className     | string  | Classes to be applied to the root element.         |
+| id            | string  | Id of the element.                                 |
+| persistent    | boolean | Makes the helper text permanently visible.         |
+| validationMsg | boolean | Indicates the helper text is a validation message. |
+| text          | string  | Text to be displayed.                              |

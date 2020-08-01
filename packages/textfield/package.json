@@ -1,6 +1,6 @@
 {
   "name": "@arterial/textfield",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Another React Material Text Field",
   "author": "jdc2000",
   "homepage": "https://github.com/jdc2000/arterial-components#readme",
@@ -23,8 +23,8 @@
     "access": "public"
   },
   "dependencies": {
-    "@arterial/icon": "^2.0.1",
-    "@arterial/notched-outline": "^2.0.1",
+    "@arterial/icon": "^2.0.2",
+    "@arterial/notched-outline": "^2.0.2",
     "@material/textfield": "^6.0.0",
     "uuid": "^8.2.0"
   }

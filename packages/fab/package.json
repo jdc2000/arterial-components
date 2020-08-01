@@ -1,6 +1,6 @@
 {
   "name": "@arterial/fab",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Another React Material Floating Action Button",
   "author": "jdc2000",
   "homepage": "https://github.com/jdc2000/arterial-components#readme",
@@ -23,7 +23,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@arterial/icon": "^2.0.1",
+    "@arterial/icon": "^2.0.2",
     "@material/fab": "^6.0.0"
   }
 }

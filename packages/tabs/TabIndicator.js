@@ -67,6 +67,7 @@ const TabIndicator = React.forwardRef((props, ref) => {
         <Icon
           aria-hidden="true"
           className={contentClasses}
+          icon={icon}
           id={id}
           ref={contentRef}
           style={{ transform }}

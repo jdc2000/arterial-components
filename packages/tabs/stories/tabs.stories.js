@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Tab, TabBar } from '..';
+import { Icon } from '../../icon';
 
 export default {
   title: 'Tabs',
@@ -46,6 +47,7 @@ function MyTabs({ minWidth, restricted, scrolling, stacked, icons }) {
     <TabBar
       activeIndex={activeIndex}
       handleActiveIndexUpdate={updateActiveIndex}
+      scroll={scrolling}
     >
       {tabs.map(({ label, icon }) => (
         <Tab
@@ -67,4 +69,33 @@ export const MinWidth = () => <MyTabs minWidth />;
 export const WithIcon = () => <MyTabs icons />;
 export const Stacked = () => <MyTabs icons stacked />;
 export const StackedAndRestricted = () => <MyTabs icons stacked restricted />;
+export const IndicatorIcon = () => <MyIndicatorIcon />;
 export const Scrolling = () => <MyTabs minWidth scrolling />;
+
+function MyIndicatorIcon() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  return (
+    <>
+      <TabBar
+        activeIndex={activeIndex}
+        handleActiveIndexUpdate={(index) => setActiveIndex(index)}
+      >
+        <Tab
+          id="recents"
+          label="Recents"
+          indicatorIcon={<Icon icon="watch_later" />}
+        />
+        <Tab
+          id="nearby"
+          label="Nearby"
+          indicatorIcon={<Icon icon="near_me" />}
+        />
+        <Tab
+          id="favorites"
+          label="Favorites"
+          indicatorIcon={<Icon icon="favorite" />}
+        />
+      </TabBar>
+    </>
+  );
+}

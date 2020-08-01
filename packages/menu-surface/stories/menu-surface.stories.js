@@ -90,6 +90,7 @@ function MyMenuSurface({ anchorCorner, basic, fixed, quickOpen, rightClick }) {
   ) : (
     <MenuSurfaceAnchor data-arterial="1" ref={anchorRef}>
       <Button
+        data-arterial="1"
         id="button"
         label="Open"
         onClick={() => setOpen(!open)}

@@ -7,6 +7,7 @@ const ICON_CLASS = 'mdc-button__icon';
 
 export function Button({
   className,
+  'data-arterial': dataArterial,
   icon,
   label,
   outlined,
@@ -23,17 +24,41 @@ export function Button({
     'mdc-button--raised': raised,
     'mdc-button--unelevated': unelevated,
   });
+
   const styles = {
     ...(Tag === 'button' && { textAlign: 'initial' }),
     ...style,
   };
   return (
-    <Tag className={classes} style={styles} {...otherProps}>
-      {ripple && <div className="mdc-button__ripple"></div>}
-      {icon && <Icon aria-hidden="true" className={ICON_CLASS} icon={icon} />}
-      {label && <span className="mdc-button__label">{label}</span>}
+    <Tag
+      className={classes}
+      data-arterial={dataArterial}
+      style={styles}
+      {...otherProps}
+    >
+      {ripple && (
+        <div className="mdc-button__ripple" data-arterial={dataArterial}></div>
+      )}
+      {icon && (
+        <Icon
+          aria-hidden="true"
+          className={ICON_CLASS}
+          data-arterial={dataArterial}
+          icon={icon}
+        />
+      )}
+      {label && (
+        <span className="mdc-button__label" data-arterial={dataArterial}>
+          {label}
+        </span>
+      )}
       {trailingIcon && (
-        <Icon aria-hidden="true" className={ICON_CLASS} icon={trailingIcon} />
+        <Icon
+          aria-hidden="true"
+          className={ICON_CLASS}
+          data-arterial={dataArterial}
+          icon={trailingIcon}
+        />
       )}
     </Tag>
   );

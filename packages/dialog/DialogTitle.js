@@ -1,7 +1,8 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
+import { DialogContext } from './DialogContext';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { DialogContext } from './DialogContext';
+import { getTitleId } from './utils';
 
 export default function DialogTitle({
   children,
@@ -10,13 +11,15 @@ export default function DialogTitle({
   tag: Tag = 'h2',
   ...otherProps
 }) {
-  const dialogContext = useContext(DialogContext);
+  const { titleId, setTitleId } = useContext(DialogContext);
   const classes = classNames('mdc-dialog__title', className);
 
-  if (id) dialogContext.setTitleId(id);
+  useEffect(() => {
+    setTitleId(id || getTitleId());
+  }, [id, setTitleId]);
 
   return (
-    <Tag className={classes} id={dialogContext.titleId} {...otherProps}>
+    <Tag className={classes} id={titleId} {...otherProps}>
       {children}
     </Tag>
   );

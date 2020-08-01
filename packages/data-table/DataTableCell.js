@@ -13,6 +13,7 @@ export function DataTableHeaderCell(props) {
 
 function Cell({
   checkbox,
+  checkboxId,
   checked,
   children,
   className,
@@ -49,6 +50,7 @@ function Cell({
         <Checkbox
           className={checkboxClasses}
           checked={checked}
+          id={checkboxId}
           indeterminate={indeterminate}
           onChange={handleChange}
         />
@@ -61,6 +63,7 @@ function Cell({
 Cell.displayName = 'DataTableCell';
 Cell.propTypes = {
   checkbox: PropTypes.bool,
+  checkboxId: PropTypes.string,
   children: PropTypes.node,
   className: PropTypes.string,
   header: PropTypes.bool,

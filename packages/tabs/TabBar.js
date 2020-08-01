@@ -83,6 +83,7 @@ export default function TabBar({
   dir,
   handleActiveIndexUpdate,
   onKeyDown,
+  scroll,
   tag: Tag = 'div',
   ...otherProps
 }) {
@@ -514,7 +515,11 @@ export default function TabBar({
       ref={tabBarRef}
       {...otherProps}
     >
-      <TabScroller animating={state.animating} ref={tabScrollerRef}>
+      <TabScroller
+        animating={state.animating}
+        ref={tabScrollerRef}
+        scroll={scroll}
+      >
         {React.Children.map(children, (tab, index) => {
           const {
             children,

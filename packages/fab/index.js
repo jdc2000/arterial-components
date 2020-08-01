@@ -45,5 +45,6 @@ Fab.propTypes = {
   label: PropTypes.string,
   mini: PropTypes.bool,
   ripple: PropTypes.bool,
+  trailingIcon: PropTypes.node,
   tag: PropTypes.oneOf(['button', 'span', 'i', 'img', 'svg']),
 };

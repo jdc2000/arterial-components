@@ -11,6 +11,7 @@ const TabScroller = React.forwardRef((props, ref) => {
     dir,
     onInteraction,
     onTransitionEnd,
+    scroll,
     tag: Tag = 'div',
     ...otherProps
   } = props;
@@ -20,10 +21,9 @@ const TabScroller = React.forwardRef((props, ref) => {
     [`mdc-tab-scroller--align-${align}`]: align,
     'mdc-tab-scroller--animating': animating,
   });
-  const areaClasses = classNames(
-    'mdc-tab-scroller__scroll-area',
-    'mdc-tab-scroller__scroll-area--scroll'
-  );
+  const areaClasses = classNames('mdc-tab-scroller__scroll-area', {
+    'mdc-tab-scroller__scroll-area--scroll': scroll,
+  });
   const contentClasses = classNames('mdc-tab-scroller__scroll-content');
 
   function handleInteraction(e) {

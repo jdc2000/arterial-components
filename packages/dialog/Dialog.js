@@ -36,7 +36,7 @@ function reducer(state, action) {
   }
 }
 
-export default function Dialog({
+function Dialog({
   children,
   className,
   onClose,
@@ -135,22 +135,20 @@ export default function Dialog({
   }, [open]);
 
   return (
-    <DialogProvider>
-      <Tag className={classes} {...otherProps} {...ariaProps}>
-        <div className="mdc-dialog__container">
-          <div
-            className="mdc-dialog__surface"
-            role="alertdialog"
-            aria-modal="true"
-            aria-labelledby={dialogContext.titleId}
-            aria-describedby={dialogContext.contentId}
-          >
-            {children}
-          </div>
+    <Tag className={classes} {...otherProps} {...ariaProps}>
+      <div className="mdc-dialog__container">
+        <div
+          className="mdc-dialog__surface"
+          role="alertdialog"
+          aria-modal="true"
+          aria-labelledby={dialogContext.titleId}
+          aria-describedby={dialogContext.contentId}
+        >
+          {children}
         </div>
-        <div className="mdc-dialog__scrim" onClick={handleScrimClick}></div>
-      </Tag>
-    </DialogProvider>
+      </div>
+      <div className="mdc-dialog__scrim" onClick={handleScrimClick}></div>
+    </Tag>
   );
 }
 Dialog.displayName = 'Dialog';
@@ -163,3 +161,11 @@ Dialog.propTypes = {
   stacked: PropTypes.bool,
   tag: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 };
+
+export default function (props) {
+  return (
+    <DialogProvider>
+      <Dialog {...props} />
+    </DialogProvider>
+  );
+}

@@ -1,6 +1,6 @@
 {
   "name": "@arterial/top-app-bar",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "Another React Material Top App Bar",
   "author": "jdc2000",
   "homepage": "https://github.com/jdc2000/arterial-components#readme",
@@ -23,7 +23,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@arterial/icon-button": "^2.0.2",
+    "@arterial/icon-button": "^2.0.3",
     "@material/top-app-bar": "^6.0.0"
   }
 }

@@ -9,7 +9,7 @@ export default function FixedAdjust({
   fixed,
   prominent,
   short,
-  tag = 'div',
+  tag: Tag = 'div',
   ...otherProps
 }) {
   const classes = classNames(
@@ -22,7 +22,6 @@ export default function FixedAdjust({
     },
     className
   );
-  const Tag = tag;
   return (
     <Tag className={classes} {...otherProps}>
       {children}

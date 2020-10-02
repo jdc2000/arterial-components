@@ -62,11 +62,11 @@
   "scripts": {
     "build": "rollup -c",
     "clean": "npm run clean-root && npm run clean-pkgs",
-    "clean-dist": "lerna exec --parallel -- rm -rf ./dist",
     "clean-pkgs": "lerna clean -y && lerna exec --parallel -- rm -rf ./dist ./package-lock.json",
     "clean-root": "rm -rf ./node_modules ./package-lock.json",
     "force-publish": "lerna publish --force-publish",
     "postinstall": "lerna bootstrap",
+    "release": "npm run build && npm run force-publish",
     "storybook": "start-storybook -p 9001",
     "test": "jest"
   },

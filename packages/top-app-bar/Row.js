@@ -5,11 +5,10 @@ import classNames from 'classnames';
 export default function Row({
   children,
   className,
-  tag = 'div',
+  tag: Tag = 'div',
   ...otherProps
 }) {
   const classes = classNames('mdc-top-app-bar__row', className);
-  const Tag = tag;
   return (
     <Tag className={classes} {...otherProps}>
       {children}
@@ -20,5 +19,5 @@ export default function Row({
 Row.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-  tag: PropTypes.element
+  tag: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 };

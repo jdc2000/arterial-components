@@ -1,7 +1,7 @@
 {
   "name": "@arterial/menu-surface",
   "version": "2.0.2",
-  "description": "Another MDC Menu Surface",
+  "description": "Another React Material Menu Surface",
   "author": "jdc2000",
   "homepage": "https://github.com/jdc2000/arterial-components#readme",
   "license": "MIT",

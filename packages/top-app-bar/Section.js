@@ -7,15 +7,14 @@ export default function Section({
   alignStart = true,
   children,
   className,
-  tag = 'section',
+  tag: Tag = 'section',
   ...otherProps
 }) {
   const classes = classNames('mdc-top-app-bar__section', className, {
     'mdc-top-app-bar__section--align-end': alignEnd,
-    'mdc-top-app-bar__section--align-start': !alignEnd && alignStart
+    'mdc-top-app-bar__section--align-start': !alignEnd && alignStart,
   });
   const role = alignEnd ? 'toolbar' : null;
-  const Tag = tag;
   return (
     <Tag className={classes} {...otherProps} role={role}>
       {children}
@@ -28,5 +27,5 @@ Section.propTypes = {
   alignStart: PropTypes.bool,
   children: PropTypes.node,
   className: PropTypes.string,
-  tag: PropTypes.element
+  tag: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 };

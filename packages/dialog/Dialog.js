@@ -133,7 +133,6 @@ function Dialog({
       document.body.classList.remove(SCROLL_LOCK);
     };
   }, [open]);
-
   return (
     <Tag className={classes} {...otherProps} {...ariaProps}>
       <div className="mdc-dialog__container">

@@ -5,11 +5,10 @@ import classNames from 'classnames';
 export default function Title({
   children,
   className,
-  tag = 'span',
+  tag: Tag = 'span',
   ...otherProps
 }) {
   const classes = classNames('mdc-top-app-bar__title', className);
-  const Tag = tag;
   return (
     <Tag className={classes} {...otherProps}>
       {children}
@@ -20,5 +19,5 @@ export default function Title({
 Title.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-  tag: PropTypes.element
+  tag: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 };

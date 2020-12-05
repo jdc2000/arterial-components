@@ -3,7 +3,7 @@ export const INITIAL_STATE = {
   isAnimatingOpen: false,
   isOpen: false,
   isOpenBelow: false,
-  style: {}
+  style: {},
 };
 
 export const types = {
@@ -12,28 +12,28 @@ export const types = {
   CLOSE: 'CLOSE',
   OPEN: 'OPEN',
   OPEN_BELOW: 'OPEN_BELOW',
-  STYLE: 'STYLE'
+  STYLE: 'STYLE',
 };
 
 export const actions = {
   [types.ANIMATING_CLOSED]: (state, action) => {
-    return { ...state, isAnimatingClosed: action.isAnimatingClosed };
+    return {...state, isAnimatingClosed: action.isAnimatingClosed};
   },
   [types.ANIMATING_OPEN]: (state, action) => {
-    return { ...state, isAnimatingOpen: action.isAnimatingOpen };
+    return {...state, isAnimatingOpen: action.isAnimatingOpen};
   },
   [types.CLOSE]: (state, action) => {
-    return { ...state, isOpen: false, isOpenBelow: false };
+    return {...state, isOpen: false, isOpenBelow: false};
   },
   [types.OPEN]: (state, action) => {
-    return { ...state, isOpen: true };
+    return {...state, isOpen: true};
   },
   [types.OPEN_BELOW]: (state, action) => {
-    return { ...state, isOpenBelow: true };
+    return {...state, isOpenBelow: true};
   },
   [types.STYLE]: (state, action) => {
-    return { ...state, style: action.style };
-  }
+    return {...state, style: action.style};
+  },
 };
 
 export function reducer(state, action) {

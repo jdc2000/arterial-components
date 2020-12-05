@@ -13,7 +13,13 @@ async function getConfig() {
     if (!stat.isDirectory() || pkg === 'date-picker') continue;
     const {dependencies} = await import(`${filepath}/package.json`);
     const deps = Object.keys(dependencies || {});
-    const external = ['react', 'prop-types', 'classnames', ...deps];
+    const external = [
+      'react',
+      'react/jsx-runtime',
+      'prop-types',
+      'classnames',
+      ...deps,
+    ];
     result.push({
       external,
       input: path.resolve(filepath, 'index.js'),
@@ -32,7 +38,10 @@ async function getConfig() {
                 exclude: ['transform-typeof-symbol'],
               },
             ],
-            ['@babel/preset-react', {development: false, useBuiltIns: true}],
+            [
+              '@babel/preset-react',
+              {runtime: 'automatic', development: false, useBuiltIns: true},
+            ],
           ],
           plugins: [
             ['@babel/plugin-proposal-object-rest-spread', {useBuiltIns: true}],

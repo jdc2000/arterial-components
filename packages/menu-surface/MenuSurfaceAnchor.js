@@ -1,9 +1,9 @@
-import React from 'react';
+import {forwardRef} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-export const MenuSurfaceAnchor = React.forwardRef((props, ref) => {
-  const { children, className, tag: Tag = 'div', ...otherProps } = props;
+export const MenuSurfaceAnchor = forwardRef((props, ref) => {
+  const {children, className, tag: Tag = 'div', ...otherProps} = props;
   const classes = classNames('mdc-menu-surface--anchor', className);
   return (
     <Tag className={classes} ref={ref} {...otherProps}>

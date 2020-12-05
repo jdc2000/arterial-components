@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "@arterial/button": "^2.0.3",
-    "@material/dialog": "^6.0.0"
+    "@material/dialog": "^6.0.0",
+    "classnames": "^2.2.6"
   }
 }

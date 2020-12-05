@@ -1,7 +1,6 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { FormField } from '@arterial/form-field';
+import {FormField} from '@arterial/form-field';
 
 function Root({
   checked,
@@ -38,8 +37,8 @@ function Root({
   );
 }
 
-export function Switch({ alignEnd, id, label, ...otherProps }) {
-  const styles = alignEnd ? { marginRight: '22px' } : { marginLeft: '22px' };
+export function Switch({alignEnd, id, label, ...otherProps}) {
+  const styles = alignEnd ? {marginRight: '22px'} : {marginLeft: '22px'};
   if (label) {
     return (
       <FormField alignEnd={alignEnd}>

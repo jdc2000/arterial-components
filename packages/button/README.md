@@ -28,7 +28,7 @@ import '@material/button/dist/mdc.button.css';
 ### JSX
 
 ```jsx
-import { Button } from '@arterial/button';
+import {Button} from '@arterial/button';
 ```
 
 ## Text Button

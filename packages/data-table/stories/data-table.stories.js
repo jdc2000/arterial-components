@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import {Fragment, useRef, useState} from 'react';
 import {
   DataTable,
   DataTableCell,
@@ -8,7 +8,8 @@ import {
   DataTableRow,
 } from '..';
 
-export default { title: 'DataTable' };
+export const Meta = {title: 'DataTable'};
+export default Meta;
 
 const TABLE = [
   ['Dessert', 'Calories', 'Fat', 'Carbs', 'Protein (g)'],
@@ -63,7 +64,7 @@ export const Selection = () => {
   const numerics = useRef(new Map());
   const [headerChecked, setHeaderChecked] = useState('');
   const [bodyChecked, setBodyChecked] = useState(initChecked());
-  console.log({ checked: bodyChecked });
+  console.log({checked: bodyChecked});
   return (
     <DataTable>
       <DataTableHeader>
@@ -71,25 +72,25 @@ export const Selection = () => {
           {header.map((cell, cellIndex) => {
             const isNumeric = numerics.current.get(cellIndex) === true;
             return (
-              <React.Fragment key={`row-header-cell-${cellIndex}`}>
+              <Fragment key={`row-header-cell-${cellIndex}`}>
                 {cellIndex === 0 && (
                   <DataTableHeaderCell
                     checkbox
                     checked={headerChecked === 'checked'}
                     indeterminate={headerChecked === 'indeterminate'}
-                    onChange={(data) => {
-                      Object.keys(bodyChecked).forEach((key) => {
+                    onChange={data => {
+                      Object.keys(bodyChecked).forEach(key => {
                         bodyChecked[key] = data.checked;
                       });
                       setHeaderChecked(data.checked ? 'checked' : '');
-                      setBodyChecked({ ...bodyChecked });
+                      setBodyChecked({...bodyChecked});
                     }}
                   />
                 )}
                 <DataTableHeaderCell numeric={isNumeric}>
                   {cell}
                 </DataTableHeaderCell>
-              </React.Fragment>
+              </Fragment>
             );
           })}
         </DataTableRow>
@@ -105,22 +106,22 @@ export const Selection = () => {
                 const isNumeric = !isNaN(cell);
                 numerics.current.set(cellIndex, isNumeric);
                 return (
-                  <React.Fragment key={`row-${rowIndex}-cell-${cellIndex}`}>
+                  <Fragment key={`row-${rowIndex}-cell-${cellIndex}`}>
                     {cellIndex === 0 && (
                       <DataTableCell
                         checkbox
                         checked={bodyChecked[rowIndex] === true}
-                        onChange={(data) => {
+                        onChange={data => {
                           bodyChecked[rowIndex] = data.checked;
                           const values = Object.values(bodyChecked);
-                          const checked = values.find((checked) => checked);
+                          const checked = values.find(checked => checked);
                           const noneChecked = checked
                             ? false
-                            : values.every((checked) => !checked);
-                          const unchecked = values.find((checked) => !checked);
+                            : values.every(checked => !checked);
+                          const unchecked = values.find(checked => !checked);
                           const allChecked = unchecked
                             ? false
-                            : values.every((checked) => checked);
+                            : values.every(checked => checked);
                           let header;
                           if (allChecked) {
                             header = 'checked';
@@ -130,12 +131,12 @@ export const Selection = () => {
                             header = 'indeterminate';
                           }
                           setHeaderChecked(header);
-                          setBodyChecked({ ...bodyChecked });
+                          setBodyChecked({...bodyChecked});
                         }}
                       />
                     )}
                     <DataTableCell numeric={isNumeric}>{cell}</DataTableCell>
-                  </React.Fragment>
+                  </Fragment>
                 );
               })}
             </DataTableRow>

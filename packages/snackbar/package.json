@@ -23,6 +23,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@material/snackbar": "^6.0.0"
+    "@material/snackbar": "^6.0.0",
+    "classnames": "^2.2.6"
   }
 }

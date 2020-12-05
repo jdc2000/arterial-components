@@ -1,8 +1,8 @@
-import React from 'react';
-import { Grid, GridRow, GridCell } from '..';
+import {Grid, GridRow, GridCell} from '..';
 import './layout-grid.stories.css';
 
-export default { title: 'LayoutGrid' };
+export const Meta = {title: 'LayoutGrid'};
+export default Meta;
 
 export const Basic = () => (
   <Grid className="grid grid--basic">

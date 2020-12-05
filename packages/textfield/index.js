@@ -1,10 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react';
+import {forwardRef, useEffect, useRef, useState} from 'react';
 import HelperLine from './HelperLine';
-import { Icon } from '@arterial/icon';
-import { NotchedOutline } from '@arterial/notched-outline';
+import {Icon} from '@arterial/icon';
+import {NotchedOutline} from '@arterial/notched-outline';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { v4 as uuid } from 'uuid';
+import {v4 as uuid} from 'uuid';
 
 // prettier-ignore
 const ALWAYS_FLOAT_TYPES = ['color', 'date', 'datetime-local', 'month', 'range', 'time', 'week'];
@@ -15,8 +15,8 @@ const ICON_CLASS = 'mdc-text-field__icon';
 const LEADING_ICON_CLASSES = `${ICON_CLASS} mdc-text-field__icon--leading`;
 const TRAILING_ICON_CLASSES = `${ICON_CLASS} mdc-text-field__icon--trailing`;
 
-export { default as HelperText } from './HelperText';
-export const TextField = React.forwardRef((props, ref) => {
+export {default as HelperText} from './HelperText';
+export const TextField = forwardRef((props, ref) => {
   const {
     children,
     className,
@@ -100,14 +100,14 @@ export const TextField = React.forwardRef((props, ref) => {
 
   useEffect(() => {
     function handleBodyClick(e) {
-      const { arterial } = e.target.dataset;
+      const {arterial} = e.target.dataset;
       if (!arterial || arterial !== arterialRef.current) {
         setFocused(false);
       }
     }
 
     function handleWindowKeyDown(e) {
-      const { arterial } = e.target.dataset;
+      const {arterial} = e.target.dataset;
       const isEscape = e.key === 'Escape' || e.keyCode === 27;
       const isTab = e.key === 'Tab' || e.keyCode === 9;
       if ((isEscape || isTab) && arterial === arterialRef.current) {
@@ -141,9 +141,9 @@ export const TextField = React.forwardRef((props, ref) => {
                 className={LEADING_ICON_CLASSES}
                 data-arterial={arterialRef.current}
                 icon={icon}
-                onClick={(e) => handleIconAction(e, onIconAction)}
+                onClick={e => handleIconAction(e, onIconAction)}
                 onFocus={handleIconFocus}
-                onKeyDown={(e) => handleIconAction(e, onIconAction)}
+                onKeyDown={e => handleIconAction(e, onIconAction)}
                 role={onIconAction ? 'button' : null}
                 tabIndex={onIconAction ? '0' : null}
               />
@@ -171,9 +171,9 @@ export const TextField = React.forwardRef((props, ref) => {
                 className={TRAILING_ICON_CLASSES}
                 data-arterial={arterialRef.current}
                 icon={trailingIcon}
-                onClick={(e) => handleIconAction(e, onTrailingIconAction)}
+                onClick={e => handleIconAction(e, onTrailingIconAction)}
                 onFocus={handleIconFocus}
-                onKeyDown={(e) => handleIconAction(e, onTrailingIconAction)}
+                onKeyDown={e => handleIconAction(e, onTrailingIconAction)}
                 role={onTrailingIconAction ? 'button' : null}
                 tabIndex={onTrailingIconAction ? '0' : null}
               />

@@ -1,11 +1,11 @@
-import React from 'react';
-import { Button } from '..';
-import { CircularProgress } from '../../circular-progress';
+import {Button} from '..';
+import {CircularProgress} from '../../circular-progress';
 
-export default { title: 'Button' };
+export const Meta = {title: 'Button'};
+export default Meta;
 
-function MyButtons({ raised, unelevated, outlined }) {
-  const style = { margin: '0 8px' };
+function MyButtons({raised, unelevated, outlined}) {
+  const style = {margin: '0 8px'};
   return (
     <>
       <Button
@@ -41,7 +41,7 @@ export const Unelevated = () => <MyButtons unelevated />;
 export const Outlined = () => <MyButtons outlined />;
 export const Progress = () => {
   const icon = <CircularProgress small />;
-  const styles = { marginRight: '8px' };
+  const styles = {marginRight: '8px'};
   return (
     <>
       <Button label="Text" icon={icon} style={styles} />

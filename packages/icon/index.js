@@ -1,9 +1,9 @@
-import React from 'react';
+import {forwardRef, cloneElement} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-export const Icon = React.forwardRef((props, ref) => {
-  const { className, icon, ...otherProps } = props;
+export const Icon = forwardRef((props, ref) => {
+  const {className, icon, ...otherProps} = props;
   if (typeof icon === 'string') {
     const classes = classNames('art-icon', 'material-icons', className);
     return (
@@ -15,12 +15,12 @@ export const Icon = React.forwardRef((props, ref) => {
   const addArtIcon =
     icon.props.className && !icon.props.className.includes('art-icon');
   const classes = classNames(
-    { 'art-icon': addArtIcon },
+    {'art-icon': addArtIcon},
     icon.props.className,
     className
   );
-  const iconProps = { ...otherProps, ...icon.props, className: classes, ref };
-  return React.cloneElement(icon, iconProps);
+  const iconProps = {...otherProps, ...icon.props, className: classes, ref};
+  return cloneElement(icon, iconProps);
 });
 Icon.displayName = 'Icon';
 Icon.propTypes = {

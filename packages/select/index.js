@@ -1,6 +1,6 @@
-import React, { useEffect, useReducer, useRef } from 'react';
-import { HelperLine } from './HelperLine';
-import { Icon } from '@arterial/icon';
+import {useEffect, useReducer, useRef} from 'react';
+import {HelperLine} from './HelperLine';
+import {Icon} from '@arterial/icon';
 import {
   List,
   ListItem,
@@ -10,15 +10,15 @@ import {
   ListItemPrimaryText,
   ListItemSecondaryText,
 } from '@arterial/list';
-import { MenuSurface, Corner } from '@arterial/menu-surface';
-import { NotchedOutline } from '@arterial/notched-outline';
+import {MenuSurface, Corner} from '@arterial/menu-surface';
+import {NotchedOutline} from '@arterial/notched-outline';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { reducer, types, INITIAL_STATE } from './reducer';
-import { v4 as uuid } from 'uuid';
+import {reducer, types, INITIAL_STATE} from './reducer';
+import {v4 as uuid} from 'uuid';
 
-export { HelperLine };
-export { HelperText } from './HelperText';
+export {HelperLine};
+export {HelperText} from './HelperText';
 export function Select({
   children,
   className,
@@ -75,10 +75,10 @@ export function Select({
     let i = index;
     if (!options[i] || options[i].disabled) {
       const next = options.slice(i + 1);
-      i = next.findIndex((option) => !option.disabled);
+      i = next.findIndex(option => !option.disabled);
       if (i === -1) {
         const previous = options.slice(0, i);
-        i = previous.findIndex((option) => !option.disabled);
+        i = previous.findIndex(option => !option.disabled);
       }
     }
     if (i >= 0 && i < options.length) {
@@ -94,7 +94,7 @@ export function Select({
   function getMenuStyle() {
     if (anchorRef.current) {
       const width = menuWidth || anchorRef.current.clientWidth;
-      return { maxWidth: width, width };
+      return {maxWidth: width, width};
     }
   }
 
@@ -121,12 +121,12 @@ export function Select({
     if (disabled) return;
     if (!state.activated) focusListItem(state.selectedIndex);
     const type = state.activated ? types.DEACTIVATE : types.ACTIVATE;
-    dispatch({ type, focused: true });
+    dispatch({type, focused: true});
     e.preventDefault();
   }
 
   function handleFocus() {
-    dispatch({ type: types.FOCUS });
+    dispatch({type: types.FOCUS});
   }
 
   function handleKeyDown(e) {
@@ -139,9 +139,9 @@ export function Select({
     if (isEnter || isSpace || arrowUp || arrowDown) {
       e.preventDefault();
       focusListItem(state.selectedIndex);
-      dispatch({ type: types.ACTIVATE });
+      dispatch({type: types.ACTIVATE});
     } else if (isTab) {
-      dispatch({ type: types.DEACTIVATE, focused: false });
+      dispatch({type: types.DEACTIVATE, focused: false});
     }
   }
 
@@ -156,7 +156,7 @@ export function Select({
     if (!option.disabled && (isClick || isEnter || isSpace)) {
       e.preventDefault();
       setTimeout(() => anchorRef.current.focus(), 0);
-      dispatch({ type: types.DEACTIVATE });
+      dispatch({type: types.DEACTIVATE});
       if (onSelect) onSelect(option);
     } else if (isTab && e.shiftKey) {
       e.preventDefault();
@@ -165,30 +165,30 @@ export function Select({
       e.preventDefault();
       const i = getPreviousIndex(index);
       focusListItem(i);
-      dispatch({ type: types.FOCUS_INDEX, focusedIndex: i });
+      dispatch({type: types.FOCUS_INDEX, focusedIndex: i});
     } else if (arrowDown) {
       e.preventDefault();
       const i = getNextIndex(index);
       focusListItem(i);
-      dispatch({ type: types.FOCUS_INDEX, focusedIndex: i });
+      dispatch({type: types.FOCUS_INDEX, focusedIndex: i});
     }
   }
 
   useEffect(() => {
     function handleBodyClick(e) {
-      const { arterial } = e.target.dataset;
+      const {arterial} = e.target.dataset;
       if (!arterial || arterial !== arterialRef.current) {
-        dispatch({ type: types.DEACTIVATE, focused: false });
+        dispatch({type: types.DEACTIVATE, focused: false});
       }
     }
 
     function handleWindowKeyDown(e) {
-      const { arterial } = e.target.dataset;
+      const {arterial} = e.target.dataset;
       const isEscape = e.key === 'Escape' || e.keyCode === 27;
       const isTab = e.key === 'Tab' || e.keyCode === 9;
       if ((isEscape || isTab) && arterial === arterialRef.current) {
         if (isTab && !e.shiftKey) anchorRef.current.focus();
-        dispatch({ type: types.DEACTIVATE, focused: false });
+        dispatch({type: types.DEACTIVATE, focused: false});
       }
     }
 
@@ -202,10 +202,8 @@ export function Select({
 
   useEffect(() => {
     if (value != null) {
-      const selectedIndex = options.findIndex(
-        (option) => option.value === value
-      );
-      dispatch({ type: types.SELECT_INDEX, selectedIndex });
+      const selectedIndex = options.findIndex(option => option.value === value);
+      dispatch({type: types.SELECT_INDEX, selectedIndex});
     }
   }, [options, value]);
 
@@ -221,7 +219,7 @@ export function Select({
           onFocus={handleFocus}
           onKeyDown={handleKeyDown}
           ref={anchorRef}
-          style={{ width: 'inherit' }}
+          style={{width: 'inherit'}}
           tabIndex={disabled ? null : 0}
           title={getText(state.selectedIndex)}
         >
@@ -248,7 +246,7 @@ export function Select({
               className="mdc-select__dropdown-icon"
               data-arterial={arterialRef.current}
               icon={trailingIcon}
-              style={{ background: 'initial' }}
+              style={{background: 'initial'}}
             />
           ) : (
             <i
@@ -310,9 +308,9 @@ export function Select({
                   disabled={option.disabled}
                   id={`${id}-list-item-${option.value}`}
                   key={option.value}
-                  onClick={(e) => handleListItemAction(e, option, index)}
-                  onKeyDown={(e) => handleListItemAction(e, option, index)}
-                  ref={(element) => listItems.current.set(index, element)}
+                  onClick={e => handleListItemAction(e, option, index)}
+                  onKeyDown={e => handleListItemAction(e, option, index)}
+                  ref={element => listItems.current.set(index, element)}
                   role="option"
                   selected={index === state.selectedIndex && !option.disabled}
                   tabIndex={getListItemTabIndex(index)}

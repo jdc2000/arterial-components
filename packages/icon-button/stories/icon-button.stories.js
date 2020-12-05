@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
-import { IconButton } from '..';
+import {useState} from 'react';
+import {IconButton} from '..';
 import ChromeSvg from './ChromeSvg.js';
 import FirefoxSvg from './FirefoxSvg.js';
 
-export default { title: 'IconButton' };
+export const Meta = {title: 'IconButton'};
+export default Meta;
 
-function MyIconButton({ image, svg, toggle }) {
+function MyIconButton({image, svg, toggle}) {
   const [on, setOn] = useState(false);
   let myIcon = toggle ? 'favorite_border' : 'favorite';
   let myOnIcon = 'favorite';

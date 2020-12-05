@@ -28,7 +28,7 @@ import '@material/switch/dist/mdc.switch.css';
 ### JSX
 
 ```jsx
-import { Switch } from '@arterial/switch';
+import {Switch} from '@arterial/switch';
 ```
 
 ## Checked Switch

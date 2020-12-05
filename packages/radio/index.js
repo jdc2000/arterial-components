@@ -1,7 +1,6 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { FormField } from '@arterial/form-field';
+import {FormField} from '@arterial/form-field';
 
 function Root({
   checked,
@@ -38,7 +37,7 @@ function Root({
   );
 }
 
-export function Radio({ alignEnd, id, label, ...otherProps }) {
+export function Radio({alignEnd, id, label, ...otherProps}) {
   if (label) {
     return (
       <FormField alignEnd={alignEnd}>

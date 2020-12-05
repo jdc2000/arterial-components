@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
-import { Snackbar } from '..';
-import { Button } from '../../button';
+import {useState} from 'react';
+import {Snackbar} from '..';
+import {Button} from '../../button';
 
-export default {
+export const Meta = {
   title: 'Snackbar',
-  decorators: [(storyFn) => <div style={{ height: '100vh' }}>{storyFn()}</div>],
+  decorators: [storyFn => <div style={{height: '100vh'}}>{storyFn()}</div>],
 };
+export default Meta;
 
-function MySnackbar({ action, dismiss = true, leading, stacked }) {
+function MySnackbar({action, dismiss = true, leading, stacked}) {
   const [open, setOpen] = useState(false);
   return (
     <>
@@ -18,7 +19,7 @@ function MySnackbar({ action, dismiss = true, leading, stacked }) {
         label="Can't send photo. Retry in 5 seconds."
         leading={leading}
         open={open}
-        onClose={(action) => {
+        onClose={action => {
           console.log('onClose:', action);
           setOpen(false);
         }}

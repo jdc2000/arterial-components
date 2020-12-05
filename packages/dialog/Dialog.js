@@ -1,7 +1,7 @@
-import React, { useContext, useEffect, useReducer } from 'react';
+import {useContext, useEffect, useReducer} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { DialogContext, DialogProvider } from './DialogContext';
+import {DialogContext, DialogProvider} from './DialogContext';
 
 const DIALOG_ANIMATION_CLOSE_TIME_MS = 75;
 const DIALOG_ANIMATION_OPEN_TIME_MS = 150;
@@ -22,15 +22,15 @@ const initialState = {
 function reducer(state, action) {
   switch (action.type) {
     case ANIMATION_TIMER_END:
-      return { ...state, isOpening: false, isClosing: false };
+      return {...state, isOpening: false, isClosing: false};
     case CLOSE:
       document.body.classList.remove(SCROLL_LOCK);
-      return { ...state, isOpen: false, isClosing: true, isAriaHidden: null };
+      return {...state, isOpen: false, isClosing: true, isAriaHidden: null};
     case OPEN:
       document.body.classList.add(SCROLL_LOCK);
-      return { ...state, isOpen: true, isAriaHidden: true };
+      return {...state, isOpen: true, isAriaHidden: true};
     case OPENING:
-      return { ...state, isOpening: true };
+      return {...state, isOpening: true};
     default:
       throw new Error();
   }
@@ -85,7 +85,7 @@ function Dialog({
 
     function handleAnimationTimerEnd() {
       animationTimer = 0;
-      dispatch({ type: ANIMATION_TIMER_END });
+      dispatch({type: ANIMATION_TIMER_END});
     }
 
     function layout() {
@@ -98,10 +98,10 @@ function Dialog({
     }
 
     if (open) {
-      dispatch({ type: OPENING });
+      dispatch({type: OPENING});
 
       runNextAnimationFrame(() => {
-        dispatch({ type: OPEN });
+        dispatch({type: OPEN});
 
         layout();
         animationTimer = setTimeout(() => {
@@ -109,7 +109,7 @@ function Dialog({
         }, DIALOG_ANIMATION_OPEN_TIME_MS);
       });
     } else {
-      dispatch({ type: CLOSE });
+      dispatch({type: CLOSE});
 
       cancelAnimationFrame(animationFrame);
       animationFrame = 0;

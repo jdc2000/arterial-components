@@ -1,4 +1,4 @@
-import React from 'react';
+import {isValidElement} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -10,8 +10,8 @@ export function ListItemMeta({
   ...otherProps
 }) {
   const classes = classNames('mdc-list-item__meta', className);
-  const styles = React.isValidElement(meta)
-    ? { display: 'inherit', alignItems: 'inherit', ...style }
+  const styles = isValidElement(meta)
+    ? {display: 'inherit', alignItems: 'inherit', ...style}
     : style;
   return (
     <Tag className={classes} style={styles} {...otherProps}>

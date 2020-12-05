@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -17,7 +16,7 @@ export default function Media({
     'mdc-card__media--16-9': sixteenByNine,
   });
   const img = backgroundImage ? `url("${backgroundImage}")` : undefined;
-  const styles = { ...style, backgroundImage: img };
+  const styles = {...style, backgroundImage: img};
   return (
     <Tag className={classes} style={styles} {...otherProps}>
       {children}

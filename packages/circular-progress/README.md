@@ -28,7 +28,7 @@ import '@material/circular-progress/dist/mdc.circular-progress.css';
 ### JSX
 
 ```jsx
-import { CircularProgress } from '@arterial/circular-progress';
+import {CircularProgress} from '@arterial/circular-progress';
 ```
 
 ## Determinate Progress
@@ -107,7 +107,7 @@ import { Button } from '@arterial/button'
 ### Chips
 
 ```jsx
-import { Chip, ChipSet } from '@arterial/chip';
+import {Chip, ChipSet} from '@arterial/chip';
 
 <ChipSet choice>
   <Chip icon={<CircularProgress small />} text="Alfa" />

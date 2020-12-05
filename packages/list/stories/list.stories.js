@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import {useState} from 'react';
 import {
   List,
   ListDivider,
@@ -11,23 +11,19 @@ import {
   ListItemSecondaryText,
   ListItemText,
 } from '..';
-import { Checkbox } from '../../checkbox';
-import { Icon } from '../../icon';
-import { IconButton } from '../../icon-button';
-import { Radio } from '../../radio';
+import {Checkbox} from '../../checkbox';
+import {Icon} from '../../icon';
+import {IconButton} from '../../icon-button';
+import {Radio} from '../../radio';
 
-export default {
+export const Meta = {
   title: 'List',
-  decorators: [(storyFn) => <div style={{ width: '600px' }}>{storyFn()}</div>],
+  decorators: [storyFn => <div style={{width: '600px'}}>{storyFn()}</div>],
 };
+export default Meta;
 
-const items = [
-  { id: 'inbox' },
-  { id: 'star' },
-  { id: 'send' },
-  { id: 'drafts' },
-];
-function MyList({ type = 'activated' }) {
+const items = [{id: 'inbox'}, {id: 'star'}, {id: 'send'}, {id: 'drafts'}];
+function MyList({type = 'activated'}) {
   const [selected, setSelected] = useState('star');
   function handleClick(e) {
     const id = e.target.id || e.target.parentElement.id;
@@ -36,7 +32,7 @@ function MyList({ type = 'activated' }) {
   }
   return (
     <List>
-      {items.map((item) => {
+      {items.map(item => {
         const listItemProps = {
           activated: type === 'activated' && item.id === selected,
           selected: type === 'selected' && item.id === selected,
@@ -144,7 +140,7 @@ export const Meta = () => (
     <ListItem tag="div">
       <ListItemText>Meta with icon button</ListItemText>
       <ListItemMeta
-        meta={<IconButton icon="more_vert" style={{ marginRight: '-12px' }} />}
+        meta={<IconButton icon="more_vert" style={{marginRight: '-12px'}} />}
       />
     </ListItem>
     <ListItem htmlFor="checkbox" tag="label">
@@ -154,7 +150,7 @@ export const Meta = () => (
           <Checkbox
             id="checkbox"
             onChange={() => {}}
-            style={{ marginRight: '-8px' }}
+            style={{marginRight: '-8px'}}
           />
         }
       />
@@ -163,7 +159,7 @@ export const Meta = () => (
       <ListItemText>Meta with radio</ListItemText>
       <ListItemMeta
         meta={<Radio id="radio" onChange={() => {}} />}
-        style={{ marginRight: '-8px' }}
+        style={{marginRight: '-8px'}}
       />
     </ListItem>
   </List>

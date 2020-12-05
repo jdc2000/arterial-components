@@ -1,10 +1,10 @@
-import React, { useEffect, useReducer, useCallback } from 'react';
+import {forwardRef, useEffect, useReducer, useCallback} from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import { Corner, CornerBit } from './Corner';
+import {Corner, CornerBit} from './Corner';
 import classNames from 'classnames';
-import { getTransformPropertyName } from './utils';
-import { reducer, INITIAL_STATE, types } from './reducer';
+import {getTransformPropertyName} from './utils';
+import {reducer, INITIAL_STATE, types} from './reducer';
 
 const isHoistedElement = true;
 const numbers = {
@@ -14,12 +14,12 @@ const numbers = {
   ANCHOR_TO_MENU_SURFACE_WIDTH_RATIO: 0.67 /** Ratio of anchor width to menu-surface width for switching from corner positioning to center positioning. */,
 };
 
-export { Corner };
-export { MenuSurfaceAnchor } from './MenuSurfaceAnchor';
-export const MenuSurface = React.forwardRef((props, ref) => {
+export {Corner};
+export {MenuSurfaceAnchor} from './MenuSurfaceAnchor';
+export const MenuSurface = forwardRef((props, ref) => {
   const {
     anchorCorner = Corner.TOP_START,
-    anchorMargin = { top: 0, right: 0, bottom: 0, left: 0 },
+    anchorMargin = {top: 0, right: 0, bottom: 0, left: 0},
     anchorRef,
     children,
     className,
@@ -27,7 +27,7 @@ export const MenuSurface = React.forwardRef((props, ref) => {
     fixed,
     open,
     originCorner = Corner.TOP_START,
-    position = { x: 0, y: 0 },
+    position = {x: 0, y: 0},
     quickOpen,
     style,
     tag: Tag = 'div',
@@ -41,15 +41,15 @@ export const MenuSurface = React.forwardRef((props, ref) => {
     'mdc-menu-surface--is-open-below': state.isOpenBelow,
     'mdc-menu-surface--fixed': fixed,
   });
-  const styles = { ...style, ...state.style };
+  const styles = {...style, ...state.style};
 
   const autoPosition = useCallback(
-    (measurements) => {
+    measurements => {
       function getOriginCorner() {
         let corner = originCorner;
 
-        const { viewportDistance, anchorSize, surfaceSize } = measurements;
-        const { MARGIN_TO_EDGE } = numbers;
+        const {viewportDistance, anchorSize, surfaceSize} = measurements;
+        const {MARGIN_TO_EDGE} = numbers;
 
         const isAnchoredToBottom = hasBit(anchorCorner, CornerBit.BOTTOM);
 
@@ -140,12 +140,12 @@ export const MenuSurface = React.forwardRef((props, ref) => {
         return corner ^ bit;
       }
       function getMenuSurfaceMaxHeight(corner) {
-        const { viewportDistance } = measurements;
+        const {viewportDistance} = measurements;
 
         let maxHeight = 0;
         const isBottomAligned = hasBit(corner, CornerBit.BOTTOM);
         const isBottomAnchored = hasBit(anchorCorner, CornerBit.BOTTOM);
-        const { MARGIN_TO_EDGE } = numbers;
+        const {MARGIN_TO_EDGE} = numbers;
 
         // When maximum height is not specified, it is handled from CSS.
         if (isBottomAligned) {
@@ -167,7 +167,7 @@ export const MenuSurface = React.forwardRef((props, ref) => {
         return maxHeight;
       }
       function getHorizontalOriginOffset(corner) {
-        const { anchorSize } = measurements;
+        const {anchorSize} = measurements;
 
         // isRightAligned corresponds to using the 'right' property on the surface.
         const isRightAligned = hasBit(corner, CornerBit.RIGHT);
@@ -196,7 +196,7 @@ export const MenuSurface = React.forwardRef((props, ref) => {
           : anchorMargin.left;
       }
       function getVerticalOriginOffset(corner) {
-        const { anchorSize } = measurements;
+        const {anchorSize} = measurements;
         const isBottomAligned = hasBit(corner, CornerBit.BOTTOM);
         const avoidVerticalOverlap = hasBit(anchorCorner, CornerBit.BOTTOM);
 
@@ -213,7 +213,7 @@ export const MenuSurface = React.forwardRef((props, ref) => {
         return y;
       }
       function adjustPositionForHoistedElement(position) {
-        const { windowScroll, viewportDistance } = measurements;
+        const {windowScroll, viewportDistance} = measurements;
 
         const props = Object.keys(position);
 
@@ -253,7 +253,7 @@ export const MenuSurface = React.forwardRef((props, ref) => {
         : 'left';
       const horizontalOffset = getHorizontalOriginOffset(corner);
       const verticalOffset = getVerticalOriginOffset(corner);
-      const { anchorSize, surfaceSize } = measurements;
+      const {anchorSize, surfaceSize} = measurements;
 
       const position = {
         [horizontalAlignment]: horizontalOffset,
@@ -288,7 +288,7 @@ export const MenuSurface = React.forwardRef((props, ref) => {
 
       // If it is opened from the top then add is-open-below class
       if (!hasBit(corner, CornerBit.BOTTOM)) {
-        dispatch({ type: types.OPEN_BELOW });
+        dispatch({type: types.OPEN_BELOW});
       }
     },
     [
@@ -322,7 +322,7 @@ export const MenuSurface = React.forwardRef((props, ref) => {
         width: window.innerWidth,
         height: window.innerHeight,
       };
-      const windowScroll = { x: window.pageXOffset, y: window.pageYOffset };
+      const windowScroll = {x: window.pageXOffset, y: window.pageYOffset};
 
       if (!anchorRect) {
         anchorRect = {
@@ -362,24 +362,24 @@ export const MenuSurface = React.forwardRef((props, ref) => {
 
     if (open) {
       if (quickOpen) {
-        dispatch({ type: types.OPEN });
+        dispatch({type: types.OPEN});
       } else {
-        dispatch({ type: types.ANIMATING_OPEN, isAnimatingOpen: true });
+        dispatch({type: types.ANIMATING_OPEN, isAnimatingOpen: true});
         animationRequestId = requestAnimationFrame(() => {
-          dispatch({ type: types.OPEN });
+          dispatch({type: types.OPEN});
           openAnimationEndTimerId = setTimeout(() => {
             openAnimationEndTimerId = 0;
-            dispatch({ type: types.ANIMATING_OPEN, isAnimatingOpen: false });
+            dispatch({type: types.ANIMATING_OPEN, isAnimatingOpen: false});
           }, numbers.TRANSITION_OPEN_DURATION);
         });
       }
     } else {
       if (quickOpen) {
-        dispatch({ type: types.CLOSE });
+        dispatch({type: types.CLOSE});
       } else {
-        dispatch({ type: types.ANIMATING_CLOSED, isAnimatingClosed: true });
+        dispatch({type: types.ANIMATING_CLOSED, isAnimatingClosed: true});
         requestAnimationFrame(() => {
-          dispatch({ type: types.CLOSE });
+          dispatch({type: types.CLOSE});
           closeAnimationEndTimerId = setTimeout(() => {
             closeAnimationEndTimerId = 0;
             dispatch({
@@ -417,7 +417,7 @@ MenuSurface.propTypes = {
   }),
   anchorRef: PropTypes.oneOfType([
     PropTypes.func,
-    PropTypes.shape({ current: PropTypes.any }),
+    PropTypes.shape({current: PropTypes.any}),
   ]),
   children: PropTypes.node,
   className: PropTypes.string,
@@ -425,7 +425,7 @@ MenuSurface.propTypes = {
   fixed: PropTypes.bool,
   open: PropTypes.bool,
   originCorner: PropTypes.number,
-  position: PropTypes.shape({ x: PropTypes.number, y: PropTypes.number }),
+  position: PropTypes.shape({x: PropTypes.number, y: PropTypes.number}),
   quickOpen: PropTypes.bool,
   style: PropTypes.object,
   tag: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),

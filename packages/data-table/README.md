@@ -108,12 +108,12 @@ function CheckboxTable() {
                   checkboxId={`${cellData}-checkbox`}
                   checked={headerChecked === 'checked'}
                   indeterminate={headerChecked === 'indeterminate'}
-                  onChange={(data) => {
-                    Object.keys(bodyChecked).forEach((key) => {
+                  onChange={data => {
+                    Object.keys(bodyChecked).forEach(key => {
                       bodyChecked[key] = data.checked;
                     });
                     setHeaderChecked(data.checked ? 'checked' : '');
-                    setBodyChecked({ ...bodyChecked });
+                    setBodyChecked({...bodyChecked});
                   }}
                 />
               )}
@@ -138,17 +138,17 @@ function CheckboxTable() {
                   <DataTableCell
                     checkbox
                     checked={bodyChecked[rowIndex] === true}
-                    onChange={(data) => {
+                    onChange={data => {
                       bodyChecked[rowIndex] = data.checked;
                       const values = Object.values(bodyChecked);
-                      const checked = values.find((checked) => checked);
+                      const checked = values.find(checked => checked);
                       const noneChecked = checked
                         ? false
-                        : values.every((checked) => !checked);
-                      const unchecked = values.find((checked) => !checked);
+                        : values.every(checked => !checked);
+                      const unchecked = values.find(checked => !checked);
                       const allChecked = unchecked
                         ? false
-                        : values.every((checked) => checked);
+                        : values.every(checked => checked);
                       let header;
                       if (allChecked) {
                         header = 'checked';
@@ -158,7 +158,7 @@ function CheckboxTable() {
                         header = 'indeterminate';
                       }
                       setHeaderChecked(header);
-                      setBodyChecked({ ...bodyChecked });
+                      setBodyChecked({...bodyChecked});
                     }}
                   />
                 )}

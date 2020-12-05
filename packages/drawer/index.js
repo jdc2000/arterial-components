@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from 'react';
+import {useEffect, useReducer} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -26,11 +26,11 @@ function reducer(state, action) {
         isAnimate: false,
       };
     case CLOSING:
-      return { ...state, isClosing: true };
+      return {...state, isClosing: true};
     case OPEN:
-      return { ...state, isOpen: true, isAnimate: true };
+      return {...state, isOpen: true, isAnimate: true};
     case OPENING:
-      return { ...state, isOpening: true };
+      return {...state, isOpening: true};
     default:
       throw new Error();
   }
@@ -68,7 +68,7 @@ export function Drawer({
   function handleTransitionEnd(e) {
     const element = e.target;
     if (isElement(element) && hasClass(element, DRAWER_CLASS)) {
-      dispatch({ type: CLOSE, data: !state.isClosing });
+      dispatch({type: CLOSE, data: !state.isClosing});
     }
   }
 
@@ -98,17 +98,17 @@ export function Drawer({
       if (state.isOpen || state.isOpening || state.isClosing) {
         return;
       }
-      dispatch({ type: OPEN });
+      dispatch({type: OPEN});
 
       // Wait a frame once display is no longer "none", to establish basis for animation
       runNextAnimationFrame(() => {
-        dispatch({ type: OPENING });
+        dispatch({type: OPENING});
       });
     } else {
       if (!state.isOpen || state.isOpening || state.isClosing) {
         return;
       }
-      dispatch({ type: CLOSING });
+      dispatch({type: CLOSING});
     }
   }, [open, state]);
 
@@ -153,8 +153,8 @@ Drawer.propTypes = {
   tag: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 };
 
-export { default as DrawerAppContent } from './AppContent';
-export { default as DrawerContent } from './Content';
-export { default as DrawerHeader } from './Header';
-export { default as DrawerTitle } from './Title';
-export { default as DrawerSubtitle } from './Subtitle';
+export {default as DrawerAppContent} from './AppContent';
+export {default as DrawerContent} from './Content';
+export {default as DrawerHeader} from './Header';
+export {default as DrawerTitle} from './Title';
+export {default as DrawerSubtitle} from './Subtitle';

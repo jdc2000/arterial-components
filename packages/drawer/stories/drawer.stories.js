@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import {useState} from 'react';
 import {
   Drawer,
   DrawerContent,
@@ -7,7 +7,7 @@ import {
   DrawerSubtitle,
   DrawerAppContent,
 } from '..';
-import { List, ListItem, ListItemGraphic, ListItemText } from '../../list';
+import {List, ListItem, ListItemGraphic, ListItemText} from '../../list';
 import {
   TopAppBar,
   TopAppBarIcon,
@@ -18,25 +18,21 @@ import {
 } from '../../top-app-bar';
 import './drawer.stories.css';
 
-export default {
+export const Meta = {
   title: 'Drawer',
   decorators: [
-    (storyFn) => (
-      <div style={{ display: 'flex', height: '100vh', margin: '-8px' }}>
+    storyFn => (
+      <div style={{display: 'flex', height: '100vh', margin: '-8px'}}>
         {storyFn()}
       </div>
     ),
   ],
 };
+export default Meta;
 
-const items = [
-  { id: 'inbox' },
-  { id: 'star' },
-  { id: 'send' },
-  { id: 'drafts' },
-];
+const items = [{id: 'inbox'}, {id: 'star'}, {id: 'send'}, {id: 'drafts'}];
 
-function MyDrawer({ appbar, dissmisible, header, modal }) {
+function MyDrawer({appbar, dissmisible, header, modal}) {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState('star');
   let appTitle = 'Permanent';
@@ -68,7 +64,7 @@ function MyDrawer({ appbar, dissmisible, header, modal }) {
         )}
         <DrawerContent>
           <List>
-            {items.map((item) => {
+            {items.map(item => {
               return (
                 <ListItem
                   id={item.id}

@@ -1,8 +1,8 @@
-import React from 'react';
+import {forwardRef} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-export const ListItem = React.forwardRef((props, ref) => {
+export const ListItem = forwardRef((props, ref) => {
   const {
     activated,
     children,

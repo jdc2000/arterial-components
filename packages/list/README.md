@@ -142,7 +142,7 @@ function Activated() {
   const [activated, setActivated] = useState('star');
   return (
     <List>
-      {ITEMS.map((item) => (
+      {ITEMS.map(item => (
         <ListItem
           activated={activated === item}
           id={item}
@@ -168,7 +168,7 @@ function Selected() {
   const [selected, setSelected] = useState('star');
   return (
     <List>
-      {ITEMS.map((item) => (
+      {ITEMS.map(item => (
         <ListItem
           id={item}
           key={item}
@@ -186,8 +186,8 @@ function Selected() {
 ### Graphic
 
 ```jsx
-import { Checkbox } from '@arterial/checkbox';
-import { Radio } from '@arterial/radio';
+import {Checkbox} from '@arterial/checkbox';
+import {Radio} from '@arterial/radio';
 
 <List tag="div">
   <ListItem tag="div">
@@ -212,8 +212,8 @@ import { Radio } from '@arterial/radio';
 ### Metadata
 
 ```jsx
-import { Checkbox } from '@arterial/checkbox';
-import { Radio } from '@arterial/radio';
+import {Checkbox} from '@arterial/checkbox';
+import {Radio} from '@arterial/radio';
 
 <List tag="div">
   <ListItem tag="div">
@@ -238,7 +238,7 @@ import { Radio } from '@arterial/radio';
   <ListItem tag="div">
     <ListItemText>Meta with icon button</ListItemText>
     <ListItemMeta
-      meta={<IconButton icon="more_vert" style={{ marginRight: '-12px' }} />}
+      meta={<IconButton icon="more_vert" style={{marginRight: '-12px'}} />}
     />
   </ListItem>
   <ListItem tag="label">
@@ -248,7 +248,7 @@ import { Radio } from '@arterial/radio';
         <Checkbox
           id="meta-checkbox"
           onChange={() => {}}
-          style={{ marginRight: '-8px' }}
+          style={{marginRight: '-8px'}}
         />
       }
     />
@@ -257,7 +257,7 @@ import { Radio } from '@arterial/radio';
     <ListItemText>Meta with radio</ListItemText>
     <ListItemMeta
       meta={<Radio id="meta-radio" onChange={() => {}} />}
-      style={{ marginRight: '-8px' }}
+      style={{marginRight: '-8px'}}
     />
   </ListItem>
 </List>;

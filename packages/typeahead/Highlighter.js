@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 
 const DEFAULT_COLOR = 'var(--mdc-theme-primary, black)';
@@ -9,7 +8,7 @@ export default function Highlighter({
   highlight,
   value,
   matches,
-  tag: Tag = 'span'
+  tag: Tag = 'span',
 }) {
   if (
     highlight &&
@@ -35,7 +34,7 @@ export default function Highlighter({
         pair = m.shift();
       }
     }
-    return <Tag dangerouslySetInnerHTML={{ __html: result.join('') }} />;
+    return <Tag dangerouslySetInnerHTML={{__html: result.join('')}} />;
   }
   return value;
 }
@@ -45,5 +44,5 @@ Highlighter.propTypes = {
   color: PropTypes.string,
   highlight: PropTypes.bool,
   matches: PropTypes.arrayOf(PropTypes.object),
-  value: PropTypes.string
+  value: PropTypes.string,
 };

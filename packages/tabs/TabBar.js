@@ -1,4 +1,4 @@
-import React, { useReducer, useRef, useEffect } from 'react';
+import {Children, cloneElement, useReducer, useRef, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import TabScroller from './TabScroller';
 import classNames from 'classnames';
@@ -49,13 +49,13 @@ const SELECT_TAB = 'SELECT_TAB';
 function reducer(state, action) {
   switch (action.type) {
     case ANIMATING:
-      return { ...state, animating: action.animating };
+      return {...state, animating: action.animating};
     case FOCUS_TAB:
-      return { ...state, focusedIndex: action.focusedIndex };
+      return {...state, focusedIndex: action.focusedIndex};
     case INIT_TAB:
-      return { ...state, activeIndex: action.activeIndex };
+      return {...state, activeIndex: action.activeIndex};
     case RTL:
-      return { ...state, rtl: action.rtl };
+      return {...state, rtl: action.rtl};
     case SELECT_TAB:
       return {
         ...state,
@@ -187,7 +187,7 @@ export default function TabBar({
     const currentScrollX = getScrollPosition();
     const safeScrollX = clampScrollValue(scrollX);
     const scrollDelta = safeScrollX - currentScrollX;
-    animate({ finalScrollPosition: safeScrollX, scrollDelta });
+    animate({finalScrollPosition: safeScrollX, scrollDelta});
   }
 
   function getScrollPosition() {
@@ -259,14 +259,14 @@ export default function TabBar({
     );
 
     requestAnimationFrame(() => {
-      dispatch({ type: ANIMATING, animating: true });
+      dispatch({type: ANIMATING, animating: true});
       setScrollContentStyleProperty('transform', 'none');
     });
   }
 
   function stopScrollAnimation() {
     const currentScrollPosition = getAnimatingScrollPosition();
-    dispatch({ type: ANIMATING, animating: false });
+    dispatch({type: ANIMATING, animating: false});
     setScrollContentStyleProperty('transform', 'translateX(0px)');
     setScrollAreaScrollLeft(currentScrollPosition);
   }
@@ -464,7 +464,7 @@ export default function TabBar({
   }
 
   function handleTabBlur(e, onBlur) {
-    dispatch({ type: FOCUS_TAB, focusedIndex: -1 });
+    dispatch({type: FOCUS_TAB, focusedIndex: -1});
     if (onBlur) {
       onBlur(e);
     }
@@ -484,14 +484,14 @@ export default function TabBar({
   }
 
   function handleTabFocus(e, index, onFocus) {
-    dispatch({ type: FOCUS_TAB, focusedIndex: index });
+    dispatch({type: FOCUS_TAB, focusedIndex: index});
     if (onFocus) {
       onFocus(e);
     }
   }
 
   if (state.activeIndex === -1) {
-    dispatch({ type: INIT_TAB, activeIndex });
+    dispatch({type: INIT_TAB, activeIndex});
   }
 
   useEffect(() => {
@@ -504,7 +504,7 @@ export default function TabBar({
   }, []);
 
   useEffect(() => {
-    dispatch({ type: RTL, rtl: dir === 'rtl' });
+    dispatch({type: RTL, rtl: dir === 'rtl'});
   }, [dir]);
 
   return (
@@ -520,26 +520,20 @@ export default function TabBar({
         ref={tabScrollerRef}
         scroll={scroll}
       >
-        {React.Children.map(children, (tab, index) => {
-          const {
-            children,
-            onBlur,
-            onClick,
-            onFocus,
-            ...otherProps
-          } = tab.props;
+        {Children.map(children, (tab, index) => {
+          const {children, onBlur, onClick, onFocus, ...otherProps} = tab.props;
           const props = {
             active: index === state.activeIndex,
             focused: index === state.focusedIndex,
             previousIndicatorClientRect: state.previousIndicatorClientRect,
-            onBlur: (e) => handleTabBlur(e, onBlur),
-            onClick: (e) => handleTabClick(e, index, onClick),
-            onFocus: (e) => handleTabFocus(e, index, onFocus),
-            ref: (element) => tabsRef.current.set(index, element),
+            onBlur: e => handleTabBlur(e, onBlur),
+            onClick: e => handleTabClick(e, index, onClick),
+            onFocus: e => handleTabFocus(e, index, onFocus),
+            ref: element => tabsRef.current.set(index, element),
             ...otherProps,
           };
 
-          return React.cloneElement(tab, props, children);
+          return cloneElement(tab, props, children);
         })}
       </TabScroller>
     </Tag>

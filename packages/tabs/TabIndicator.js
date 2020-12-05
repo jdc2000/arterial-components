@@ -1,9 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react';
+import {forwardRef, useEffect, useRef, useState} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Icon } from '@arterial/icon';
+import {Icon} from '@arterial/icon';
 
-const TabIndicator = React.forwardRef((props, ref) => {
+const TabIndicator = forwardRef((props, ref) => {
   const {
     active,
     className,
@@ -70,7 +70,7 @@ const TabIndicator = React.forwardRef((props, ref) => {
           icon={icon}
           id={id}
           ref={contentRef}
-          style={{ transform }}
+          style={{transform}}
           tag="span"
         />
       ) : (
@@ -78,7 +78,7 @@ const TabIndicator = React.forwardRef((props, ref) => {
           className={contentClasses}
           id={id}
           ref={contentRef}
-          style={{ transform }}
+          style={{transform}}
         ></span>
       )}
     </Tag>

@@ -31,7 +31,7 @@ import '@material/menu/dist/mdc.menu.css';
 ### JSX
 
 ```jsx
-import { MenuSurface, MenuSurfaceAnchor, Corner } from '@arterial/menu-surface';
+import {MenuSurface, MenuSurfaceAnchor, Corner} from '@arterial/menu-surface';
 ```
 
 ## Regular Menu
@@ -43,13 +43,13 @@ function Regular() {
   const [open, setOpen] = useState(false);
   useEffect(() => {
     function handleBodyClick(e) {
-      const { arterial } = e.target.dataset;
+      const {arterial} = e.target.dataset;
       if (!arterial) {
         setOpen(false);
       }
     }
     function handleWindowKeyDown(e) {
-      const { arterial } = e.target.dataset;
+      const {arterial} = e.target.dataset;
       const isEscape = e.key === 'Escape' || e.keyCode === 27;
       const isTab = e.key === 'Tab' || e.keyCode === 9;
       if ((isEscape || isTab) && arterial === arterialRef.current) {
@@ -92,13 +92,13 @@ function Fixed() {
   const [open, setOpen] = useState(false);
   useEffect(() => {
     function handleBodyClick(e) {
-      const { arterial } = e.target.dataset;
+      const {arterial} = e.target.dataset;
       if (!arterial) {
         setOpen(false);
       }
     }
     function handleWindowKeyDown(e) {
-      const { arterial } = e.target.dataset;
+      const {arterial} = e.target.dataset;
       const isEscape = e.key === 'Escape' || e.keyCode === 27;
       const isTab = e.key === 'Tab' || e.keyCode === 9;
       if ((isEscape || isTab) && arterial === arterialRef.current) {
@@ -144,13 +144,13 @@ function QuickOpen() {
   const [open, setOpen] = useState(false);
   useEffect(() => {
     function handleBodyClick(e) {
-      const { arterial } = e.target.dataset;
+      const {arterial} = e.target.dataset;
       if (!arterial) {
         setOpen(false);
       }
     }
     function handleWindowKeyDown(e) {
-      const { arterial } = e.target.dataset;
+      const {arterial} = e.target.dataset;
       const isEscape = e.key === 'Escape' || e.keyCode === 27;
       const isTab = e.key === 'Tab' || e.keyCode === 9;
       if ((isEscape || isTab) && arterial === arterialRef.current) {
@@ -199,16 +199,16 @@ function RightClick() {
   const anchorRef = useRef();
   const arterialRef = useRef('rightClick');
   const [open, setOpen] = useState(false);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [position, setPosition] = useState({x: 0, y: 0});
   useEffect(() => {
     function handleBodyClick(e) {
-      const { arterial } = e.target.dataset;
+      const {arterial} = e.target.dataset;
       if (!arterial) {
         setOpen(false);
       }
     }
     function handleWindowKeyDown(e) {
-      const { arterial } = e.target.dataset;
+      const {arterial} = e.target.dataset;
       const isEscape = e.key === 'Escape' || e.keyCode === 27;
       const isTab = e.key === 'Tab' || e.keyCode === 9;
       if ((isEscape || isTab) && arterial === arterialRef.current) {
@@ -217,7 +217,7 @@ function RightClick() {
     }
     function handleRightClick(e) {
       e.preventDefault();
-      setPosition({ x: e.clientX, y: e.clientY });
+      setPosition({x: e.clientX, y: e.clientY});
       setOpen(true);
     }
     document.body.addEventListener('click', handleBodyClick);
@@ -262,13 +262,13 @@ function BottomLeft() {
   const [open, setOpen] = useState(false);
   useEffect(() => {
     function handleBodyClick(e) {
-      const { arterial } = e.target.dataset;
+      const {arterial} = e.target.dataset;
       if (!arterial) {
         setOpen(false);
       }
     }
     function handleWindowKeyDown(e) {
-      const { arterial } = e.target.dataset;
+      const {arterial} = e.target.dataset;
       const isEscape = e.key === 'Escape' || e.keyCode === 27;
       const isTab = e.key === 'Tab' || e.keyCode === 9;
       if ((isEscape || isTab) && arterial === arterialRef.current) {
@@ -319,13 +319,13 @@ function TopRight() {
   const [open, setOpen] = useState(false);
   useEffect(() => {
     function handleBodyClick(e) {
-      const { arterial } = e.target.dataset;
+      const {arterial} = e.target.dataset;
       if (!arterial) {
         setOpen(false);
       }
     }
     function handleWindowKeyDown(e) {
-      const { arterial } = e.target.dataset;
+      const {arterial} = e.target.dataset;
       const isEscape = e.key === 'Escape' || e.keyCode === 27;
       const isTab = e.key === 'Tab' || e.keyCode === 9;
       if ((isEscape || isTab) && arterial === arterialRef.current) {
@@ -376,14 +376,14 @@ function BottomRight() {
   const [open, setOpen] = useState(false);
   useEffect(() => {
     function handleBodyClick(e) {
-      const { arterial } = e.target.dataset;
+      const {arterial} = e.target.dataset;
       console.log(arterial);
       if (!arterial) {
         setOpen(false);
       }
     }
     function handleWindowKeyDown(e) {
-      const { arterial } = e.target.dataset;
+      const {arterial} = e.target.dataset;
       const isEscape = e.key === 'Escape' || e.keyCode === 27;
       const isTab = e.key === 'Tab' || e.keyCode === 9;
       if ((isEscape || isTab) && arterial === arterialRef.current) {
@@ -398,7 +398,7 @@ function BottomRight() {
     };
   }, []);
   return (
-    <MenuSurfaceAnchor ref={anchorRef} style={{ width: 'max-content' }}>
+    <MenuSurfaceAnchor ref={anchorRef} style={{width: 'max-content'}}>
       <Button
         data-arterial="bottomRight"
         label="Open Menu"

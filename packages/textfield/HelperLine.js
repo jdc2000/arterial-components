@@ -1,11 +1,11 @@
-import React from 'react';
+import {isValidElement} from 'react';
 import CharacterCounter from './CharacterCounter';
 import HelperText from './HelperText';
 import PropTypes from 'prop-types';
 
-function Text({ text }) {
+function Text({text}) {
   if (typeof text === 'object') {
-    if (text === null || React.isValidElement(text)) {
+    if (text === null || isValidElement(text)) {
       return text;
     }
     return <HelperText {...text} />;
@@ -13,7 +13,7 @@ function Text({ text }) {
   return null;
 }
 
-export default function HelperLine({ count, maxLength, text }) {
+export default function HelperLine({count, maxLength, text}) {
   if (text || maxLength) {
     return (
       <div className="mdc-text-field-helper-line">

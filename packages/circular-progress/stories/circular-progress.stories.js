@@ -1,13 +1,12 @@
-import React from 'react';
-import { CircularProgress } from '..';
-import { Button } from '../../button';
-import { IconButton } from '../../icon-button';
+import {CircularProgress} from '..';
+import {Button} from '../../button';
+import {IconButton} from '../../icon-button';
 import '../index.scss';
 
-export default {
+export const Meta = {
   title: 'CircularProgress',
   decorators: [
-    (storyFn) => (
+    storyFn => (
       <div
         style={{
           display: 'flex',
@@ -20,6 +19,7 @@ export default {
     ),
   ],
 };
+export default Meta;
 
 export const Basic = () => (
   <>
@@ -48,7 +48,7 @@ export const FourColors = () => (
 
 export const Buttons = () => {
   const icon = <CircularProgress small />;
-  const styles = { marginRight: '8px' };
+  const styles = {marginRight: '8px'};
   return (
     <>
       <Button label="Basic" icon={icon} style={styles} />

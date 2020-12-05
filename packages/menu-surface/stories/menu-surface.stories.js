@@ -1,12 +1,12 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Corner, MenuSurface, MenuSurfaceAnchor } from '..';
-import { Button } from '../../button';
-import { List, ListItem, ListItemText } from '../../list';
+import {useState, useEffect, useRef} from 'react';
+import {Corner, MenuSurface, MenuSurfaceAnchor} from '..';
+import {Button} from '../../button';
+import {List, ListItem, ListItemText} from '../../list';
 
-export default {
+export const Meta = {
   title: 'MenuSurface',
   decorators: [
-    (storyFn) => (
+    storyFn => (
       <div
         style={{
           display: 'flex',
@@ -19,23 +19,24 @@ export default {
     ),
   ],
 };
+export default Meta;
 
-function MyMenuSurface({ anchorCorner, basic, fixed, quickOpen, rightClick }) {
+function MyMenuSurface({anchorCorner, basic, fixed, quickOpen, rightClick}) {
   const anchorRef = useRef();
   const arterialRef = useRef('1');
   const [open, setOpen] = useState(false);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [position, setPosition] = useState({x: 0, y: 0});
 
   useEffect(() => {
     if (!basic) {
       function handleBodyClick(e) {
-        const { arterial } = e.target.dataset;
+        const {arterial} = e.target.dataset;
         if (!arterial) {
           setOpen(false);
         }
       }
       function handleWindowKeyDown(e) {
-        const { arterial } = e.target.dataset;
+        const {arterial} = e.target.dataset;
         const isEscape = e.key === 'Escape' || e.keyCode === 27;
         const isTab = e.key === 'Tab' || e.keyCode === 9;
         if ((isEscape || isTab) && arterial === arterialRef.current) {
@@ -44,7 +45,7 @@ function MyMenuSurface({ anchorCorner, basic, fixed, quickOpen, rightClick }) {
       }
       function handleRightClick(e) {
         e.preventDefault();
-        setPosition({ x: e.clientX, y: e.clientY });
+        setPosition({x: e.clientX, y: e.clientY});
         setOpen(true);
       }
       if (rightClick) {

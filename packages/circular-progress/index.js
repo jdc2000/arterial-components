@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -69,10 +68,10 @@ export function CircularProgress({
     >
       {isIndeterminate ? (
         <div className="mdc-circular-progress__indeterminate-container">
-          {spinners.map((item) => {
+          {spinners.map(item => {
             const spinnerClasses = classNames(
               'mdc-circular-progress__spinner-layer',
-              { [`mdc-circular-progress__color-${item}`]: fourColors }
+              {[`mdc-circular-progress__color-${item}`]: fourColors}
             );
             return (
               <div className={spinnerClasses} key={item}>

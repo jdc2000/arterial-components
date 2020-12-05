@@ -1,15 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import { HelperText, TextField } from '..';
+import {useState, useEffect} from 'react';
+import {HelperText, TextField} from '..';
 import './textfield.stories.css';
 
-export default {
+export const Meta = {
   title: 'TextField',
   decorators: [
-    (storyFn) => <div className="textfield-container">{storyFn()}</div>,
+    storyFn => <div className="textfield-container">{storyFn()}</div>,
   ],
 };
+export default Meta;
 
-function MyTextField({ icon, trailingIcon, ...otherProps }) {
+function MyTextField({icon, trailingIcon, ...otherProps}) {
   const [value, setValue] = useState('');
   useEffect(() => {
     if (otherProps.disabled) setValue('disabled');
@@ -22,7 +23,7 @@ function MyTextField({ icon, trailingIcon, ...otherProps }) {
         trailingIcon={trailingIcon ? 'delete' : null}
         onTrailingIconAction={trailingIcon ? () => setValue('') : null}
         value={value}
-        onChange={(e) => setValue(e.target.value)}
+        onChange={e => setValue(e.target.value)}
         {...otherProps}
       />
     </div>
@@ -107,7 +108,7 @@ export const WithHelperText = () => (
 export const PersistentHelperText = () => (
   <>
     <MyTextFields helperText={<HelperText persistent text="Helper Text" />} />
-    <MyTextFields helperText={{ persistent: true, text: 'Helper Text' }} />
+    <MyTextFields helperText={{persistent: true, text: 'Helper Text'}} />
   </>
 );
 export const Invalid = () => (

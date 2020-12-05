@@ -27,6 +27,7 @@
     "@material/tab": "^6.0.0",
     "@material/tab-bar": "^6.0.0",
     "@material/tab-indicator": "^6.0.0",
-    "@material/tab-scroller": "^6.0.0"
+    "@material/tab-scroller": "^6.0.0",
+    "classnames": "^2.2.6"
   }
 }

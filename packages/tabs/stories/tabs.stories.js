@@ -1,15 +1,14 @@
-import React, { useState } from 'react';
-import { Tab, TabBar } from '..';
-import { Icon } from '../../icon';
+import {useState} from 'react';
+import {Tab, TabBar} from '..';
+import {Icon} from '../../icon';
 
-export default {
+export const Meta = {
   title: 'Tabs',
   decorators: [
-    (storyFn) => (
-      <div style={{ width: '100%', height: '100vh' }}>{storyFn()}</div>
-    ),
+    storyFn => <div style={{width: '100%', height: '100vh'}}>{storyFn()}</div>,
   ],
 };
+export default Meta;
 
 const HOME = 'Home';
 const MERCHANDISE = 'Merchandise';
@@ -18,23 +17,19 @@ const RECENTS = 'Recents';
 const NEARBY = 'Nearby';
 const FAVORITES = 'Favorites';
 
-const basicTabs = [
-  { label: HOME },
-  { label: MERCHANDISE },
-  { label: ABOUT_US },
-];
+const basicTabs = [{label: HOME}, {label: MERCHANDISE}, {label: ABOUT_US}];
 const iconTabs = [
-  { label: RECENTS, icon: 'access_time' },
-  { label: NEARBY, icon: 'near_me' },
-  { label: FAVORITES, icon: 'favorite' },
+  {label: RECENTS, icon: 'access_time'},
+  {label: NEARBY, icon: 'near_me'},
+  {label: FAVORITES, icon: 'favorite'},
 ];
 
-function MyTabs({ minWidth, restricted, scrolling, stacked, icons }) {
+function MyTabs({minWidth, restricted, scrolling, stacked, icons}) {
   let tabs = icons ? iconTabs : basicTabs;
   if (scrolling) {
     tabs = [];
     for (let i = 0; i < 36; i++) {
-      tabs.push({ label: `Tab ${i + 1}` });
+      tabs.push({label: `Tab ${i + 1}`});
     }
   }
   const [activeIndex, setActiveIndex] = useState(0);
@@ -49,7 +44,7 @@ function MyTabs({ minWidth, restricted, scrolling, stacked, icons }) {
       handleActiveIndexUpdate={updateActiveIndex}
       scroll={scrolling}
     >
-      {tabs.map(({ label, icon }) => (
+      {tabs.map(({label, icon}) => (
         <Tab
           icon={icon}
           id={label}
@@ -78,7 +73,7 @@ function MyIndicatorIcon() {
     <>
       <TabBar
         activeIndex={activeIndex}
-        handleActiveIndexUpdate={(index) => setActiveIndex(index)}
+        handleActiveIndexUpdate={index => setActiveIndex(index)}
       >
         <Tab
           id="recents"

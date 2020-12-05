@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -35,12 +34,12 @@ List.propTypes = {
   tag: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 };
 
-export { ListDivider } from './ListDivider';
-export { ListGroup } from './ListGroup';
-export { ListGroupSubheader } from './ListGroupSubheader';
-export { ListItem } from './ListItem';
-export { ListItemGraphic } from './ListItemGraphic';
-export { ListItemMeta } from './ListItemMeta';
-export { ListItemPrimaryText } from './ListItemPrimaryText';
-export { ListItemSecondaryText } from './ListItemSecondaryText';
-export { ListItemText } from './ListItemText';
+export {ListDivider} from './ListDivider';
+export {ListGroup} from './ListGroup';
+export {ListGroupSubheader} from './ListGroupSubheader';
+export {ListItem} from './ListItem';
+export {ListItemGraphic} from './ListItemGraphic';
+export {ListItemMeta} from './ListItemMeta';
+export {ListItemPrimaryText} from './ListItemPrimaryText';
+export {ListItemSecondaryText} from './ListItemSecondaryText';
+export {ListItemText} from './ListItemText';

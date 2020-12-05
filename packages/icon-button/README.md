@@ -28,7 +28,7 @@ import '@material/icon-button/dist/mdc.icon-button.css';
 ### JSX
 
 ```jsx
-import { IconButton } from '@arterial/icon-button';
+import {IconButton} from '@arterial/icon-button';
 ```
 
 ## Regular Icon Button

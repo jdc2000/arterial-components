@@ -1,10 +1,10 @@
-import React from 'react';
+import {forwardRef} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Icon } from '@arterial/icon';
+import {Icon} from '@arterial/icon';
 import TabIndicator from './TabIndicator';
 
-const Tab = React.forwardRef((props, ref) => {
+const Tab = forwardRef((props, ref) => {
   const {
     active,
     children,

@@ -1,7 +1,6 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Icon } from '@arterial/icon';
+import {Icon} from '@arterial/icon';
 
 const ICON_CLASS = 'mdc-button__icon';
 
@@ -26,7 +25,7 @@ export function Button({
   });
 
   const styles = {
-    ...(Tag === 'button' && { textAlign: 'initial' }),
+    ...(Tag === 'button' && {textAlign: 'initial'}),
     ...style,
   };
   return (

@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useRef } from 'react';
+import {useEffect, useReducer, useRef} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -112,7 +112,7 @@ function moveTopAppBar(state) {
       currentAppBarOffsetTop = -MAX_TOP_APP_BAR_HEIGHT;
     }
 
-    styleTop = { top: currentAppBarOffsetTop + 'px' };
+    styleTop = {top: currentAppBarOffsetTop + 'px'};
   }
 
   return {
@@ -188,7 +188,7 @@ function handleShortScroll(state) {
       isCollapsed = true;
     }
   }
-  return { ...state, isCollapsed };
+  return {...state, isCollapsed};
 }
 
 function handleFixedScroll(state) {
@@ -203,7 +203,7 @@ function handleFixedScroll(state) {
       wasScrolled = true;
     }
   }
-  return { ...state, wasScrolled };
+  return {...state, wasScrolled};
 }
 
 function reducer(state, action) {
@@ -267,17 +267,17 @@ export function TopAppBar({
   });
 
   useEffect(() => {
-    dispatch({ type: MOUNT, data: topAppBarEl });
+    dispatch({type: MOUNT, data: topAppBarEl});
   }, [topAppBarEl]);
 
   useEffect(() => {
     const standard = !state.short && !state.fixed;
-    let handleWindowResize = () => dispatch({ type: WINDOW_RESIZE });
-    let handleTargetScroll = () => dispatch({ type: STANDARD_SCROLL });
+    let handleWindowResize = () => dispatch({type: WINDOW_RESIZE});
+    let handleTargetScroll = () => dispatch({type: STANDARD_SCROLL});
     if (state.short) {
-      handleTargetScroll = () => dispatch({ type: SHORT_SCROLL });
+      handleTargetScroll = () => dispatch({type: SHORT_SCROLL});
     } else if (state.fixed) {
-      handleTargetScroll = () => dispatch({ type: FIXED_SCROLL });
+      handleTargetScroll = () => dispatch({type: FIXED_SCROLL});
     }
 
     state.scrollTarget.addEventListener('scroll', handleTargetScroll);
@@ -297,7 +297,7 @@ export function TopAppBar({
     <Tag
       className={classes}
       ref={topAppBarEl}
-      style={{ ...style, ...state.styleTop }}
+      style={{...style, ...state.styleTop}}
       {...otherProps}
     >
       {children}
@@ -319,8 +319,8 @@ TopAppBar.propTypes = {
   tag: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 };
 
-export { default as TopAppBarFixedAdjust } from './FixedAdjust';
-export { default as TopAppBarIcon } from './Icon';
-export { default as TopAppBarRow } from './Row';
-export { default as TopAppBarSection } from './Section';
-export { default as TopAppBarTitle } from './Title';
+export {default as TopAppBarFixedAdjust} from './FixedAdjust';
+export {default as TopAppBarIcon} from './Icon';
+export {default as TopAppBarRow} from './Row';
+export {default as TopAppBarSection} from './Section';
+export {default as TopAppBarTitle} from './Title';

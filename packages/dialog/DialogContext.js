@@ -1,20 +1,20 @@
-import React, { useState } from 'react';
+import {createContext, useState} from 'react';
 import PropTypes from 'prop-types';
 
-const DialogContext = React.createContext({
+const DialogContext = createContext({
   contentId: '',
   titleId: '',
   setContentId: () => {},
   setTitleId: () => {},
 });
 
-function DialogProvider({ children }) {
+function DialogProvider({children}) {
   const [contentId, setContentId] = useState('');
   const [titleId, setTitleId] = useState('');
 
   return (
     <DialogContext.Provider
-      value={{ contentId, titleId, setContentId, setTitleId }}
+      value={{contentId, titleId, setContentId, setTitleId}}
     >
       {children}
     </DialogContext.Provider>
@@ -25,4 +25,4 @@ DialogProvider.propTypes = {
   children: PropTypes.node,
 };
 
-export { DialogContext, DialogProvider };
+export {DialogContext, DialogProvider};

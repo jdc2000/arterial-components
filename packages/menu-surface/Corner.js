@@ -2,7 +2,7 @@ export const CornerBit = {
   BOTTOM: 1,
   CENTER: 2,
   RIGHT: 4,
-  FLIP_RTL: 8
+  FLIP_RTL: 8,
 };
 
 export const Corner = {
@@ -13,5 +13,5 @@ export const Corner = {
   TOP_START: CornerBit.FLIP_RTL,
   TOP_END: CornerBit.FLIP_RTL | CornerBit.RIGHT,
   BOTTOM_START: CornerBit.BOTTOM | CornerBit.FLIP_RTL,
-  BOTTOM_END: CornerBit.BOTTOM | CornerBit.RIGHT | CornerBit.FLIP_RTL
+  BOTTOM_END: CornerBit.BOTTOM | CornerBit.RIGHT | CornerBit.FLIP_RTL,
 };

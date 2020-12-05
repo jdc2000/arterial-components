@@ -23,6 +23,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@material/notched-outline": "^6.0.0"
+    "@material/notched-outline": "^6.0.0",
+    "classnames": "^2.2.6"
   }
 }

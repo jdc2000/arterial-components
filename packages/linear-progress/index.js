@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -31,12 +30,12 @@ export function LinearProgress({
         <div class="mdc-linear-progress__buffer-bar"></div>
         <div
           class="mdc-linear-progress__buffer-dots"
-          style={buffer ? { flexBasis: `${(1 - buffer) * 100}%` } : {}}
+          style={buffer ? {flexBasis: `${(1 - buffer) * 100}%`} : {}}
         ></div>
       </div>
       <div
         className="mdc-linear-progress__bar mdc-linear-progress__primary-bar"
-        style={progress ? { transform: `scaleX(${progress})` } : {}}
+        style={progress ? {transform: `scaleX(${progress})`} : {}}
       >
         <span className="mdc-linear-progress__bar-inner"></span>
       </div>

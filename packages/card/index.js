@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -26,11 +25,11 @@ Card.propTypes = {
   tag: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 };
 
-export { default as CardPrimaryAction } from './PrimaryAction';
-export { default as CardMedia } from './Media';
-export { default as CardMediaContent } from './MediaContent';
-export { default as CardActions } from './Actions';
-export { default as CardActionButtons } from './ActionButtons';
-export { default as CardActionButton } from './ActionButton';
-export { default as CardActionIcons } from './ActionIcons';
-export { default as CardActionIcon } from './ActionIcon';
+export {default as CardPrimaryAction} from './PrimaryAction';
+export {default as CardMedia} from './Media';
+export {default as CardMediaContent} from './MediaContent';
+export {default as CardActions} from './Actions';
+export {default as CardActionButtons} from './ActionButtons';
+export {default as CardActionButton} from './ActionButton';
+export {default as CardActionIcons} from './ActionIcons';
+export {default as CardActionIcon} from './ActionIcon';

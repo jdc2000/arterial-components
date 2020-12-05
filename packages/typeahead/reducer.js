@@ -7,7 +7,7 @@ function defaultSearchOptions() {
     matchAllTokens: true,
     includeMatches: true,
     threshold: 0.3,
-    minMatchCharLength: 1
+    minMatchCharLength: 1,
   };
 }
 
@@ -18,7 +18,7 @@ export const INITIAL_STATE = {
   focusedIndex: 0,
   matches: [],
   options: [],
-  twoLine: false
+  twoLine: false,
 };
 
 export const types = {
@@ -26,25 +26,25 @@ export const types = {
   DEACTIVATE: 'DEACTIVATE',
   SEARCH: 'SEARCH',
   FOCUS_INDEX: 'FOCUS_INDEX',
-  SET_OPTIONS: 'SET_OPTIONS'
+  SET_OPTIONS: 'SET_OPTIONS',
 };
 
 export const actions = {
   [types.ACTIVATE]: (state, action) => {
-    const { focused } = action;
-    return { ...state, activated: true, ...(focused != null && { focused }) };
+    const {focused} = action;
+    return {...state, activated: true, ...(focused != null && {focused})};
   },
   [types.DEACTIVATE]: (state, action) => {
-    const { focused } = action;
-    return { ...state, activated: false, ...(focused != null && { focused }) };
+    const {focused} = action;
+    return {...state, activated: false, ...(focused != null && {focused})};
   },
   [types.FOCUS_INDEX]: (state, action) => {
-    const { activated, focused, focusedIndex } = action;
+    const {activated, focused, focusedIndex} = action;
     return {
       ...state,
       focusedIndex,
-      ...(activated != null && { activated }),
-      ...(focused != null && { focused })
+      ...(activated != null && {activated}),
+      ...(focused != null && {focused}),
     };
   },
   [types.SEARCH]: (state, action) => {
@@ -57,28 +57,28 @@ export const actions = {
         if (isNaN(result.item)) options.push(result.item);
         matches.push(result.matches);
       }
-      return { ...state, options, matches };
+      return {...state, options, matches};
     } else {
-      return { ...state, options: action.options, matches: [] };
+      return {...state, options: action.options, matches: []};
     }
   },
   [types.SET_OPTIONS]: (state, action) => {
-    const { options, searchOptions } = action;
+    const {options, searchOptions} = action;
     const twoLine = options.some(option => option.secondaryText != null);
     const keys = [
       'text',
       'value',
       ...(searchOptions && Array.isArray(searchOptions.keys)
         ? searchOptions.keys
-        : [])
+        : []),
     ];
     const engine = new Fuse(options, {
       ...defaultSearchOptions(),
       ...searchOptions,
-      keys
+      keys,
     });
-    return { ...state, options, engine, twoLine };
-  }
+    return {...state, options, engine, twoLine};
+  },
 };
 
 export function reducer(state, action) {

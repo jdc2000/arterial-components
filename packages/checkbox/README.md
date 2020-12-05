@@ -28,7 +28,7 @@ import '@material/checkbox/dist/mdc.checkbox.css';
 ### JSX
 
 ```jsx
-import { Checkbox } from '@arterial/checkbox';
+import {Checkbox} from '@arterial/checkbox';
 ```
 
 ## Checked Checkbox
@@ -40,7 +40,7 @@ function Checked() {
     <Checkbox
       checked={checked}
       id="checkbox-checked"
-      onChange={(e) => setChecked(e.target.checked)}
+      onChange={e => setChecked(e.target.checked)}
     />
   );
 }
@@ -55,7 +55,7 @@ function Unchecked() {
     <Checkbox
       checked={checked}
       id="checkbox-unchecked"
-      onChange={(e) => setChecked(e.target.checked)}
+      onChange={e => setChecked(e.target.checked)}
     />
   );
 }
@@ -72,7 +72,7 @@ function Indeterminate() {
       checked={checked}
       id="checkbox-indeterminate"
       indeterminate={indeterminate}
-      onChange={(e) => {
+      onChange={e => {
         setChecked(e.target.checked);
         setIndeterminate(e.target.indeterminate);
       }}
@@ -93,7 +93,7 @@ function Label() {
       checked={checked}
       id="checkbox-label"
       label="Checkbox"
-      onChange={(e) => setChecked(e.target.checked)}
+      onChange={e => setChecked(e.target.checked)}
     />
   );
 }
@@ -110,7 +110,7 @@ function AlignEnd() {
       checked={checked}
       id="checkbox-align-end"
       label="Checkbox"
-      onChange={(e) => setChecked(e.target.checked)}
+      onChange={e => setChecked(e.target.checked)}
     />
   );
 }

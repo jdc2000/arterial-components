@@ -1,7 +1,7 @@
-import React from 'react';
-import { LinearProgress } from '..';
+import {LinearProgress} from '..';
 
-export default { title: 'LinearProgress' };
+export const Meta = {title: 'LinearProgress'};
+export default Meta;
 
 export const Basic = () => (
   <LinearProgress label="Progress bar" progress={0.5} />

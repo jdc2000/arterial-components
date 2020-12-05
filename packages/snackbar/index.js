@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from 'react';
+import {useEffect, useReducer} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -26,9 +26,9 @@ const initialState = {
 function reducer(state, action) {
   switch (action.type) {
     case ANIMATION_TIMER_END:
-      return { ...state, isClosing: false, isOpening: false };
+      return {...state, isClosing: false, isOpening: false};
     case CLOSED:
-      return { ...state, isClosed: action.data };
+      return {...state, isClosed: action.data};
     case CLOSING:
       return {
         ...state,
@@ -37,9 +37,9 @@ function reducer(state, action) {
         isOpening: !action.data,
       };
     case OPEN:
-      return { ...state, isOpen: action.data };
+      return {...state, isOpen: action.data};
     case OPENING:
-      return { ...state, isClosing: !action.data, isOpening: action.data };
+      return {...state, isClosing: !action.data, isOpening: action.data};
     default:
       throw new Error();
   }
@@ -84,7 +84,7 @@ export function Snackbar({
     function handleKeyDown(e) {
       const isEscape = e.key === 'Escape' || e.keyCode === 27;
       if (state.isOpen && isEscape) {
-        dispatch({ type: CLOSED, data: true });
+        dispatch({type: CLOSED, data: true});
       }
     }
     window.addEventListener('keydown', handleKeyDown);
@@ -97,7 +97,7 @@ export function Snackbar({
   useEffect(() => {
     if (state.isClosed) {
       onClose(DISMISS);
-      dispatch({ type: CLOSED, data: false });
+      dispatch({type: CLOSED, data: false});
     }
   }, [state.isClosed, onClose]);
 
@@ -109,11 +109,11 @@ export function Snackbar({
 
     function openSnackbar() {
       clearAutoDismissTimer();
-      dispatch({ type: OPENING, data: true });
+      dispatch({type: OPENING, data: true});
 
       // Wait a frame once display is no longer "none", to establish basis for animation
       runNextAnimationFrame(() => {
-        dispatch({ type: OPEN, data: true });
+        dispatch({type: OPEN, data: true});
 
         animationTimer = setTimeout(() => {
           const timeoutMs = DEFAULT_AUTO_DISMISS_TIMEOUT_MS;
@@ -132,12 +132,12 @@ export function Snackbar({
       animationFrame = 0;
       clearAutoDismissTimer();
 
-      dispatch({ type: CLOSING, data: true });
+      dispatch({type: CLOSING, data: true});
 
       clearTimeout(animationTimer);
       animationTimer = setTimeout(() => {
         handleAnimationTimerEnd();
-        dispatch({ type: CLOSED, data: reason });
+        dispatch({type: CLOSED, data: reason});
       }, SNACKBAR_ANIMATION_CLOSE_TIME_MS);
     }
 
@@ -148,7 +148,7 @@ export function Snackbar({
 
     function handleAnimationTimerEnd() {
       animationTimer = 0;
-      dispatch({ type: ANIMATION_TIMER_END });
+      dispatch({type: ANIMATION_TIMER_END});
     }
 
     // Runs the given logic on the next animation frame, using setTimeout to factor in Firefox reflow behavior.
@@ -187,8 +187,8 @@ export function Snackbar({
           {action && (
             <button
               className="mdc-button mdc-snackbar__action"
-              onClick={(e) => handleSelect(e, ACTION)}
-              onKeyDown={(e) => handleSelect(e, ACTION)}
+              onClick={e => handleSelect(e, ACTION)}
+              onKeyDown={e => handleSelect(e, ACTION)}
               type="button"
             >
               <div className="mdc-button__ripple"></div>
@@ -198,8 +198,8 @@ export function Snackbar({
           {dismiss && (
             <button
               className="material-icons mdc-icon-button mdc-snackbar__dismiss"
-              onClick={(e) => handleSelect(e, DISMISS)}
-              onKeyDown={(e) => handleSelect(e, DISMISS)}
+              onClick={e => handleSelect(e, DISMISS)}
+              onKeyDown={e => handleSelect(e, DISMISS)}
               title="Dismiss"
             >
               close

@@ -28,7 +28,7 @@ import '@material/fab/dist/mdc.fab.css';
 ### JSX
 
 ```jsx
-import { Fab } from '@arterial/fab';
+import {Fab} from '@arterial/fab';
 ```
 
 ## Regular FAB

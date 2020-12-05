@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
-import { Radio } from '..';
+import {useState} from 'react';
+import {Radio} from '..';
 
-export default { title: 'Radio' };
+export const Meta = {title: 'Radio'};
+export default Meta;
 
-function MyRadio({ type = 'basic' }) {
+function MyRadio({type = 'basic'}) {
   const [value, setValue] = useState('radio-1');
   function handleChange(e) {
     return setValue(e.target.value);
@@ -11,7 +12,7 @@ function MyRadio({ type = 'basic' }) {
   if (type === 'basic') {
     return (
       <>
-        <div style={{ display: 'flex' }}>
+        <div style={{display: 'flex'}}>
           <Radio
             checked={value === 'radio-1'}
             id="radio-1"
@@ -34,11 +35,11 @@ function MyRadio({ type = 'basic' }) {
 
   return (
     <>
-      <div style={{ display: 'flex' }}>
+      <div style={{display: 'flex'}}>
         <Radio
           checked={value === 'radio-1'}
           disabled={type === 'disabled'}
-          formFieldProps={{ alignEnd: true }}
+          formFieldProps={{alignEnd: true}}
           id="radio-1"
           label="Radio 1"
           name="radios"

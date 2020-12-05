@@ -1,23 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import {useState, useEffect} from 'react';
 import classNames from 'classnames';
-import { Select, HelperText } from '..';
-import { CircularProgress } from '../../circular-progress';
-import { Icon } from '../../icon';
+import {Select, HelperText} from '..';
+import {CircularProgress} from '../../circular-progress';
+import {Icon} from '../../icon';
 import './select.stories.css';
 
-export default {
+export const Meta = {
   title: 'Select',
-  decorators: [
-    (storyFn) => <div className="select-container">{storyFn()}</div>,
-  ],
+  decorators: [storyFn => <div className="select-container">{storyFn()}</div>],
 };
+export default Meta;
 
 const lock = <Icon icon="lock" />;
 const OPTIONS = [
-  { text: '', value: '' },
-  { text: 'Bread, Cereal, Rice, and Pasta', value: 'grains' },
-  { text: 'Vegetables', value: 'vegetables' },
-  { text: 'Fruit', value: 'fruit' },
+  {text: '', value: ''},
+  {text: 'Bread, Cereal, Rice, and Pasta', value: 'grains'},
+  {text: 'Vegetables', value: 'vegetables'},
+  {text: 'Fruit', value: 'fruit'},
 ];
 const OPTIONS_WITH_ICON = [
   {
@@ -27,7 +26,7 @@ const OPTIONS_WITH_ICON = [
     value: 'grains',
     disabled: true,
   },
-  { text: 'Vegetables', value: 'vegetables' },
+  {text: 'Vegetables', value: 'vegetables'},
   {
     text: 'Fruit',
     selectedText: 'Fruit (Private)',
@@ -53,7 +52,7 @@ function MySelect({
   isSelected,
 }) {
   const [value, setValue] = useState('');
-  function handleSelect({ value }) {
+  function handleSelect({value}) {
     setValue(value);
   }
   const classes = classNames('select', {

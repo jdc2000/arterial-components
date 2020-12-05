@@ -1,9 +1,8 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { IconButton } from '@arterial/icon-button';
+import {IconButton} from '@arterial/icon-button';
 
-export default function ActionIcon({ className, ...otherProps }) {
+export default function ActionIcon({className, ...otherProps}) {
   const classes = classNames(
     'mdc-card__action',
     'mdc-card__action--icon',

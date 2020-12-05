@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react';
+import {useEffect, useRef, useState} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { FormField } from '@arterial/form-field';
+import {FormField} from '@arterial/form-field';
 
 function Root({
   checked,
@@ -69,7 +69,7 @@ function Root({
   );
 }
 
-export function Checkbox({ alignEnd, id, label, ...otherProps }) {
+export function Checkbox({alignEnd, id, label, ...otherProps}) {
   if (label) {
     return (
       <FormField alignEnd={alignEnd}>

@@ -1,10 +1,10 @@
-import React from 'react';
+import {isValidElement} from 'react';
 import PropTypes from 'prop-types';
-import { HelperText } from './HelperText';
+import {HelperText} from './HelperText';
 
-export function HelperLine({ text }) {
+export function HelperLine({text}) {
   if (typeof text === 'object') {
-    if (text === null || React.isValidElement(text)) {
+    if (text === null || isValidElement(text)) {
       return text;
     }
     return <HelperText {...text} />;

@@ -3,7 +3,7 @@ import {Typeahead} from '..';
 import {Icon} from '../../icon';
 import './typeahead.stories.css';
 
-export const Meta = {
+const Meta = {
   title: 'Typeahead',
   decorators: [
     storyFn => <div className="typeahead-container">{storyFn()}</div>,

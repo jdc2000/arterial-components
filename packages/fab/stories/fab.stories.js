@@ -1,6 +1,6 @@
 import {Fab} from '..';
 
-export const Meta = {title: 'Fab'};
+const Meta = {title: 'Fab'};
 export default Meta;
 
 function MyFab({exited, extended, hasIcon, hasTrailingIcon, mini}) {

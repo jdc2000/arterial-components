@@ -3,7 +3,7 @@ import {Corner, MenuSurface, MenuSurfaceAnchor} from '..';
 import {Button} from '../../button';
 import {List, ListItem, ListItemText} from '../../list';
 
-export const Meta = {
+const Meta = {
   title: 'MenuSurface',
   decorators: [
     storyFn => (

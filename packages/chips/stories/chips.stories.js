@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import {Chip, ChipSet} from '..';
 
-export const Meta = {title: 'Chips'};
+const Meta = {title: 'Chips'};
 export default Meta;
 
 const ALFA = 'Alfa';

@@ -1,6 +1,6 @@
 import {LinearProgress} from '..';
 
-export const Meta = {title: 'LinearProgress'};
+const Meta = {title: 'LinearProgress'};
 export default Meta;
 
 export const Basic = () => (

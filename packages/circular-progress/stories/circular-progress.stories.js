@@ -3,7 +3,7 @@ import {Button} from '../../button';
 import {IconButton} from '../../icon-button';
 import '../index.scss';
 
-export const Meta = {
+const Meta = {
   title: 'CircularProgress',
   decorators: [
     storyFn => (

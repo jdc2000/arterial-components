@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import {Checkbox} from '..';
 
-export const Meta = {title: 'Checkbox'};
+const Meta = {title: 'Checkbox'};
 export default Meta;
 
 function MyCheckbox({disabled, label, type = 'unchecked'}) {

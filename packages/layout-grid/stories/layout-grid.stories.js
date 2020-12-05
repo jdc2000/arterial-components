@@ -1,7 +1,7 @@
 import {Grid, GridRow, GridCell} from '..';
 import './layout-grid.stories.css';
 
-export const Meta = {title: 'LayoutGrid'};
+const Meta = {title: 'LayoutGrid'};
 export default Meta;
 
 export const Basic = () => (

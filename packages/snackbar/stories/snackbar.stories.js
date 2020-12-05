@@ -2,7 +2,7 @@ import {useState} from 'react';
 import {Snackbar} from '..';
 import {Button} from '../../button';
 
-export const Meta = {
+const Meta = {
   title: 'Snackbar',
   decorators: [storyFn => <div style={{height: '100vh'}}>{storyFn()}</div>],
 };

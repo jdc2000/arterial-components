@@ -16,11 +16,11 @@ import {Icon} from '../../icon';
 import {IconButton} from '../../icon-button';
 import {Radio} from '../../radio';
 
-export const Meta = {
+const Metadata = {
   title: 'List',
   decorators: [storyFn => <div style={{width: '600px'}}>{storyFn()}</div>],
 };
-export default Meta;
+export default Metadata;
 
 const items = [{id: 'inbox'}, {id: 'star'}, {id: 'send'}, {id: 'drafts'}];
 function MyList({type = 'activated'}) {
@@ -113,9 +113,6 @@ export const Graphic = () => (
   </List>
 );
 
-function Test(props) {
-  return <div className="test">{props.children}</div>;
-}
 export const Meta = () => (
   <List tag="div">
     <ListItem tag="div">

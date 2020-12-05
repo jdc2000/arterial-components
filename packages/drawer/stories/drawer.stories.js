@@ -18,7 +18,7 @@ import {
 } from '../../top-app-bar';
 import './drawer.stories.css';
 
-export const Meta = {
+const Meta = {
   title: 'Drawer',
   decorators: [
     storyFn => (

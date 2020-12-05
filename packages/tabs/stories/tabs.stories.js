@@ -2,7 +2,7 @@ import {useState} from 'react';
 import {Tab, TabBar} from '..';
 import {Icon} from '../../icon';
 
-export const Meta = {
+const Meta = {
   title: 'Tabs',
   decorators: [
     storyFn => <div style={{width: '100%', height: '100vh'}}>{storyFn()}</div>,

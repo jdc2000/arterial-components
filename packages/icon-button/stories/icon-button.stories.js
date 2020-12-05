@@ -3,7 +3,7 @@ import {IconButton} from '..';
 import ChromeSvg from './ChromeSvg.js';
 import FirefoxSvg from './FirefoxSvg.js';
 
-export const Meta = {title: 'IconButton'};
+const Meta = {title: 'IconButton'};
 export default Meta;
 
 function MyIconButton({image, svg, toggle}) {

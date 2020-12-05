@@ -8,7 +8,7 @@ import {
   DataTableRow,
 } from '..';
 
-export const Meta = {title: 'DataTable'};
+const Meta = {title: 'DataTable'};
 export default Meta;
 
 const TABLE = [

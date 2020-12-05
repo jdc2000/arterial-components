@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import {Radio} from '..';
 
-export const Meta = {title: 'Radio'};
+const Meta = {title: 'Radio'};
 export default Meta;
 
 function MyRadio({type = 'basic'}) {

@@ -12,7 +12,7 @@ import {
 import {Button} from '../../button';
 import {List, ListItem, ListItemGraphic, ListItemText} from '../../list';
 
-export const Meta = {
+const Meta = {
   title: 'Dialog',
   decorators: [storyFn => <div style={{height: '100vh'}}>{storyFn()}</div>],
 };

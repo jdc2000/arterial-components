@@ -1,6 +1,6 @@
 import {Icon} from '..';
 
-export const Meta = {title: 'Icon'};
+const Meta = {title: 'Icon'};
 export default Meta;
 
 export const Material = () => <Icon icon="favorite" />;

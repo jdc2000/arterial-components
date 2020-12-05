@@ -7,7 +7,7 @@ import {
   TopAppBarIcon,
 } from '..';
 
-export const Meta = {
+const Meta = {
   title: 'TopAppBar',
   decorators: [
     storyFn => {

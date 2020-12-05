@@ -1,7 +1,7 @@
 import {Button} from '..';
 import {CircularProgress} from '../../circular-progress';
 
-export const Meta = {title: 'Button'};
+const Meta = {title: 'Button'};
 export default Meta;
 
 function MyButtons({raised, unelevated, outlined}) {

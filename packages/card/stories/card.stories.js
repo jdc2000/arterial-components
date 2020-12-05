@@ -11,7 +11,7 @@ import {
   CardActionIcon,
 } from '..';
 
-export const Meta = {title: 'Card'};
+const Meta = {title: 'Card'};
 export default Meta;
 
 function MyCardPrimary({mediaContent}) {

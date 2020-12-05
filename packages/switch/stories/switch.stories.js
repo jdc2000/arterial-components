@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react';
 import {Switch} from '..';
 
-export const Meta = {
+const Meta = {
   title: 'Switch',
   decorators: [
     storyFn => (

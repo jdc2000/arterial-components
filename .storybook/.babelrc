@@ -9,9 +9,12 @@
         "exclude": ["transform-typeof-symbol"]
       }
     ],
-    ["@babel/preset-react", { "development": true, "useBuiltIns": true }]
+    [
+      "@babel/preset-react",
+      {"runtime": "automatic", "development": true, "useBuiltIns": true}
+    ]
   ],
   "plugins": [
-    ["@babel/plugin-proposal-object-rest-spread", { "useBuiltIns": true }]
+    ["@babel/plugin-proposal-object-rest-spread", {"useBuiltIns": true}]
   ]
 }

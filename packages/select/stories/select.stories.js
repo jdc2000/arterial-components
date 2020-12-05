@@ -5,7 +5,7 @@ import {CircularProgress} from '../../circular-progress';
 import {Icon} from '../../icon';
 import './select.stories.css';
 
-export const Meta = {
+const Meta = {
   title: 'Select',
   decorators: [storyFn => <div className="select-container">{storyFn()}</div>],
 };

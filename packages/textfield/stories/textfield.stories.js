@@ -2,7 +2,7 @@ import {useState, useEffect} from 'react';
 import {HelperText, TextField} from '..';
 import './textfield.stories.css';
 
-export const Meta = {
+const Meta = {
   title: 'TextField',
   decorators: [
     storyFn => <div className="textfield-container">{storyFn()}</div>,

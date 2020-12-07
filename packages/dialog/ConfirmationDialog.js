@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Dialog from './Dialog';
-import DialogTitle from './DialogTitle';
-import DialogContent from './DialogContent';
-import DialogActions from './DialogActions';
-import DialogButton from './DialogButton';
+import {Dialog} from './Dialog';
+import {DialogTitle} from './DialogTitle';
+import {DialogContent} from './DialogContent';
+import {DialogActions} from './DialogActions';
+import {DialogButton} from './DialogButton';
 
-export default function ConfirmationDialog({
+export function ConfirmationDialog({
   className,
   confirmingButtonLabel = 'Ok',
   confirmingButtonDisabled,

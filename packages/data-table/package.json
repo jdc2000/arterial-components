@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "@arterial/checkbox": "^2.0.3",
-    "@material/data-table": "^6.0.0",
+    "@material/data-table": "^8.0.0",
     "classnames": "^2.2.6"
   }
 }

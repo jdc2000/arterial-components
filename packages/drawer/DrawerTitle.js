@@ -1,21 +1,21 @@
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-export default function MediaContent({
+export function DrawerTitle({
   children,
   className,
-  tag: Tag = 'div',
+  tag: Tag = 'h3',
   ...otherProps
 }) {
-  const classes = classNames('mdc-card__media-content', className);
+  const classes = classNames('mdc-drawer__title', className);
   return (
     <Tag className={classes} {...otherProps}>
       {children}
     </Tag>
   );
 }
-MediaContent.displayName = 'CardMediaContent';
-MediaContent.propTypes = {
+DrawerTitle.displayName = 'DrawerTitle';
+DrawerTitle.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   tag: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),

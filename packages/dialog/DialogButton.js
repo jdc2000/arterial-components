@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import {Button} from '@arterial/button';
 
-export default function DialogButton({
+export function DialogButton({
   action = 'close',
   className,
   onSelect,

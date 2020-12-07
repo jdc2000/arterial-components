@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import {IconButton} from '@arterial/icon-button';
 
-export default function Icon({action, className, nav, ...otherProps}) {
+export function TopAppBarIcon({action, className, nav, ...otherProps}) {
   const classes = classNames(
     {
       'mdc-top-app-bar__action-item': action,
@@ -12,8 +12,8 @@ export default function Icon({action, className, nav, ...otherProps}) {
   );
   return <IconButton className={classes} {...otherProps} />;
 }
-
-Icon.propTypes = {
+TopAppBarIcon.displayName = 'TopAppBarIcon';
+TopAppBarIcon.propTypes = {
   action: PropTypes.bool,
   className: PropTypes.string,
   nav: PropTypes.bool,

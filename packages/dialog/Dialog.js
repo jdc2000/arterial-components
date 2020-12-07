@@ -36,7 +36,7 @@ function reducer(state, action) {
   }
 }
 
-function Dialog({
+function DialogBase({
   children,
   className,
   onClose,
@@ -150,6 +150,13 @@ function Dialog({
     </Tag>
   );
 }
+export function Dialog(props) {
+  return (
+    <DialogProvider>
+      <DialogBase {...props} />
+    </DialogProvider>
+  );
+}
 Dialog.displayName = 'Dialog';
 Dialog.propTypes = {
   children: PropTypes.node,
@@ -160,11 +167,3 @@ Dialog.propTypes = {
   stacked: PropTypes.bool,
   tag: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 };
-
-export default function (props) {
-  return (
-    <DialogProvider>
-      <Dialog {...props} />
-    </DialogProvider>
-  );
-}

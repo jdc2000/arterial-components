@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react';
 import classNames from 'classnames';
-import {Select, HelperText} from '..';
+import {Select, SelectHelperText} from '..';
 import {CircularProgress} from '../../circular-progress';
 import {Icon} from '../../icon';
 import './select.stories.css';
@@ -109,24 +109,24 @@ export const Outlined = () => (
 export const WithHelperText = () => (
   <>
     <div className="select-row">
-      <MySelect helperText={<HelperText text="Helper Text" />} />
+      <MySelect helperText={<SelectHelperText text="Helper Text" />} />
       <MySelect
         icon
         id="demo-icon"
-        helperText={<HelperText text="Helper Text" />}
+        helperText={<SelectHelperText text="Helper Text" />}
       />
     </div>
     <div className="select-row">
       <MySelect
         id="demo-outlined"
         outlined
-        helperText={<HelperText text="Helper Text" />}
+        helperText={<SelectHelperText text="Helper Text" />}
       />
       <MySelect
         icon
         id="demo-outlined-icon"
         outlined
-        helperText={<HelperText text="Helper Text" />}
+        helperText={<SelectHelperText text="Helper Text" />}
       />
     </div>
   </>
@@ -134,24 +134,26 @@ export const WithHelperText = () => (
 export const PersistentHelperText = () => (
   <>
     <div className="select-row">
-      <MySelect helperText={<HelperText persistent text="Helper Text" />} />
+      <MySelect
+        helperText={<SelectHelperText persistent text="Helper Text" />}
+      />
       <MySelect
         icon
         id="demo-icon"
-        helperText={<HelperText persistent text="Helper Text" />}
+        helperText={<SelectHelperText persistent text="Helper Text" />}
       />
     </div>
     <div className="select-row">
       <MySelect
         id="demo-outlined"
         outlined
-        helperText={<HelperText persistent text="Helper Text" />}
+        helperText={<SelectHelperText persistent text="Helper Text" />}
       />
       <MySelect
         icon
         id="demo-outlined-icon"
         outlined
-        helperText={<HelperText persistent text="Helper Text" />}
+        helperText={<SelectHelperText persistent text="Helper Text" />}
       />
     </div>
   </>
@@ -162,14 +164,18 @@ export const Invalid = () => (
       <MySelect
         invalid
         required
-        helperText={<HelperText persistent validationMsg text="Helper Text" />}
+        helperText={
+          <SelectHelperText persistent validationMsg text="Helper Text" />
+        }
       />
       <MySelect
         icon
         id="demo-icon"
         invalid
         required
-        helperText={<HelperText persistent validationMsg text="Helper Text" />}
+        helperText={
+          <SelectHelperText persistent validationMsg text="Helper Text" />
+        }
       />
     </div>
     <div className="select-row">
@@ -178,7 +184,9 @@ export const Invalid = () => (
         invalid
         outlined
         required
-        helperText={<HelperText persistent validationMsg text="Helper Text" />}
+        helperText={
+          <SelectHelperText persistent validationMsg text="Helper Text" />
+        }
       />
       <MySelect
         icon
@@ -186,7 +194,9 @@ export const Invalid = () => (
         invalid
         outlined
         required
-        helperText={<HelperText persistent validationMsg text="Helper Text" />}
+        helperText={
+          <SelectHelperText persistent validationMsg text="Helper Text" />
+        }
       />
     </div>
   </>
@@ -196,13 +206,13 @@ export const LabelFloating = () => (
     <div className="select-row">
       <MySelect
         labelFloating
-        helperText={<HelperText persistent text="Helper Text" />}
+        helperText={<SelectHelperText persistent text="Helper Text" />}
       />
       <MySelect
         icon
         id="demo-icon"
         labelFloating
-        helperText={<HelperText persistent text="Helper Text" />}
+        helperText={<SelectHelperText persistent text="Helper Text" />}
       />
     </div>
     <div className="select-row">
@@ -210,14 +220,14 @@ export const LabelFloating = () => (
         id="demo-outlined"
         outlined
         labelFloating
-        helperText={<HelperText persistent text="Helper Text" />}
+        helperText={<SelectHelperText persistent text="Helper Text" />}
       />
       <MySelect
         icon
         id="demo-outlined-icon"
         outlined
         labelFloating
-        helperText={<HelperText persistent text="Helper Text" />}
+        helperText={<SelectHelperText persistent text="Helper Text" />}
       />
     </div>
   </>
@@ -227,13 +237,13 @@ export const NoLabel = () => (
     <div className="select-row">
       <MySelect
         noLabel
-        helperText={<HelperText persistent text="Helper Text" />}
+        helperText={<SelectHelperText persistent text="Helper Text" />}
       />
       <MySelect
         icon
         id="demo-icon"
         noLabel
-        helperText={<HelperText persistent text="Helper Text" />}
+        helperText={<SelectHelperText persistent text="Helper Text" />}
       />
     </div>
     <div className="select-row">
@@ -241,14 +251,14 @@ export const NoLabel = () => (
         id="demo-outlined"
         outlined
         noLabel
-        helperText={<HelperText persistent text="Helper Text" />}
+        helperText={<SelectHelperText persistent text="Helper Text" />}
       />
       <MySelect
         icon
         id="demo-outlined-icon"
         outlined
         noLabel
-        helperText={<HelperText persistent text="Helper Text" />}
+        helperText={<SelectHelperText persistent text="Helper Text" />}
       />
     </div>
   </>

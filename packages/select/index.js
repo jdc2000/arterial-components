@@ -1,5 +1,5 @@
 import {useEffect, useReducer, useRef} from 'react';
-import {HelperLine} from './HelperLine';
+import {SelectHelperLine} from './SelectHelperLine';
 import {Icon} from '@arterial/icon';
 import {
   List,
@@ -17,8 +17,8 @@ import classNames from 'classnames';
 import {reducer, types, INITIAL_STATE} from './reducer';
 import {v4 as uuid} from 'uuid';
 
-export {HelperLine};
-export {HelperText} from './HelperText';
+export {SelectHelperLine};
+export {SelectHelperText} from './SelectHelperText';
 export function Select({
   children,
   className,
@@ -280,7 +280,7 @@ export function Select({
             </>
           )}
         </div>
-        <HelperLine text={helperText} />
+        <SelectHelperLine text={helperText} />
         <MenuSurface
           className="mdc-select__menu mdc-menu"
           anchorCorner={Corner.BOTTOM_LEFT}

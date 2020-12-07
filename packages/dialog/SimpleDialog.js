@@ -1,16 +1,10 @@
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Dialog from './Dialog';
-import DialogTitle from './DialogTitle';
-import DialogContent from './DialogContent';
+import {Dialog} from './Dialog';
+import {DialogTitle} from './DialogTitle';
+import {DialogContent} from './DialogContent';
 
-export default function SimpleDialog({
-  className,
-  content,
-  onClose,
-  open,
-  title,
-}) {
+export function SimpleDialog({className, content, onClose, open, title}) {
   const classes = classNames('arm-dialog', 'arm-dialog--simple', className);
   function handleClose() {
     if (onClose) {

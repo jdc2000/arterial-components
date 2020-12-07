@@ -1,21 +1,21 @@
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-export default function Header({
+export function CardPrimaryAction({
   children,
   className,
   tag: Tag = 'div',
   ...otherProps
 }) {
-  const classes = classNames('mdc-drawer__header', className);
+  const classes = classNames('mdc-card__primary-action', className);
   return (
-    <Tag className={classes} {...otherProps}>
+    <Tag className={classes} tabIndex="0" {...otherProps}>
       {children}
     </Tag>
   );
 }
-Header.displayName = 'DrawerHeader';
-Header.propTypes = {
+CardPrimaryAction.displayName = 'CardPrimaryAction';
+CardPrimaryAction.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   tag: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),

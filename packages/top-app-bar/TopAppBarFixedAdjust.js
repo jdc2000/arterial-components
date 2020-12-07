@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-export default function FixedAdjust({
+export function TopAppBarFixedAdjust({
   children,
   className,
   dense,
@@ -27,8 +27,8 @@ export default function FixedAdjust({
     </Tag>
   );
 }
-FixedAdjust.displayName = 'TopAppBarFixedAdjust';
-FixedAdjust.propTypes = {
+TopAppBarFixedAdjust.displayName = 'TopAppBarFixedAdjust';
+TopAppBarFixedAdjust.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   dense: PropTypes.bool,

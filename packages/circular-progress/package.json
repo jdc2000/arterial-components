@@ -24,7 +24,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@material/circular-progress": "^6.0.0",
+    "@material/circular-progress": "^8.0.0",
     "classnames": "^2.2.6"
   }
 }

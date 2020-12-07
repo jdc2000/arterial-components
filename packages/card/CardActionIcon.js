@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import {IconButton} from '@arterial/icon-button';
 
-export default function ActionIcon({className, ...otherProps}) {
+export function CardActionIcon({className, ...otherProps}) {
   const classes = classNames(
     'mdc-card__action',
     'mdc-card__action--icon',
@@ -10,7 +10,7 @@ export default function ActionIcon({className, ...otherProps}) {
   );
   return <IconButton className={classes} {...otherProps} />;
 }
-ActionIcon.displayName = 'CardActionIcon';
-ActionIcon.propTypes = {
+CardActionIcon.displayName = 'CardActionIcon';
+CardActionIcon.propTypes = {
   className: PropTypes.string,
 };

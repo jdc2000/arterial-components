@@ -1,21 +1,21 @@
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-export default function Title({
+export function DrawerAppContent({
   children,
   className,
-  tag: Tag = 'span',
+  tag: Tag = 'div',
   ...otherProps
 }) {
-  const classes = classNames('mdc-top-app-bar__title', className);
+  const classes = classNames('mdc-drawer-app-content', className);
   return (
     <Tag className={classes} {...otherProps}>
       {children}
     </Tag>
   );
 }
-
-Title.propTypes = {
+DrawerAppContent.displayName = 'DrawerAppContent';
+DrawerAppContent.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   tag: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),

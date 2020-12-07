@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-export function HelperText({
+export function SelectHelperText({
   className,
   id,
   persistent,
@@ -19,8 +19,8 @@ export function HelperText({
     </p>
   );
 }
-HelperText.displayName = 'SelectHelperText';
-HelperText.propTypes = {
+SelectHelperText.displayName = 'SelectHelperText';
+SelectHelperText.propTypes = {
   className: PropTypes.string,
   id: PropTypes.string,
   persistent: PropTypes.bool,

@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react';
-import {HelperText, TextField} from '..';
+import {TextField, TextFieldHelperText} from '..';
 import './textfield.stories.css';
 
 const Meta = {
@@ -103,74 +103,78 @@ function MyTextFields({
 export const Filled = () => <MyTextFields filled />;
 export const Outlined = () => <MyTextFields outlined />;
 export const WithHelperText = () => (
-  <MyTextFields helperText={<HelperText text="Helper Text" />} />
+  <MyTextFields helperText={<TextFieldHelperText text="Helper Text" />} />
 );
 export const PersistentHelperText = () => (
   <>
-    <MyTextFields helperText={<HelperText persistent text="Helper Text" />} />
+    <MyTextFields
+      helperText={<TextFieldHelperText persistent text="Helper Text" />}
+    />
     <MyTextFields helperText={{persistent: true, text: 'Helper Text'}} />
   </>
 );
 export const Invalid = () => (
   <MyTextFields
-    helperText={<HelperText persistent validationMsg text="Helper Text" />}
+    helperText={
+      <TextFieldHelperText persistent validationMsg text="Helper Text" />
+    }
     invalid
     required
   />
 );
 export const LabelFloating = () => (
   <MyTextFields
-    helperText={<HelperText persistent text="Helper Text" />}
+    helperText={<TextFieldHelperText persistent text="Helper Text" />}
     labelFloating
   />
 );
 export const NoLabel = () => (
   <MyTextFields
-    helperText={<HelperText persistent text="Helper Text" />}
+    helperText={<TextFieldHelperText persistent text="Helper Text" />}
     noLabel
   />
 );
 export const Disabled = () => (
   <MyTextFields
     disabled
-    helperText={<HelperText persistent text="Helper Text" />}
+    helperText={<TextFieldHelperText persistent text="Helper Text" />}
   />
 );
 export const CharacterCounter = () => (
   <MyTextFields
-    helperText={<HelperText persistent text="Helper Text" />}
+    helperText={<TextFieldHelperText persistent text="Helper Text" />}
     maxLength={5}
   />
 );
 export const FullWidth = () => (
   <MyTextFields
     fullwidth
-    helperText={<HelperText persistent text="Helper Text" />}
+    helperText={<TextFieldHelperText persistent text="Helper Text" />}
   />
 );
 export const Prefix = () => (
   <MyTextFields
-    helperText={<HelperText persistent text="Helper Text" />}
+    helperText={<TextFieldHelperText persistent text="Helper Text" />}
     labelFloating
     prefix="$"
   />
 );
 export const Suffix = () => (
   <MyTextFields
-    helperText={<HelperText persistent text="Helper Text" />}
+    helperText={<TextFieldHelperText persistent text="Helper Text" />}
     suffix=".00"
   />
 );
 export const Textarea = () => (
   <MyTextField
-    helperText={<HelperText persistent text="Helper Text" />}
+    helperText={<TextFieldHelperText persistent text="Helper Text" />}
     label="Text Area"
     textarea
   />
 );
 export const TextareaWithCharacterCounter = () => (
   <MyTextField
-    helperText={<HelperText persistent text="Helper Text" />}
+    helperText={<TextFieldHelperText persistent text="Helper Text" />}
     label="Text Area"
     maxLength={5}
     textarea

@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "@arterial/icon": "^2.0.3",
-    "@material/fab": "^6.0.0",
+    "@material/fab": "^8.0.0",
     "classnames": "^2.2.6"
   }
 }

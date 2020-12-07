@@ -153,8 +153,8 @@ Drawer.propTypes = {
   tag: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 };
 
-export {default as DrawerAppContent} from './AppContent';
-export {default as DrawerContent} from './Content';
-export {default as DrawerHeader} from './Header';
-export {default as DrawerTitle} from './Title';
-export {default as DrawerSubtitle} from './Subtitle';
+export {DrawerAppContent} from './DrawerAppContent';
+export {DrawerContent} from './DrawerContent';
+export {DrawerHeader} from './DrawerHeader';
+export {DrawerTitle} from './DrawerTitle';
+export {DrawerSubtitle} from './DrawerSubtitle';

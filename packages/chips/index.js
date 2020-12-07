@@ -104,4 +104,4 @@ Chip.propTypes = {
   tag: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 };
 
-export {default as ChipSet} from './ChipSet';
+export {ChipSet} from './ChipSet';

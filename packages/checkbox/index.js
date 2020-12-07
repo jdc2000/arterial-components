@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import {FormField} from '@arterial/form-field';
 
-function Root({
+function CheckboxBase({
   checked,
   className,
   disabled,
@@ -73,14 +73,14 @@ export function Checkbox({alignEnd, id, label, ...otherProps}) {
   if (label) {
     return (
       <FormField alignEnd={alignEnd}>
-        <Root id={id} {...otherProps} />
+        <CheckboxBase id={id} {...otherProps} />
         <label id={`${id}-label`} htmlFor={id}>
           {label}
         </label>
       </FormField>
     );
   }
-  return <Root id={id} {...otherProps} />;
+  return <CheckboxBase id={id} {...otherProps} />;
 }
 Checkbox.displayName = 'Checkbox';
 Checkbox.propTypes = {

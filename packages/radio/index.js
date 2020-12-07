@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import {FormField} from '@arterial/form-field';
 
-function Root({
+function RadioBase({
   checked,
   className,
   disabled,
@@ -41,14 +41,14 @@ export function Radio({alignEnd, id, label, ...otherProps}) {
   if (label) {
     return (
       <FormField alignEnd={alignEnd}>
-        <Root id={id} {...otherProps} />
+        <RadioBase id={id} {...otherProps} />
         <label id={`${id}-label`} htmlFor={id}>
           {label}
         </label>
       </FormField>
     );
   }
-  return <Root id={id} {...otherProps} />;
+  return <RadioBase id={id} {...otherProps} />;
 }
 Radio.displayName = 'Radio';
 Radio.propTypes = {

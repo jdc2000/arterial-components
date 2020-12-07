@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-export default function CharacterCounter({count, maxLength}) {
+export function TextFieldCharacterCounter({count, maxLength}) {
   if (maxLength) {
     return (
       <div className="mdc-text-field-character-counter">
@@ -10,8 +10,8 @@ export default function CharacterCounter({count, maxLength}) {
   }
   return null;
 }
-CharacterCounter.displayName = 'CharacterCounter';
-CharacterCounter.propTypes = {
+TextFieldCharacterCounter.displayName = 'TextFieldCharacterCounter';
+TextFieldCharacterCounter.propTypes = {
   count: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   maxLength: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 };

@@ -1,31 +1,31 @@
 import {isValidElement} from 'react';
-import CharacterCounter from './CharacterCounter';
-import HelperText from './HelperText';
+import {TextFieldCharacterCounter} from './TextFieldCharacterCounter';
+import {TextFieldHelperText} from './TextFieldHelperText';
 import PropTypes from 'prop-types';
 
-function Text({text}) {
+function HelperText({text}) {
   if (typeof text === 'object') {
     if (text === null || isValidElement(text)) {
       return text;
     }
-    return <HelperText {...text} />;
+    return <TextFieldHelperText {...text} />;
   }
   return null;
 }
 
-export default function HelperLine({count, maxLength, text}) {
+export function TextFieldHelperLine({count, maxLength, text}) {
   if (text || maxLength) {
     return (
       <div className="mdc-text-field-helper-line">
-        <Text text={text} />
-        <CharacterCounter count={count} maxLength={maxLength} />
+        <HelperText text={text} />
+        <TextFieldCharacterCounter count={count} maxLength={maxLength} />
       </div>
     );
   }
   return null;
 }
-HelperLine.displayName = 'TextFieldHelperLine';
-HelperLine.propTypes = {
+TextFieldHelperLine.displayName = 'TextFieldHelperLine';
+TextFieldHelperLine.propTypes = {
   count: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   helperText: PropTypes.node,
   maxLength: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),

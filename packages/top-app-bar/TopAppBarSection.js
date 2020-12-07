@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-export default function Section({
+export function TopAppBarSection({
   alignEnd,
   alignStart = true,
   children,
@@ -20,8 +20,8 @@ export default function Section({
     </Tag>
   );
 }
-
-Section.propTypes = {
+TopAppBarSection.displayName = 'TopAppBarSection';
+TopAppBarSection.propTypes = {
   alignEnd: PropTypes.bool,
   alignStart: PropTypes.bool,
   children: PropTypes.node,

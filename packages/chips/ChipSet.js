@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-export default function ChipSet({
+export function ChipSet({
   children,
   className,
   choice,

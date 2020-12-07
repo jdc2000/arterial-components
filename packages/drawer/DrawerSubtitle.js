@@ -1,22 +1,22 @@
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-export default function Title({
+export function DrawerSubtitle({
   children,
   className,
-  tag: Tag = 'h3',
+  tag: Tag = 'h6',
   ...otherProps
 }) {
-  const classes = classNames('mdc-drawer__title', className);
+  const classes = classNames('mdc-drawer__subtitle', className);
   return (
     <Tag className={classes} {...otherProps}>
       {children}
     </Tag>
   );
 }
-Title.displayName = 'DrawerTitle';
-Title.propTypes = {
+DrawerSubtitle.displayName = 'DrawerSubtitle';
+DrawerSubtitle.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-  tag: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  tag: PropTypes.element,
 };

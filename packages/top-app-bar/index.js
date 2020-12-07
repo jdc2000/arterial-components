@@ -319,8 +319,8 @@ TopAppBar.propTypes = {
   tag: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 };
 
-export {default as TopAppBarFixedAdjust} from './FixedAdjust';
-export {default as TopAppBarIcon} from './Icon';
-export {default as TopAppBarRow} from './Row';
-export {default as TopAppBarSection} from './Section';
-export {default as TopAppBarTitle} from './Title';
+export {TopAppBarFixedAdjust} from './TopAppBarFixedAdjust';
+export {TopAppBarIcon} from './TopAppBarIcon';
+export {TopAppBarRow} from './TopAppBarRow';
+export {TopAppBarSection} from './TopAppBarSection';
+export {TopAppBarTitle} from './TopAppBarTitle';

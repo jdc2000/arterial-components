@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-export default function Media({
+export function CardMedia({
   backgroundImage,
   children,
   className,
@@ -23,8 +23,8 @@ export default function Media({
     </Tag>
   );
 }
-Media.displayName = 'CardMedia';
-Media.propTypes = {
+CardMedia.displayName = 'CardMedia';
+CardMedia.propTypes = {
   backgroundImage: PropTypes.string,
   children: PropTypes.node,
   className: PropTypes.string,

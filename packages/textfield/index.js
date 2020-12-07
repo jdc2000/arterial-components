@@ -1,5 +1,5 @@
 import {forwardRef, useEffect, useRef, useState} from 'react';
-import HelperLine from './HelperLine';
+import {TextFieldHelperLine} from './TextFieldHelperLine';
 import {Icon} from '@arterial/icon';
 import {NotchedOutline} from '@arterial/notched-outline';
 import PropTypes from 'prop-types';
@@ -15,7 +15,8 @@ const ICON_CLASS = 'mdc-text-field__icon';
 const LEADING_ICON_CLASSES = `${ICON_CLASS} mdc-text-field__icon--leading`;
 const TRAILING_ICON_CLASSES = `${ICON_CLASS} mdc-text-field__icon--trailing`;
 
-export {default as HelperText} from './HelperText';
+export {TextFieldHelperLine};
+export {TextFieldHelperText} from './TextFieldHelperText';
 export const TextField = forwardRef((props, ref) => {
   const {
     children,
@@ -206,7 +207,7 @@ export const TextField = forwardRef((props, ref) => {
           />
         )}
       </label>
-      <HelperLine
+      <TextFieldHelperLine
         count={value ? value.length : 0}
         maxLength={maxLength}
         text={helperText}

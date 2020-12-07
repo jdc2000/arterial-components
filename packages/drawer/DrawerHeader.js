@@ -1,21 +1,21 @@
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-export default function ActionButtons({
+export function DrawerHeader({
   children,
   className,
   tag: Tag = 'div',
   ...otherProps
 }) {
-  const classes = classNames('mdc-card__action-buttons', className);
+  const classes = classNames('mdc-drawer__header', className);
   return (
     <Tag className={classes} {...otherProps}>
       {children}
     </Tag>
   );
 }
-ActionButtons.displayName = 'CardActionButtons';
-ActionButtons.propTypes = {
+DrawerHeader.displayName = 'DrawerHeader';
+DrawerHeader.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   tag: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),

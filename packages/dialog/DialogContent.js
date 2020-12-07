@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import {getContentId} from './utils';
 
-export default function DialogContent({
+export function DialogContent({
   children,
   className,
   id,

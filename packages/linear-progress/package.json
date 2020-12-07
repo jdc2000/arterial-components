@@ -23,7 +23,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@material/linear-progress": "^6.0.0",
+    "@material/linear-progress": "^8.0.0",
     "classnames": "^2.2.6"
   }
 }

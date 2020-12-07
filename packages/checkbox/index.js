@@ -2,6 +2,7 @@ import {useEffect, useRef, useState} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import {FormField} from '@arterial/form-field';
+import {cssClasses, strings} from '@material/checkbox';
 
 function CheckboxBase({
   checked,
@@ -15,35 +16,79 @@ function CheckboxBase({
   value,
   ...otherProps
 }) {
-  const [anim, setAnim] = useState(false);
+  const [animClass, setAnimClass] = useState('');
+  const [checkState, setCheckState] = useState(strings.TRANSITION_STATE_INIT);
   const inputRef = useRef();
   let classes = classNames('mdc-checkbox', className, {
-    [`mdc-checkbox--anim-indeterminate-checked`]: anim,
+    [animClass]: animClass,
     'mdc-checkbox--disabled': disabled,
     'mdc-checkbox--selected': checked || indeterminate,
   });
 
+  function determineCheckState(input) {
+    if (input.indeterminate) return strings.TRANSITION_STATE_INDETERMINATE;
+    return input.checked
+      ? strings.TRANSITION_STATE_CHECKED
+      : strings.TRANSITION_STATE_UNCHECKED;
+  }
+
+  function getTransitionAnimClass(newState) {
+    switch (checkState) {
+      case strings.TRANSITION_STATE_INIT:
+        if (newState === strings.TRANSITION_STATE_UNCHECKED) {
+          return '';
+        }
+        return newState === strings.TRANSITION_STATE_CHECKED
+          ? cssClasses.ANIM_INDETERMINATE_CHECKED
+          : cssClasses.ANIM_INDETERMINATE_UNCHECKED;
+      case strings.TRANSITION_STATE_UNCHECKED:
+        return newState === strings.TRANSITION_STATE_CHECKED
+          ? cssClasses.ANIM_UNCHECKED_CHECKED
+          : cssClasses.ANIM_UNCHECKED_INDETERMINATE;
+      case strings.TRANSITION_STATE_CHECKED:
+        return newState === strings.TRANSITION_STATE_UNCHECKED
+          ? cssClasses.ANIM_CHECKED_UNCHECKED
+          : cssClasses.ANIM_CHECKED_INDETERMINATE;
+      default:
+        // TRANSITION_STATE_INDETERMINATE
+        return newState === strings.TRANSITION_STATE_CHECKED
+          ? cssClasses.ANIM_INDETERMINATE_CHECKED
+          : cssClasses.ANIM_INDETERMINATE_UNCHECKED;
+    }
+  }
+
   function handleAnimationEnd() {
-    setAnim(false);
+    setAnimClass('');
   }
 
   function handleChange(e) {
-    if (indeterminate && e.target.checked) setAnim(true);
+    const newState = determineCheckState(e.target);
+    const transitionAnimClass = getTransitionAnimClass(newState);
+    setAnimClass(transitionAnimClass);
+    setCheckState(newState);
     if (onChange) onChange(e);
   }
 
   useEffect(() => {
     if (inputRef.current) {
+      inputRef.current.checked = checked;
       inputRef.current.indeterminate = indeterminate;
+      if (indeterminate) {
+        setCheckState(strings.TRANSITION_STATE_INDETERMINATE);
+      } else {
+        setCheckState(
+          checked
+            ? strings.TRANSITION_STATE_CHECKED
+            : strings.TRANSITION_STATE_UNCHECKED
+        );
+      }
     }
-  }, [indeterminate]);
+  }, [checked, indeterminate]);
 
   return (
     <div className={classes} style={style}>
       <input
         className="mdc-checkbox__native-control"
-        checked={checked}
-        disabled={disabled}
         id={id}
         onChange={handleChange}
         ref={inputRef}

@@ -34,9 +34,9 @@ export function Typeahead({
   const anchorRef = useRef();
   const arterialRef = useRef(uuid());
   const textFieldRef = useRef();
-  const classes = classNames('art-typeahead', className, {
-    'art-typeahead--activated': state.activated,
-    'art-typeahead--focused': state.focused,
+  const classes = classNames('ajs-typeahead', className, {
+    'ajs-typeahead--activated': state.activated,
+    'ajs-typeahead--focused': state.focused,
   });
   const isLabelFloating = Boolean(labelFloating || state.focused || value);
 

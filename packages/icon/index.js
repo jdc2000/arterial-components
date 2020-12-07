@@ -2,10 +2,12 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import {forwardRef, cloneElement} from 'react';
 
+const AJS_ICON = 'ajs-icon';
+
 export const Icon = forwardRef((props, ref) => {
   const {className, icon, ...otherProps} = props;
   if (typeof icon === 'string') {
-    const classes = classNames('art-icon', 'material-icons', className);
+    const classes = classNames(AJS_ICON, 'material-icons', className);
     return (
       <i className={classes} ref={ref} {...otherProps}>
         {icon}
@@ -13,9 +15,9 @@ export const Icon = forwardRef((props, ref) => {
     );
   }
   const addArtIcon =
-    icon.props.className && !icon.props.className.includes('art-icon');
+    icon.props.className && !icon.props.className.includes(AJS_ICON);
   const classes = classNames(
-    {'art-icon': addArtIcon},
+    {[AJS_ICON]: addArtIcon},
     icon.props.className,
     className
   );

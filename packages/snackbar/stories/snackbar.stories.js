@@ -1,6 +1,6 @@
 import {useState} from 'react';
-import {Snackbar} from '..';
 import {Button} from '../../button';
+import {Snackbar} from '..';
 
 const Meta = {
   title: 'Snackbar',

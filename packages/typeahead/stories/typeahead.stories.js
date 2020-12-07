@@ -1,6 +1,6 @@
 import {useState} from 'react';
-import {Typeahead} from '..';
 import {Icon} from '../../icon';
+import {Typeahead} from '..';
 import './typeahead.stories.css';
 
 const Meta = {

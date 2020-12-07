@@ -1,6 +1,6 @@
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import {Button} from '@arterial/button';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
 
 export function DialogButton({
   action = 'close',

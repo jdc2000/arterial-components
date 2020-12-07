@@ -1,6 +1,6 @@
-import {isValidElement} from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import {isValidElement} from 'react';
 
 export function ListItemMeta({
   className,

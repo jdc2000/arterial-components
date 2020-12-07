@@ -1,8 +1,8 @@
-import {forwardRef, useRef} from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import {forwardRef, useRef} from 'react';
 
-const TabScroller = forwardRef((props, ref) => {
+export const TabScroller = forwardRef((props, ref) => {
   const {
     align,
     animating,

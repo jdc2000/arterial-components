@@ -1,10 +1,10 @@
-import {forwardRef, useEffect, useRef, useState} from 'react';
-import {TextFieldHelperLine} from './TextFieldHelperLine';
 import {Icon} from '@arterial/icon';
 import {NotchedOutline} from '@arterial/notched-outline';
-import PropTypes from 'prop-types';
+import {forwardRef, useEffect, useRef, useState} from 'react';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 import {v4 as uuid} from 'uuid';
+import {TextFieldHelperLine} from './TextFieldHelperLine';
 
 // prettier-ignore
 const ALWAYS_FLOAT_TYPES = ['color', 'date', 'datetime-local', 'month', 'range', 'time', 'week'];

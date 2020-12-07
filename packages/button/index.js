@@ -1,6 +1,6 @@
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import {Icon} from '@arterial/icon';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
 
 const ICON_CLASS = 'mdc-button__icon';
 

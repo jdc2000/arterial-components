@@ -1,10 +1,10 @@
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
 import {forwardRef, useEffect, useReducer, useCallback} from 'react';
 import ReactDOM from 'react-dom';
-import PropTypes from 'prop-types';
 import {Corner, CornerBit} from './Corner';
-import classNames from 'classnames';
-import {getTransformPropertyName} from './utils';
 import {reducer, INITIAL_STATE, types} from './reducer';
+import {getTransformPropertyName} from './utils';
 
 const isHoistedElement = true;
 const numbers = {

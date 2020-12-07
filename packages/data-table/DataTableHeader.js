@@ -1,5 +1,5 @@
-import {Children, cloneElement} from 'react';
 import PropTypes from 'prop-types';
+import {Children, cloneElement} from 'react';
 
 export function DataTableHeader({children, className, ...otherProps}) {
   return (

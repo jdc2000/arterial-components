@@ -1,6 +1,6 @@
-import {useEffect, useReducer, useRef} from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import {useEffect, useReducer, useRef} from 'react';
 
 const DEBOUNCE_THROTTLE_RESIZE_TIME_MS = 100;
 const INITIAL_VALUE = 0;

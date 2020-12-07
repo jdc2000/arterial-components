@@ -1,7 +1,7 @@
 import {useState, useEffect, useRef} from 'react';
-import {Corner, MenuSurface, MenuSurfaceAnchor} from '..';
 import {Button} from '../../button';
 import {List, ListItem, ListItemText} from '../../list';
+import {Corner, MenuSurface, MenuSurfaceAnchor} from '..';
 
 const Meta = {
   title: 'MenuSurface',

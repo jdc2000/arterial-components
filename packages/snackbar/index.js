@@ -1,6 +1,6 @@
-import {useEffect, useReducer} from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import {useEffect, useReducer} from 'react';
 
 const ACTION = 'action';
 const DISMISS = 'dismiss';

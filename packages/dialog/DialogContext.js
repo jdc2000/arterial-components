@@ -1,5 +1,5 @@
-import {createContext, useState} from 'react';
 import PropTypes from 'prop-types';
+import {createContext, useState} from 'react';
 
 const DialogContext = createContext({
   contentId: '',

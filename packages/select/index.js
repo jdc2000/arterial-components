@@ -1,5 +1,3 @@
-import {useEffect, useReducer, useRef} from 'react';
-import {SelectHelperLine} from './SelectHelperLine';
 import {Icon} from '@arterial/icon';
 import {
   List,
@@ -12,9 +10,11 @@ import {
 } from '@arterial/list';
 import {MenuSurface, Corner} from '@arterial/menu-surface';
 import {NotchedOutline} from '@arterial/notched-outline';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import {useEffect, useReducer, useRef} from 'react';
 import {reducer, types, INITIAL_STATE} from './reducer';
+import {SelectHelperLine} from './SelectHelperLine';
 import {v4 as uuid} from 'uuid';
 
 export {SelectHelperLine};

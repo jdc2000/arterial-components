@@ -1,8 +1,8 @@
-import {useEffect, useRef, useState} from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import {FormField} from '@arterial/form-field';
 import {cssClasses, strings} from '@material/checkbox';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import {useEffect, useRef, useState} from 'react';
 
 function CheckboxBase({
   checked,

@@ -1,9 +1,9 @@
-import {forwardRef, useEffect, useRef, useState} from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import {Icon} from '@arterial/icon';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import {forwardRef, useEffect, useRef, useState} from 'react';
 
-const TabIndicator = forwardRef((props, ref) => {
+export const TabIndicator = forwardRef((props, ref) => {
   const {
     active,
     className,
@@ -94,5 +94,3 @@ TabIndicator.propTypes = {
   previousIndicatorClientRect: PropTypes.object,
   tag: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 };
-
-export default TabIndicator;

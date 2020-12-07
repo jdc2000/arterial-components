@@ -1,5 +1,5 @@
-import {isValidElement} from 'react';
 import PropTypes from 'prop-types';
+import {isValidElement} from 'react';
 import {SelectHelperText} from './SelectHelperText';
 
 export function SelectHelperLine({text}) {

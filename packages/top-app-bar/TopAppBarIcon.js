@@ -1,6 +1,6 @@
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import {IconButton} from '@arterial/icon-button';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
 
 export function TopAppBarIcon({action, className, nav, ...otherProps}) {
   const classes = classNames(

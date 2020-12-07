@@ -1,8 +1,8 @@
-import {useState, useEffect} from 'react';
 import classNames from 'classnames';
-import {Select, SelectHelperText} from '..';
+import {useState, useEffect} from 'react';
 import {CircularProgress} from '../../circular-progress';
 import {Icon} from '../../icon';
+import {Select, SelectHelperText} from '..';
 import './select.stories.css';
 
 const Meta = {

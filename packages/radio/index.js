@@ -1,6 +1,6 @@
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import {FormField} from '@arterial/form-field';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
 
 function RadioBase({
   checked,

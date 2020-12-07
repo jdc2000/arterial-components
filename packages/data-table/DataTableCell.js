@@ -1,6 +1,6 @@
-import PropTypes from 'prop-types';
 import {Checkbox} from '@arterial/checkbox';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 
 export function DataTableCell(props) {
   return <Cell {...props} header={false} />;

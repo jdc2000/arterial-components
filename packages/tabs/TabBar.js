@@ -1,7 +1,7 @@
-import {Children, cloneElement, useReducer, useRef, useEffect} from 'react';
-import PropTypes from 'prop-types';
-import TabScroller from './TabScroller';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import {Children, cloneElement, useReducer, useRef, useEffect} from 'react';
+import {TabScroller} from './TabScroller';
 
 const strings = {
   ARROW_LEFT_KEY: 'ArrowLeft',
@@ -76,7 +76,7 @@ const initialState = {
   rtl: false,
 };
 
-export default function TabBar({
+export function TabBar({
   activeIndex,
   children,
   className,

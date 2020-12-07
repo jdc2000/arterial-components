@@ -1,6 +1,7 @@
-import {useContext, useEffect, useReducer} from 'react';
-import PropTypes from 'prop-types';
+import {cssClasses, numbers} from '@material/dialog';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import {useContext, useEffect, useState} from 'react';
 import {DialogContext, DialogProvider} from './DialogContext';
 
 const DIALOG_ANIMATION_CLOSE_TIME_MS = 75;

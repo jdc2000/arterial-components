@@ -1,12 +1,4 @@
 import {useState} from 'react';
-import {
-  Drawer,
-  DrawerContent,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerSubtitle,
-  DrawerAppContent,
-} from '..';
 import {List, ListItem, ListItemGraphic, ListItemText} from '../../list';
 import {
   TopAppBar,
@@ -16,6 +8,14 @@ import {
   TopAppBarRow,
   TopAppBarSection,
 } from '../../top-app-bar';
+import {
+  Drawer,
+  DrawerContent,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerSubtitle,
+  DrawerAppContent,
+} from '..';
 import './drawer.stories.css';
 
 const Meta = {

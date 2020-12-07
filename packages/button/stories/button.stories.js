@@ -1,5 +1,5 @@
-import {Button} from '..';
 import {CircularProgress} from '../../circular-progress';
+import {Button} from '..';
 
 const Meta = {title: 'Button'};
 export default Meta;

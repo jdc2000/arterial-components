@@ -1,6 +1,6 @@
 import {useState} from 'react';
-import {Tab, TabBar} from '..';
 import {Icon} from '../../icon';
+import {Tab, TabBar} from '..';
 
 const Meta = {
   title: 'Tabs',

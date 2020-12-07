@@ -1,6 +1,6 @@
-import {CircularProgress} from '..';
 import {Button} from '../../button';
 import {IconButton} from '../../icon-button';
+import {CircularProgress} from '..';
 import '../index.scss';
 
 const Meta = {

@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 
 export function DataTableContent({children, className, ...otherProps}) {
   const classes = classNames('mdc-data-table__content', className);

@@ -1,6 +1,6 @@
 import {useState} from 'react';
-import {FormField} from '..';
 import {Checkbox} from '../../checkbox';
+import {FormField} from '..';
 
 const Meta = {title: 'FormField'};
 export default Meta;

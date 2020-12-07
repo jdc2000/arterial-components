@@ -1,6 +1,6 @@
-import {forwardRef, cloneElement} from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import {forwardRef, cloneElement} from 'react';
 
 export const Icon = forwardRef((props, ref) => {
   const {className, icon, ...otherProps} = props;

@@ -1,6 +1,6 @@
-import {forwardRef} from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import {forwardRef} from 'react';
 
 export const MenuSurfaceAnchor = forwardRef((props, ref) => {
   const {children, className, tag: Tag = 'div', ...otherProps} = props;

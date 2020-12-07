@@ -1,6 +1,6 @@
-import {useEffect, useRef, useState} from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import {useEffect, useRef, useState} from 'react';
 
 export function NotchedOutline({
   className,

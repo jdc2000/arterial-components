@@ -5,7 +5,7 @@ import {DialogTitle} from './DialogTitle';
 import {DialogContent} from './DialogContent';
 
 export function SimpleDialog({className, content, onClose, open, title}) {
-  const classes = classNames('arm-dialog', 'arm-dialog--simple', className);
+  const classes = classNames('ajs-dialog', 'ajs-dialog--simple', className);
   function handleClose() {
     if (onClose) {
       onClose('close');

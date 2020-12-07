@@ -1,10 +1,10 @@
-import {forwardRef} from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import {Icon} from '@arterial/icon';
-import TabIndicator from './TabIndicator';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import {forwardRef} from 'react';
+import {TabIndicator} from './TabIndicator';
 
-const Tab = forwardRef((props, ref) => {
+export const Tab = forwardRef((props, ref) => {
   const {
     active,
     children,
@@ -86,5 +86,3 @@ Tab.propTypes = {
   stacked: PropTypes.bool,
   tag: PropTypes.element,
 };
-
-export default Tab;

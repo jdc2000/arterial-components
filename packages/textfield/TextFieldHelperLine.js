@@ -1,7 +1,7 @@
+import PropTypes from 'prop-types';
 import {isValidElement} from 'react';
 import {TextFieldCharacterCounter} from './TextFieldCharacterCounter';
 import {TextFieldHelperText} from './TextFieldHelperText';
-import PropTypes from 'prop-types';
 
 function HelperText({text}) {
   if (typeof text === 'object') {

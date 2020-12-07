@@ -1,5 +1,3 @@
-import {useEffect, useReducer, useRef} from 'react';
-import Highlighter from './Highlighter';
 import {
   List,
   ListItem,
@@ -10,11 +8,13 @@ import {
   ListItemSecondaryText,
 } from '@arterial/list';
 import {MenuSurface, MenuSurfaceAnchor, Corner} from '@arterial/menu-surface';
-import PropTypes from 'prop-types';
 import {TextField} from '@arterial/textfield';
 import classNames from 'classnames';
-import {reducer, types, INITIAL_STATE} from './reducer';
+import PropTypes from 'prop-types';
+import {useEffect, useReducer, useRef} from 'react';
 import {v4 as uuid} from 'uuid';
+import Highlighter from './Highlighter';
+import {reducer, types, INITIAL_STATE} from './reducer';
 
 export function Typeahead({
   className,
@@ -239,7 +239,6 @@ export function Typeahead({
     </div>
   );
 }
-
 Typeahead.displayName = 'Typeahead';
 Typeahead.propTypes = {
   className: PropTypes.string,

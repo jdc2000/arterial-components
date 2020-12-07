@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 
 const XMLNS = 'http://www.w3.org/2000/svg';
 const styleDimensions = {

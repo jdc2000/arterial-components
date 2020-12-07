@@ -1,7 +1,7 @@
-import {isValidElement} from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import {Icon} from '@arterial/icon';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import {isValidElement} from 'react';
 
 export function ListItemGraphic({
   className,

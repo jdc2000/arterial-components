@@ -1,7 +1,7 @@
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
 import {useContext, useEffect} from 'react';
 import {DialogContext} from './DialogContext';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import {getContentId} from './utils';
 
 export function DialogContent({

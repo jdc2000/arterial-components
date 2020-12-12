@@ -1,40 +1,7 @@
+import {cssClasses} from '@material/drawer';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import {useEffect, useReducer} from 'react';
-
-const CLOSE = 'CLOSE';
-const CLOSING = 'CLOSING';
-const DRAWER_CLASS = 'mdc-drawer';
-const OPEN = 'OPEN';
-const OPENING = 'OPENING';
-
-const initialState = {
-  isAnimate: false,
-  isClosing: false,
-  isOpen: false,
-  isOpening: false,
-};
-
-function reducer(state, action) {
-  switch (action.type) {
-    case CLOSE:
-      return {
-        ...state,
-        isOpen: action.data,
-        isOpening: false,
-        isClosing: false,
-        isAnimate: false,
-      };
-    case CLOSING:
-      return {...state, isClosing: true};
-    case OPEN:
-      return {...state, isOpen: true, isAnimate: true};
-    case OPENING:
-      return {...state, isOpening: true};
-    default:
-      throw new Error();
-  }
-}
+import {useEffect, useState} from 'react';
 
 export function Drawer({
   children,
@@ -46,29 +13,30 @@ export function Drawer({
   tag: Tag = 'aside',
   ...otherProps
 }) {
-  const [state, dispatch] = useReducer(reducer, {
-    ...initialState,
-    isOpen: open,
-  });
-  const classes = classNames(DRAWER_CLASS, className, {
+  const [isAnimate, setIsAnimate] = useState(false);
+  const [isClosing, setIsClosing] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [isOpening, setIsOpening] = useState(false);
+  const classes = classNames(cssClasses.ROOT, className, {
     'mdc-drawer--dismissible': dismissible,
     'mdc-drawer--modal': modal,
-    'mdc-drawer--open': state.isOpen,
-    'mdc-drawer--opening': state.isOpening,
-    'mdc-drawer--closing': state.isClosing,
-    'mdc-drawer--animate': state.isAnimate,
+    'mdc-drawer--open': isOpen,
+    'mdc-drawer--opening': isOpening,
+    'mdc-drawer--closing': isClosing,
+    'mdc-drawer--animate': isAnimate,
   });
 
   function handleScrimClick() {
-    if (onClose) {
-      onClose();
-    }
+    if (onClose) onClose();
   }
 
   function handleTransitionEnd(e) {
     const element = e.target;
-    if (isElement(element) && hasClass(element, DRAWER_CLASS)) {
-      dispatch({type: CLOSE, data: !state.isClosing});
+    if (isElement(element) && hasClass(element, cssClasses.ROOT)) {
+      setIsOpen(!isClosing);
+      setIsOpening(false);
+      setIsClosing(false);
+      setIsAnimate(false);
     }
   }
 
@@ -95,29 +63,24 @@ export function Drawer({
     }
 
     if (open) {
-      if (state.isOpen || state.isOpening || state.isClosing) {
-        return;
-      }
-      dispatch({type: OPEN});
+      if (isOpen || isOpening || isClosing) return;
+      setIsOpen(true);
+      setIsAnimate(true);
 
       // Wait a frame once display is no longer "none", to establish basis for animation
       runNextAnimationFrame(() => {
-        dispatch({type: OPENING});
+        setIsOpening(true);
       });
     } else {
-      if (!state.isOpen || state.isOpening || state.isClosing) {
-        return;
-      }
-      dispatch({type: CLOSING});
+      if (!isOpen || isOpening || isClosing) return;
+      setIsClosing(true);
     }
-  }, [open, state]);
+  }, [isClosing, isOpen, isOpening, open]);
 
   useEffect(() => {
     function handleEscape(e) {
       const isEscape = e.key === 'Escape' || e.keyCode === 27;
-      if (onClose && isEscape) {
-        onClose();
-      }
+      if (onClose && isEscape) onClose();
     }
 
     window.addEventListener('keydown', handleEscape);

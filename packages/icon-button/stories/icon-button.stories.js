@@ -9,7 +9,7 @@ export default Meta;
 function MyIconButton({image, svg, toggle}) {
   const [on, setOn] = useState(false);
   let myIcon = toggle ? 'favorite_border' : 'favorite';
-  let myOnIcon = 'favorite';
+  let myIconOn = 'favorite';
   if (image) {
     myIcon = (
       <img
@@ -17,7 +17,7 @@ function MyIconButton({image, svg, toggle}) {
         alt="facebook"
       />
     );
-    myOnIcon = (
+    myIconOn = (
       <img
         src="https://instagram-brand.com/wp-content/uploads/2016/11/Instagram_AppIcon_Aug2017.png"
         alt="instagram"
@@ -26,13 +26,13 @@ function MyIconButton({image, svg, toggle}) {
   }
   if (svg) {
     myIcon = <FirefoxSvg />;
-    myOnIcon = <ChromeSvg />;
+    myIconOn = <ChromeSvg />;
   }
 
   return (
     <IconButton
       icon={myIcon}
-      onIcon={myOnIcon}
+      iconOn={myIconOn}
       on={on}
       onClick={() => {
         if (toggle) {

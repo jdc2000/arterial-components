@@ -1,18 +1,11 @@
+import {Corner, CornerBit, numbers, util} from '@material/menu-surface';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import {forwardRef, useEffect, useReducer, useCallback} from 'react';
+import {forwardRef, useCallback, useEffect, useState} from 'react';
 import ReactDOM from 'react-dom';
-import {Corner, CornerBit} from './Corner';
-import {reducer, INITIAL_STATE, types} from './reducer';
-import {getTransformPropertyName} from './utils';
 
+const {getTransformPropertyName} = util;
 const isHoistedElement = true;
-const numbers = {
-  TRANSITION_OPEN_DURATION: 120 /** Total duration of menu-surface open animation. */,
-  TRANSITION_CLOSE_DURATION: 75 /** Total duration of menu-surface close animation. */,
-  MARGIN_TO_EDGE: 32 /** Margin left to the edge of the viewport when menu-surface is at maximum possible height. Also used as a viewport margin. */,
-  ANCHOR_TO_MENU_SURFACE_WIDTH_RATIO: 0.67 /** Ratio of anchor width to menu-surface width for switching from corner positioning to center positioning. */,
-};
 
 export {Corner};
 export {MenuSurfaceAnchor} from './MenuSurfaceAnchor';
@@ -33,15 +26,18 @@ export const MenuSurface = forwardRef((props, ref) => {
     tag: Tag = 'div',
     ...otherProps
   } = props;
-  const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
+  const [isAnimatingClosed, setIsAnimatingClosed] = useState(false);
+  const [isAnimatingOpen, setIsAnimatingOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [isOpenBelow, setIsOpenBelow] = useState(false);
+  const [styles, setStyles] = useState(style);
   const classes = classNames('mdc-menu-surface', className, {
-    'mdc-menu-surface--animating-closed': state.isAnimatingClosed,
-    'mdc-menu-surface--animating-open': state.isAnimatingOpen,
-    'mdc-menu-surface--open': state.isOpen,
-    'mdc-menu-surface--is-open-below': state.isOpenBelow,
+    'mdc-menu-surface--animating-closed': isAnimatingClosed,
+    'mdc-menu-surface--animating-open': isAnimatingOpen,
+    'mdc-menu-surface--open': isOpen,
+    'mdc-menu-surface--is-open-below': isOpenBelow,
     'mdc-menu-surface--fixed': fixed,
   });
-  const styles = {...style, ...state.style};
 
   const autoPosition = useCallback(
     measurements => {
@@ -274,21 +270,19 @@ export const MenuSurface = forwardRef((props, ref) => {
       }
 
       const propertyName = `${getTransformPropertyName(window)}Origin`;
-      dispatch({
-        type: types.STYLE,
-        style: {
-          [propertyName]: `${horizontalAlignment} ${verticalAlignment}`,
-          left: 'left' in position ? `${position.left}px` : '',
-          right: 'right' in position ? `${position.right}px` : '',
-          top: 'top' in position ? `${position.top}px` : '',
-          bottom: 'bottom' in position ? `${position.bottom}px` : '',
-          maxHeight: maxMenuSurfaceHeight ? maxMenuSurfaceHeight + 'px' : '',
-        },
-      });
+      setStyles(prevStyles => ({
+        ...prevStyles,
+        [propertyName]: `${horizontalAlignment} ${verticalAlignment}`,
+        left: 'left' in position ? `${position.left}px` : '',
+        right: 'right' in position ? `${position.right}px` : '',
+        top: 'top' in position ? `${position.top}px` : '',
+        bottom: 'bottom' in position ? `${position.bottom}px` : '',
+        maxHeight: maxMenuSurfaceHeight ? maxMenuSurfaceHeight + 'px' : '',
+      }));
 
       // If it is opened from the top then add is-open-below class
       if (!hasBit(corner, CornerBit.BOTTOM)) {
-        dispatch({type: types.OPEN_BELOW});
+        setIsOpenBelow(true);
       }
     },
     [
@@ -362,30 +356,29 @@ export const MenuSurface = forwardRef((props, ref) => {
 
     if (open) {
       if (quickOpen) {
-        dispatch({type: types.OPEN});
+        setIsOpen(true);
       } else {
-        dispatch({type: types.ANIMATING_OPEN, isAnimatingOpen: true});
+        setIsAnimatingOpen(true);
         animationRequestId = requestAnimationFrame(() => {
-          dispatch({type: types.OPEN});
+          setIsOpen(true);
           openAnimationEndTimerId = setTimeout(() => {
             openAnimationEndTimerId = 0;
-            dispatch({type: types.ANIMATING_OPEN, isAnimatingOpen: false});
+            setIsAnimatingOpen(false);
           }, numbers.TRANSITION_OPEN_DURATION);
         });
       }
     } else {
       if (quickOpen) {
-        dispatch({type: types.CLOSE});
+        setIsOpen(false);
+        setIsOpenBelow(false);
       } else {
-        dispatch({type: types.ANIMATING_CLOSED, isAnimatingClosed: true});
+        setIsAnimatingClosed(true);
         requestAnimationFrame(() => {
-          dispatch({type: types.CLOSE});
+          setIsOpen(false);
+          setIsOpenBelow(false);
           closeAnimationEndTimerId = setTimeout(() => {
             closeAnimationEndTimerId = 0;
-            dispatch({
-              type: types.ANIMATING_CLOSED,
-              isAnimatingClosed: false,
-            });
+            setIsAnimatingClosed(false);
           }, numbers.TRANSITION_CLOSE_DURATION);
         });
       }

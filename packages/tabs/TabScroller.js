@@ -27,15 +27,11 @@ export const TabScroller = forwardRef((props, ref) => {
   const contentClasses = classNames('mdc-tab-scroller__scroll-content');
 
   function handleInteraction(e) {
-    if (onInteraction) {
-      onInteraction(e);
-    }
+    if (onInteraction) onInteraction(e);
   }
 
   function handleTransitionEnd(e) {
-    if (onTransitionEnd) {
-      onTransitionEnd(e);
-    }
+    if (onTransitionEnd) onTransitionEnd(e);
   }
 
   return (

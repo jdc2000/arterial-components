@@ -89,7 +89,7 @@ TabIndicator.propTypes = {
   active: PropTypes.bool,
   className: PropTypes.string,
   fade: PropTypes.bool,
-  icon: PropTypes.string,
+  icon: PropTypes.node,
   id: PropTypes.string,
   previousIndicatorClientRect: PropTypes.object,
   tag: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),

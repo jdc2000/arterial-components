@@ -5,6 +5,7 @@ import {
   DataTableContent,
   DataTableHeader,
   DataTableHeaderCell,
+  DataTableHeaderRow,
   DataTableRow,
 } from '..';
 
@@ -23,7 +24,7 @@ export const Basic = () => {
   return (
     <DataTable>
       <DataTableHeader>
-        <DataTableRow>
+        <DataTableHeaderRow>
           {header.map((cell, cellIndex) => {
             const isNumeric = numerics.current.get(cellIndex) === true;
             return (
@@ -32,7 +33,7 @@ export const Basic = () => {
               </DataTableHeaderCell>
             );
           })}
-        </DataTableRow>
+        </DataTableHeaderRow>
       </DataTableHeader>
       <DataTableContent>
         {content.map((row, rowIndex) => {
@@ -68,7 +69,7 @@ export const Selection = () => {
   return (
     <DataTable>
       <DataTableHeader>
-        <DataTableRow>
+        <DataTableHeaderRow>
           {header.map((cell, cellIndex) => {
             const isNumeric = numerics.current.get(cellIndex) === true;
             return (
@@ -76,6 +77,7 @@ export const Selection = () => {
                 {cellIndex === 0 && (
                   <DataTableHeaderCell
                     checkbox
+                    checkboxId={cell + cellIndex}
                     checked={headerChecked === 'checked'}
                     indeterminate={headerChecked === 'indeterminate'}
                     onChange={data => {
@@ -93,7 +95,7 @@ export const Selection = () => {
               </Fragment>
             );
           })}
-        </DataTableRow>
+        </DataTableHeaderRow>
       </DataTableHeader>
       <DataTableContent>
         {content.map((row, rowIndex) => {
@@ -110,6 +112,7 @@ export const Selection = () => {
                     {cellIndex === 0 && (
                       <DataTableCell
                         checkbox
+                        checkboxId={cell + cellIndex}
                         checked={bodyChecked[rowIndex] === true}
                         onChange={data => {
                           bodyChecked[rowIndex] = data.checked;

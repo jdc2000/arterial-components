@@ -58,6 +58,9 @@ function MySelect({
   const classes = classNames('select', {
     'select--full-width': fullWidth,
     'select--icon': !fullWidth && icon,
+  });
+  const wrapperClasses = classNames({
+    'select--full-width': fullWidth,
     'select--margin-right': !fullWidth,
   });
   const isLoading = progress || (isDelayedSelected && value === '');
@@ -74,24 +77,26 @@ function MySelect({
   }, [isDelayedSelected, isSelected, options]);
 
   return (
-    <Select
-      className={classes}
-      disabled={disabled || isLoading}
-      helperText={helperText}
-      icon={icon ? 'local_dining' : null}
-      id={id}
-      invalid={invalid}
-      label={noLabel ? null : 'Pick a Food Group'}
-      labelFloating={noLabel ? null : labelFloating || isLoading}
-      menuWidth={!fullWidth ? 'inherit' : null}
-      onSelect={handleSelect}
-      options={options}
-      outlined={outlined}
-      placeholder={isLoading ? 'Loading...' : ''}
-      required={required}
-      trailingIcon={isLoading ? <CircularProgress size="xsmall" /> : null}
-      value={value}
-    />
+    <div className={wrapperClasses}>
+      <Select
+        className={classes}
+        disabled={disabled || isLoading}
+        helperText={helperText}
+        icon={icon ? 'local_dining' : null}
+        id={id}
+        invalid={invalid}
+        label={noLabel ? null : 'Pick a Food Group'}
+        labelFloating={noLabel ? null : labelFloating || isLoading}
+        menuWidth={!fullWidth ? 'inherit' : null}
+        onSelect={handleSelect}
+        options={options}
+        outlined={outlined}
+        placeholder={isLoading ? 'Loading...' : ''}
+        required={required}
+        trailingIcon={isLoading ? <CircularProgress medium /> : null}
+        value={value}
+      />
+    </div>
   );
 }
 export const Filled = () => (
@@ -131,51 +136,20 @@ export const WithHelperText = () => (
     </div>
   </>
 );
-export const PersistentHelperText = () => (
-  <>
-    <div className="select-row">
-      <MySelect
-        helperText={<SelectHelperText persistent text="Helper Text" />}
-      />
-      <MySelect
-        icon
-        id="demo-icon"
-        helperText={<SelectHelperText persistent text="Helper Text" />}
-      />
-    </div>
-    <div className="select-row">
-      <MySelect
-        id="demo-outlined"
-        outlined
-        helperText={<SelectHelperText persistent text="Helper Text" />}
-      />
-      <MySelect
-        icon
-        id="demo-outlined-icon"
-        outlined
-        helperText={<SelectHelperText persistent text="Helper Text" />}
-      />
-    </div>
-  </>
-);
 export const Invalid = () => (
   <>
     <div className="select-row">
       <MySelect
         invalid
         required
-        helperText={
-          <SelectHelperText persistent validationMsg text="Helper Text" />
-        }
+        helperText={<SelectHelperText validationMsg text="Helper Text" />}
       />
       <MySelect
         icon
         id="demo-icon"
         invalid
         required
-        helperText={
-          <SelectHelperText persistent validationMsg text="Helper Text" />
-        }
+        helperText={<SelectHelperText validationMsg text="Helper Text" />}
       />
     </div>
     <div className="select-row">
@@ -184,9 +158,7 @@ export const Invalid = () => (
         invalid
         outlined
         required
-        helperText={
-          <SelectHelperText persistent validationMsg text="Helper Text" />
-        }
+        helperText={<SelectHelperText validationMsg text="Helper Text" />}
       />
       <MySelect
         icon
@@ -194,9 +166,7 @@ export const Invalid = () => (
         invalid
         outlined
         required
-        helperText={
-          <SelectHelperText persistent validationMsg text="Helper Text" />
-        }
+        helperText={<SelectHelperText validationMsg text="Helper Text" />}
       />
     </div>
   </>
@@ -206,13 +176,13 @@ export const LabelFloating = () => (
     <div className="select-row">
       <MySelect
         labelFloating
-        helperText={<SelectHelperText persistent text="Helper Text" />}
+        helperText={<SelectHelperText text="Helper Text" />}
       />
       <MySelect
         icon
         id="demo-icon"
         labelFloating
-        helperText={<SelectHelperText persistent text="Helper Text" />}
+        helperText={<SelectHelperText text="Helper Text" />}
       />
     </div>
     <div className="select-row">
@@ -220,14 +190,14 @@ export const LabelFloating = () => (
         id="demo-outlined"
         outlined
         labelFloating
-        helperText={<SelectHelperText persistent text="Helper Text" />}
+        helperText={<SelectHelperText text="Helper Text" />}
       />
       <MySelect
         icon
         id="demo-outlined-icon"
         outlined
         labelFloating
-        helperText={<SelectHelperText persistent text="Helper Text" />}
+        helperText={<SelectHelperText text="Helper Text" />}
       />
     </div>
   </>
@@ -235,15 +205,12 @@ export const LabelFloating = () => (
 export const NoLabel = () => (
   <>
     <div className="select-row">
-      <MySelect
-        noLabel
-        helperText={<SelectHelperText persistent text="Helper Text" />}
-      />
+      <MySelect noLabel helperText={<SelectHelperText text="Helper Text" />} />
       <MySelect
         icon
         id="demo-icon"
         noLabel
-        helperText={<SelectHelperText persistent text="Helper Text" />}
+        helperText={<SelectHelperText text="Helper Text" />}
       />
     </div>
     <div className="select-row">
@@ -251,14 +218,14 @@ export const NoLabel = () => (
         id="demo-outlined"
         outlined
         noLabel
-        helperText={<SelectHelperText persistent text="Helper Text" />}
+        helperText={<SelectHelperText text="Helper Text" />}
       />
       <MySelect
         icon
         id="demo-outlined-icon"
         outlined
         noLabel
-        helperText={<SelectHelperText persistent text="Helper Text" />}
+        helperText={<SelectHelperText text="Helper Text" />}
       />
     </div>
   </>

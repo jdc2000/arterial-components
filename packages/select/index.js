@@ -12,12 +12,10 @@ import {MenuSurface, Corner} from '@arterial/menu-surface';
 import {NotchedOutline} from '@arterial/notched-outline';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import {useEffect, useReducer, useRef} from 'react';
-import {reducer, types, INITIAL_STATE} from './reducer';
+import {useEffect, useRef, useState} from 'react';
 import {SelectHelperLine} from './SelectHelperLine';
 import {v4 as uuid} from 'uuid';
 
-export {SelectHelperLine};
 export {SelectHelperText} from './SelectHelperText';
 export function Select({
   children,
@@ -29,6 +27,7 @@ export function Select({
   invalid,
   label,
   labelFloating,
+  menuTwoLine,
   menuWidth,
   onSelect,
   options,
@@ -40,36 +39,35 @@ export function Select({
   value,
   ...otherProps
 }) {
-  const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
+  const [isActivated, setIsActivated] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
+  const [focusedIndex, setFocusedIndex] = useState(0);
+  const [selectedIndex, setSelectedIndex] = useState(-1);
   const anchorRef = useRef();
   const arterialRef = useRef(uuid());
-  const inputRef = useRef();
   const listItems = useRef(new Map());
   const classes = classNames('mdc-select', className, {
-    'mdc-select--activated': state.activated,
+    'mdc-select--activated': isActivated,
     'mdc-select--disabled': disabled,
     'mdc-select--invalid': invalid,
-    'mdc-select--focused': state.focused,
+    'mdc-select--filled': !outlined,
+    'mdc-select--focused': isFocused,
     'mdc-select--no-label': !label,
     'mdc-select--outlined': outlined,
     'mdc-select--required': required,
     'mdc-select--with-leading-icon': icon,
   });
-  const isLabelFloating = Boolean(labelFloating || state.focused || value);
+  const isLabelFloating = Boolean(labelFloating || isFocused || value);
   const labelClasses = classNames('mdc-floating-label', {
     'mdc-floating-label--float-above': isLabelFloating,
   });
   const lineRippleClasses = classNames('mdc-line-ripple', {
-    'mdc-line-ripple--active': state.focused,
+    'mdc-line-ripple--active': isFocused,
+  });
+  const menuClasses = classNames('mdc-select__menu', 'mdc-menu', {
+    'mdc-select__menu--invalid': invalid,
   });
   const labelId = `${id}-label`;
-
-  const ariaProps = {
-    role: required ? null : 'button',
-    'aria-haspopup': 'listbox',
-    'aria-labelledby': label ? `${labelId} ${id}` : null,
-    'aria-required': required,
-  };
 
   function focusListItem(index) {
     let i = index;
@@ -88,7 +86,7 @@ export function Select({
 
   function getListItemTabIndex(index) {
     if (options[index].disabled) return;
-    return index === state.focusedIndex ? 0 : -1;
+    return index === focusedIndex ? 0 : -1;
   }
 
   function getMenuStyle() {
@@ -119,14 +117,19 @@ export function Select({
 
   function handleClick(e) {
     if (disabled) return;
-    if (!state.activated) focusListItem(state.selectedIndex);
-    const type = state.activated ? types.DEACTIVATE : types.ACTIVATE;
-    dispatch({type, focused: true});
+    if (isActivated) {
+      setIsActivated(false);
+      setIsFocused(true);
+    } else {
+      focusListItem(selectedIndex);
+      setIsActivated(true);
+      setIsFocused(true);
+    }
     e.preventDefault();
   }
 
   function handleFocus() {
-    dispatch({type: types.FOCUS});
+    setIsFocused(true);
   }
 
   function handleKeyDown(e) {
@@ -138,10 +141,11 @@ export function Select({
 
     if (isEnter || isSpace || arrowUp || arrowDown) {
       e.preventDefault();
-      focusListItem(state.selectedIndex);
-      dispatch({type: types.ACTIVATE});
+      focusListItem(selectedIndex);
+      setIsActivated(true);
     } else if (isTab) {
-      dispatch({type: types.DEACTIVATE, focused: false});
+      setIsActivated(false);
+      setIsFocused(false);
     }
   }
 
@@ -156,7 +160,7 @@ export function Select({
     if (!option.disabled && (isClick || isEnter || isSpace)) {
       e.preventDefault();
       setTimeout(() => anchorRef.current.focus(), 0);
-      dispatch({type: types.DEACTIVATE});
+      setIsActivated(false);
       if (onSelect) onSelect(option);
     } else if (isTab && e.shiftKey) {
       e.preventDefault();
@@ -165,12 +169,12 @@ export function Select({
       e.preventDefault();
       const i = getPreviousIndex(index);
       focusListItem(i);
-      dispatch({type: types.FOCUS_INDEX, focusedIndex: i});
+      setFocusedIndex(i);
     } else if (arrowDown) {
       e.preventDefault();
       const i = getNextIndex(index);
       focusListItem(i);
-      dispatch({type: types.FOCUS_INDEX, focusedIndex: i});
+      setFocusedIndex(i);
     }
   }
 
@@ -178,7 +182,8 @@ export function Select({
     function handleBodyClick(e) {
       const {arterial} = e.target.dataset;
       if (!arterial || arterial !== arterialRef.current) {
-        dispatch({type: types.DEACTIVATE, focused: false});
+        setIsActivated(false);
+        setIsFocused(false);
       }
     }
 
@@ -188,7 +193,8 @@ export function Select({
       const isTab = e.key === 'Tab' || e.keyCode === 9;
       if ((isEscape || isTab) && arterial === arterialRef.current) {
         if (isTab && !e.shiftKey) anchorRef.current.focus();
-        dispatch({type: types.DEACTIVATE, focused: false});
+        setIsActivated(false);
+        setIsFocused(false);
       }
     }
 
@@ -202,8 +208,8 @@ export function Select({
 
   useEffect(() => {
     if (value != null) {
-      const selectedIndex = options.findIndex(option => option.value === value);
-      dispatch({type: types.SELECT_INDEX, selectedIndex});
+      const index = options.findIndex(option => option.value === value);
+      setSelectedIndex(index);
     }
   }, [options, value]);
 
@@ -211,19 +217,43 @@ export function Select({
     <>
       <div className={classes} style={style}>
         <div
-          {...ariaProps}
           {...otherProps}
           className="mdc-select__anchor"
+          role="button"
+          aria-haspopup="listbox"
+          aria-expanded="false"
+          {...(label && {'aria-labelledby': `${labelId} ${id}`})}
           data-arterial={arterialRef.current}
           onClick={handleClick}
           onFocus={handleFocus}
           onKeyDown={handleKeyDown}
           ref={anchorRef}
-          style={{width: 'inherit'}}
           tabIndex={disabled ? null : 0}
-          title={getText(state.selectedIndex)}
+          title={getText(selectedIndex)}
         >
-          {!outlined && <span className="mdc-select__ripple"></span>}
+          {outlined && (
+            <NotchedOutline
+              data-arterial={arterialRef.current}
+              label={label}
+              labelId={labelId}
+              notched={isLabelFloating}
+            />
+          )}
+          {!outlined && (
+            <span
+              className="mdc-select__ripple"
+              data-arterial={arterialRef.current}
+            ></span>
+          )}
+          {!outlined && label && (
+            <span
+              className={labelClasses}
+              data-arterial={arterialRef.current}
+              id={labelId}
+            >
+              {label}
+            </span>
+          )}
           {icon && (
             <Icon
               className="mdc-select__icon"
@@ -231,78 +261,79 @@ export function Select({
               icon={icon}
             />
           )}
-          <input
-            className="mdc-select__selected-text"
+          <span
+            className="mdc-select__selected-text-container"
             data-arterial={arterialRef.current}
-            disabled
-            id={id}
-            placeholder={placeholder}
-            readOnly
-            ref={inputRef}
-            value={getText(state.selectedIndex)}
-          />
+          >
+            <span
+              className="mdc-select__selected-text"
+              data-arterial={arterialRef.current}
+              id={id}
+            >
+              {getText(selectedIndex) || placeholder}
+            </span>
+          </span>
           {trailingIcon ? (
             <Icon
               className="mdc-select__dropdown-icon"
               data-arterial={arterialRef.current}
               icon={trailingIcon}
-              style={{background: 'initial'}}
             />
           ) : (
-            <i
+            <span
               className="mdc-select__dropdown-icon"
               data-arterial={arterialRef.current}
-              id={`${id}-dropdown-icon`}
-            ></i>
-          )}
-          {outlined ? (
-            <NotchedOutline
-              data-arterial={arterialRef.current}
-              label={label}
-              labelId={labelId}
-              notched={isLabelFloating}
-            />
-          ) : (
-            <>
-              {label && (
-                <span
-                  className={labelClasses}
-                  data-arterial={arterialRef.current}
-                  id={labelId}
-                >
-                  {label}
-                </span>
-              )}
-              <span
-                className={lineRippleClasses}
+            >
+              <svg
+                className="mdc-select__dropdown-icon-graphic"
                 data-arterial={arterialRef.current}
-              ></span>
-            </>
+                focusable="false"
+                viewBox="7 10 10 5"
+              >
+                <polygon
+                  className="mdc-select__dropdown-icon-inactive"
+                  data-arterial={arterialRef.current}
+                  fillRule="evenodd"
+                  points="7 10 12 15 17 10"
+                  stroke="none"
+                ></polygon>
+                <polygon
+                  className="mdc-select__dropdown-icon-active"
+                  data-arterial={arterialRef.current}
+                  points="7 15 12 10 17 15"
+                  fillRule="evenodd"
+                  stroke="none"
+                ></polygon>
+              </svg>
+            </span>
+          )}
+          {!outlined && (
+            <span
+              className={lineRippleClasses}
+              data-arterial={arterialRef.current}
+            ></span>
           )}
         </div>
-        <SelectHelperLine text={helperText} />
         <MenuSurface
-          className="mdc-select__menu mdc-menu"
+          className={menuClasses}
           anchorCorner={Corner.BOTTOM_LEFT}
           anchorRef={anchorRef}
           data-arterial={arterialRef.current}
           id={`${id}-menu`}
-          open={state.activated}
+          open={isActivated}
           style={getMenuStyle()}
         >
           <List
             data-arterial={arterialRef.current}
             id={`${id}-list`}
             role="listbox"
-            twoLine={state.twoLine}
+            twoLine={menuTwoLine}
           >
             {Array.isArray(options) &&
               options.length > 0 &&
               options.map((option, index) => (
                 <ListItem
-                  aria-selected={
-                    index === state.selectedIndex && !option.disabled
-                  }
+                  aria-selected={index === selectedIndex && !option.disabled}
                   data-arterial={arterialRef.current}
                   data-value={option.value}
                   disabled={option.disabled}
@@ -312,7 +343,7 @@ export function Select({
                   onKeyDown={e => handleListItemAction(e, option, index)}
                   ref={element => listItems.current.set(index, element)}
                   role="option"
-                  selected={index === state.selectedIndex && !option.disabled}
+                  selected={index === selectedIndex && !option.disabled}
                   tabIndex={getListItemTabIndex(index)}
                 >
                   {option.graphic && (
@@ -321,12 +352,18 @@ export function Select({
                       graphic={option.graphic}
                     />
                   )}
-                  {state.twoLine ? (
+                  {menuTwoLine ? (
                     <ListItemText data-arterial={arterialRef.current}>
-                      <ListItemPrimaryText title={option.text}>
+                      <ListItemPrimaryText
+                        data-arterial={arterialRef.current}
+                        title={option.text}
+                      >
                         {option.text}
                       </ListItemPrimaryText>
-                      <ListItemSecondaryText title={option.secondaryText}>
+                      <ListItemSecondaryText
+                        data-arterial={arterialRef.current}
+                        title={option.secondaryText}
+                      >
                         {option.secondaryText}
                       </ListItemSecondaryText>
                       )
@@ -351,6 +388,7 @@ export function Select({
           </List>
         </MenuSurface>
       </div>
+      <SelectHelperLine data-arterial={arterialRef.current} text={helperText} />
     </>
   );
 }
@@ -384,5 +422,6 @@ Select.propTypes = {
   required: PropTypes.bool,
   style: PropTypes.object,
   trailingIcon: PropTypes.node,
+  twoLine: PropTypes.bool,
   value: PropTypes.string,
 };

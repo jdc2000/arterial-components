@@ -393,7 +393,12 @@ export const MenuSurface = forwardRef((props, ref) => {
   }, [anchorRef, autoPosition, open, position.x, position.y, quickOpen, ref]);
 
   return ReactDOM.createPortal(
-    <Tag className={classes} ref={ref} style={styles} {...otherProps}>
+    <Tag
+      className={classes}
+      ref={ref}
+      style={{...style, ...styles}}
+      {...otherProps}
+    >
       {children}
     </Tag>,
     document.body

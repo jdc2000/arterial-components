@@ -32,8 +32,8 @@ function MyTextField({icon, trailingIcon, ...otherProps}) {
 
 function MyTextFields({
   disabled,
+  endAligned,
   filled,
-  fullwidth,
   helperText,
   invalid,
   labelFloating,
@@ -50,13 +50,12 @@ function MyTextFields({
   const props = {
     label: FILLED,
     disabled,
-    fullwidth,
+    endAligned,
     helperText,
     invalid,
     labelFloating,
     maxLength,
     noLabel,
-    placeholder: fullwidth ? FILLED : null,
     prefix,
     required,
     suffix,
@@ -76,7 +75,7 @@ function MyTextFields({
           <MyTextField id="demo-filled-trailing-icon" trailingIcon {...props} />
         </div>
       )}
-      {!filled && !textarea && !fullwidth && (
+      {!filled && !textarea && (
         <div className="textfield-row">
           <MyTextField id="demo-outlined" {...oProps} />
           {!prefix && <MyTextField icon id="demo-outlined-icon" {...oProps} />}
@@ -140,16 +139,10 @@ export const Disabled = () => (
     helperText={<TextFieldHelperText persistent text="Helper Text" />}
   />
 );
-export const CharacterCounter = () => (
+export const EndAligned = () => (
   <MyTextFields
     helperText={<TextFieldHelperText persistent text="Helper Text" />}
-    maxLength={5}
-  />
-);
-export const FullWidth = () => (
-  <MyTextFields
-    fullwidth
-    helperText={<TextFieldHelperText persistent text="Helper Text" />}
+    endAligned
   />
 );
 export const Prefix = () => (
@@ -163,6 +156,12 @@ export const Suffix = () => (
   <MyTextFields
     helperText={<TextFieldHelperText persistent text="Helper Text" />}
     suffix=".00"
+  />
+);
+export const CharacterCounter = () => (
+  <MyTextFields
+    helperText={<TextFieldHelperText persistent text="Helper Text" />}
+    maxLength={5}
   />
 );
 export const Textarea = () => (

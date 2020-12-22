@@ -1,13 +1,12 @@
 import {Icon} from '@arterial/icon';
 import {NotchedOutline} from '@arterial/notched-outline';
+import {ALWAYS_FLOAT_TYPES} from '@material/textfield';
 import {forwardRef, useEffect, useRef, useState} from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import {v4 as uuid} from 'uuid';
 import {TextFieldHelperLine} from './TextFieldHelperLine';
 
-// prettier-ignore
-const ALWAYS_FLOAT_TYPES = ['color', 'date', 'datetime-local', 'month', 'range', 'time', 'week'];
 const AFFIX_CLASS = 'mdc-text-field__affix';
 const PREFIX_CLASSES = `${AFFIX_CLASS} mdc-text-field__affix--prefix`;
 const SUFFIX_CLASSES = `${AFFIX_CLASS} mdc-text-field__affix--suffix`;
@@ -23,11 +22,11 @@ export const TextField = forwardRef((props, ref) => {
     className,
     'data-arterial': dataArterial,
     disabled,
+    endAligned,
     helperText,
     icon,
     id,
     invalid,
-    fullwidth,
     label,
     labelFloating,
     maxLength,
@@ -54,9 +53,9 @@ export const TextField = forwardRef((props, ref) => {
   );
   const classes = classNames(className, 'mdc-text-field', {
     'mdc-text-field--disabled': disabled,
-    'mdc-text-field--filled': !outlined && !textarea,
+    'mdc-text-field--end-aligned': endAligned,
+    'mdc-text-field--filled': !outlined,
     'mdc-text-field--focused': focused,
-    'mdc-text-field--fullwidth': fullwidth,
     'mdc-text-field--invalid': invalid,
     'mdc-text-field--label-floating': isLabelFloating,
     'mdc-text-field--no-label': noLabel,
@@ -124,7 +123,26 @@ export const TextField = forwardRef((props, ref) => {
     };
   }, []);
 
-  const Input = textarea ? 'textarea' : 'input';
+  function renderInput() {
+    const Input = textarea ? 'textarea' : 'input';
+    return (
+      <Input
+        className="mdc-text-field__input"
+        data-arterial={arterialRef.current}
+        disabled={disabled}
+        id={id}
+        maxLength={maxLength}
+        onChange={onChange}
+        onFocus={handleFocus}
+        ref={inputRef}
+        type={type}
+        value={value}
+        {...ariaProps}
+        {...otherProps}
+      />
+    );
+  }
+
   return (
     <>
       <label
@@ -133,10 +151,39 @@ export const TextField = forwardRef((props, ref) => {
         ref={ref}
         style={style}
       >
-        {!textarea && (
+        {outlined ? (
+          <NotchedOutline
+            data-arterial={arterialRef.current}
+            label={noLabel ? null : label}
+            labelId={labelId}
+            notched={isLabelFloating}
+          />
+        ) : (
           <>
-            {!outlined && <span className="mdc-text-field__ripple"></span>}
-            {prefix && <span className={PREFIX_CLASSES}>{prefix}</span>}
+            <span
+              className="mdc-text-field__ripple"
+              data-arterial={arterialRef.current}
+            ></span>
+            {label && (
+              <span
+                className={labelClasses}
+                data-arterial={arterialRef.current}
+                id={labelId}
+              >
+                {label}
+              </span>
+            )}
+          </>
+        )}
+        {textarea ? (
+          <span
+            className="mdc-text-field__resizer"
+            data-arterial={arterialRef.current}
+          >
+            {renderInput()}
+          </span>
+        ) : (
+          <>
             {icon && (
               <Icon
                 className={LEADING_ICON_CLASSES}
@@ -149,24 +196,23 @@ export const TextField = forwardRef((props, ref) => {
                 tabIndex={onIconAction ? '0' : null}
               />
             )}
-          </>
-        )}
-        <Input
-          className="mdc-text-field__input"
-          data-arterial={arterialRef.current}
-          id={id}
-          maxLength={maxLength}
-          onChange={onChange}
-          onFocus={handleFocus}
-          ref={inputRef}
-          type={type}
-          value={value}
-          {...ariaProps}
-          {...otherProps}
-        />
-        {!textarea && (
-          <>
-            {suffix && <span className={SUFFIX_CLASSES}>{suffix}</span>}
+            {prefix && (
+              <span
+                className={PREFIX_CLASSES}
+                data-arterial={arterialRef.current}
+              >
+                {prefix}
+              </span>
+            )}
+            {renderInput()}
+            {suffix && (
+              <span
+                className={SUFFIX_CLASSES}
+                data-arterial={arterialRef.current}
+              >
+                {suffix}
+              </span>
+            )}
             {trailingIcon && (
               <Icon
                 className={TRAILING_ICON_CLASSES}
@@ -179,32 +225,13 @@ export const TextField = forwardRef((props, ref) => {
                 tabIndex={onTrailingIconAction ? '0' : null}
               />
             )}
-            {!outlined && (
-              <>
-                {label && !noLabel && (
-                  <span
-                    className={labelClasses}
-                    data-arterial={arterialRef.current}
-                    id={labelId}
-                  >
-                    {label}
-                  </span>
-                )}
-                <span
-                  className={lineRippleClasses}
-                  data-arterial={arterialRef.current}
-                ></span>
-              </>
-            )}
           </>
         )}
-        {(outlined || textarea) && (
-          <NotchedOutline
+        {!outlined && (
+          <span
+            className={lineRippleClasses}
             data-arterial={arterialRef.current}
-            label={noLabel ? null : label}
-            labelId={labelId}
-            notched={isLabelFloating}
-          />
+          ></span>
         )}
       </label>
       <TextFieldHelperLine
@@ -221,11 +248,11 @@ TextField.propTypes = {
   className: PropTypes.string,
   'data-arterial': PropTypes.string,
   disabled: PropTypes.bool,
+  endAligned: PropTypes.bool,
   helperText: PropTypes.oneOfType([PropTypes.node, PropTypes.object]),
   icon: PropTypes.node,
   id: PropTypes.string,
   invalid: PropTypes.bool,
-  fullwidth: PropTypes.bool,
   label: PropTypes.node,
   labelFloating: PropTypes.bool,
   maxLength: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),

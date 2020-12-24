@@ -45,7 +45,7 @@ function Toggle() {
   return (
     <IconButton
       icon="favorite_border"
-      onIcon="favorite"
+      iconOn="favorite"
       on={on}
       onClick={() => setOn(!on)}
     />
@@ -85,7 +85,7 @@ function ToggleImage() {
           alt="facebook"
         />
       }
-      onIcon={
+      iconOn={
         <img
           src="https://instagram-brand.com/wp-content/uploads/2016/11/Instagram_AppIcon_Aug2017.png"
           alt="instagram"
@@ -116,7 +116,7 @@ function ToggleSvg() {
   return (
     <IconButton
       icon={<ChromeSvg />}
-      onIcon={<FirefoxSvg />}
+      iconOn={<FirefoxSvg />}
       on={on}
       onClick={() => setOn(!on)}
     />
@@ -132,8 +132,8 @@ function ToggleSvg() {
 | --------- | ---------------- | ------------------------------------------------------------------ |
 | className | string           | Classes to be applied to the root element.                         |
 | icon      | string \| node   | Icon to render within root element. Displays when toggle is "off". |
+| iconOn    | string \| node   | Icon to render within root element. Displays when toggle is "on".  |
 | label     | string           | Sets the aria-label on root element.                               |
 | on        | boolean          | Indicates the toggle is on.                                        |
-| onIcon    | string \| node   | Icon to render within root element. Displays when toggle is "on".  |
 | style     | object           | Styles to be applied to the root element.                          |
 | tag       | string \| object | HTML tag to be applied to the root element. Defaults to button.    |

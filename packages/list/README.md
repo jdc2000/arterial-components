@@ -110,6 +110,25 @@ Two-line list items contain a maximum of two lines of text.
 </List>
 ```
 
+### Icon
+
+```jsx
+<List iconList>
+  <ListItem>
+    <ListItemGraphic graphic="wifi" />
+    <ListItemText>Icon item</ListItemText>
+  </ListItem>
+  <ListItem>
+    <ListItemGraphic graphic="wifi" />
+    <ListItemText>Icon item</ListItemText>
+  </ListItem>
+  <ListItem>
+    <ListItemGraphic graphic="wifi" />
+    <ListItemText>Avatar item</ListItemText>
+  </ListItem>
+</List>
+```
+
 ### Avatar
 
 ```jsx
@@ -127,6 +146,69 @@ import Avatar from 'avatar.png';
   <ListItem>
     <ListItemGraphic graphic={<img src={Avatar} alt="avatar" />} />
     <ListItemText>Avatar item</ListItemText>
+  </ListItem>
+</List>;
+```
+
+### Thumbnail
+
+```jsx
+import Thumb from 'thumb.png';
+
+<List thumbnailList>
+  <ListItem>
+    <ListItemGraphic graphic={<img src={Thumb} alt="thumb" />} />
+    <ListItemText>Thumbnail item</ListItemText>
+  </ListItem>
+  <ListItem>
+    <ListItemGraphic graphic={<img src={Thumb} alt="thumb" />} />
+    <ListItemText>Thumbnail item</ListItemText>
+  </ListItem>
+  <ListItem>
+    <ListItemGraphic graphic={<img src={Thumb} alt="thumb" />} />
+    <ListItemText>Thumbnail item</ListItemText>
+  </ListItem>
+</List>;
+```
+
+### Image
+
+```jsx
+import Image from 'image.png';
+
+<List imageList>
+  <ListItem>
+    <ListItemGraphic graphic={<img src={Image} alt="image" />} />
+    <ListItemText>Image item</ListItemText>
+  </ListItem>
+  <ListItem>
+    <ListItemGraphic graphic={<img src={Image} alt="image" />} />
+    <ListItemText>Image item</ListItemText>
+  </ListItem>
+  <ListItem>
+    <ListItemGraphic graphic={<img src={Image} alt="image" />} />
+    <ListItemText>Image item</ListItemText>
+  </ListItem>
+</List>;
+```
+
+### Video
+
+```jsx
+import Video from 'video.png';
+
+<List videoList>
+  <ListItem>
+    <ListItemGraphic graphic={<img src={Video} alt="video" />} />
+    <ListItemText>Video item</ListItemText>
+  </ListItem>
+  <ListItem>
+    <ListItemGraphic graphic={<img src={Thumb} alt="video" />} />
+    <ListItemText>Video item</ListItemText>
+  </ListItem>
+  <ListItem>
+    <ListItemGraphic graphic={<img src={Thumb} alt="video" />} />
+    <ListItemText>Video item</ListItemText>
   </ListItem>
 </List>;
 ```
@@ -336,8 +418,13 @@ import {Radio} from '@arterial/radio';
 | children       | node             | Elements to be displayed within root element.               |
 | className      | string           | Classes to be applied to the root element.                  |
 | dense          | boolean          | Enables a dense variant.                                    |
+| iconList       | boolean          | Enables an icon list variant.                               |
+| imageList      | boolean          | Enables an image list variant.                              |
 | nonInteractive | boolean          | Enables a non-interactive variant.                          |
+| textualList    | boolean          | Enables an textual list variant.                            |
+| thumbnailList  | boolean          | Enables an thumbnail list variant.                          |
 | twoLine        | boolean          | Enables a two-line variant.                                 |
+| videoList      | boolean          | Enables an video list variant.                              |
 | tag            | string \| object | HTML tag to be applied to the root element. Defaults to ul. |
 
 ### ListItem

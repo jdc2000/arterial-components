@@ -223,18 +223,18 @@ function LabelFloating() {
 }
 ```
 
-### Full Width
+### End aligned
 
 ```jsx
-function FullWidth() {
+function EndAligned() {
   const [value, setValue] = useState('');
   return (
     <Textfield
       helperText={
         <HelperText persistent validationMsg text="Helper text as component." />
       }
-      fullwidth
-      id="filled-fullwidth"
+      endAligned
+      id="filled-end-aligned"
       onChange={e => setValue(e.target.value)}
       placeholder="Filled"
       value={value}

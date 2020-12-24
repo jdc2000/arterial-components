@@ -18,9 +18,9 @@ npm install @arterial/select
 @use "@material/floating-label/index.scss" as floating-label;
 @use "@material/line-ripple/index.scss" as line-ripple;
 @use "@material/notched-outline/index.scss" as notched-outline;
-@use "@material/select/helper-text/index.scss" as select-helper-text;
-@use "@material/select/icon/index.scss" as select-icon;
-@use "@material/select/index.scss" as select;
+@use "@material/select/select.scss" as select;
+@use "@material/select/select-helper-text.scss" as select-helper-text;
+@use "@material/select/select-icon.scss" as select-icon;
 @include floating-label.core-styles;
 @include line-ripple.core-styles;
 @include notched-outline.core-styles;
@@ -358,8 +358,8 @@ function HelperTextObject() {
   return (
     <Select
       helperText={{
-        persistent: true,
         validationMsg: true,
+        validationMsgPersistent: true,
         text: 'Helper text as object.',
       }}
       id="filled-helper-text-object"
@@ -388,7 +388,11 @@ function HelperTextComponent() {
   return (
     <Select
       helperText={
-        <HelperText persistent validationMsg text="Helper text as component." />
+        <HelperText
+          validationMsgPersistent
+          validationMsg
+          text="Helper text as component."
+        />
       }
       id="filled-helper-text-component"
       label="Filled"
@@ -517,10 +521,10 @@ function EnhancedOptions() {
 
 ### HelperText
 
-| Name          | Type    | Description                                        |
-| ------------- | ------- | -------------------------------------------------- |
-| className     | string  | Classes to be applied to the root element.         |
-| id            | string  | Id of the element.                                 |
-| persistent    | boolean | Makes the helper text permanently visible.         |
-| validationMsg | boolean | Indicates the helper text is a validation message. |
-| text          | string  | Text to be displayed.                              |
+| Name                    | Type    | Description                                        |
+| ----------------------- | ------- | -------------------------------------------------- |
+| className               | string  | Classes to be applied to the root element.         |
+| id                      | string  | Id of the element.                                 |
+| validationMsg           | boolean | Indicates the helper text is a validation message. |
+| validationMsgPersistent | boolean | Makes the helper text permanently visible.         |
+| text                    | string  | Text to be displayed.                              |

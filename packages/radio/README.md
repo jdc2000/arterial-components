@@ -15,7 +15,7 @@ npm install @arterial/radio
 #### Sass
 
 ```scss
-@use "@material/radio/index.scss" as radio;
+@use "@material/radio/radio.scss" as radio;
 @include radio.core-styles;
 ```
 

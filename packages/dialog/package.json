@@ -1,6 +1,6 @@
 {
   "name": "@arterial/dialog",
-  "version": "2.0.3",
+  "version": "3.0.0",
   "description": "Another React Material Dialog",
   "author": "jdc2000",
   "homepage": "https://github.com/jdc2000/arterial-components#readme",
@@ -23,7 +23,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@arterial/button": "^2.0.3",
+    "@arterial/button": "^3.0.0",
     "@material/dialog": "^8.0.0",
     "classnames": "^2.2.6"
   }

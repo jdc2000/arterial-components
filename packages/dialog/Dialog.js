@@ -1,42 +1,10 @@
-import React, { useContext, useEffect, useReducer } from 'react';
-import PropTypes from 'prop-types';
+import {cssClasses, numbers} from '@material/dialog';
 import classNames from 'classnames';
-import { DialogContext, DialogProvider } from './DialogContext';
+import PropTypes from 'prop-types';
+import {useContext, useEffect, useState} from 'react';
+import {DialogContext, DialogProvider} from './DialogContext';
 
-const DIALOG_ANIMATION_CLOSE_TIME_MS = 75;
-const DIALOG_ANIMATION_OPEN_TIME_MS = 150;
-const SCROLL_LOCK = 'mdc-dialog-scroll-lock';
-
-const ANIMATION_TIMER_END = 'ANIMATION_TIMER_END';
-const CLOSE = 'CLOSE';
-const OPEN = 'OPEN';
-const OPENING = 'OPENING';
-
-const initialState = {
-  isAriaHidden: null,
-  isClosing: false,
-  isOpen: false,
-  isOpening: false,
-};
-
-function reducer(state, action) {
-  switch (action.type) {
-    case ANIMATION_TIMER_END:
-      return { ...state, isOpening: false, isClosing: false };
-    case CLOSE:
-      document.body.classList.remove(SCROLL_LOCK);
-      return { ...state, isOpen: false, isClosing: true, isAriaHidden: null };
-    case OPEN:
-      document.body.classList.add(SCROLL_LOCK);
-      return { ...state, isOpen: true, isAriaHidden: true };
-    case OPENING:
-      return { ...state, isOpening: true };
-    default:
-      throw new Error();
-  }
-}
-
-function Dialog({
+function DialogBase({
   children,
   className,
   onClose,
@@ -47,20 +15,20 @@ function Dialog({
   ...otherProps
 }) {
   const dialogContext = useContext(DialogContext);
-  const [state, dispatch] = useReducer(reducer, {
-    ...initialState,
-    isOpen: open,
-  });
+  const [isAriaHidden, setIsAriaHidden] = useState(null);
+  const [isClosing, setIsClosing] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [isOpening, setIsOpening] = useState(false);
 
   const classes = classNames('mdc-dialog', className, {
-    'mdc-dialog--open': state.isOpen,
-    'mdc-dialog--opening': state.isOpening,
-    'mdc-dialog--closing': state.isClosing,
+    'mdc-dialog--open': isOpen,
+    'mdc-dialog--opening': isOpening,
+    'mdc-dialog--closing': isClosing,
     'mdc-dialog--scrollable': scrollable,
     'mdc-dialog--stacked': stacked,
   });
   const ariaProps = {
-    'aria-hidden': state.isAriaHidden,
+    'aria-hidden': isAriaHidden,
   };
 
   function handleScrimClick() {
@@ -85,7 +53,8 @@ function Dialog({
 
     function handleAnimationTimerEnd() {
       animationTimer = 0;
-      dispatch({ type: ANIMATION_TIMER_END });
+      setIsOpening(false);
+      setIsClosing(false);
     }
 
     function layout() {
@@ -98,18 +67,23 @@ function Dialog({
     }
 
     if (open) {
-      dispatch({ type: OPENING });
+      setIsOpening(true);
 
       runNextAnimationFrame(() => {
-        dispatch({ type: OPEN });
+        document.body.classList.add(cssClasses.SCROLL_LOCK);
+        setIsOpen(true);
+        setIsAriaHidden(true);
 
         layout();
         animationTimer = setTimeout(() => {
           handleAnimationTimerEnd();
-        }, DIALOG_ANIMATION_OPEN_TIME_MS);
+        }, numbers.DIALOG_ANIMATION_OPEN_TIME_MS);
       });
     } else {
-      dispatch({ type: CLOSE });
+      document.body.classList.remove(cssClasses.SCROLL_LOCK);
+      setIsOpen(false);
+      setIsOpening(false);
+      setIsAriaHidden(false);
 
       cancelAnimationFrame(animationFrame);
       animationFrame = 0;
@@ -117,7 +91,7 @@ function Dialog({
       clearTimeout(animationTimer);
       animationTimer = setTimeout(() => {
         handleAnimationTimerEnd();
-      }, DIALOG_ANIMATION_CLOSE_TIME_MS);
+      }, numbers.DIALOG_ANIMATION_CLOSE_TIME_MS);
     }
 
     return () => {
@@ -130,9 +104,10 @@ function Dialog({
         cancelAnimationFrame(layoutFrame);
         layoutFrame = 0;
       }
-      document.body.classList.remove(SCROLL_LOCK);
+      document.body.classList.remove(cssClasses.SCROLL_LOCK);
     };
   }, [open]);
+
   return (
     <Tag className={classes} {...otherProps} {...ariaProps}>
       <div className="mdc-dialog__container">
@@ -150,6 +125,14 @@ function Dialog({
     </Tag>
   );
 }
+
+export function Dialog(props) {
+  return (
+    <DialogProvider>
+      <DialogBase {...props} />
+    </DialogProvider>
+  );
+}
 Dialog.displayName = 'Dialog';
 Dialog.propTypes = {
   children: PropTypes.node,
@@ -160,11 +143,3 @@ Dialog.propTypes = {
   stacked: PropTypes.bool,
   tag: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 };
-
-export default function (props) {
-  return (
-    <DialogProvider>
-      <Dialog {...props} />
-    </DialogProvider>
-  );
-}

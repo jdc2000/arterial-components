@@ -1,6 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import {useEffect, useRef, useState} from 'react';
 
 export function NotchedOutline({
   className,
@@ -27,7 +27,7 @@ export function NotchedOutline({
   useEffect(() => {
     const style =
       notched && labelRef.current
-        ? { width: labelRef.current.offsetWidth * 0.75 + 8 }
+        ? {width: labelRef.current.offsetWidth * 0.75 + 8}
         : null;
     setNotchStyle(style);
   }, [notched]);

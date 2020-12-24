@@ -110,6 +110,25 @@ Two-line list items contain a maximum of two lines of text.
 </List>
 ```
 
+### Icon
+
+```jsx
+<List iconList>
+  <ListItem>
+    <ListItemGraphic graphic="wifi" />
+    <ListItemText>Icon item</ListItemText>
+  </ListItem>
+  <ListItem>
+    <ListItemGraphic graphic="wifi" />
+    <ListItemText>Icon item</ListItemText>
+  </ListItem>
+  <ListItem>
+    <ListItemGraphic graphic="wifi" />
+    <ListItemText>Avatar item</ListItemText>
+  </ListItem>
+</List>
+```
+
 ### Avatar
 
 ```jsx
@@ -131,6 +150,69 @@ import Avatar from 'avatar.png';
 </List>;
 ```
 
+### Thumbnail
+
+```jsx
+import Thumb from 'thumb.png';
+
+<List thumbnailList>
+  <ListItem>
+    <ListItemGraphic graphic={<img src={Thumb} alt="thumb" />} />
+    <ListItemText>Thumbnail item</ListItemText>
+  </ListItem>
+  <ListItem>
+    <ListItemGraphic graphic={<img src={Thumb} alt="thumb" />} />
+    <ListItemText>Thumbnail item</ListItemText>
+  </ListItem>
+  <ListItem>
+    <ListItemGraphic graphic={<img src={Thumb} alt="thumb" />} />
+    <ListItemText>Thumbnail item</ListItemText>
+  </ListItem>
+</List>;
+```
+
+### Image
+
+```jsx
+import Image from 'image.png';
+
+<List imageList>
+  <ListItem>
+    <ListItemGraphic graphic={<img src={Image} alt="image" />} />
+    <ListItemText>Image item</ListItemText>
+  </ListItem>
+  <ListItem>
+    <ListItemGraphic graphic={<img src={Image} alt="image" />} />
+    <ListItemText>Image item</ListItemText>
+  </ListItem>
+  <ListItem>
+    <ListItemGraphic graphic={<img src={Image} alt="image" />} />
+    <ListItemText>Image item</ListItemText>
+  </ListItem>
+</List>;
+```
+
+### Video
+
+```jsx
+import Video from 'video.png';
+
+<List videoList>
+  <ListItem>
+    <ListItemGraphic graphic={<img src={Video} alt="video" />} />
+    <ListItemText>Video item</ListItemText>
+  </ListItem>
+  <ListItem>
+    <ListItemGraphic graphic={<img src={Thumb} alt="video" />} />
+    <ListItemText>Video item</ListItemText>
+  </ListItem>
+  <ListItem>
+    <ListItemGraphic graphic={<img src={Thumb} alt="video" />} />
+    <ListItemText>Video item</ListItemText>
+  </ListItem>
+</List>;
+```
+
 ### Activated
 
 ```jsx
@@ -142,7 +224,7 @@ function Activated() {
   const [activated, setActivated] = useState('star');
   return (
     <List>
-      {ITEMS.map((item) => (
+      {ITEMS.map(item => (
         <ListItem
           activated={activated === item}
           id={item}
@@ -168,7 +250,7 @@ function Selected() {
   const [selected, setSelected] = useState('star');
   return (
     <List>
-      {ITEMS.map((item) => (
+      {ITEMS.map(item => (
         <ListItem
           id={item}
           key={item}
@@ -186,8 +268,8 @@ function Selected() {
 ### Graphic
 
 ```jsx
-import { Checkbox } from '@arterial/checkbox';
-import { Radio } from '@arterial/radio';
+import {Checkbox} from '@arterial/checkbox';
+import {Radio} from '@arterial/radio';
 
 <List tag="div">
   <ListItem tag="div">
@@ -212,8 +294,8 @@ import { Radio } from '@arterial/radio';
 ### Metadata
 
 ```jsx
-import { Checkbox } from '@arterial/checkbox';
-import { Radio } from '@arterial/radio';
+import {Checkbox} from '@arterial/checkbox';
+import {Radio} from '@arterial/radio';
 
 <List tag="div">
   <ListItem tag="div">
@@ -238,7 +320,7 @@ import { Radio } from '@arterial/radio';
   <ListItem tag="div">
     <ListItemText>Meta with icon button</ListItemText>
     <ListItemMeta
-      meta={<IconButton icon="more_vert" style={{ marginRight: '-12px' }} />}
+      meta={<IconButton icon="more_vert" style={{marginRight: '-12px'}} />}
     />
   </ListItem>
   <ListItem tag="label">
@@ -248,7 +330,7 @@ import { Radio } from '@arterial/radio';
         <Checkbox
           id="meta-checkbox"
           onChange={() => {}}
-          style={{ marginRight: '-8px' }}
+          style={{marginRight: '-8px'}}
         />
       }
     />
@@ -257,7 +339,7 @@ import { Radio } from '@arterial/radio';
     <ListItemText>Meta with radio</ListItemText>
     <ListItemMeta
       meta={<Radio id="meta-radio" onChange={() => {}} />}
-      style={{ marginRight: '-8px' }}
+      style={{marginRight: '-8px'}}
     />
   </ListItem>
 </List>;
@@ -336,8 +418,13 @@ import { Radio } from '@arterial/radio';
 | children       | node             | Elements to be displayed within root element.               |
 | className      | string           | Classes to be applied to the root element.                  |
 | dense          | boolean          | Enables a dense variant.                                    |
+| iconList       | boolean          | Enables an icon list variant.                               |
+| imageList      | boolean          | Enables an image list variant.                              |
 | nonInteractive | boolean          | Enables a non-interactive variant.                          |
+| textualList    | boolean          | Enables an textual list variant.                            |
+| thumbnailList  | boolean          | Enables an thumbnail list variant.                          |
 | twoLine        | boolean          | Enables a two-line variant.                                 |
+| videoList      | boolean          | Enables an video list variant.                              |
 | tag            | string \| object | HTML tag to be applied to the root element. Defaults to ul. |
 
 ### ListItem

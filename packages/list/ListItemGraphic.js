@@ -1,7 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import {Icon} from '@arterial/icon';
 import classNames from 'classnames';
-import { Icon } from '@arterial/icon';
+import PropTypes from 'prop-types';
+import {isValidElement} from 'react';
 
 export function ListItemGraphic({
   className,
@@ -10,8 +10,8 @@ export function ListItemGraphic({
   tag: Tag = 'span',
   ...otherProps
 }) {
-  const styles = React.isValidElement(graphic)
-    ? { display: 'inherit', alignItems: 'inherit', ...style }
+  const styles = isValidElement(graphic)
+    ? {display: 'inherit', alignItems: 'inherit', ...style}
     : style;
   const classes = classNames('mdc-list-item__graphic', className);
   if (typeof graphic === 'string') {

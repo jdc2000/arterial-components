@@ -1,17 +1,17 @@
-import React, { useContext, useEffect } from 'react';
-import { DialogContext } from './DialogContext';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { getContentId } from './utils';
+import PropTypes from 'prop-types';
+import {useContext, useEffect} from 'react';
+import {DialogContext} from './DialogContext';
+import {getContentId} from './utils';
 
-export default function DialogContent({
+export function DialogContent({
   children,
   className,
   id,
   tag: Tag = 'div',
   ...otherProps
 }) {
-  const { contentId, setContentId } = useContext(DialogContext);
+  const {contentId, setContentId} = useContext(DialogContext);
   const classes = classNames('mdc-dialog__content', className);
 
   useEffect(() => {

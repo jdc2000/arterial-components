@@ -1,8 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 
-export default function ChipSet({
+export function ChipSet({
   children,
   className,
   choice,

@@ -1,8 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 
-export default function DialogActions({
+export function DialogActions({
   children,
   className,
   tag: Tag = 'footer',

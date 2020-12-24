@@ -1,18 +1,19 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import {Icon} from '@arterial/icon';
 import classNames from 'classnames';
-import { Icon } from '@arterial/icon';
+import PropTypes from 'prop-types';
 
-const ICON_CLASS = 'mdc-icon-button__icon';
-const ON_ICON_CLASS = classNames(ICON_CLASS, 'mdc-icon-button__icon--on');
+const ICON_BUTTON_ICON = 'mdc-icon-button__icon';
+const ICON_BUTTON_ICON_ON = classNames(
+  ICON_BUTTON_ICON,
+  'mdc-icon-button__icon--on'
+);
 
 export function IconButton({
   className,
   icon,
+  iconOn,
   label,
   on,
-  onIcon,
-  style,
   tag: Tag = 'button',
   ...otherProps
 }) {
@@ -23,14 +24,10 @@ export function IconButton({
     'aria-label': label,
     'aria-pressed': on,
   };
-  const styles = {
-    ...(Tag === 'button' && { textAlign: 'initial' }),
-    ...style,
-  };
   return (
-    <Tag className={classes} style={styles} {...ariaProps} {...otherProps}>
-      {icon && <Icon className={ICON_CLASS} icon={icon} />}
-      {onIcon && <Icon className={ON_ICON_CLASS} icon={onIcon} />}
+    <Tag className={classes} {...ariaProps} {...otherProps}>
+      {icon && <Icon className={ICON_BUTTON_ICON} icon={icon} />}
+      {iconOn && <Icon className={ICON_BUTTON_ICON_ON} icon={iconOn} />}
     </Tag>
   );
 }

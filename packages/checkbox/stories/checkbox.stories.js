@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
-import { Checkbox } from '..';
+import {useState} from 'react';
+import {Checkbox} from '..';
 
-export default { title: 'Checkbox' };
+const Meta = {title: 'Checkbox'};
+export default Meta;
 
-function MyCheckbox({ disabled, label, type = 'unchecked' }) {
+function MyCheckbox({disabled, label, type = 'unchecked'}) {
   const [checked, setChecked] = useState(type === 'checked');
   const [indeterminate, setIndeterminate] = useState(type === 'indeterminate');
 
@@ -15,7 +16,7 @@ function MyCheckbox({ disabled, label, type = 'unchecked' }) {
       indeterminate={indeterminate}
       label={label}
       name="checkboxes"
-      onChange={(e) => {
+      onChange={e => {
         setChecked(e.target.checked);
         setIndeterminate(e.target.indeterminate);
       }}

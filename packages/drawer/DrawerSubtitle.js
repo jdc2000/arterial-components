@@ -1,8 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 
-export default function Subtitle({
+export function DrawerSubtitle({
   children,
   className,
   tag: Tag = 'h6',
@@ -15,8 +14,8 @@ export default function Subtitle({
     </Tag>
   );
 }
-Subtitle.displayName = 'DrawerSubtitle';
-Subtitle.propTypes = {
+DrawerSubtitle.displayName = 'DrawerSubtitle';
+DrawerSubtitle.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   tag: PropTypes.element,

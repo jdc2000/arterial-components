@@ -1,20 +1,21 @@
-import React, { useState } from 'react';
-import { Typeahead } from '..';
-import { Icon } from '../../icon';
+import {useState} from 'react';
+import {Icon} from '../../icon';
+import {Typeahead} from '..';
 import './typeahead.stories.css';
 
-export default {
+const Meta = {
   title: 'Typeahead',
   decorators: [
-    (storyFn) => <div className="typeahead-container">{storyFn()}</div>,
+    storyFn => <div className="typeahead-container">{storyFn()}</div>,
   ],
 };
+export default Meta;
 
 const lock = (
   <Icon className="mdc-list-item__graphic typeahead-lock" icon="lock" />
 );
 
-function getOptions({ meta, node, secondary }) {
+function getOptions({meta, node, secondary}) {
   const options = [];
   const months = [
     ['January', 'Garnet'],
@@ -35,17 +36,17 @@ function getOptions({ meta, node, secondary }) {
     options.push({
       text: month,
       value: month.slice(0, 3).toLowerCase(),
-      ...(secondary && { secondaryText: birthStone }),
-      ...(node && { node: lock, selectedText: `${month} (Private)` }),
-      ...(meta && { meta: (i + 1).toString().padStart(2, '0') }),
+      ...(secondary && {secondaryText: birthStone}),
+      ...(node && {node: lock, selectedText: `${month} (Private)`}),
+      ...(meta && {meta: (i + 1).toString().padStart(2, '0')}),
     });
   }
   return options;
 }
 
-function MyTypeahead({ highlight, meta, node, secondary }) {
+function MyTypeahead({highlight, meta, node, secondary}) {
   const [value, setValue] = useState('');
-  const options = getOptions({ meta, node, secondary });
+  const options = getOptions({meta, node, secondary});
   const menuWidth = secondary && meta && !node ? '300px' : null;
   const keys = [];
   if (secondary) keys.push('secondaryText');
@@ -62,9 +63,9 @@ function MyTypeahead({ highlight, meta, node, secondary }) {
         labelFloating
         menuWidth={menuWidth}
         options={options}
-        searchOptions={{ keys }}
+        searchOptions={{keys}}
         value={value}
-        onChange={(val) => setValue(val)}
+        onChange={val => setValue(val)}
         onSelect={handleSelect}
       />
     </div>

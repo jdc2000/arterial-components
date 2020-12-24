@@ -37,7 +37,7 @@ import '@material/tab/dist/mdc.tab.css';
 ### JSX
 
 ```jsx
-import { Tab, TabBar } from '@arterial/tabs';
+import {Tab, TabBar} from '@arterial/tabs';
 ```
 
 ## Regular Tabs
@@ -48,7 +48,7 @@ function Regular() {
   return (
     <TabBar
       activeIndex={activeIndex}
-      handleActiveIndexUpdate={(index) => setActiveIndex(index)}
+      handleActiveIndexUpdate={index => setActiveIndex(index)}
     >
       <Tab id="home" label="Home" />
       <Tab id="merchandise" label="Merchandise" />
@@ -68,7 +68,7 @@ function MinWidth() {
   return (
     <TabBar
       activeIndex={activeIndex}
-      handleActiveIndexUpdate={(index) => setActiveIndex(index)}
+      handleActiveIndexUpdate={index => setActiveIndex(index)}
     >
       <Tab id="home" label="Home" minWidth />
       <Tab id="merchandise" label="Merchandise" minWidth />
@@ -86,7 +86,7 @@ function Icon() {
   return (
     <TabBar
       activeIndex={activeIndex}
-      handleActiveIndexUpdate={(index) => setActiveIndex(index)}
+      handleActiveIndexUpdate={index => setActiveIndex(index)}
     >
       <Tab id="recents" label="Recents" icon="watch_later" />
       <Tab id="nearby" label="Nearby" icon="near_me" />
@@ -104,7 +104,7 @@ function Stacked() {
   return (
     <TabBar
       activeIndex={activeIndex}
-      handleActiveIndexUpdate={(index) => setActiveIndex(index)}
+      handleActiveIndexUpdate={index => setActiveIndex(index)}
     >
       <Tab id="recents" label="Recents" icon="watch_later" stacked />
       <Tab id="nearby" label="Nearby" icon="near_me" stacked />
@@ -122,7 +122,7 @@ function StackedRestricted() {
   return (
     <TabBar
       activeIndex={activeIndex}
-      handleActiveIndexUpdate={(index) => setActiveIndex(index)}
+      handleActiveIndexUpdate={index => setActiveIndex(index)}
     >
       <Tab id="recents" label="Recents" icon="watch_later" restricted stacked />
       <Tab id="nearby" label="Nearby" icon="near_me" restricted stacked />
@@ -146,7 +146,7 @@ function StackedRestricted() {
   return (
     <TabBar
       activeIndex={activeIndex}
-      handleActiveIndexUpdate={(index) => setActiveIndex(index)}
+      handleActiveIndexUpdate={index => setActiveIndex(index)}
     >
       <Tab id="recents" label="Recents" icon="watch_later" restricted stacked />
       <Tab id="nearby" label="Nearby" icon="near_me" restricted stacked />
@@ -170,7 +170,7 @@ function IndicatorFade() {
   return (
     <TabBar
       activeIndex={activeIndex}
-      handleActiveIndexUpdate={(index) => setActiveIndex(index)}
+      handleActiveIndexUpdate={index => setActiveIndex(index)}
     >
       <Tab id="recents" label="Recents" indicatorFade />
       <Tab id="nearby" label="Nearby" indicatorFade />
@@ -188,7 +188,7 @@ function IndicatorIcon() {
   return (
     <TabBar
       activeIndex={activeIndex}
-      handleActiveIndexUpdate={(index) => setActiveIndex(index)}
+      handleActiveIndexUpdate={index => setActiveIndex(index)}
     >
       <Tab id="recents" label="Recents" indicatorIcon="star" />
       <Tab id="nearby" label="Nearby" indicatorIcon="star" />
@@ -213,10 +213,10 @@ function Scrolling() {
   return (
     <TabBar
       activeIndex={activeIndex}
-      handleActiveIndexUpdate={(index) => setActiveIndex(index)}
+      handleActiveIndexUpdate={index => setActiveIndex(index)}
       scroll
     >
-      {getTabs().map((label) => (
+      {getTabs().map(label => (
         <Tab id={label} key={label} label={label} />
       ))}
     </TabBar>

@@ -24,9 +24,10 @@
   },
   "dependencies": {
     "@arterial/icon": "^2.0.3",
-    "@material/tab": "^6.0.0",
-    "@material/tab-bar": "^6.0.0",
-    "@material/tab-indicator": "^6.0.0",
-    "@material/tab-scroller": "^6.0.0"
+    "@material/tab": "^8.0.0",
+    "@material/tab-bar": "^8.0.0",
+    "@material/tab-indicator": "^8.0.0",
+    "@material/tab-scroller": "^8.0.0",
+    "classnames": "^2.2.6"
   }
 }

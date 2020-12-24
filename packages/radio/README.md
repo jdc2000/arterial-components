@@ -15,7 +15,7 @@ npm install @arterial/radio
 #### Sass
 
 ```scss
-@use "@material/radio/index.scss" as radio;
+@use "@material/radio/radio.scss" as radio;
 @include radio.core-styles;
 ```
 
@@ -28,7 +28,7 @@ import '@material/radio/dist/mdc.radio.css';
 ### JSX
 
 ```jsx
-import { Radio } from '@arterial/radio';
+import {Radio} from '@arterial/radio';
 ```
 
 ## Basic Radio
@@ -43,14 +43,14 @@ function Basic() {
         id="radio-yes"
         name="radios"
         value="yes"
-        onChange={(e) => setValue(e.target.value)}
+        onChange={e => setValue(e.target.value)}
       />
       <Radio
         checked={value === 'no'}
         id="radio-no"
         name="radios"
         value="no"
-        onChange={(e) => setValue(e.target.value)}
+        onChange={e => setValue(e.target.value)}
       />
     </>
   );
@@ -72,7 +72,7 @@ function Label() {
         label="Yes"
         name="radios-label"
         value="yes"
-        onChange={(e) => setValue(e.target.value)}
+        onChange={e => setValue(e.target.value)}
       />
       <Radio
         checked={value === 'no'}
@@ -80,7 +80,7 @@ function Label() {
         label="No"
         name="radios-label"
         value="no"
-        onChange={(e) => setValue(e.target.value)}
+        onChange={e => setValue(e.target.value)}
       />
     </>
   );
@@ -101,7 +101,7 @@ function AlignEnd() {
         label="Yes"
         name="radios-align-end"
         value="yes"
-        onChange={(e) => setValue(e.target.value)}
+        onChange={e => setValue(e.target.value)}
       />
       <Radio
         alignEnd
@@ -110,7 +110,7 @@ function AlignEnd() {
         label="No"
         name="radios-align-end"
         value="no"
-        onChange={(e) => setValue(e.target.value)}
+        onChange={e => setValue(e.target.value)}
       />
     </>
   );
@@ -131,7 +131,7 @@ function Disabled() {
         label="Yes"
         name="radios-disabled"
         value="yes"
-        onChange={(e) => setValue(e.target.value)}
+        onChange={e => setValue(e.target.value)}
       />
       <Radio
         checked={value === 'no'}
@@ -140,7 +140,7 @@ function Disabled() {
         label="No"
         name="radios-disabled"
         value="no"
-        onChange={(e) => setValue(e.target.value)}
+        onChange={e => setValue(e.target.value)}
       />
     </>
   );

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import {useState} from 'react';
 import {
   List,
   ListDivider,
@@ -11,23 +11,19 @@ import {
   ListItemSecondaryText,
   ListItemText,
 } from '..';
-import { Checkbox } from '../../checkbox';
-import { Icon } from '../../icon';
-import { IconButton } from '../../icon-button';
-import { Radio } from '../../radio';
+import {Checkbox} from '../../checkbox';
+import {Icon} from '../../icon';
+import {IconButton} from '../../icon-button';
+import {Radio} from '../../radio';
 
-export default {
+const Metadata = {
   title: 'List',
-  decorators: [(storyFn) => <div style={{ width: '600px' }}>{storyFn()}</div>],
+  decorators: [storyFn => <div style={{width: '600px'}}>{storyFn()}</div>],
 };
+export default Metadata;
 
-const items = [
-  { id: 'inbox' },
-  { id: 'star' },
-  { id: 'send' },
-  { id: 'drafts' },
-];
-function MyList({ type = 'activated' }) {
+const items = [{id: 'inbox'}, {id: 'star'}, {id: 'send'}, {id: 'drafts'}];
+function MyList({type = 'activated'}) {
   const [selected, setSelected] = useState('star');
   function handleClick(e) {
     const id = e.target.id || e.target.parentElement.id;
@@ -36,7 +32,7 @@ function MyList({ type = 'activated' }) {
   }
   return (
     <List>
-      {items.map((item) => {
+      {items.map(item => {
         const listItemProps = {
           activated: type === 'activated' && item.id === selected,
           selected: type === 'selected' && item.id === selected,
@@ -59,8 +55,8 @@ function MyList({ type = 'activated' }) {
   );
 }
 
-export const Basic = () => (
-  <List>
+export const TextualList = () => (
+  <List textualList>
     <ListItem>
       <ListItemText>Single-line item</ListItemText>
     </ListItem>
@@ -68,6 +64,223 @@ export const Basic = () => (
       <ListItemText>Single-line item</ListItemText>
     </ListItem>
     <ListItem>
+      <ListItemText>Single-line item</ListItemText>
+    </ListItem>
+  </List>
+);
+
+export const AvatarList = () => (
+  <List avatarList>
+    <ListItem>
+      <ListItemGraphic
+        graphic={
+          <img
+            src="https://material-components.github.io/material-components-web-catalog/static/media/photos/3x2/2.jpg"
+            style={{
+              width: 'inherit',
+              height: 'inherit',
+              borderRadius: 'inherit',
+            }}
+            alt="boat in canal"
+          />
+        }
+      />
+      <ListItemText>Single-line item</ListItemText>
+    </ListItem>
+    <ListItem>
+      <ListItemGraphic
+        graphic={
+          <img
+            src="https://material-components.github.io/material-components-web-catalog/static/media/photos/3x2/2.jpg"
+            style={{
+              width: 'inherit',
+              height: 'inherit',
+              borderRadius: 'inherit',
+            }}
+            alt="boat in canal"
+          />
+        }
+      />
+      <ListItemText>Single-line item</ListItemText>
+    </ListItem>
+    <ListItem>
+      <ListItemGraphic
+        graphic={
+          <img
+            src="https://material-components.github.io/material-components-web-catalog/static/media/photos/3x2/2.jpg"
+            style={{
+              width: 'inherit',
+              height: 'inherit',
+              borderRadius: 'inherit',
+            }}
+            alt="boat in canal"
+          />
+        }
+      />
+      <ListItemText>Single-line item</ListItemText>
+    </ListItem>
+  </List>
+);
+
+export const IconList = () => (
+  <List iconList>
+    <ListItem>
+      <ListItemGraphic
+        graphic={
+          <img
+            src="https://material-components.github.io/material-components-web-catalog/static/media/photos/3x2/2.jpg"
+            style={{width: 'inherit', height: 'inherit'}}
+            alt="boat in canal"
+          />
+        }
+      />
+      <ListItemText>Single-line item</ListItemText>
+    </ListItem>
+    <ListItem>
+      <ListItemGraphic
+        graphic={
+          <img
+            src="https://material-components.github.io/material-components-web-catalog/static/media/photos/3x2/2.jpg"
+            style={{width: 'inherit', height: 'inherit'}}
+            alt="boat in canal"
+          />
+        }
+      />
+      <ListItemText>Single-line item</ListItemText>
+    </ListItem>
+    <ListItem>
+      <ListItemGraphic
+        graphic={
+          <img
+            src="https://material-components.github.io/material-components-web-catalog/static/media/photos/3x2/2.jpg"
+            style={{width: 'inherit', height: 'inherit'}}
+            alt="boat in canal"
+          />
+        }
+      />
+      <ListItemText>Single-line item</ListItemText>
+    </ListItem>
+  </List>
+);
+
+export const ImageList = () => (
+  <List imageList>
+    <ListItem>
+      <ListItemGraphic
+        graphic={
+          <img
+            src="https://material-components.github.io/material-components-web-catalog/static/media/photos/3x2/2.jpg"
+            style={{width: 'inherit', height: 'inherit'}}
+            alt="boat in canal"
+          />
+        }
+      />
+      <ListItemText>Single-line item</ListItemText>
+    </ListItem>
+    <ListItem>
+      <ListItemGraphic
+        graphic={
+          <img
+            src="https://material-components.github.io/material-components-web-catalog/static/media/photos/3x2/2.jpg"
+            style={{width: 'inherit', height: 'inherit'}}
+            alt="boat in canal"
+          />
+        }
+      />
+      <ListItemText>Single-line item</ListItemText>
+    </ListItem>
+    <ListItem>
+      <ListItemGraphic
+        graphic={
+          <img
+            src="https://material-components.github.io/material-components-web-catalog/static/media/photos/3x2/2.jpg"
+            style={{width: 'inherit', height: 'inherit'}}
+            alt="boat in canal"
+          />
+        }
+      />
+      <ListItemText>Single-line item</ListItemText>
+    </ListItem>
+  </List>
+);
+
+export const ThumbnailList = () => (
+  <List thumbnailList>
+    <ListItem>
+      <ListItemGraphic
+        graphic={
+          <img
+            src="https://material-components.github.io/material-components-web-catalog/static/media/photos/3x2/2.jpg"
+            style={{width: 'inherit', height: 'inherit'}}
+            alt="boat in canal"
+          />
+        }
+      />
+      <ListItemText>Single-line item</ListItemText>
+    </ListItem>
+    <ListItem>
+      <ListItemGraphic
+        graphic={
+          <img
+            src="https://material-components.github.io/material-components-web-catalog/static/media/photos/3x2/2.jpg"
+            style={{width: 'inherit', height: 'inherit'}}
+            alt="boat in canal"
+          />
+        }
+      />
+      <ListItemText>Single-line item</ListItemText>
+    </ListItem>
+    <ListItem>
+      <ListItemGraphic
+        graphic={
+          <img
+            src="https://material-components.github.io/material-components-web-catalog/static/media/photos/3x2/2.jpg"
+            style={{width: 'inherit', height: 'inherit'}}
+            alt="boat in canal"
+          />
+        }
+      />
+      <ListItemText>Single-line item</ListItemText>
+    </ListItem>
+  </List>
+);
+
+export const VideoList = () => (
+  <List videoList>
+    <ListItem>
+      <ListItemGraphic
+        graphic={
+          <img
+            src="https://material-components.github.io/material-components-web-catalog/static/media/photos/3x2/2.jpg"
+            style={{width: 'inherit', height: 'inherit'}}
+            alt="boat in canal"
+          />
+        }
+      />
+      <ListItemText>Single-line item</ListItemText>
+    </ListItem>
+    <ListItem>
+      <ListItemGraphic
+        graphic={
+          <img
+            src="https://material-components.github.io/material-components-web-catalog/static/media/photos/3x2/2.jpg"
+            style={{width: 'inherit', height: 'inherit'}}
+            alt="boat in canal"
+          />
+        }
+      />
+      <ListItemText>Single-line item</ListItemText>
+    </ListItem>
+    <ListItem>
+      <ListItemGraphic
+        graphic={
+          <img
+            src="https://material-components.github.io/material-components-web-catalog/static/media/photos/3x2/2.jpg"
+            style={{width: 'inherit', height: 'inherit'}}
+            alt="boat in canal"
+          />
+        }
+      />
       <ListItemText>Single-line item</ListItemText>
     </ListItem>
   </List>
@@ -117,9 +330,6 @@ export const Graphic = () => (
   </List>
 );
 
-function Test(props) {
-  return <div className="test">{props.children}</div>;
-}
 export const Meta = () => (
   <List tag="div">
     <ListItem tag="div">
@@ -144,7 +354,7 @@ export const Meta = () => (
     <ListItem tag="div">
       <ListItemText>Meta with icon button</ListItemText>
       <ListItemMeta
-        meta={<IconButton icon="more_vert" style={{ marginRight: '-12px' }} />}
+        meta={<IconButton icon="more_vert" style={{marginRight: '-12px'}} />}
       />
     </ListItem>
     <ListItem htmlFor="checkbox" tag="label">
@@ -154,7 +364,7 @@ export const Meta = () => (
           <Checkbox
             id="checkbox"
             onChange={() => {}}
-            style={{ marginRight: '-8px' }}
+            style={{marginRight: '-8px'}}
           />
         }
       />
@@ -163,7 +373,7 @@ export const Meta = () => (
       <ListItemText>Meta with radio</ListItemText>
       <ListItemMeta
         meta={<Radio id="radio" onChange={() => {}} />}
-        style={{ marginRight: '-8px' }}
+        style={{marginRight: '-8px'}}
       />
     </ListItem>
   </List>

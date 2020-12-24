@@ -1,16 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import { Switch } from '..';
+import {useEffect, useState} from 'react';
+import {Switch} from '..';
 
-export default {
+const Meta = {
   title: 'Switch',
   decorators: [
-    (storyFn) => (
-      <div style={{ paddingTop: '16px', paddingLeft: '16px' }}>{storyFn()}</div>
+    storyFn => (
+      <div style={{paddingTop: '16px', paddingLeft: '16px'}}>{storyFn()}</div>
     ),
   ],
 };
+export default Meta;
 
-function MySwitch({ alignEnd, on, withLabel }) {
+function MySwitch({alignEnd, on, withLabel}) {
   const [checked, setChecked] = useState(false);
   const label = withLabel ? 'off/on' : '';
 

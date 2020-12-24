@@ -40,7 +40,7 @@ import '@material/textfield/dist/mdc.textfield.css';
 ### JSX
 
 ```jsx
-import { TextField, HelperText } from '@arterial/textfield';
+import {TextField, HelperText} from '@arterial/textfield';
 ```
 
 ## Filled Text Field
@@ -54,7 +54,7 @@ function Filled() {
     <Textfield
       id="filled"
       label="Filled"
-      onChange={(e) => setValue(e.target.value)}
+      onChange={e => setValue(e.target.value)}
       value={value}
     />
   );
@@ -72,7 +72,7 @@ function Outlined() {
     <Textfield
       id="outlined"
       label="Outlined"
-      onChange={(e) => setValue(e.target.value)}
+      onChange={e => setValue(e.target.value)}
       outlined
       value={value}
     />
@@ -96,7 +96,7 @@ function HelperTextObject() {
       }}
       id="filled-helper-text-object"
       label="Filled"
-      onChange={(e) => setValue(e.target.value)}
+      onChange={e => setValue(e.target.value)}
       value={value}
     />
   );
@@ -115,7 +115,7 @@ function HelperTextComponent() {
       }
       id="filled-helper-text-component"
       label="Filled"
-      onChange={(e) => setValue(e.target.value)}
+      onChange={e => setValue(e.target.value)}
       value={value}
     />
   );
@@ -135,7 +135,7 @@ function LeadingIcon() {
       icon="calendar_today"
       id="filled-leading-icon"
       label="Filled"
-      onChange={(e) => setValue(e.target.value)}
+      onChange={e => setValue(e.target.value)}
       value={value}
     />
   );
@@ -154,7 +154,7 @@ function TrailingIcon() {
       }
       id="filled-trailing-icon"
       label="Filled"
-      onChange={(e) => setValue(e.target.value)}
+      onChange={e => setValue(e.target.value)}
       trailingIcon="search"
       value={value}
     />
@@ -174,7 +174,7 @@ function TrailingIconAction() {
       }
       id="filled-trailing-icon"
       label="Filled"
-      onChange={(e) => setValue(e.target.value)}
+      onChange={e => setValue(e.target.value)}
       onTrailingIconAction={() => setValue('')}
       trailingIcon="delete"
       value={value}
@@ -196,7 +196,7 @@ function Invalid() {
       id="filled-invalid"
       invalid
       label="Filled"
-      onChange={(e) => setValue(e.target.value)}
+      onChange={e => setValue(e.target.value)}
       value={value}
     />
   );
@@ -216,26 +216,26 @@ function LabelFloating() {
       id="filled-label-floating"
       label="Filled"
       labelFloating
-      onChange={(e) => setValue(e.target.value)}
+      onChange={e => setValue(e.target.value)}
       value={value}
     />
   );
 }
 ```
 
-### Full Width
+### End aligned
 
 ```jsx
-function FullWidth() {
+function EndAligned() {
   const [value, setValue] = useState('');
   return (
     <Textfield
       helperText={
         <HelperText persistent validationMsg text="Helper text as component." />
       }
-      fullwidth
-      id="filled-fullwidth"
-      onChange={(e) => setValue(e.target.value)}
+      endAligned
+      id="filled-end-aligned"
+      onChange={e => setValue(e.target.value)}
       placeholder="Filled"
       value={value}
     />
@@ -254,7 +254,7 @@ function NoLabel() {
         <HelperText persistent validationMsg text="Helper text as component." />
       }
       id="filled-no-label"
-      onChange={(e) => setValue(e.target.value)}
+      onChange={e => setValue(e.target.value)}
       value={value}
     />
   );
@@ -274,7 +274,7 @@ function Disabled() {
       disabled
       id="filled-disabled"
       label="Filled"
-      onChange={(e) => setValue(e.target.value)}
+      onChange={e => setValue(e.target.value)}
       value={value}
     />
   );
@@ -293,7 +293,7 @@ function Placeholder() {
       }
       id="filled-placeholder"
       label="Filled"
-      onChange={(e) => setValue(e.target.value)}
+      onChange={e => setValue(e.target.value)}
       placeholder="Placeholder"
       value={value}
     />
@@ -313,7 +313,7 @@ function Required() {
       }
       id="filled-required"
       label="Filled"
-      onChange={(e) => setValue(e.target.value)}
+      onChange={e => setValue(e.target.value)}
       required
       value={value}
     />
@@ -337,7 +337,7 @@ function Loader() {
             setLoading(false);
           }, 5000);
         }}
-        style={{ marginBottom: '8px' }}
+        style={{marginBottom: '8px'}}
       />
       <Textfield
         disabled={loading}
@@ -351,7 +351,7 @@ function Loader() {
         id="filled-loader"
         label="Filled"
         labelFloating
-        onChange={(e) => setValue(e.target.value)}
+        onChange={e => setValue(e.target.value)}
         placeholder={loading ? 'Loading...' : null}
         trailingIcon={loading ? <CircularProgress small /> : null}
         value={value}
@@ -373,7 +373,7 @@ function PreFilled() {
       }
       id="filled-pre-filled"
       label="Filled"
-      onChange={(e) => setValue(e.target.value)}
+      onChange={e => setValue(e.target.value)}
       value={value}
     />
   );
@@ -393,7 +393,7 @@ function Prefix() {
       id="filled-prefix"
       label="Filled"
       labelFloating
-      onChange={(e) => setValue(e.target.value)}
+      onChange={e => setValue(e.target.value)}
       prefix="$"
       value={value}
     />
@@ -414,7 +414,7 @@ function Suffix() {
       id="filled-suffix"
       label="Filled"
       labelFloating
-      onChange={(e) => setValue(e.target.value)}
+      onChange={e => setValue(e.target.value)}
       suffix=".00"
       value={value}
     />
@@ -435,7 +435,7 @@ function CharacterCount() {
       id="filled-suffix"
       label="Filled"
       maxLength={5}
-      onChange={(e) => setValue(e.target.value)}
+      onChange={e => setValue(e.target.value)}
       value={value}
     />
   );
@@ -453,7 +453,7 @@ function Textarea() {
         <HelperText persistent validationMsg text="Helper text as component." />
       }
       id="textarea"
-      onChange={(e) => setValue(e.target.value)}
+      onChange={e => setValue(e.target.value)}
       textarea
       value={value}
     />
@@ -473,7 +473,7 @@ function TextareaCharacterCount() {
       }
       id="textarea"
       maxLength={5}
-      onChange={(e) => setValue(e.target.value)}
+      onChange={e => setValue(e.target.value)}
       textarea
       value={value}
     />

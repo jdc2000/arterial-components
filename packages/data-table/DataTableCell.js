@@ -1,15 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Checkbox } from '@arterial/checkbox';
+import {Checkbox} from '@arterial/checkbox';
 import classNames from 'classnames';
-
-export function DataTableCell(props) {
-  return <Cell {...props} header={false} />;
-}
-
-export function DataTableHeaderCell(props) {
-  return <Cell {...props} header />;
-}
+import PropTypes from 'prop-types';
 
 function Cell({
   checkbox,
@@ -43,9 +34,12 @@ function Cell({
     }
   }
 
+  const cellProps = header
+    ? {role: 'columnheader', scope: 'col', ...otherProps}
+    : otherProps;
   const Tag = header ? 'th' : 'td';
   return (
-    <Tag className={classes} {...otherProps}>
+    <Tag className={classes} {...cellProps}>
       {checkbox ? (
         <Checkbox
           className={checkboxClasses}
@@ -60,12 +54,27 @@ function Cell({
     </Tag>
   );
 }
-Cell.displayName = 'DataTableCell';
-Cell.propTypes = {
+
+export function DataTableCell(props) {
+  return <Cell {...props} />;
+}
+DataTableCell.displayName = 'DataTableCell';
+DataTableCell.propTypes = {
   checkbox: PropTypes.bool,
   checkboxId: PropTypes.string,
   children: PropTypes.node,
   className: PropTypes.string,
-  header: PropTypes.bool,
+  numeric: PropTypes.bool,
+};
+
+export function DataTableHeaderCell(props) {
+  return <Cell {...props} header />;
+}
+DataTableHeaderCell.displayName = 'DataTableHeaderCell';
+DataTableHeaderCell.propTypes = {
+  checkbox: PropTypes.bool,
+  checkboxId: PropTypes.string,
+  children: PropTypes.node,
+  className: PropTypes.string,
   numeric: PropTypes.bool,
 };

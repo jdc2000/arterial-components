@@ -1,9 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import {Button} from '@arterial/button';
 import classNames from 'classnames';
-import { Button } from '@arterial/button';
+import PropTypes from 'prop-types';
 
-export default function DialogButton({
+export function DialogButton({
   action = 'close',
   className,
   onSelect,

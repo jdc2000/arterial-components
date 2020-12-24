@@ -1,7 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import {Icon} from '@arterial/icon';
 import classNames from 'classnames';
-import { Icon } from '@arterial/icon';
+import PropTypes from 'prop-types';
 
 const ICON_CLASS = 'mdc-button__icon';
 
@@ -13,7 +12,6 @@ export function Button({
   outlined,
   raised,
   ripple = true,
-  style,
   trailingIcon,
   unelevated,
   tag: Tag = 'button',
@@ -25,17 +23,8 @@ export function Button({
     'mdc-button--unelevated': unelevated,
   });
 
-  const styles = {
-    ...(Tag === 'button' && { textAlign: 'initial' }),
-    ...style,
-  };
   return (
-    <Tag
-      className={classes}
-      data-arterial={dataArterial}
-      style={styles}
-      {...otherProps}
-    >
+    <Tag className={classes} data-arterial={dataArterial} {...otherProps}>
       {ripple && (
         <div className="mdc-button__ripple" data-arterial={dataArterial}></div>
       )}

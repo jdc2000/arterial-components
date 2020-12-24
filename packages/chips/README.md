@@ -29,7 +29,7 @@ import '@material/chips/dist/mdc.chips.css';
 ### JSX
 
 ```jsx
-import { Chip, ChipSet } from '@arterial/chips';
+import {Chip, ChipSet} from '@arterial/chips';
 ```
 
 ## Input Chips
@@ -46,17 +46,17 @@ function Input() {
     if (!!text && isEnter) {
       const id = text;
       const newChips = [...chips]; // triggers re-render
-      if (newChips.some((c) => c.text === id)) {
+      if (newChips.some(c => c.text === id)) {
         alert('There is already a chip with that name.');
       } else {
-        newChips.push({ text, id });
+        newChips.push({text, id});
         setChips(newChips);
         e.target.value = '';
       }
     }
   }
   function handleTrailingIconSelect(id) {
-    const newChips = chips.filter((c) => c.text !== id);
+    const newChips = chips.filter(c => c.text !== id);
     setChips(newChips);
   }
   return (
@@ -64,7 +64,7 @@ function Input() {
       <span className="input-chips__label">Input:</span>
       <ChipSet className="input-chips__chip-set" input>
         <div>
-          {chips.map((chip) => (
+          {chips.map(chip => (
             <Chip
               id={chip.text}
               key={chip.text}
@@ -91,7 +91,7 @@ function Choice() {
   const [selected, setSelected] = useState('');
   return (
     <ChipSet choice>
-      {CHIPS.map((chip) => (
+      {CHIPS.map(chip => (
         <Chip
           id={chip.text}
           key={chip.text}
@@ -121,7 +121,7 @@ function Filter() {
   }
   return (
     <ChipSet filter>
-      {CHIPS.map((chip) => (
+      {CHIPS.map(chip => (
         <Chip
           checkmark
           id={chip.text}
@@ -141,7 +141,7 @@ function Filter() {
 Action chips offer actions related to primary content. They should appear dynamically and contextually in a UI.
 
 ```jsx
-import { CircularProgress } from '@arterial/circular-progress';
+import {CircularProgress} from '@arterial/circular-progress';
 
 const CHIPS = ['Alfa', 'Bravo', 'Charlie', 'Delta'];
 function Action() {
@@ -189,7 +189,7 @@ function Icon() {
   const [selected, setSelected] = useState('');
   return (
     <ChipSet choice>
-      {CHIPS.map((chip) => (
+      {CHIPS.map(chip => (
         <Chip
           icon="face"
           id={chip.text}
@@ -223,7 +223,7 @@ function ChoiceFilter() {
   }
   return (
     <ChipSet choice filter>
-      {CHIPS.map((chip) => (
+      {CHIPS.map(chip => (
         <Chip
           checkmark
           icon="face"

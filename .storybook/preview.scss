@@ -5,7 +5,7 @@
 @use '@material/checkbox/index.scss' as checkbox;
 @use '@material/chips/index.scss' as chips;
 @use '@material/circular-progress/index.scss' as circular-progress;
-@use '@material/data-table/index.scss' as data-table;
+@use '@material/data-table/data-table.scss' as data-table;
 @use '@material/dialog/index.scss' as dialog;
 @use '@material/drawer/index.scss' as drawer;
 @use '@material/fab/index.scss' as fab;
@@ -19,11 +19,11 @@
 @use '@material/menu-surface/index.scss' as menu-surface;
 @use '@material/menu/index.scss' as menu;
 @use '@material/notched-outline/index.scss' as notched-outline;
-@use '@material/radio/index.scss' as radio;
+@use '@material/radio/radio.scss' as radio;
 @use '@material/ripple/index.scss' as ripple;
-@use '@material/select/index.scss' as select;
-@use '@material/select/helper-text/index.scss' as select-helper-text;
-@use '@material/select/icon/index.scss' as select-icon;
+@use '@material/select/select.scss' as select;
+@use '@material/select/select-helper-text.scss' as select-helper-text;
+@use '@material/select/select-icon.scss' as select-icon;
 @use '@material/snackbar/index.scss' as snackbar;
 @use '@material/switch/index.scss' as switch;
 @use '@material/tab/index.scss' as tab;
@@ -38,7 +38,6 @@
 @include theme.core-styles;
 @include typography.core-styles;
 @include button.core-styles;
-@include button.theme-baseline;
 @include card.core-styles;
 @include checkbox.core-styles;
 @include chips.core-styles;

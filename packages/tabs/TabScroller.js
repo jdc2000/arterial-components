@@ -1,8 +1,8 @@
-import React, { useRef } from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import {forwardRef, useRef} from 'react';
 
-const TabScroller = React.forwardRef((props, ref) => {
+export const TabScroller = forwardRef((props, ref) => {
   const {
     align,
     animating,
@@ -27,15 +27,11 @@ const TabScroller = React.forwardRef((props, ref) => {
   const contentClasses = classNames('mdc-tab-scroller__scroll-content');
 
   function handleInteraction(e) {
-    if (onInteraction) {
-      onInteraction(e);
-    }
+    if (onInteraction) onInteraction(e);
   }
 
   function handleTransitionEnd(e) {
-    if (onTransitionEnd) {
-      onTransitionEnd(e);
-    }
+    if (onTransitionEnd) onTransitionEnd(e);
   }
 
   return (

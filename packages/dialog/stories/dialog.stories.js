@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import {useState} from 'react';
 import {
   Dialog,
   DialogActions,
@@ -9,13 +9,14 @@ import {
   ConfirmationDialog,
   SimpleDialog,
 } from '..';
-import { Button } from '../../button';
-import { List, ListItem, ListItemGraphic, ListItemText } from '../../list';
+import {Button} from '../../button';
+import {List, ListItem, ListItemGraphic, ListItemText} from '../../list';
 
-export default {
+const Meta = {
   title: 'Dialog',
-  decorators: [(storyFn) => <div style={{ height: '100vh' }}>{storyFn()}</div>],
+  decorators: [storyFn => <div style={{height: '100vh'}}>{storyFn()}</div>],
 };
+export default Meta;
 
 function MyAlertDialog() {
   const [open, setOpen] = useState(false);

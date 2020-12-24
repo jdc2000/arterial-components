@@ -1,11 +1,13 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import {forwardRef, cloneElement} from 'react';
 
-export const Icon = React.forwardRef((props, ref) => {
-  const { className, icon, ...otherProps } = props;
+const AJS_ICON = 'ajs-icon';
+
+export const Icon = forwardRef((props, ref) => {
+  const {className, icon, ...otherProps} = props;
   if (typeof icon === 'string') {
-    const classes = classNames('art-icon', 'material-icons', className);
+    const classes = classNames(AJS_ICON, 'material-icons', className);
     return (
       <i className={classes} ref={ref} {...otherProps}>
         {icon}
@@ -13,14 +15,14 @@ export const Icon = React.forwardRef((props, ref) => {
     );
   }
   const addArtIcon =
-    icon.props.className && !icon.props.className.includes('art-icon');
+    icon.props.className && !icon.props.className.includes(AJS_ICON);
   const classes = classNames(
-    { 'art-icon': addArtIcon },
+    {[AJS_ICON]: addArtIcon},
     icon.props.className,
     className
   );
-  const iconProps = { ...otherProps, ...icon.props, className: classes, ref };
-  return React.cloneElement(icon, iconProps);
+  const iconProps = {...otherProps, ...icon.props, className: classes, ref};
+  return cloneElement(icon, iconProps);
 });
 Icon.displayName = 'Icon';
 Icon.propTypes = {

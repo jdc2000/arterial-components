@@ -1,8 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 
-export default function HelperText({
+export function TextFieldHelperText({
   className,
   id,
   persistent,
@@ -20,8 +19,8 @@ export default function HelperText({
     </div>
   );
 }
-HelperText.displayName = 'TextFieldHelperText';
-HelperText.propTypes = {
+TextFieldHelperText.displayName = 'TextFieldHelperText';
+TextFieldHelperText.propTypes = {
   className: PropTypes.string,
   id: PropTypes.string,
   persistent: PropTypes.bool,

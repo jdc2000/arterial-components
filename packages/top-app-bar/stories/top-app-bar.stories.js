@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   TopAppBar,
   TopAppBarFixedAdjust,
@@ -8,19 +7,20 @@ import {
   TopAppBarIcon,
 } from '..';
 
-export default {
+const Meta = {
   title: 'TopAppBar',
   decorators: [
-    (storyFn) => {
+    storyFn => {
       // document.body.style.margin = 0;
       return (
-        <div style={{ height: '100vh', width: '400px', margin: '-8px' }}>
+        <div style={{height: '100vh', width: '400px', margin: '-8px'}}>
           {storyFn()}
         </div>
       );
     },
   ],
 };
+export default Meta;
 
 const BASIC = 'Standard',
   DENSE = 'Dense',
@@ -30,7 +30,7 @@ const BASIC = 'Standard',
   SHORT_COLLAPSED = 'Short Collapsed',
   SHORT = 'Short';
 
-function MyTopAppBar({ title }) {
+function MyTopAppBar({title}) {
   const dense = title.includes(DENSE),
     fixed = title === FIXED,
     prominent = title.includes(PROMINENT),

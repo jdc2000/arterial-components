@@ -1,7 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import {Icon} from '@arterial/icon';
 import classNames from 'classnames';
-import { Icon } from '@arterial/icon';
+import PropTypes from 'prop-types';
 
 export function Fab({
   className,

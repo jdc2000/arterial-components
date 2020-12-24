@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "@arterial/icon": "^2.0.3",
-    "@material/chips": "^6.0.0"
+    "@material/chips": "^8.0.0",
+    "classnames": "^2.2.6"
   }
 }

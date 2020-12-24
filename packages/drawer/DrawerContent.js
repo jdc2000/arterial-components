@@ -1,22 +1,21 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 
-export default function MediaContent({
+export function DrawerContent({
   children,
   className,
   tag: Tag = 'div',
   ...otherProps
 }) {
-  const classes = classNames('mdc-card__media-content', className);
+  const classes = classNames('mdc-drawer__content', className);
   return (
     <Tag className={classes} {...otherProps}>
       {children}
     </Tag>
   );
 }
-MediaContent.displayName = 'CardMediaContent';
-MediaContent.propTypes = {
+DrawerContent.displayName = 'DrawerContent';
+DrawerContent.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   tag: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),

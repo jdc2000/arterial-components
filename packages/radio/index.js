@@ -1,9 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import {FormField} from '@arterial/form-field';
 import classNames from 'classnames';
-import { FormField } from '@arterial/form-field';
+import PropTypes from 'prop-types';
 
-function Root({
+function RadioBase({
   checked,
   className,
   disabled,
@@ -38,18 +37,18 @@ function Root({
   );
 }
 
-export function Radio({ alignEnd, id, label, ...otherProps }) {
+export function Radio({alignEnd, id, label, ...otherProps}) {
   if (label) {
     return (
       <FormField alignEnd={alignEnd}>
-        <Root id={id} {...otherProps} />
+        <RadioBase id={id} {...otherProps} />
         <label id={`${id}-label`} htmlFor={id}>
           {label}
         </label>
       </FormField>
     );
   }
-  return <Root id={id} {...otherProps} />;
+  return <RadioBase id={id} {...otherProps} />;
 }
 Radio.displayName = 'Radio';
 Radio.propTypes = {

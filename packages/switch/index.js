@@ -1,9 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import {FormField} from '@arterial/form-field';
 import classNames from 'classnames';
-import { FormField } from '@arterial/form-field';
+import PropTypes from 'prop-types';
 
-function Root({
+function SwitchBase({
   checked,
   className,
   disabled,
@@ -38,19 +37,19 @@ function Root({
   );
 }
 
-export function Switch({ alignEnd, id, label, ...otherProps }) {
-  const styles = alignEnd ? { marginRight: '22px' } : { marginLeft: '22px' };
+export function Switch({alignEnd, id, label, ...otherProps}) {
+  const styles = alignEnd ? {marginRight: '22px'} : {marginLeft: '22px'};
   if (label) {
     return (
       <FormField alignEnd={alignEnd}>
-        <Root id={id} {...otherProps} />
+        <SwitchBase id={id} {...otherProps} />
         <label id={`${id}-label`} htmlFor={id} style={styles}>
           {label}
         </label>
       </FormField>
     );
   }
-  return <Root id={id} {...otherProps} />;
+  return <SwitchBase id={id} {...otherProps} />;
 }
 Switch.displayName = 'Switch';
 Switch.propTypes = {

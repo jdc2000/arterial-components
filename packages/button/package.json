@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "@arterial/icon": "^2.0.3",
-    "@material/button": "^6.0.0"
+    "@material/button": "^8.0.0",
+    "classnames": "^2.2.6"
   }
 }

@@ -23,6 +23,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@material/drawer": "^6.0.0"
+    "@material/drawer": "^8.0.0",
+    "classnames": "^2.2.6"
   }
 }

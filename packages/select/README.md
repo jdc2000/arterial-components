@@ -18,9 +18,9 @@ npm install @arterial/select
 @use "@material/floating-label/index.scss" as floating-label;
 @use "@material/line-ripple/index.scss" as line-ripple;
 @use "@material/notched-outline/index.scss" as notched-outline;
-@use "@material/select/helper-text/index.scss" as select-helper-text;
-@use "@material/select/icon/index.scss" as select-icon;
-@use "@material/select/index.scss" as select;
+@use "@material/select/select.scss" as select;
+@use "@material/select/select-helper-text.scss" as select-helper-text;
+@use "@material/select/select-icon.scss" as select-icon;
 @include floating-label.core-styles;
 @include line-ripple.core-styles;
 @include notched-outline.core-styles;
@@ -38,16 +38,16 @@ import '@material/select/dist/mdc.select.css';
 ### JSX
 
 ```jsx
-import { Select } from '@arterial/select';
+import {Select} from '@arterial/select';
 ```
 
 ## Filled Select
 
 ```jsx
 const OPTIONS = [
-  { text: 'Apple', value: 'apple' },
-  { text: 'Banana', value: 'banana' },
-  { text: 'Orange', value: 'orange' },
+  {text: 'Apple', value: 'apple'},
+  {text: 'Banana', value: 'banana'},
+  {text: 'Orange', value: 'orange'},
 ];
 function Filled() {
   const [value, setValue] = useState('');
@@ -70,9 +70,9 @@ function Filled() {
 
 ```jsx
 const OPTIONS = [
-  { text: 'Apple', value: 'apple' },
-  { text: 'Banana', value: 'banana' },
-  { text: 'Orange', value: 'orange' },
+  {text: 'Apple', value: 'apple'},
+  {text: 'Banana', value: 'banana'},
+  {text: 'Orange', value: 'orange'},
 ];
 function Outlined() {
   const [value, setValue] = useState('');
@@ -98,9 +98,9 @@ function Outlined() {
 
 ```jsx
 const OPTIONS = [
-  { text: 'Apple', value: 'apple' },
-  { text: 'Banana', value: 'banana' },
-  { text: 'Orange', value: 'orange' },
+  {text: 'Apple', value: 'apple'},
+  {text: 'Banana', value: 'banana'},
+  {text: 'Orange', value: 'orange'},
 ];
 function LeadingIcon() {
   const [value, setValue] = useState('');
@@ -124,9 +124,9 @@ function LeadingIcon() {
 
 ```jsx
 const OPTIONS = [
-  { text: 'Apple', value: 'apple' },
-  { text: 'Banana', value: 'banana' },
-  { text: 'Orange', value: 'orange' },
+  {text: 'Apple', value: 'apple'},
+  {text: 'Banana', value: 'banana'},
+  {text: 'Orange', value: 'orange'},
 ];
 function Invalid() {
   const [value, setValue] = useState('');
@@ -150,9 +150,9 @@ function Invalid() {
 
 ```jsx
 const OPTIONS = [
-  { text: 'Apple', value: 'apple' },
-  { text: 'Banana', value: 'banana' },
-  { text: 'Orange', value: 'orange' },
+  {text: 'Apple', value: 'apple'},
+  {text: 'Banana', value: 'banana'},
+  {text: 'Orange', value: 'orange'},
 ];
 function LabelFloating() {
   const [value, setValue] = useState('');
@@ -176,9 +176,9 @@ function LabelFloating() {
 
 ```jsx
 const OPTIONS = [
-  { text: 'Apple', value: 'apple' },
-  { text: 'Banana', value: 'banana' },
-  { text: 'Orange', value: 'orange' },
+  {text: 'Apple', value: 'apple'},
+  {text: 'Banana', value: 'banana'},
+  {text: 'Orange', value: 'orange'},
 ];
 function MenuWidth() {
   const [value, setValue] = useState('');
@@ -202,9 +202,9 @@ function MenuWidth() {
 
 ```jsx
 const OPTIONS = [
-  { text: 'Apple', value: 'apple' },
-  { text: 'Banana', value: 'banana' },
-  { text: 'Orange', value: 'orange' },
+  {text: 'Apple', value: 'apple'},
+  {text: 'Banana', value: 'banana'},
+  {text: 'Orange', value: 'orange'},
 ];
 function NoLabel() {
   const [value, setValue] = useState('');
@@ -226,9 +226,9 @@ function NoLabel() {
 
 ```jsx
 const OPTIONS = [
-  { text: 'Apple', value: 'apple' },
-  { text: 'Banana', value: 'banana' },
-  { text: 'Orange', value: 'orange' },
+  {text: 'Apple', value: 'apple'},
+  {text: 'Banana', value: 'banana'},
+  {text: 'Orange', value: 'orange'},
 ];
 function Placeholder() {
   const [value, setValue] = useState('');
@@ -252,9 +252,9 @@ function Placeholder() {
 
 ```jsx
 const OPTIONS = [
-  { text: 'Apple', value: 'apple' },
-  { text: 'Banana', value: 'banana' },
-  { text: 'Orange', value: 'orange' },
+  {text: 'Apple', value: 'apple'},
+  {text: 'Banana', value: 'banana'},
+  {text: 'Orange', value: 'orange'},
 ];
 function Required() {
   const [value, setValue] = useState('');
@@ -278,9 +278,9 @@ function Required() {
 
 ```jsx
 const OPTIONS = [
-  { text: 'Apple', value: 'apple' },
-  { text: 'Banana', value: 'banana' },
-  { text: 'Orange', value: 'orange' },
+  {text: 'Apple', value: 'apple'},
+  {text: 'Banana', value: 'banana'},
+  {text: 'Orange', value: 'orange'},
 ];
 function Loader() {
   const [value, setValue] = useState('');
@@ -298,7 +298,7 @@ function Loader() {
             setLoading(false);
           }, 5000);
         }}
-        style={{ marginBottom: '8px' }}
+        style={{marginBottom: '8px'}}
       />
       <Select
         disabled={loading}
@@ -320,9 +320,9 @@ function Loader() {
 
 ```jsx
 const OPTIONS = [
-  { text: 'Apple', value: 'apple' },
-  { text: 'Banana', value: 'banana' },
-  { text: 'Orange', value: 'orange' },
+  {text: 'Apple', value: 'apple'},
+  {text: 'Banana', value: 'banana'},
+  {text: 'Orange', value: 'orange'},
 ];
 function Disabled() {
   const [value, setValue] = useState('');
@@ -346,9 +346,9 @@ function Disabled() {
 
 ```jsx
 const OPTIONS = [
-  { text: 'Apple', value: 'apple' },
-  { text: 'Banana', value: 'banana' },
-  { text: 'Orange', value: 'orange' },
+  {text: 'Apple', value: 'apple'},
+  {text: 'Banana', value: 'banana'},
+  {text: 'Orange', value: 'orange'},
 ];
 function HelperTextObject() {
   const [value, setValue] = useState('');
@@ -358,8 +358,8 @@ function HelperTextObject() {
   return (
     <Select
       helperText={{
-        persistent: true,
         validationMsg: true,
+        validationMsgPersistent: true,
         text: 'Helper text as object.',
       }}
       id="filled-helper-text-object"
@@ -376,9 +376,9 @@ function HelperTextObject() {
 
 ```jsx
 const OPTIONS = [
-  { text: 'Apple', value: 'apple' },
-  { text: 'Banana', value: 'banana' },
-  { text: 'Orange', value: 'orange' },
+  {text: 'Apple', value: 'apple'},
+  {text: 'Banana', value: 'banana'},
+  {text: 'Orange', value: 'orange'},
 ];
 function HelperTextComponent() {
   const [value, setValue] = useState('');
@@ -388,7 +388,11 @@ function HelperTextComponent() {
   return (
     <Select
       helperText={
-        <HelperText persistent validationMsg text="Helper text as component." />
+        <HelperText
+          validationMsgPersistent
+          validationMsg
+          text="Helper text as component."
+        />
       }
       id="filled-helper-text-component"
       label="Filled"
@@ -404,9 +408,9 @@ function HelperTextComponent() {
 
 ```jsx
 const OPTIONS = [
-  { text: 'Apple', value: 'apple' },
-  { text: 'Banana', value: 'banana' },
-  { text: 'Orange', value: 'orange' },
+  {text: 'Apple', value: 'apple'},
+  {text: 'Banana', value: 'banana'},
+  {text: 'Orange', value: 'orange'},
 ];
 function PreSelected() {
   const [value, setValue] = useState('banana');
@@ -429,9 +433,9 @@ function PreSelected() {
 
 ```jsx
 const DISABLED_OPTIONS = [
-  { text: 'Apple', value: 'apple', disabled: true },
-  { text: 'Banana', value: 'banana' },
-  { text: 'Orange', value: 'orange' },
+  {text: 'Apple', value: 'apple', disabled: true},
+  {text: 'Banana', value: 'banana'},
+  {text: 'Orange', value: 'orange'},
 ];
 function DisabledOptions() {
   const [value, setValue] = useState('');
@@ -457,15 +461,15 @@ You can use selectedText to convert an node that displays an icon into text when
 
 ```jsx
 const ENHANCED_OPTIONS = [
-  { text: 'Apple', value: 'apple' },
-  { text: 'Banana', value: 'banana' },
+  {text: 'Apple', value: 'apple'},
+  {text: 'Banana', value: 'banana'},
   {
     text: 'Orange',
     value: 'orange',
     node: (
       <Icon
         icon="favorite"
-        style={{ color: 'rgba(0,0,0,.38)', marginLeft: '8px' }}
+        style={{color: 'rgba(0,0,0,.38)', marginLeft: '8px'}}
       />
     ),
     selectedText: 'Orange (Favorite)',
@@ -517,10 +521,10 @@ function EnhancedOptions() {
 
 ### HelperText
 
-| Name          | Type    | Description                                        |
-| ------------- | ------- | -------------------------------------------------- |
-| className     | string  | Classes to be applied to the root element.         |
-| id            | string  | Id of the element.                                 |
-| persistent    | boolean | Makes the helper text permanently visible.         |
-| validationMsg | boolean | Indicates the helper text is a validation message. |
-| text          | string  | Text to be displayed.                              |
+| Name                    | Type    | Description                                        |
+| ----------------------- | ------- | -------------------------------------------------- |
+| className               | string  | Classes to be applied to the root element.         |
+| id                      | string  | Id of the element.                                 |
+| validationMsg           | boolean | Indicates the helper text is a validation message. |
+| validationMsgPersistent | boolean | Makes the helper text permanently visible.         |
+| text                    | string  | Text to be displayed.                              |

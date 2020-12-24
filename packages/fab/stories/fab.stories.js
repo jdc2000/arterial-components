@@ -1,9 +1,9 @@
-import React from 'react';
-import { Fab } from '..';
+import {Fab} from '..';
 
-export default { title: 'Fab' };
+const Meta = {title: 'Fab'};
+export default Meta;
 
-function MyFab({ exited, extended, hasIcon, hasTrailingIcon, mini }) {
+function MyFab({exited, extended, hasIcon, hasTrailingIcon, mini}) {
   let icon = '';
   let label = '';
   let trailingIcon = '';

@@ -1,4 +1,4 @@
-export { default as Tab } from './Tab';
-export { default as TabBar } from './TabBar';
-export { default as TabIndicator } from './TabIndicator';
-export { default as TabScroller } from './TabScroller';
+export {Tab} from './Tab';
+export {TabBar} from './TabBar';
+export {TabIndicator} from './TabIndicator';
+export {TabScroller} from './TabScroller';

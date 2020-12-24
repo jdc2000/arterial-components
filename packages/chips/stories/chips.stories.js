@@ -1,20 +1,21 @@
-import React, { useState } from 'react';
-import { Chip, ChipSet } from '..';
+import {useState} from 'react';
+import {Chip, ChipSet} from '..';
 
-export default { title: 'Chips' };
+const Meta = {title: 'Chips'};
+export default Meta;
 
 const ALFA = 'Alfa';
 const BRAVO = 'Bravo';
 const CHARLIE = 'Charlie';
 const DELTA = 'Delta';
 const CHIPS = [
-  { text: ALFA, id: ALFA },
-  { text: BRAVO, id: BRAVO },
-  { text: CHARLIE, id: CHARLIE },
-  { text: DELTA, id: DELTA },
+  {text: ALFA, id: ALFA},
+  {text: BRAVO, id: BRAVO},
+  {text: CHARLIE, id: CHARLIE},
+  {text: DELTA, id: DELTA},
 ];
 
-function MyChips({ checkmark, choice, filter, noIcon }) {
+function MyChips({checkmark, choice, filter, noIcon}) {
   const [selected, setSelected] = useState(new Set());
   function handleSelect(id) {
     let newSelected;
@@ -33,7 +34,7 @@ function MyChips({ checkmark, choice, filter, noIcon }) {
   return (
     <>
       <ChipSet choice={choice} filter={filter}>
-        {CHIPS.map((chip) => (
+        {CHIPS.map(chip => (
           <Chip
             checkmark={checkmark}
             icon={noIcon ? null : 'face'}
@@ -56,17 +57,17 @@ function MyInputChips() {
     if (!!text && (e.key === 'Enter' || e.keyCode === 13)) {
       const id = text;
       const newChips = [...chips]; // triggers re-render
-      if (newChips.some((c) => c.id === id)) {
+      if (newChips.some(c => c.id === id)) {
         console.error('There is already a chip which has same key.');
       } else {
-        newChips.push({ text, id });
+        newChips.push({text, id});
         setChips(newChips);
         e.target.value = '';
       }
     }
   }
   function handleTrailingIconSelect(id) {
-    const newChips = chips.filter((c) => c.id !== id);
+    const newChips = chips.filter(c => c.id !== id);
     setChips(newChips);
   }
   return (
@@ -84,7 +85,7 @@ function MyInputChips() {
         <span>Input:</span>
         <ChipSet input>
           <div>
-            {chips.map((chip) => (
+            {chips.map(chip => (
               <Chip
                 id={chip.id}
                 key={chip.id}

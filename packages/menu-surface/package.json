@@ -23,8 +23,9 @@
     "access": "public"
   },
   "dependencies": {
-    "@material/menu": "^6.0.0",
-    "@material/menu-surface": "^6.0.0",
-    "react-dom": "^16.13.1"
+    "@material/menu": "^8.0.0",
+    "@material/menu-surface": "^8.0.0",
+    "classnames": "^2.2.6",
+    "react-dom": "^17.0.1"
   }
 }

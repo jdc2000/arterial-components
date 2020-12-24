@@ -1,8 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 
-export default function PrimaryAction({
+export function CardPrimaryAction({
   children,
   className,
   tag: Tag = 'div',
@@ -15,8 +14,8 @@ export default function PrimaryAction({
     </Tag>
   );
 }
-PrimaryAction.displayName = 'CardPrimaryAction';
-PrimaryAction.propTypes = {
+CardPrimaryAction.displayName = 'CardPrimaryAction';
+CardPrimaryAction.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   tag: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),

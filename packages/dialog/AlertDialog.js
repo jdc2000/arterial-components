@@ -1,13 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Dialog from './Dialog';
-import DialogTitle from './DialogTitle';
-import DialogContent from './DialogContent';
-import DialogActions from './DialogActions';
-import DialogButton from './DialogButton';
+import PropTypes from 'prop-types';
+import {Dialog} from './Dialog';
+import {DialogActions} from './DialogActions';
+import {DialogButton} from './DialogButton';
+import {DialogContent} from './DialogContent';
+import {DialogTitle} from './DialogTitle';
 
-export default function AlertDialog({
+export function AlertDialog({
   className,
   confirmingButtonLabel = 'Ok',
   content,
@@ -15,7 +14,7 @@ export default function AlertDialog({
   open,
   title,
 }) {
-  const classes = classNames('arm-dialog', 'arm-dialog--alert', className);
+  const classes = classNames('ajs-dialog', 'ajs-dialog--alert', className);
   function handleClose() {
     if (onClose) {
       onClose('close');

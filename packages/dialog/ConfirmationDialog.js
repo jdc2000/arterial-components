@@ -1,13 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Dialog from './Dialog';
-import DialogTitle from './DialogTitle';
-import DialogContent from './DialogContent';
-import DialogActions from './DialogActions';
-import DialogButton from './DialogButton';
+import PropTypes from 'prop-types';
+import {Dialog} from './Dialog';
+import {DialogActions} from './DialogActions';
+import {DialogButton} from './DialogButton';
+import {DialogContent} from './DialogContent';
+import {DialogTitle} from './DialogTitle';
 
-export default function ConfirmationDialog({
+export function ConfirmationDialog({
   className,
   confirmingButtonLabel = 'Ok',
   confirmingButtonDisabled,
@@ -18,8 +17,8 @@ export default function ConfirmationDialog({
   title,
 }) {
   const classes = classNames(
-    'arm-dialog',
-    'arm-dialog--confirmation',
+    'ajs-dialog',
+    'ajs-dialog--confirmation',
     className
   );
   function handleClose(action) {

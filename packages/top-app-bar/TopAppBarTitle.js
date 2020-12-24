@@ -1,22 +1,21 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 
-export default function Content({
+export function TopAppBarTitle({
   children,
   className,
-  tag: Tag = 'div',
+  tag: Tag = 'span',
   ...otherProps
 }) {
-  const classes = classNames('mdc-drawer__content', className);
+  const classes = classNames('mdc-top-app-bar__title', className);
   return (
     <Tag className={classes} {...otherProps}>
       {children}
     </Tag>
   );
 }
-Content.displayName = 'DrawerContent';
-Content.propTypes = {
+TopAppBarTitle.displayName = 'TopAppBarTitle';
+TopAppBarTitle.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   tag: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),

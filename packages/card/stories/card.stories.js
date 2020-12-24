@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import {useState} from 'react';
 import {
   Card,
   CardPrimaryAction,
@@ -11,11 +11,12 @@ import {
   CardActionIcon,
 } from '..';
 
-export default { title: 'Card' };
+const Meta = {title: 'Card'};
+export default Meta;
 
-function MyCardPrimary({ mediaContent }) {
+function MyCardPrimary({mediaContent}) {
   return (
-    <div style={{ padding: '1rem' }}>
+    <div style={{padding: '1rem'}}>
       <h2
         style={{
           color: mediaContent ? 'white' : undefined,
@@ -51,7 +52,7 @@ function MyCardPrimary({ mediaContent }) {
     </div>
   );
 }
-function MyCardSecondary({ header }) {
+function MyCardSecondary({header}) {
   const paddingTop = header ? '1rem' : 0;
   return (
     <div
@@ -87,7 +88,7 @@ function MyCard({
   let width = '350px';
   return (
     <div>
-      <Card style={{ width }}>
+      <Card style={{width}}>
         {header && !mediaContent && <MyCardPrimary />}
         <CardPrimaryAction>
           {!noMedia && (
@@ -97,7 +98,7 @@ function MyCard({
               backgroundImage="https://material-components.github.io/material-components-web-catalog/static/media/photos/3x2/2.jpg"
             >
               {mediaContent && (
-                <CardMediaContent style={{ top: mediaContent ? 'initial' : 0 }}>
+                <CardMediaContent style={{top: mediaContent ? 'initial' : 0}}>
                   <MyCardPrimary mediaContent />
                 </CardMediaContent>
               )}

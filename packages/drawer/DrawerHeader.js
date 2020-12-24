@@ -1,8 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 
-export default function Header({
+export function DrawerHeader({
   children,
   className,
   tag: Tag = 'div',
@@ -15,8 +14,8 @@ export default function Header({
     </Tag>
   );
 }
-Header.displayName = 'DrawerHeader';
-Header.propTypes = {
+DrawerHeader.displayName = 'DrawerHeader';
+DrawerHeader.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   tag: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),

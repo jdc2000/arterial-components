@@ -1,7 +1,7 @@
-import React from 'react';
-import { Icon } from '..';
+import {Icon} from '..';
 
-export default { title: 'Icon' };
+const Meta = {title: 'Icon'};
+export default Meta;
 
 export const Material = () => <Icon icon="favorite" />;
 

@@ -1,7 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import {Icon} from '@arterial/icon';
 import classNames from 'classnames';
-import { Icon } from '@arterial/icon';
+import PropTypes from 'prop-types';
 
 export function Chip({
   checkmark,
@@ -105,4 +104,4 @@ Chip.propTypes = {
   tag: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 };
 
-export { default as ChipSet } from './ChipSet';
+export {ChipSet} from './ChipSet';

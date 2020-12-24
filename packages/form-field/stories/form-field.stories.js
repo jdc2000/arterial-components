@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
-import { FormField } from '..';
-import { Checkbox } from '../../checkbox';
+import {useState} from 'react';
+import {Checkbox} from '../../checkbox';
+import {FormField} from '..';
 
-export default { title: 'FormField' };
+const Meta = {title: 'FormField'};
+export default Meta;
 
 export const Basic = () => {
   const [checked, setChecked] = useState(false);
@@ -12,7 +13,7 @@ export const Basic = () => {
         id="checkbox-1"
         value="checkbox-1"
         checked={checked}
-        onChange={(e) => setChecked(e.target.checked)}
+        onChange={e => setChecked(e.target.checked)}
       />
       <label htmlFor="checkbox-1">Checkbox 1</label>
     </FormField>
@@ -27,7 +28,7 @@ export const AlignEnd = () => {
         id="checkbox-1"
         value="checkbox-1"
         checked={checked}
-        onChange={(e) => setChecked(e.target.checked)}
+        onChange={e => setChecked(e.target.checked)}
       />
       <label htmlFor="checkbox-1">Checkbox 1</label>
     </FormField>

@@ -15,7 +15,7 @@ npm install @arterial/data-table
 #### Sass
 
 ```scss
-@use "@material/data-table/index.scss" as data-table;
+@use "@material/data-table/data-table.scss" as data-table;
 @include data-table.core-styles;
 @include data-table.theme-baseline;
 ```
@@ -46,7 +46,7 @@ function Demo() {
   return (
     <DataTable>
       <DataTableHeader>
-        <DataTableRow>
+        <DataTableHeaderRow>
           {header.map((cellData, cellIndex) => (
             <DataTableHeaderCell
               numeric={numeric[cellIndex]}
@@ -55,7 +55,7 @@ function Demo() {
               {cellData}
             </DataTableHeaderCell>
           ))}
-        </DataTableRow>
+        </DataTableHeaderRow>
       </DataTableHeader>
       <DataTableContent>
         {content.map((rowData, rowIndex) => (
@@ -99,7 +99,7 @@ function CheckboxTable() {
   return (
     <DataTable>
       <DataTableHeader>
-        <DataTableRow>
+        <DataTableHeaderRow>
           {header.map((cellData, cellIndex) => (
             <React.Fragment key={`checkbox-header-row-${cellData}-cell`}>
               {cellIndex === 0 && (
@@ -108,12 +108,12 @@ function CheckboxTable() {
                   checkboxId={`${cellData}-checkbox`}
                   checked={headerChecked === 'checked'}
                   indeterminate={headerChecked === 'indeterminate'}
-                  onChange={(data) => {
-                    Object.keys(bodyChecked).forEach((key) => {
+                  onChange={data => {
+                    Object.keys(bodyChecked).forEach(key => {
                       bodyChecked[key] = data.checked;
                     });
                     setHeaderChecked(data.checked ? 'checked' : '');
-                    setBodyChecked({ ...bodyChecked });
+                    setBodyChecked({...bodyChecked});
                   }}
                 />
               )}
@@ -122,7 +122,7 @@ function CheckboxTable() {
               </DataTableHeaderCell>
             </React.Fragment>
           ))}
-        </DataTableRow>
+        </DataTableHeaderRow>
       </DataTableHeader>
       <DataTableContent>
         {content.map((rowData, rowIndex) => (
@@ -137,18 +137,19 @@ function CheckboxTable() {
                 {cellIndex === 0 && (
                   <DataTableCell
                     checkbox
+                    checkboxId={`${cellData}-checkbox`}
                     checked={bodyChecked[rowIndex] === true}
-                    onChange={(data) => {
+                    onChange={data => {
                       bodyChecked[rowIndex] = data.checked;
                       const values = Object.values(bodyChecked);
-                      const checked = values.find((checked) => checked);
+                      const checked = values.find(checked => checked);
                       const noneChecked = checked
                         ? false
-                        : values.every((checked) => !checked);
-                      const unchecked = values.find((checked) => !checked);
+                        : values.every(checked => !checked);
+                      const unchecked = values.find(checked => !checked);
                       const allChecked = unchecked
                         ? false
-                        : values.every((checked) => checked);
+                        : values.every(checked => checked);
                       let header;
                       if (allChecked) {
                         header = 'checked';
@@ -158,7 +159,7 @@ function CheckboxTable() {
                         header = 'indeterminate';
                       }
                       setHeaderChecked(header);
-                      setBodyChecked({ ...bodyChecked });
+                      setBodyChecked({...bodyChecked});
                     }}
                   />
                 )}
@@ -192,14 +193,7 @@ function CheckboxTable() {
 | children  | node   | Elements to be displayed within root element. |
 | className | string | Classes to be applied to the root element.    |
 
-### DataTableContent
-
-| Name      | Type   | Description                                   |
-| --------- | ------ | --------------------------------------------- |
-| children  | node   | Elements to be displayed within root element. |
-| className | string | Classes to be applied to the root element.    |
-
-### DataTableRow
+### DataTableHeaderRow
 
 | Name      | Type    | Description                                   |
 | --------- | ------- | --------------------------------------------- |
@@ -216,6 +210,21 @@ function CheckboxTable() {
 | children   | node    | Elements to be displayed within root element.         |
 | className  | string  | Classes to be applied to the root element.            |
 | numeric    | boolean | Enables a numeric variant.                            |
+
+### DataTableContent
+
+| Name      | Type   | Description                                   |
+| --------- | ------ | --------------------------------------------- |
+| children  | node   | Elements to be displayed within root element. |
+| className | string | Classes to be applied to the root element.    |
+
+### DataTableRow
+
+| Name      | Type    | Description                                   |
+| --------- | ------- | --------------------------------------------- |
+| children  | node    | Elements to be displayed within root element. |
+| className | string  | Classes to be applied to the root element.    |
+| selected  | boolean | Indicates whether the element is selected.    |
 
 ### DataTableCell
 

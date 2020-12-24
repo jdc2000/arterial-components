@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "@arterial/form-field": "^2.0.3",
-    "@material/checkbox": "^6.0.0"
+    "@material/checkbox": "^8.0.0",
+    "classnames": "^2.2.6"
   }
 }

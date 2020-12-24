@@ -1,5 +1,3 @@
-import React, { useEffect, useReducer, useRef } from 'react';
-import Highlighter from './Highlighter';
 import {
   List,
   ListItem,
@@ -7,14 +5,16 @@ import {
   ListItemGraphic,
   ListItemMeta,
   ListItemPrimaryText,
-  ListItemSecondaryText
+  ListItemSecondaryText,
 } from '@arterial/list';
-import { MenuSurface, MenuSurfaceAnchor, Corner } from '@arterial/menu-surface';
-import PropTypes from 'prop-types';
-import { TextField } from '@arterial/textfield';
+import {MenuSurface, MenuSurfaceAnchor, Corner} from '@arterial/menu-surface';
+import {TextField} from '@arterial/textfield';
 import classNames from 'classnames';
-import { reducer, types, INITIAL_STATE } from './reducer';
-import { v4 as uuid } from 'uuid';
+import PropTypes from 'prop-types';
+import {useEffect, useReducer, useRef} from 'react';
+import {v4 as uuid} from 'uuid';
+import Highlighter from './Highlighter';
+import {reducer, types, INITIAL_STATE} from './reducer';
 
 export function Typeahead({
   className,
@@ -34,9 +34,9 @@ export function Typeahead({
   const anchorRef = useRef();
   const arterialRef = useRef(uuid());
   const textFieldRef = useRef();
-  const classes = classNames('art-typeahead', className, {
-    'art-typeahead--activated': state.activated,
-    'art-typeahead--focused': state.focused
+  const classes = classNames('ajs-typeahead', className, {
+    'ajs-typeahead--activated': state.activated,
+    'ajs-typeahead--focused': state.focused,
   });
   const isLabelFloating = Boolean(labelFloating || state.focused || value);
 
@@ -44,13 +44,13 @@ export function Typeahead({
     const activated = !state.activated ? true : null;
     const focused = !state.focused ? true : null;
     const focusedIndex = index;
-    dispatch({ type: types.FOCUS_INDEX, focusedIndex, activated, focused });
+    dispatch({type: types.FOCUS_INDEX, focusedIndex, activated, focused});
   }
 
   function getMenuStyle() {
     if (textFieldRef.current) {
       const width = menuWidth || textFieldRef.current.clientWidth;
-      return { maxWidth: width, width };
+      return {maxWidth: width, width};
     }
   }
 
@@ -75,7 +75,7 @@ export function Typeahead({
   function select(option) {
     if (option.disabled) return;
     textFieldRef.current.focus();
-    dispatch({ type: types.DEACTIVATE });
+    dispatch({type: types.DEACTIVATE});
     if (onSelect) onSelect(option);
     if (onChange) onChange(getText(option));
   }
@@ -86,12 +86,12 @@ export function Typeahead({
   }
 
   function handleClick() {
-    if (!state.activated && state.focused) dispatch({ type: types.ACTIVATE });
+    if (!state.activated && state.focused) dispatch({type: types.ACTIVATE});
   }
 
   function handleFocus() {
     const type = state.activated ? types.DEACTIVATE : types.ACTIVATE;
-    dispatch({ type, focused: true });
+    dispatch({type, focused: true});
   }
 
   function handleKeyDown(e) {
@@ -107,7 +107,7 @@ export function Typeahead({
       e.preventDefault();
       e.stopPropagation();
     } else if (isTab) {
-      dispatch({ type: types.DEACTIVATE });
+      dispatch({type: types.DEACTIVATE});
     } else if (arrowUp) {
       e.preventDefault();
       focusListItem(getPreviousIndex(state.focusedIndex));
@@ -123,9 +123,9 @@ export function Typeahead({
 
   useEffect(() => {
     function handleBodyClick(e) {
-      const { arterial } = e.target.dataset;
+      const {arterial} = e.target.dataset;
       if (!arterial || arterial !== arterialRef.current) {
-        dispatch({ type: types.DEACTIVATE, focused: false });
+        dispatch({type: types.DEACTIVATE, focused: false});
       }
     }
     document.body.addEventListener('click', handleBodyClick);
@@ -135,11 +135,11 @@ export function Typeahead({
   }, []);
 
   useEffect(() => {
-    dispatch({ type: types.SET_OPTIONS, options, searchOptions });
+    dispatch({type: types.SET_OPTIONS, options, searchOptions});
   }, [options, searchOptions]);
 
   useEffect(() => {
-    dispatch({ type: types.SEARCH, value, options });
+    dispatch({type: types.SEARCH, value, options});
   }, [options, value]);
 
   return (
@@ -239,7 +239,6 @@ export function Typeahead({
     </div>
   );
 }
-
 Typeahead.displayName = 'Typeahead';
 Typeahead.propTypes = {
   className: PropTypes.string,
@@ -257,10 +256,10 @@ Typeahead.propTypes = {
       secondaryText: PropTypes.string,
       selectedText: PropTypes.string,
       text: PropTypes.string.isRequired,
-      value: PropTypes.string.isRequired
+      value: PropTypes.string.isRequired,
     })
   ),
   searchOptions: PropTypes.object,
   style: PropTypes.object,
-  value: PropTypes.string
+  value: PropTypes.string,
 };

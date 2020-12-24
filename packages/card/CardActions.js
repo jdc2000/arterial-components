@@ -1,23 +1,26 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 
-export default function Row({
+export function CardActions({
   children,
   className,
+  fullBleed,
   tag: Tag = 'div',
   ...otherProps
 }) {
-  const classes = classNames('mdc-top-app-bar__row', className);
+  const classes = classNames('mdc-card__actions', className, {
+    'mdc-card__actions--full-bleed': fullBleed,
+  });
   return (
     <Tag className={classes} {...otherProps}>
       {children}
     </Tag>
   );
 }
-
-Row.propTypes = {
+CardActions.displayName = 'CardActions';
+CardActions.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
+  fullBleed: PropTypes.bool,
   tag: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 };

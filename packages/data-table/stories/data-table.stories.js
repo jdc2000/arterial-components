@@ -1,14 +1,16 @@
-import React, { useRef, useState } from 'react';
+import {Fragment, useRef, useState} from 'react';
 import {
   DataTable,
   DataTableCell,
   DataTableContent,
   DataTableHeader,
   DataTableHeaderCell,
+  DataTableHeaderRow,
   DataTableRow,
 } from '..';
 
-export default { title: 'DataTable' };
+const Meta = {title: 'DataTable'};
+export default Meta;
 
 const TABLE = [
   ['Dessert', 'Calories', 'Fat', 'Carbs', 'Protein (g)'],
@@ -22,7 +24,7 @@ export const Basic = () => {
   return (
     <DataTable>
       <DataTableHeader>
-        <DataTableRow>
+        <DataTableHeaderRow>
           {header.map((cell, cellIndex) => {
             const isNumeric = numerics.current.get(cellIndex) === true;
             return (
@@ -31,7 +33,7 @@ export const Basic = () => {
               </DataTableHeaderCell>
             );
           })}
-        </DataTableRow>
+        </DataTableHeaderRow>
       </DataTableHeader>
       <DataTableContent>
         {content.map((row, rowIndex) => {
@@ -63,36 +65,37 @@ export const Selection = () => {
   const numerics = useRef(new Map());
   const [headerChecked, setHeaderChecked] = useState('');
   const [bodyChecked, setBodyChecked] = useState(initChecked());
-  console.log({ checked: bodyChecked });
+  console.log({checked: bodyChecked});
   return (
     <DataTable>
       <DataTableHeader>
-        <DataTableRow>
+        <DataTableHeaderRow>
           {header.map((cell, cellIndex) => {
             const isNumeric = numerics.current.get(cellIndex) === true;
             return (
-              <React.Fragment key={`row-header-cell-${cellIndex}`}>
+              <Fragment key={`row-header-cell-${cellIndex}`}>
                 {cellIndex === 0 && (
                   <DataTableHeaderCell
                     checkbox
+                    checkboxId={cell + cellIndex}
                     checked={headerChecked === 'checked'}
                     indeterminate={headerChecked === 'indeterminate'}
-                    onChange={(data) => {
-                      Object.keys(bodyChecked).forEach((key) => {
+                    onChange={data => {
+                      Object.keys(bodyChecked).forEach(key => {
                         bodyChecked[key] = data.checked;
                       });
                       setHeaderChecked(data.checked ? 'checked' : '');
-                      setBodyChecked({ ...bodyChecked });
+                      setBodyChecked({...bodyChecked});
                     }}
                   />
                 )}
                 <DataTableHeaderCell numeric={isNumeric}>
                   {cell}
                 </DataTableHeaderCell>
-              </React.Fragment>
+              </Fragment>
             );
           })}
-        </DataTableRow>
+        </DataTableHeaderRow>
       </DataTableHeader>
       <DataTableContent>
         {content.map((row, rowIndex) => {
@@ -105,22 +108,23 @@ export const Selection = () => {
                 const isNumeric = !isNaN(cell);
                 numerics.current.set(cellIndex, isNumeric);
                 return (
-                  <React.Fragment key={`row-${rowIndex}-cell-${cellIndex}`}>
+                  <Fragment key={`row-${rowIndex}-cell-${cellIndex}`}>
                     {cellIndex === 0 && (
                       <DataTableCell
                         checkbox
+                        checkboxId={cell + cellIndex}
                         checked={bodyChecked[rowIndex] === true}
-                        onChange={(data) => {
+                        onChange={data => {
                           bodyChecked[rowIndex] = data.checked;
                           const values = Object.values(bodyChecked);
-                          const checked = values.find((checked) => checked);
+                          const checked = values.find(checked => checked);
                           const noneChecked = checked
                             ? false
-                            : values.every((checked) => !checked);
-                          const unchecked = values.find((checked) => !checked);
+                            : values.every(checked => !checked);
+                          const unchecked = values.find(checked => !checked);
                           const allChecked = unchecked
                             ? false
-                            : values.every((checked) => checked);
+                            : values.every(checked => checked);
                           let header;
                           if (allChecked) {
                             header = 'checked';
@@ -130,12 +134,12 @@ export const Selection = () => {
                             header = 'indeterminate';
                           }
                           setHeaderChecked(header);
-                          setBodyChecked({ ...bodyChecked });
+                          setBodyChecked({...bodyChecked});
                         }}
                       />
                     )}
                     <DataTableCell numeric={isNumeric}>{cell}</DataTableCell>
-                  </React.Fragment>
+                  </Fragment>
                 );
               })}
             </DataTableRow>

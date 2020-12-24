@@ -27,7 +27,7 @@ import '@material/layout-grid/dist/mdc.layout-grid.css';
 ### JSX
 
 ```jsx
-import { Grid, GridRow, GridCell } from '@arterial/layout-grid';
+import {Grid, GridRow, GridCell} from '@arterial/layout-grid';
 ```
 
 ## Regular Layout Grid

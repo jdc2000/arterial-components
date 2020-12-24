@@ -28,7 +28,7 @@ import '@material/snackbar/dist/mdc.snackbar.css';
 ### JSX
 
 ```jsx
-import { Snackbar } from '@arterial/snackbar';
+import {Snackbar} from '@arterial/snackbar';
 ```
 
 ## Regular Snackbar

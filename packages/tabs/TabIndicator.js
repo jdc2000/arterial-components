@@ -1,9 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react';
-import PropTypes from 'prop-types';
+import {Icon} from '@arterial/icon';
 import classNames from 'classnames';
-import { Icon } from '@arterial/icon';
+import PropTypes from 'prop-types';
+import {forwardRef, useEffect, useRef, useState} from 'react';
 
-const TabIndicator = React.forwardRef((props, ref) => {
+export const TabIndicator = forwardRef((props, ref) => {
   const {
     active,
     className,
@@ -70,7 +70,7 @@ const TabIndicator = React.forwardRef((props, ref) => {
           icon={icon}
           id={id}
           ref={contentRef}
-          style={{ transform }}
+          style={{transform}}
           tag="span"
         />
       ) : (
@@ -78,7 +78,7 @@ const TabIndicator = React.forwardRef((props, ref) => {
           className={contentClasses}
           id={id}
           ref={contentRef}
-          style={{ transform }}
+          style={{transform}}
         ></span>
       )}
     </Tag>
@@ -89,10 +89,8 @@ TabIndicator.propTypes = {
   active: PropTypes.bool,
   className: PropTypes.string,
   fade: PropTypes.bool,
-  icon: PropTypes.string,
+  icon: PropTypes.node,
   id: PropTypes.string,
   previousIndicatorClientRect: PropTypes.object,
   tag: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 };
-
-export default TabIndicator;
